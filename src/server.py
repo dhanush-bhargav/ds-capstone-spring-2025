@@ -1,0 +1,15 @@
+from flask import Flask, request
+from main import CrewManager
+app = Flask(__name__)
+crewManager = CrewManager()
+
+@app.route('/initialize', methods=['POST'])
+def initialize():
+    print(request.json)
+    crewManager.first_setup(request)
+    return "Success"
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
