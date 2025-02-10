@@ -15,9 +15,9 @@ class ChatAgent:
         self.task = Task(
             agent=self.agent,
             async_execution=False,
-            description=f"""You have been presented with the issue {central_question} and your stance is '{stance}', the participant has taken the opposing stance. You need to now come up with and present arguments
-            to the participant. Your task is not to engage the participant in a debate, but to produce valid arguments and receive the participant's response to those arguments.
-            You do not need to change the participant's point of view. You will present the arguments in a conversational format. The user's response is {{user_response}} and context is {{context}}.
+            description=f"""You have been presented with the issue '{central_question}' and your stance is '{stance}', the participant has taken the opposing stance. You need to now come up with and present an argument
+            supporting your stance. Your task is not to engage the participant in a debate, but to produce valid arguments and receive the participant's response to those arguments.
+            You do not need to change the participant's point of view. You only need to provide one detailed argument at a time. The user's response is {{user_response}} and context is {{context}}.
             In case user's response or context are empty, ignore them and generate your argument.""",
-            expected_output=""""Arguments opposing the participant's view in a conversational format."""
+            expected_output=""""A detailed argument opposing the participant's view in a conversational format."""
         )

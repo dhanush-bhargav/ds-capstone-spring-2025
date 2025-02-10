@@ -14,9 +14,13 @@ class MainCrew:
 
     def run(self, user_response, user_id):
 
-        relevant_info = self.memory.retrieve_from_memory(user_id=user_id, query=user_response)
+        if user_response != "":
+            relevant_info = self.memory.retrieve_from_memory(user_id=user_id, query=user_response)
+        else:
+            relevant_info = ""
+
         inputs = {
             "user_response": user_response,
             "context": relevant_info,
         }
-        self.crew.kickoff(inputs)
+        return self.crew.kickoff(inputs)
