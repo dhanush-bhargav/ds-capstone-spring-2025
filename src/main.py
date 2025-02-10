@@ -13,10 +13,8 @@ class CrewManager:
                                     request.json['central_question'], request.json['stance'])
         self.crew = MainCrew(self.chat_agent)
         output = self.crew.run("", request.json['user_id'])
-        print(output.raw)
         return output
 
     def generate_response(self, request):
         crew_output = self.crew.run(request.json['message'], request.json['user_id'])
-        print(crew_output.raw)
         return crew_output
