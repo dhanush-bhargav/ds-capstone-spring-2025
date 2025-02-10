@@ -1,0 +1,31 @@
+/* src/App.css */
+.app-container {
+  font-family: sans-serif;
+}
+
+.user-list {
+  background-color: #f0f0f0;
+}
+
+.chat-window {
+  background-color: #fff;
+}
+
+.message {
+  /* Basic styling for messages - customize as needed */
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  max-width: 70%; /* Prevent messages from being too wide */
+}
+
+.received {
+  background-color: #f0f0f0; /* Light gray for received messages */
+  align-self: flex-start; /* Align to the left */
+}
+
+.sent {
+  background-color: #007bff; /* Blue for sent messages */
+  color: white;
+  align-self: flex-end; /* Align to the right */
+}
