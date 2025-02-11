@@ -14,7 +14,7 @@ def initialize():
 def chat():
     print(request.json)
     result = crewManager.generate_response(request)
-    return result
+    return result.raw
 
 
 if __name__ == '__main__':

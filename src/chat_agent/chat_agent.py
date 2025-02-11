@@ -26,7 +26,7 @@ class ChatAgent:
             description=(
                 f"The agent will present arguments in favor of the stance '{stance.upper()}' "
                 f"for the question: '{central_question}'. It will present one argument at a time, "
-                f"tailoring the next argument based on the participant's response: {{user_response}}\nand conversation history:\n{{context}}."
+                f"tailoring the next argument based on the participant's response: '{{user_response}}'\nand conversation history:\n'{{context}}'."
             ),
             expected_output="An iterative conversation presenting structured arguments in favor of the stance."
         )
