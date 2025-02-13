@@ -1,8 +1,6 @@
 from flask import Flask, request
 from main import CrewManager
 from flask_cors import CORS
-import sqlite3
-from config_reader import ConfigData
 
 app = Flask(__name__)
 CORS(app)
@@ -11,7 +9,6 @@ crewManager = CrewManager()
 @app.route('/get_topics', methods=['GET'])
 def get_topics():
     return crewManager.get_topics()
-
 
 @app.route("/login", methods=['POST'])
 def login():

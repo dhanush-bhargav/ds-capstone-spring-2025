@@ -65,7 +65,9 @@ class CrewManager:
             if result[2] == request.json['password']:
                 return {
                     "success": True,
-                    "message": "Login Successful"
+                    "message": "Login Successful",
+                    "user_name": result[1],
+                    "user_id": result[0],
                 }
             else:
                 return {

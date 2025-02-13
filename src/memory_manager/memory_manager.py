@@ -7,7 +7,7 @@ class MemoryManager:
         self.db_path = self.config_data.get_value('Memory', 'db_path')
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        cursor.execute(f"INSERT INTO link_conversations_user_topic ( topic_id, user_id ) VALUES ( {topic_id}, {user_id} )")
+        cursor.execute(f"INSERT INTO link_conversations_user_topic ( topic_id, user_id ) VALUES ( '{topic_id}', '{user_id}' )")
         connection.commit()
         self.conversation_id = cursor.lastrowid
         connection.close()
