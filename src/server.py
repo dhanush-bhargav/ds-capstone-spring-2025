@@ -1,6 +1,8 @@
 from flask import Flask, request
 from main import CrewManager
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 crewManager = CrewManager()
 
 @app.route('/initialize', methods=['POST'])
