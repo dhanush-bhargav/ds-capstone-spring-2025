@@ -17,9 +17,10 @@ import {
     Divider
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { topicsData } from '../topicsData'; // Import topics
+import { topicsData } from '../topicsData';
+import axios from 'axios';
 
-function ChatPage({username, onLogout}) {
+function ChatPage({ username, onLogout }) {
     const [topics, setTopics] = useState(topicsData);
     const [selectedTopic, setSelectedTopic] = useState(null);
     const [messages, setMessages] = useState([]);
@@ -27,66 +28,69 @@ function ChatPage({username, onLogout}) {
     const messagesEndRef = useRef(null);
     const [awaitingYesNo, setAwaitingYesNo] = useState(false);
     const [lastQuestion, setLastQuestion] = useState('');
+    const [chatInitialized, setChatInitialized] = useState(false);
 
-    // --- Placeholder Backend Interaction ---
-    const fetchMessages = async () => {
-        if (!selectedTopic) return;
-        // Placeholder removed
+    const API_BASE_URL = 'http://localhost:5000'; // Replace with your backend URL
+
+    // --- Backend Interaction ---
+
+    const initializeChat = async (question, stance) => {
+        try {
+            const response = await axios.post(`${API_BASE_URL}/initialize`, {
+                central_question: question,
+                stance: stance,
+                user_id: username,
+            });
+            console.log('This is the response', response)
+            setMessages([...messages, { id: Date.now(), text: question, sender: 'user' }, { id: Date.now() + 1, text: response.data, sender: 'gpt' }]);
+            setChatInitialized(true);
+        } catch (error) {
+            console.error("Error initializing chat:", error);
+            alert("Failed to initialize chat. Please try again.");
+        }
     };
 
-
-    const sendMessage = async (text = newMessage) => {
-        if (!text.trim() || !selectedTopic) return;
-
-        const newMessageObj = {
-            id: Date.now(),
-            topicId: selectedTopic.id,
-            text: text,
-            sender: 'user',
-        };
-        setMessages([...messages, newMessageObj]);
-        setNewMessage('');
-
-        // Only ask for Yes/No if a pre-made question was selected
-        if (selectedTopic.preMadeQuestions.includes(text)) {
-            setLastQuestion(text);
-            setAwaitingYesNo(true);
-        } else {
-             // Simulate immediate GPT response for custom questions
-            setTimeout(() => {
-                const gptResponse = {
-                    id: Date.now() + 1,
-                    topicId: selectedTopic.id,
-                    text: `This is a placeholder GPT response for: ${text}`,
-                    sender: 'gpt',
-                };
-                setMessages(prevMessages => [...prevMessages, gptResponse]);
-            }, 1000);
+    const sendChatMessage = async (text) => {
+        try {
+            const response = await axios.post(`${API_BASE_URL}/chat`, {
+                message: text,
+                user_id: username,
+            });
+            const newMessageObj = {
+                id: Date.now(),
+                text: text,
+                sender: 'user',
+            };
+            setMessages(prev => [...prev, newMessageObj]);
+            setMessages(prevMessages => [...prevMessages, { id: Date.now() + 1, text: response.data, sender: 'gpt' }]);
+            setNewMessage('');
+        } catch (error) {
+            console.error("Error sending message:", error);
+            alert("Failed to send message. Please try again.");
         }
     };
 
 
-    const handleYesNo = (response) => {
-        setAwaitingYesNo(false);
+    const sendMessage = async (text = newMessage) => {
+        if (!chatInitialized) {
+            if (selectedTopic.preMadeQuestions.includes(text)) {
+                setLastQuestion(text);
+                setAwaitingYesNo(true);
+            }
+             else {
+            alert("Select the question.")
+          }
+            return;
+        }
+        if (!text.trim() || !selectedTopic) return;
 
-        const yesNoMessage = {
-            id: Date.now(),
-            topicId: selectedTopic.id,
-            text: response,
-            sender: 'user',
-        };
-        setMessages(prevMessages => [...prevMessages, yesNoMessage]);
+        await sendChatMessage(text);
 
-        // Simulate GPT response (remove for real backend)
-        setTimeout(() => {
-            const gptResponse = {
-                id: Date.now() + 1,
-                topicId: selectedTopic.id,
-                text: `This is a placeholder GPT response for: ${lastQuestion}. You answered ${response}.`,
-                sender: 'gpt',
-            };
-            setMessages(prevMessages => [...prevMessages, gptResponse]);
-        }, 1000);
+    };
+
+    const handleYesNo = async (response) => {
+      setAwaitingYesNo(false);
+      await initializeChat(lastQuestion, response);
     };
 
 
@@ -98,12 +102,16 @@ function ChatPage({username, onLogout}) {
     }, [topics]);
 
     useEffect(() => {
-        if (selectedTopic) {
-            fetchMessages();
-        } else {
-            setMessages([]);
+        const initialize = async () => {
+            if (selectedTopic) {
+                setChatInitialized(false);
+                setMessages([]);
+                setAwaitingYesNo(false);
+                setLastQuestion('');
+            }
         }
-    }, [selectedTopic, fetchMessages]); // Add fetchMessages here
+        initialize();
+    }, [selectedTopic]);
 
     useEffect(() => {
         scrollToBottom();
@@ -114,10 +122,8 @@ function ChatPage({username, onLogout}) {
         const topicId = event.target.value;
         const selected = topics.find(topic => topic.id === topicId);
         setSelectedTopic(selected);
-        setMessages([]);
-        setAwaitingYesNo(false);
-
     };
+
 
 
     const scrollToBottom = () => {
@@ -149,15 +155,29 @@ function ChatPage({username, onLogout}) {
                     {/* Pre-made Questions */}
                     {selectedTopic && (
                         <ListItem>
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                            {/* Use a Box with flexDirection: 'column' */}
+                            <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                                 {selectedTopic.preMadeQuestions.map((question, index) => (
-                                    <Chip
+                                    // Use a div with onClick and styling
+                                    <Box
                                         key={index}
-                                        label={question}
-                                        onClick={() => sendMessage(question)}
-                                        variant="outlined"
-                                        sx={{ whiteSpace: 'normal' }}
-                                    />
+                                        onClick={() => sendMessage(question)} // Corrected line
+                                        sx={{
+                                            padding: '8px 12px',
+                                            marginBottom: '8px',
+                                            borderRadius: '4px',
+                                            border: '1px solid #ccc',
+                                            cursor: 'pointer',
+                                            '&:hover': {
+                                                backgroundColor: '#f0f0f0',
+                                            },
+                                            width: '100%',
+                                            textAlign: 'left',
+                                            wordWrap: 'break-word'
+                                        }}
+                                    >
+                                        <Typography variant="body1">{question}</Typography>
+                                    </Box>
                                 ))}
                             </Box>
                         </ListItem>
@@ -172,18 +192,18 @@ function ChatPage({username, onLogout}) {
                         {selectedTopic ? `Chat about ${selectedTopic.name}` : 'Select a topic to chat'}
                     </Typography>
                     {/* Editable Username */}
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap:2 }}>
-                    <Button variant='outlined' color='error' onClick={onLogout}>
-                        Logout
-                    </Button>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <Button variant='outlined' color='error' onClick={onLogout}>
+                            Logout
+                        </Button>
                         <Avatar sx={{ mr: 1 }}>{username ? username.charAt(0).toUpperCase() : 'U'}</Avatar>
                         <TextField
                             value={username}
-                            onChange={(e)=> {}}
+                            onChange={() => { }}
                             placeholder="Enter Username"
-                            variant="standard" // Or outlined/filled, as you prefer
+                            variant="standard"
                             size="small"
-                            sx={{ width: '120px' }} // Adjust width as needed
+                            sx={{ width: '120px' }}
                             disabled={true}
                         />
                     </Box>
@@ -232,12 +252,12 @@ function ChatPage({username, onLogout}) {
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                         onKeyPress={(e) => { if (e.key === 'Enter' && !awaitingYesNo) { sendMessage(); } }}
-                        disabled={awaitingYesNo}
+                        disabled={!chatInitialized}
                     />
                     <IconButton
                         color="primary"
-                        onClick={sendMessage}
-                        disabled={!newMessage.trim() || !selectedTopic || awaitingYesNo}
+                        onClick={() => sendMessage(newMessage)} // Pass newMessage here
+                        disabled={!chatInitialized}
                     >
                         <SendIcon />
                     </IconButton>
