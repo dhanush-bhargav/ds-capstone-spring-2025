@@ -43,7 +43,7 @@ function ChatPage({ username, userID, topics, onLogout }) {
                 topic_id: question.id
             });
             console.log('This is the response', response)
-            setConversationID(response["conversation_id"])
+            setConversationID(response.data["conversation_id"])
             setMessages([...messages, { id: Date.now(), text: question.topic, sender: 'user' }, { id: Date.now() + 1, text: response.data["message"], sender: 'gpt' }]);
             setChatInitialized(true);
         } catch (error) {
@@ -54,6 +54,7 @@ function ChatPage({ username, userID, topics, onLogout }) {
 
     const sendChatMessage = async (text) => {
         try {
+            console.log(conversationID)
             const response = await axios.post(`${API_BASE_URL}/chat`, {
                 message: text,
                 conversation_id: conversationID,
@@ -64,7 +65,7 @@ function ChatPage({ username, userID, topics, onLogout }) {
                 sender: 'user',
             };
             setMessages(prev => [...prev, newMessageObj]);
-            setMessages(prevMessages => [...prevMessages, { id: Date.now() + 1, text: response.data, sender: 'gpt' }]);
+            setMessages(prevMessages => [...prevMessages, { id: Date.now() + 1, text: response.data['message'], sender: 'gpt' }]);
             setNewMessage('');
         } catch (error) {
             console.error("Error sending message:", error);
