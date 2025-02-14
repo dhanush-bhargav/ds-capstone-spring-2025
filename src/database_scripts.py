@@ -17,9 +17,8 @@ cursor.execute("""CREATE TABLE topic_groups (
                     )""")
 
 cursor.execute("""CREATE TABLE master_topics (
-                      master_topic_id INTEGER PRIMARY KEY AUTOINCREMENT,
                       group_id INTEGER NOT NULL,
-                      topic_id INTEGER NOT NULL,
+                      topic_id INTEGER PRIMARY KEY AUTOINCREMENT,
                       topic_description TEXT NOT NULL
                     )""")
 
