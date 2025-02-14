@@ -17,32 +17,34 @@ import {
     Divider
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { topicsData } from '../topicsData';
 import axios from 'axios';
 
-function ChatPage({ username, onLogout }) {
-    const [topics, setTopics] = useState(topicsData);
+function ChatPage({ username, userID, topics, onLogout }) {
     const [selectedTopic, setSelectedTopic] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const messagesEndRef = useRef(null);
     const [awaitingYesNo, setAwaitingYesNo] = useState(false);
-    const [lastQuestion, setLastQuestion] = useState('');
+    const [lastQuestion, setLastQuestion] = useState({});
     const [chatInitialized, setChatInitialized] = useState(false);
+    const [conversationID, setConversationID] = useState(0);
 
     const API_BASE_URL = 'http://localhost:5000'; // Replace with your backend URL
 
     // --- Backend Interaction ---
 
     const initializeChat = async (question, stance) => {
+        console.log(question)
         try {
             const response = await axios.post(`${API_BASE_URL}/initialize`, {
-                central_question: question,
-                stance: stance,
-                user_id: username,
+                central_question: question.topic,
+                stance: stance === 'yes' ? 'no' : 'yes',
+                user_id: userID,
+                topic_id: question.id
             });
             console.log('This is the response', response)
-            setMessages([...messages, { id: Date.now(), text: question, sender: 'user' }, { id: Date.now() + 1, text: response.data, sender: 'gpt' }]);
+            setConversationID(response.data["conversation_id"])
+            setMessages([...messages, { id: Date.now(), text: question.topic, sender: 'user' }, { id: Date.now() + 1, text: response.data["message"], sender: 'gpt' }]);
             setChatInitialized(true);
         } catch (error) {
             console.error("Error initializing chat:", error);
@@ -52,9 +54,10 @@ function ChatPage({ username, onLogout }) {
 
     const sendChatMessage = async (text) => {
         try {
+            console.log(conversationID)
             const response = await axios.post(`${API_BASE_URL}/chat`, {
                 message: text,
-                user_id: username,
+                conversation_id: conversationID,
             });
             const newMessageObj = {
                 id: Date.now(),
@@ -62,7 +65,7 @@ function ChatPage({ username, onLogout }) {
                 sender: 'user',
             };
             setMessages(prev => [...prev, newMessageObj]);
-            setMessages(prevMessages => [...prevMessages, { id: Date.now() + 1, text: response.data, sender: 'gpt' }]);
+            setMessages(prevMessages => [...prevMessages, { id: Date.now() + 1, text: response.data['message'], sender: 'gpt' }]);
             setNewMessage('');
         } catch (error) {
             console.error("Error sending message:", error);
@@ -71,20 +74,14 @@ function ChatPage({ username, onLogout }) {
     };
 
 
-    const sendMessage = async (text = newMessage) => {
+    const sendMessage = async (message) => {
         if (!chatInitialized) {
-            if (selectedTopic.preMadeQuestions.includes(text)) {
-                setLastQuestion(text);
-                setAwaitingYesNo(true);
-            }
-             else {
-            alert("Select the question.")
-          }
+            setLastQuestion(message);
+            setAwaitingYesNo(true);
             return;
         }
-        if (!text.trim() || !selectedTopic) return;
 
-        await sendChatMessage(text);
+        await sendChatMessage(message);
 
     };
 
@@ -125,7 +122,6 @@ function ChatPage({ username, onLogout }) {
     };
 
 
-
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
@@ -157,11 +153,11 @@ function ChatPage({ username, onLogout }) {
                         <ListItem>
                             {/* Use a Box with flexDirection: 'column' */}
                             <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-                                {selectedTopic.preMadeQuestions.map((question, index) => (
+                                {selectedTopic.preMadeQuestions.map((topic, index) => (
                                     // Use a div with onClick and styling
                                     <Box
-                                        key={index}
-                                        onClick={() => sendMessage(question)} // Corrected line
+                                        key={topic.id}
+                                        onClick={() => sendMessage(topic)} // Corrected line
                                         sx={{
                                             padding: '8px 12px',
                                             marginBottom: '8px',
@@ -176,7 +172,7 @@ function ChatPage({ username, onLogout }) {
                                             wordWrap: 'break-word'
                                         }}
                                     >
-                                        <Typography variant="body1">{question}</Typography>
+                                        <Typography variant="body1">{topic.topic}</Typography>
                                     </Box>
                                 ))}
                             </Box>

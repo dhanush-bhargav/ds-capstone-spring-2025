@@ -4,16 +4,23 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import ChatPage from './components/ChatPage';
 import LoginPage from './components/LoginPage';
 import './App.css';
+import axios from "axios";
 
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState('');
+    const [userID, setUserID] = useState('')
+    const [topics, setTopics] = useState([])
+    const API_BASE_URL = 'http://localhost:5000'; // Replace with your backend URL
 
 
-    const handleLogin = (user) => {
+    const handleLogin = async (userName, userID) => {
         setIsLoggedIn(true);
-        setUsername(user)
+        setUsername(userName)
+        setUserID(userID)
+        const response = await axios.get(`${API_BASE_URL}/get_topics`)
+        setTopics(response.data)
     };
 
     const handleLogout = () => {
@@ -25,7 +32,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={isLoggedIn ? <Navigate to="/chat" /> : <LoginPage onLogin={handleLogin} />} />
-                <Route path="/chat" element={isLoggedIn ? <ChatPage username={username} onLogout={handleLogout}/> : <Navigate to="/" />} />
+                <Route path="/chat" element={isLoggedIn ? <ChatPage username={username} userID={userID} topics={topics} onLogout={handleLogout}/> : <Navigate to="/" />} />
             </Routes>
         </Router>
     );
