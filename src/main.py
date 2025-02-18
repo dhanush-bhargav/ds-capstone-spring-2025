@@ -26,8 +26,8 @@ class App:
 
     def read_user_arguments(self, request_data):
         argument_data = []
-        for item in request_data:
-            argument_data.append((item['topic_id'], item['yes_or_no'], item['argument']))
+        for item in request_data['arguments']:
+            argument_data.append((request_data['topic_id'], item['yes_or_no'], item['argument']))
         try:
             id = self.db_manager.create_argument(argument_data)
             result = {
@@ -44,8 +44,8 @@ class App:
 
     def read_user_argument_categories(self, request_data):
         data = []
-        for item in request_data:
-            data.append((item['topic_id'], item['argument_category']))
+        for item in request_data['argument_categories']:
+            data.append((request_data['topic_id'], item['argument_category']))
         try:
             id = self.db_manager.create_argument_category(data)
             result = {

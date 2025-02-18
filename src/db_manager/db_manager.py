@@ -181,8 +181,10 @@ class DbManager:
         cursor = connection.cursor()
         result = cursor.execute(f"""SELECT mac.category_id, mac.argument_category, ma.argument_id, ma.argument
                                         FROM master_argument_categories mac
+                                        INNER JOIN link_argument_categories lac
+                                        ON mac.category_id = lac.category_id
                                         INNER JOIN master_arguments ma
-                                        ON mac.category_id = ma.category_id
+                                        ON ma.argument_id = lac.argument_id
                                         WHERE mac.category_id = {category_id} AND mac.topic_id = {topic_id}""")
         for row in result:
             category_id, argument_category, argument_id, argument = row
