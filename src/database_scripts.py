@@ -51,8 +51,14 @@ cursor.execute("""CREATE TABLE master_arguments (
                       argument_id INTEGER PRIMARY KEY AUTOINCREMENT,
                       topic_id INTEGER NOT NULL,
                       yes_or_no VARCHAR(5) NOT NULL,
-                      argument TEXT NOT NULL,
-                      category_id INTEGER NOT NULL
+                      argument TEXT NOT NULL
+                    )""")
+
+# Create table to link arguments and categories
+cursor.execute("""CREATE TABLE link_argument_categories (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    category_id INTEGER NOT NULL,
+                    argument_id INTEGER NOT NULL
                     )""")
 
 #Create table to store users' stances
@@ -68,8 +74,8 @@ cursor.execute("""CREATE TABLE stances (
 cursor.execute("""CREATE TABLE implications (
                       implication_id INTEGER PRIMARY KEY AUTOINCREMENT,
                       conversation_id INTEGER NOT NULL,
-                      argument_category TEXT NOT NULL,
-                      argument TEXT NOT NULL,
+                      category_id INTEGER NOT NULL,
+                      argument_id INTEGER NOT NULL,
                       implication VARCHAR(255) NOT NULL
                     )""")
 

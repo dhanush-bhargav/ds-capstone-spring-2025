@@ -1,5 +1,5 @@
 from crewai import Crew, Process
-from memory_manager import MemoryManager
+from db_manager import DbManager
 
 class MainCrew:
     def __init__(self, chat_agent, user_id, topic_id):
@@ -10,7 +10,7 @@ class MainCrew:
             process=Process.sequential,
             verbose=True
         )
-        self.memory = MemoryManager(user_id, topic_id)
+        self.memory = DbManager(user_id, topic_id)
         self.conversation_id = self.memory.get_conversation_id()
         self.chat_history = []
 
