@@ -23,7 +23,7 @@ def create_conversation():
 
 @app.route("/get_user_instructions", methods=['GET'])
 def get_user_instructions():
-    return db_manager.get_instructions_by_intended_for("user")
+    return {"instructions": db_manager.get_instructions_by_intended_for("user")}
 
 @app.route("/read_user_arguments", methods=['POST'])
 def read_user_arguments():
@@ -37,7 +37,7 @@ def read_user_argument_categories():
 def get_arguments():
     return application.get_arguments(request.args)
 
-@app.route("/get_arguments_categories", methods=['GET'])
+@app.route("/get_argument_categories", methods=['GET'])
 def get_arguments_categories():
     return application.get_argument_categories(request.args)
 
