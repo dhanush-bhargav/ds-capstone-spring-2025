@@ -1,81 +1,136 @@
-from main_crew import MainCrew
-from chat_agent import ChatAgent
 from config_reader import ConfigData
-import sqlite3
+from db_manager import DbManager
 
-class CrewManager:
+
+class App:
     def __init__(self):
         self.chat_agent = None
         self.crew = None
         self.config_data = ConfigData("config.conf")
+        self.db_manager = DbManager()
 
-    def first_setup(self, request):
-        self.chat_agent = ChatAgent(self.config_data.get_value("ChatBot", "model_name"), self.config_data.get_value("ChatBot", "model_url"),
-                                    request.json['central_question'], request.json['stance'])
-        self.crew = MainCrew(self.chat_agent, request.json['user_id'], request.json['topic_id'])
-        conversation_id = self.crew.get_conversation_id()
-        output = self.crew.run("", request.json['user_id'])
-        result = {
-            "conversation_id": conversation_id,
-            "message": output.raw
-        }
+    def initialize_conversation(self, request_data):
+        try:
+           conversation_id = self.db_manager.create_new_conversation(request_data['topic_id'], request_data['user_id'])
+           stance_id = self.db_manager.create_stance(conversation_id, request_data['stance'], request_data['stance_rating'], request_data['collected_at'])
+           result = {
+               "success": True,
+               "conversation_id": conversation_id,
+           }
+        except Exception as e:
+            result = {
+                "success": False,
+                "error": str(e),
+            }
         return result
 
-    def generate_response(self, request):
-        crew_output = self.crew.run(request.json['message'], request.json['conversation_id'])
-        return {
-            'conversation_id': request.json['conversation_id'],
-            'message': crew_output.raw
-        }
+    def read_user_arguments(self, request_data):
+        argument_data = []
+        for item in request_data['arguments']:
+            argument_data.append((request_data['topic_id'], item['yes_or_no'], item['argument']))
+        try:
+            id = self.db_manager.create_argument(argument_data)
+            result = {
+                "success": True,
+                "id": id,
+            }
+        except Exception as e:
+            result = {
+                "success": False,
+                "error": str(e),
+            }
 
-    def get_topics(self):
-        topics_data = []
-        group_ids = []
+        return result
 
-        connection = sqlite3.connect(self.config_data.get_value('Memory', 'db_path'))
-        cursor = connection.cursor()
-        result = cursor.execute(""" SELECT tg.group_id, tg.group_name, mt.topic_id, mt.topic_description 
-                            FROM topic_groups tg 
-                            INNER JOIN main.master_topics mt on tg.group_id = mt.group_id 
-                            ORDER BY tg.group_id """)
+    def read_user_argument_categories(self, request_data):
+        data = []
+        for item in request_data['argument_categories']:
+            data.append((request_data['topic_id'], item['argument_category']))
+        try:
+            id = self.db_manager.create_argument_category(data)
+            result = {
+                "success": True,
+                "id": id,
+            }
+        except Exception as e:
+            result = {
+                "success": False,
+                "error": str(e),
+            }
+        return result
 
-        for row in result:
-            group_id, group_name, topic_id, topic_description = row
-            if group_id not in group_ids:
-                topics_data.append({
-                    "id": group_id,
-                    "name": group_name,
-                    "preMadeQuestions": [{"id": topic_id, "topic": topic_description}],
-                })
-                group_ids.append(group_id)
-            else:
-                for i in range(len(topics_data)):
-                    if topics_data[i]['id'] == group_id:
-                        topics_data[i]['preMadeQuestions'].append({"id": topic_id, "topic": topic_description})
-                        break
-
-        connection.close()
-        return topics_data
-
-    def login(self, request):
-        connection = sqlite3.connect(self.config_data.get_value('Memory', 'db_path'))
-        cursor = connection.cursor()
-        result = cursor.execute(f" SELECT user_id, user_name, password FROM users WHERE user_id = '{request.json['user_id']}' ").fetchone()
-        if result:
-            if result[2] == request.json['password']:
+    def get_arguments(self, request_data):
+        try:
+            result = self.db_manager.get_arguments(request_data['topic_id'])
+            if result:
                 return {
                     "success": True,
-                    "message": "Login Successful",
-                    "user_name": result[1],
-                    "user_id": result[0],
+                    "arguments": result,
                 }
             else:
                 return {
                     "success": False,
-                    "message": "Authentication Failed"
+                    "error": str(result),
                 }
-        else:
+        except Exception as e:
             return {
                 "success": False,
-                "message": "User Not Found"
+                "error": str(e),
             }
+
+    def get_argument_categories(self, request_data):
+        try:
+            result = self.db_manager.get_argument_categories(request_data['topic_id'])
+            if result:
+                return {
+                    "success": True,
+                    "argument_categories": result,
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": str(result),
+                }
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+            }
+
+    def get_arguments_by_category(self, request_data):
+        try:
+            result = self.db_manager.get_arguments_by_category_id(request_data['topic_id'], request_data['category_id'])
+            if result:
+                return {
+                    "success": True,
+                    "arguments_by_category": result,
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": str(result),
+                }
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+            }
+
+    def read_implications(self, request_data):
+        implications_data = []
+        for item in request_data['implications']:
+            implications_data.append((request_data['conversation_id'], item['category_id'], item['argument_id'], item['implication']))
+
+        try:
+            implication_id = self.db_manager.create_implication(implications_data)
+            result = {
+                "success": True,
+                "implication_id": implication_id,
+            }
+        except Exception as e:
+            result = {
+                "success": False,
+                "error": str(e),
+            }
+        return result
+
