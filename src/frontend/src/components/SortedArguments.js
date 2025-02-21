@@ -90,7 +90,7 @@ const SortedArguments = ({ allArguments, categories, setStep }) => {
         </Droppable>
       </DragDropContext>
 
-      <button className="proceed-btn" onClick={() => setStep(9)}>
+      <button className="proceed-btn" onClick={() => setStep(6)}>
         Proceed
       </button>
     </div>

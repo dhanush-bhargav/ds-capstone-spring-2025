@@ -2,12 +2,11 @@ import React from "react";
 import { Stepper, Step, StepLabel, Box } from "@mui/material";
 
 const steps = [
-  "Select Topic & Question",
-  "Choose Stance",
-  "Rate Strength",
+  "Select Question, Stance & Strength", // ✅ Combined Step
   "Instructions",
-  "Generate Arguments",
-  "Review & Sort Arguments",
+  "Generate & Review Arguments", // ✅ Merged this step
+  "Categorization",
+  "Sort Arguments",
   "Rate Implications",
   "Final Evaluation"
 ];

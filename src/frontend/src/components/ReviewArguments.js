@@ -43,7 +43,9 @@ const ReviewArguments = ({ argumentsList, setArgumentsList, setStep }) => {
             </ListItem>
           ))}
         </List>
-        <Button variant="contained" color="primary" onClick={() => setStep(6)}>
+        
+        {/* Updated Next Button to increment step dynamically */}
+        <Button variant="contained" color="primary" onClick={() => setStep((prev) => prev + 1)}>
           Next
         </Button>
       </Paper>

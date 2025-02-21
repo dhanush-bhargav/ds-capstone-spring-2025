@@ -1,46 +1,121 @@
-
-
 import React, { useState } from "react";
-import { topicsData } from "./topicsData"; // ✅ Make sure the import path is correct
+import { topicsData } from "./topicsData";
+import "./QuestionSelection.css"; // Ensure this is the correct path
 
-const QuestionSelection = ({ setQuestion, setStep }) => {
-  const [selectedTopic, setSelectedTopic] = useState(null);
+
+const QuestionSelection = ({ setQuestion, setStance, setStrength, setStep }) => {
+  const [selectedTopic, setSelectedTopic] = useState("");
+  const [selectedQuestion, setSelectedQuestion] = useState("");
+  const [stance, setLocalStance] = useState("");
+  const [strength, setLocalStrength] = useState(null);
+
+  const handleProceed = () => {
+    if (!selectedTopic || !selectedQuestion || !stance || !strength) {
+      alert("Please complete all selections before proceeding.");
+      return;
+    }
+
+    setQuestion(selectedQuestion);
+    setStance(stance);
+    setStrength(strength);
+    setStep(2);
+  };
 
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Select a Topic</h2>
-
-      {/* Display selected topic */}
-      {selectedTopic && <p className="text-lg font-semibold">Selected Topic: {selectedTopic.name}</p>}
+    <div className="container">
+      <h2>Select Topic, Question, Stance & Strength</h2>
 
       {/* Topic Selection */}
-      <div className="mb-4">
-        {topicsData.map((topic) => (
-          <button
-            key={topic.id}
-            onClick={() => setSelectedTopic(topic)}
-            className="block w-full p-2 my-1 border rounded bg-blue-500 text-white hover:bg-blue-600"
-          >
-            {topic.name}
-          </button>
-        ))}
+      <div className="section">
+        <label className="label">Choose a Topic:</label>
+        <select
+          value={selectedTopic}
+          onChange={(e) => {
+            setSelectedTopic(e.target.value);
+            setSelectedQuestion(""); // Reset question when topic changes
+          }}
+          className="select-box"
+        >
+          <option value="">-- Select a Topic --</option>
+          {topicsData.map((topic) => (
+            <option key={topic.id} value={topic.id}>
+              {topic.name}
+            </option>
+          ))}
+        </select>
       </div>
 
-      {/* Display Pre-Made Questions */}
+      {/* Question Selection */}
       {selectedTopic && (
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold mb-2">Select a Question</h3>
-          {selectedTopic.preMadeQuestions.map((q, index) => (
-            <button
-              key={index}
-              onClick={() => { setQuestion(q); setStep(2); }}
-              className="block w-full p-2 my-1 border rounded bg-gray-300 hover:bg-gray-400"
-            >
-              {q}
-            </button>
-          ))}
+        <div className="section">
+          <label className="label">Choose a Question:</label>
+          <select
+            value={selectedQuestion}
+            onChange={(e) => setSelectedQuestion(e.target.value)}
+            className="select-box"
+          >
+            <option value="">-- Select a Question --</option>
+            {topicsData
+              .find((topic) => topic.id === parseInt(selectedTopic))
+              ?.preMadeQuestions.map((q, index) => (
+                <option key={index} value={q}>
+                  {q}
+                </option>
+              ))}
+          </select>
         </div>
       )}
+
+      {/* Stance Selection (Radio Buttons) */}
+      <div className="section">
+        <label className="label">Stance:</label>
+        <div className="radio-group">
+          <label className="radio-item">
+            <input
+              type="radio"
+              name="stance"
+              value="Yes"
+              checked={stance === "Yes"}
+              onChange={() => setLocalStance("Yes")}
+            />
+            Yes
+          </label>
+          <label className="radio-item">
+            <input
+              type="radio"
+              name="stance"
+              value="No"
+              checked={stance === "No"}
+              onChange={() => setLocalStance("No")}
+            />
+            No
+          </label>
+        </div>
+      </div>
+
+      {/* Strength Rating (Radio Buttons) */}
+      <div className="section">
+        <label className="label">Rate Your Strength:</label>
+        <div className="strength-group">
+          {[...Array(10)].map((_, i) => (
+            <label key={i} className="radio-item">
+              <input
+                type="radio"
+                name="strength"
+                value={i + 1}
+                checked={strength === i + 1}
+                onChange={() => setLocalStrength(i + 1)}
+              />
+              {i + 1}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Proceed Button */}
+      <button className="button" onClick={handleProceed}>
+        Proceed
+      </button>
     </div>
   );
 };

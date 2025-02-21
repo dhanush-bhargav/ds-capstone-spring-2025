@@ -14,7 +14,7 @@ const Instructions = ({ setStep }) => {
         <li>You will later categorize and evaluate these arguments.</li>
       </ul>
       <button 
-        onClick={() => setStep(5)} 
+        onClick={() => setStep(3)} 
         className="bg-blue-500 text-white px-6 py-2 rounded"
       >
         Next

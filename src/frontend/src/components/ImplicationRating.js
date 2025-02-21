@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Select, MenuItem, FormControl, InputLabel, Button, Paper } from "@mui/material";
+import "./ImplicationRating.css"
 
 const ImplicationRating = ({ allArguments, setRatedArguments, setStep, categories }) => {
   const [ratings, setRatings] = useState([]);

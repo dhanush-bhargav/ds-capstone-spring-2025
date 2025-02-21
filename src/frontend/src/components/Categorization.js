@@ -18,7 +18,6 @@ const Categorization = ({ setCategories, setStep }) => {
       setInput("");
     }
   };
-
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">Define Categories</h2>
@@ -61,7 +60,7 @@ const Categorization = ({ setCategories, setStep }) => {
       <button
         onClick={() => {
           console.log("Proceeding with categories:", categoriesList);
-          setStep(prev => prev + 1);
+          setStep(5);
         }}
         className={`w-full p-3 rounded text-lg transition duration-200 ${
           categoriesList.length > 0
