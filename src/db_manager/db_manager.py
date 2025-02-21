@@ -110,21 +110,26 @@ class DbManager:
     def create_argument_category(self, argument_category_data):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        result = cursor.executemany("INSERT INTO master_argument_categories (topic_id, argument_category) VALUES (?, ?) RETURNING category_id", argument_category_data)
+        cursor.executemany("INSERT INTO master_argument_categories (topic_id, argument_category) VALUES (?, ?)", argument_category_data)
         connection.commit()
+        rowcount = cursor.rowcount
+        res = cursor.execute(f"SELECT category_id FROM master_argument_categories ORDER BY category_id DESC LIMIT {rowcount}").fetchall()
         connection.close()
+        result = [item[0] for item in res]
         return result
 
 
     def create_argument(self, argument_data):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        result = cursor.executemany("INSERT INTO master_arguments (topic_id, yes_or_no, argument) VALUES (?, ?, ?) RETURNING argument_id",
-                                    argument_data)
+        cursor.executemany("INSERT INTO master_arguments (topic_id, yes_or_no, argument) VALUES (?, ?, ?)",
+                                        argument_data)
         connection.commit()
-        argument_id = cursor.lastrowid
+        rowcount = cursor.rowcount
+        res = cursor.execute(f"SELECT argument_id FROM master_arguments argument_id ORDER BY argument_id DESC LIMIT {rowcount}").fetchall()
         connection.close()
-        return argument_id
+        result = [item[0] for item in res]
+        return result
 
 
     def link_argument_category(self, data):
@@ -140,10 +145,13 @@ class DbManager:
     def create_implication(self, implication_data):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        result = cursor.executemany("INSERT INTO implications (conversation_id, category_id, argument_id, implication) VALUES (?, ?, ?, ?) RETURNING implication_id",
+        cursor.executemany("INSERT INTO implications (conversation_id, category_id, argument_id, implication) VALUES (?, ?, ?, ?)",
                                     implication_data)
         connection.commit()
+        rowcount = cursor.rowcount
+        res = cursor.execute(f"SELECT implication_id FROM implications ORDER BY implication_id DESC LIMIT {rowcount}").fetchall()
         connection.close()
+        result = [item[0] for item in res]
         return result
 
 
@@ -151,7 +159,7 @@ class DbManager:
         argument_categories_data = []
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        result = cursor.execute(f"SELECT category_id, argument_category FROM argument_categories WHERE topic_id = {topic_id}")
+        result = cursor.execute(f"SELECT category_id, argument_category FROM master_argument_categories WHERE topic_id = {topic_id}")
         for row in result:
             category_id, argument_category = row
             argument_categories_data.append({"category_id": category_id, "argument_category": argument_category})
@@ -189,4 +197,3 @@ class DbManager:
             argument_data.append({"category_id": category_id, "argument_category": argument_category,
                                   "argument_id": argument_id , "argument": argument})
         return argument_data
-

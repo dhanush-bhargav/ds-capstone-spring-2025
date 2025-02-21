@@ -29,10 +29,10 @@ class App:
         for item in request_data['arguments']:
             argument_data.append((request_data['topic_id'], item['yes_or_no'], item['argument']))
         try:
-            id = self.db_manager.create_argument(argument_data)
+            ids = self.db_manager.create_argument(argument_data)
             result = {
                 "success": True,
-                "id": id,
+                "argument_ids": ids,
             }
         except Exception as e:
             result = {
@@ -47,10 +47,10 @@ class App:
         for item in request_data['argument_categories']:
             data.append((request_data['topic_id'], item['argument_category']))
         try:
-            id = self.db_manager.create_argument_category(data)
+            ids = self.db_manager.create_argument_category(data)
             result = {
                 "success": True,
-                "id": id,
+                "category_ids": ids,
             }
         except Exception as e:
             result = {
