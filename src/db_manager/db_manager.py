@@ -110,18 +110,17 @@ class DbManager:
     def create_argument_category(self, argument_category_data):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        cursor.executemany("INSERT INTO master_argument_categories (topic_id, argument_category) VALUES (?, ?)", argument_category_data)
+        result = cursor.executemany("INSERT INTO master_argument_categories (topic_id, argument_category) VALUES (?, ?) RETURNING category_id", argument_category_data)
         connection.commit()
-        category_id = cursor.lastrowid
         connection.close()
-        return category_id
+        return result
 
 
     def create_argument(self, argument_data):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        cursor.executemany("INSERT INTO master_arguments (topic_id, yes_or_no, argument) VALUES (?, ?, ?)",
-                       argument_data)
+        result = cursor.executemany("INSERT INTO master_arguments (topic_id, yes_or_no, argument) VALUES (?, ?, ?) RETURNING argument_id",
+                                    argument_data)
         connection.commit()
         argument_id = cursor.lastrowid
         connection.close()
@@ -141,12 +140,11 @@ class DbManager:
     def create_implication(self, implication_data):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        cursor.executemany("INSERT INTO implications (conversation_id, category_id, argument_id, implication) VALUES (?, ?, ?, ?)",
-                       implication_data)
+        result = cursor.executemany("INSERT INTO implications (conversation_id, category_id, argument_id, implication) VALUES (?, ?, ?, ?) RETURNING implication_id",
+                                    implication_data)
         connection.commit()
-        implication_id = cursor.lastrowid
         connection.close()
-        return implication_id
+        return result
 
 
     def get_argument_categories(self, topic_id):
