@@ -1,0 +1,133 @@
+/* Container */
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1e3a8a;
+}
+
+/* Label styling */
+.label {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    color: #374151;
+}
+
+/* Dropdown Styling */
+.select-box {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    margin-bottom: 20px; /* Added more space */
+    background-color: #f9fafb;
+    transition: all 0.3s ease;
+}
+
+.select-box:focus {
+    border-color: #2563eb;
+    outline: none;
+    background: #ffffff;
+}
+
+/* Spacing Between Sections */
+.section {
+    margin-bottom: 25px; /* Adds space between topic, stance, and rating */
+}
+
+/* Radio Button Styling */
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Adds space below radio group */
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.radio-item input {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.radio-item:hover {
+    color: #2563eb;
+}
+
+/* Radio Buttons for Strength */
+.strength-group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Adds spacing between Strength & Proceed */
+}
+
+/* Proceed button */
+.button {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #2563eb;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+}
+
+.button:hover {
+    background-color: #1d4ed8;
+}
+
+.button:disabled {
+    background-color: #d1d5db;
+    cursor: not-allowed;
+}
+/* Mobile-friendly adjustments */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    .radio-group {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .strength-group {
+        justify-content: center;
+    }
+
+    .button {
+        font-size: 16px;
+    }
+}
