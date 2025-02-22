@@ -137,9 +137,11 @@ class DbManager:
         cursor = connection.cursor()
         cursor.execute("INSERT INTO link_argument_categories (argument_id, category_id) VALUES (?, ?)", data)
         connection.commit()
-        id = cursor.lastrowid
+        rowcount = cursor.rowcount
+        res = cursor.execute(f"SELECT id FROM link_argument_categories ORDER BY id DESC LIMIT {rowcount}").fetchall()
         connection.close()
-        return id
+        result = [item[0] for item in res]
+        return result
 
 
     def create_implication(self, implication_data):
