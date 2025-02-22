@@ -53,7 +53,7 @@ def link_argument_to_category(category_argument_list):
     db_manager = DbManager()
     write_data = []
     for item in category_argument_list:
-        write_data.append((item["category_id"], item["argument_id"]))
+        write_data.append((item["argument_id"], item["category_id"]))
 
     result = db_manager.link_argument_category(write_data)
     return result
