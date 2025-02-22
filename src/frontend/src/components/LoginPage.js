@@ -2,19 +2,37 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import axios from "axios";
 
 function LoginPage({ onLogin }) {  // Receive onLogin prop
-    const [username, setUsername] = useState('');
+    const [userID, setUserID] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate(); // Hook for navigation
+    const API_BASE_URL = 'http://localhost:5000'; // Replace with your backend URL
 
-    const handleLogin = () => {
+
+    const handleLogin = async () => {
         // VERY BASIC "authentication" - replace with real logic
-        if (username && password) {
-            onLogin(username); // Call the onLogin prop
-            navigate('/chat');   // Navigate to /chat
+        if (userID && password) {
+            try {
+                const response = await axios.post(`${API_BASE_URL}/login`,
+                    {
+                        "user_id": userID,
+                        "password": password
+                    })
+                if (response.data['success']){
+                    onLogin(response.data['user_name'], userID); // Call the onLogin prop
+                    navigate('/chat');   // Navigate to /chat
+                }
+                else {
+                    alert(response.data['message'])
+                }
+            }
+            catch{
+                alert("Authentication Server Error: Please try again.")
+            }
         } else {
-            alert('Please enter a username and password.');
+            alert('Please enter a User ID and password.');
         }
     };
 
@@ -33,10 +51,10 @@ function LoginPage({ onLogin }) {  // Receive onLogin prop
                 Login
             </Typography>
             <TextField
-                label="Username"
+                label="User ID"
                 variant="outlined"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={userID}
+                onChange={(e) => setUserID(e.target.value)}
                 sx={{ mb: 2, width: '300px' }}
             />
             <TextField
