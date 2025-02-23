@@ -3,6 +3,7 @@ from paraphrasing_agent import ParaphrasingAgent, ParaphrasingTask
 from categorization_agent import CategoryValidationAgent, CategoryValidationTask, CategoryMatchingAgent, CategoryMatchingTask
 from db_manager import DbManager
 from crewai import Crew
+import json
 
 
 class DataIngestionCrew:
@@ -22,7 +23,7 @@ class DataIngestionCrew:
             tasks=[validation_task, paraphrasing_task],
             verbose=True
         )
-        result = argument_ingest_crew.kickoff(inputs=arguments)
+        result = argument_ingest_crew.kickoff(inputs={'arguments': json.dumps(arguments)})
         return result
 
     def ingest_argument_categories(self, topic_id, argument_categories):
@@ -34,6 +35,6 @@ class DataIngestionCrew:
             tasks=[category_validation_task, category_matching_task],
             verbose=True
         )
-        result = category_ingest_crew.kickoff(inputs=argument_categories)
+        result = category_ingest_crew.kickoff(inputs={'argument_categories': argument_categories})
         return result
 

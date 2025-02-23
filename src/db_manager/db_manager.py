@@ -41,7 +41,7 @@ class DbManager:
     def get_topic_by_id(self, topic_id):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        result = cursor.execute(f"SELECT topic_id, topic_description FROM topics WHERE topic_id = {topic_id}").fetchone()
+        result = cursor.execute(f"SELECT topic_id, topic_description FROM master_topics WHERE topic_id = {topic_id}").fetchone()
         connection.close()
         return {
             "topic_id": result[0],

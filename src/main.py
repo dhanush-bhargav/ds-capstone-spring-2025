@@ -1,5 +1,6 @@
 from config_reader import ConfigData
 from db_manager import DbManager
+from crews import DataIngestionCrew
 
 
 class App:
@@ -8,6 +9,7 @@ class App:
         self.crew = None
         self.config_data = ConfigData("config.conf")
         self.db_manager = DbManager()
+        self.data_ingestion_crew = DataIngestionCrew()
 
     def initialize_conversation(self, request_data):
         try:
@@ -25,14 +27,12 @@ class App:
         return result
 
     def read_user_arguments(self, request_data):
-        argument_data = []
-        for item in request_data['arguments']:
-            argument_data.append((request_data['topic_id'], item['yes_or_no'], item['argument']))
         try:
-            ids = self.db_manager.create_argument(argument_data)
+            crew_result = self.data_ingestion_crew.ingest_arguments(request_data['topic_id'], request_data['arguments'])
+            print(crew_result)
             result = {
                 "success": True,
-                "argument_ids": ids,
+                "argument_ids": crew_result.raw,
             }
         except Exception as e:
             result = {
@@ -43,14 +43,13 @@ class App:
         return result
 
     def read_user_argument_categories(self, request_data):
-        data = []
-        for item in request_data['argument_categories']:
-            data.append((request_data['topic_id'], item['argument_category']))
         try:
-            ids = self.db_manager.create_argument_category(data)
+            crew_result = self.data_ingestion_crew.ingest_argument_categories(request_data['topic_id'],
+                                                                              request_data['argument_categories'])
+            print(crew_result)
             result = {
                 "success": True,
-                "category_ids": ids,
+                "argument_ids": crew_result.raw,
             }
         except Exception as e:
             result = {
