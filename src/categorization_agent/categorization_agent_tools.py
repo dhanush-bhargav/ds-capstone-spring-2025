@@ -58,3 +58,13 @@ def link_argument_to_category(category_argument_list):
     result = db_manager.link_argument_category(write_data)
     return result
 
+
+@tool("Unlinked argument reading tool")
+def get_unlinked_arguments(topic_id: int):
+    """
+    This tool is used to fetch arguments from the database for a given topic which are not linked to any argument category.
+    :param topic_id: int, id of the topic for which to fetch arguments from the database
+    :return: List(Dict), list of arguments found in the database for the given topic, each list item is a dictionary of the form {argument_id: int, yes_or_no: str, argument: str}
+    """
+
+    db_manager = DbManager()
