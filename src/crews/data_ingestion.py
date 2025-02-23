@@ -35,6 +35,6 @@ class DataIngestionCrew:
             tasks=[category_validation_task, category_matching_task],
             verbose=True
         )
-        result = category_ingest_crew.kickoff(inputs={'argument_categories': argument_categories})
+        result = category_ingest_crew.kickoff(inputs={'argument_categories': json.dumps(argument_categories)})
         return result
 

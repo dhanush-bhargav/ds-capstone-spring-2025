@@ -148,7 +148,7 @@ class DbManager:
     def link_argument_category(self, data):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO link_argument_categories (argument_id, category_id) VALUES (?, ?)", data)
+        cursor.executemany("INSERT INTO link_argument_categories (argument_id, category_id) VALUES (?, ?)", data)
         connection.commit()
         rowcount = cursor.rowcount
         res = cursor.execute(f"SELECT id FROM link_argument_categories ORDER BY id DESC LIMIT {rowcount}").fetchall()
@@ -221,7 +221,7 @@ class DbManager:
         result = cursor.execute(f"""SELECT ma.argument_id, ma.yes_or_no, ma.argument
                                         FROM master_arguments ma
                                         WHERE ma.topic_id = {topic_id} AND
-                                        ma.argument_id NOT IN (SELECT argument_id FROM link_argument_categories lac WHERE lac.topic_id = {topic_id})""")
+                                        ma.argument_id NOT IN (SELECT argument_id FROM link_argument_categories)""")
         for row in result:
             argument_id, yes_or_no, argument = row
             unlinked_arguments_data.append({"argument_id": argument_id, "yes_or_no": yes_or_no, "argument": argument})

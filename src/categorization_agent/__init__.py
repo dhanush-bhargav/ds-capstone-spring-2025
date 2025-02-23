@@ -1,2 +1,2 @@
-from .categorization_agent import CategoryValidationAgent
-from .categorization_task import CategoryValidationTask
+from .categorization_agent import CategoryValidationAgent, CategoryMatchingAgent
+from .categorization_task import CategoryValidationTask, CategoryMatchingTask
