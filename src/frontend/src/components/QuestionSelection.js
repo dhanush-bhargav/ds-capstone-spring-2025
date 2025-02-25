@@ -1,13 +1,25 @@
-import React, { useState } from "react";
-import { topicsData } from "./topicsData";
-import "./QuestionSelection.css"; // Ensure this is the correct path
+import React, { useState, useEffect } from "react";
+import "./QuestionSelection.css";
 
-
-const QuestionSelection = ({ setQuestion, setStance, setStrength, setStep }) => {
+const QuestionSelection = ({ setQuestion, setStance, setStrength, setStep, topics, questions }) => {
   const [selectedTopic, setSelectedTopic] = useState("");
-  const [selectedQuestion, setSelectedQuestion] = useState("");
+  const [selectedQuestion, setSelectedQuestion] = useState("");  // Store question ID
   const [stance, setLocalStance] = useState("");
   const [strength, setLocalStrength] = useState(null);
+  const [questionList, setQuestionList] = useState([]);
+
+  useEffect(() => {
+    // Filter questions based on the selected topic
+    if (selectedTopic && topics) {
+      const topic = topics.find((t) => t.id === parseInt(selectedTopic));
+      if (topic) {
+        setQuestionList(topic.preMadeQuestions); // Use preMadeQuestions directly
+      }
+    } else {
+      setQuestionList([]); // Reset question list if no topic is selected
+    }
+  }, [selectedTopic, topics]);
+
 
   const handleProceed = () => {
     if (!selectedTopic || !selectedQuestion || !stance || !strength) {
@@ -15,7 +27,7 @@ const QuestionSelection = ({ setQuestion, setStance, setStrength, setStep }) => 
       return;
     }
 
-    setQuestion(selectedQuestion);
+    setQuestion(selectedQuestion); // Set the question ID
     setStance(stance);
     setStrength(strength);
     setStep(2);
@@ -37,7 +49,7 @@ const QuestionSelection = ({ setQuestion, setStance, setStrength, setStep }) => 
           className="select-box"
         >
           <option value="">-- Select a Topic --</option>
-          {topicsData.map((topic) => (
+          {topics.map((topic) => (
             <option key={topic.id} value={topic.id}>
               {topic.name}
             </option>
@@ -51,17 +63,15 @@ const QuestionSelection = ({ setQuestion, setStance, setStrength, setStep }) => 
           <label className="label">Choose a Question:</label>
           <select
             value={selectedQuestion}
-            onChange={(e) => setSelectedQuestion(e.target.value)}
+            onChange={(e) => setSelectedQuestion(e.target.value)} // Set question ID
             className="select-box"
           >
             <option value="">-- Select a Question --</option>
-            {topicsData
-              .find((topic) => topic.id === parseInt(selectedTopic))
-              ?.preMadeQuestions.map((q, index) => (
-                <option key={index} value={q}>
-                  {q}
-                </option>
-              ))}
+            {questionList.map((q) => (
+              <option key={q.id} value={q.id}>
+                {q.text}
+              </option>
+            ))}
           </select>
         </div>
       )}

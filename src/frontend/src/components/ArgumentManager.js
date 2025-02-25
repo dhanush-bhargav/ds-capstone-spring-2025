@@ -3,86 +3,180 @@ import { Box, Typography, TextField, Button, Grid, Paper, IconButton } from "@mu
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios";
 
-const ArgumentManager = ({ question, setAllArguments, setStep }) => {
-  const [proArguments, setProArguments] = useState([]);
-  const [conArguments, setConArguments] = useState([]);
+const ArgumentManager = ({ question, setAllArguments, allArguments, setStep, token }) => {
+  // State variables
   const [currentProArg, setCurrentProArg] = useState("");
   const [currentConArg, setCurrentConArg] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
-  const [allArguments, setArguments] = useState([]);
+  const [editingArgument, setEditingArgument] = useState(null); // Store the *entire* argument object.
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Handle adding new arguments
-  const handleAddProArgument = () => {
+  // --- Add Pro Argument ---
+  const handleAddProArgument = async () => {
     if (currentProArg.trim()) {
-      setProArguments((prev) => [...prev, currentProArg]);
-      setCurrentProArg("");
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await axios.post('http://localhost:5000/read_user_arguments', {
+          topic_id: question,  // Use the question ID (passed as a prop).
+          arguments: [{
+            yes_or_no: "YES",
+            argument: currentProArg
+          }]
+        }, {
+          headers: { Authorization: `Bearer ${token}` } // Use the token.
+        });
+
+        // Create a new argument object *using the ID from the response*.
+        const newArgument = {
+          id: response.data.argument_ids[0], // Get the ID from the API response.
+          text: currentProArg,
+          pro: true, // Set 'pro' based on which button was clicked.
+          categoryId: null // Initially, no category is assigned.
+        };
+
+        setAllArguments([...allArguments, newArgument]); // Add to the *local* state.
+        setCurrentProArg(""); // Clear the input field.
+
+      } catch (error) {
+        setError(error.response?.data?.message || 'Failed to add pro argument.');
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
-  const handleAddConArgument = () => {
+  // --- Add Con Argument --- (Very similar to Add Pro)
+  const handleAddConArgument = async () => {
     if (currentConArg.trim()) {
-      setConArguments((prev) => [...prev, currentConArg]);
-      setCurrentConArg("");
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await axios.post('http://localhost:5000/read_user_arguments', {
+          topic_id: question,
+          arguments: [{
+            yes_or_no: "NO", // Set to "NO" for con arguments.
+            argument: currentConArg
+          }]
+        }, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        const newArgument = {
+          id: response.data.argument_ids[0],
+          text: currentConArg,
+          pro: false, // Set 'pro' to false.
+          categoryId: null
+        };
+        setAllArguments([...allArguments, newArgument]);
+        setCurrentConArg("");
+
+      } catch (error) {
+        setError(error.response?.data?.message || 'Failed to add con argument.');
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
-  const handleSubmitArguments = () => {
-    const combinedArguments = [...proArguments, ...conArguments];
-
-    if (combinedArguments.length === 0) {
-      console.warn("No arguments entered. Cannot proceed.");
-      return;
-    }
-
-    setArguments(combinedArguments);
-    setAllArguments(combinedArguments); // Pass to parent
-  };
-
-  // Handle editing arguments
+  // --- Edit ---
   const handleEdit = (index) => {
+    const argumentToEdit = allArguments[index];
     setEditingIndex(index);
+    setEditingArgument(argumentToEdit); // Store the *entire* object, not just the index.
   };
 
-  const handleChange = (event, index) => {
-    const updatedArguments = [...allArguments];
-    updatedArguments[index] = event.target.value;
-    setArguments(updatedArguments);
+  // --- Change (while editing) ---
+  const handleChange = (event) => {
+    // Update the 'text' property of the *editingArgument* object.  This is reactive.
+    setEditingArgument({ ...editingArgument, text: event.target.value });
   };
 
-  const handleSave = (index) => {
-    if (index !== null) {
-      setAllArguments(allArguments);
-      setEditingIndex(null);
+  // --- Save ---
+  const handleSave = async () => {
+    if (editingArgument) { // Make sure there's something to save.
+      setIsLoading(true);
+      setError(null);
+      try {
+        // Use a PUT request to update the existing argument.  The URL includes the argument ID.
+        await axios.put(`http://localhost:5000/arguments/${editingArgument.id}`, {
+          text: editingArgument.text, // Send the updated text.
+          // Add other fields here if needed (e.g., categoryId)
+        }, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        // Update the argument in the *local* allArguments array.
+        const updatedArguments = allArguments.map((arg) =>
+          arg.id === editingArgument.id ? editingArgument : arg // Replace the old object with the updated one.
+        );
+        setAllArguments(updatedArguments);
+
+        // Clear editing state.
+        setEditingIndex(null);
+        setEditingArgument(null);
+
+      } catch (error) {
+        setError(error.response?.data?.message || 'Failed to save argument.');
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
-  const handleDelete = (index) => {
-    const updatedArguments = allArguments.filter((_, i) => i !== index);
-    setArguments(updatedArguments);
-    setAllArguments(updatedArguments);
-    setEditingIndex(null);
+  // --- Delete ---
+  const handleDelete = async (index) => {
+    const argumentToDelete = allArguments[index];
+    if (!argumentToDelete || !argumentToDelete.id) {
+        console.error("Invalid argument or argument ID for deletion");
+        return
+    }
+
+    setIsLoading(true);
+    setError(null);
+    try {
+      // Send a DELETE request to the API.
+      await axios.delete(`http://localhost:5000/arguments/${argumentToDelete.id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      // Remove the argument from the local state.
+      const updatedArguments = allArguments.filter((arg) => arg.id !== argumentToDelete.id);
+      setAllArguments(updatedArguments);
+
+      // Clear editing state if the deleted item was being edited.
+      if (editingIndex === index) {
+        setEditingIndex(null);
+        setEditingArgument(null);
+      }
+
+    } catch (error) {
+      setError(error.response?.data?.message || 'Failed to delete argument.');
+    } finally {
+      setIsLoading(false);
+    }
   };
+    // --- Add New Argument (while in edit mode)
+    const handleAddArgument = () => {
+        //Set to edit mode with a blank argument
+        setEditingArgument({id: null, text: "", pro: true, categoryId: null})
+        setEditingIndex(allArguments.length) //New index
+    }
 
-  const handleAddArgument = () => {
-    setArguments([...allArguments, ""]);
-    setEditingIndex(allArguments.length);
-  };
-
-  useEffect(() => {
-    setArguments([...proArguments, ...conArguments]);
-  }, [proArguments, conArguments]);
-
+  // --- Render ---
   return (
     <Box sx={{ maxWidth: 800, margin: "auto", padding: 3 }}>
       <Typography variant="h4" fontWeight="bold" textAlign="center">
         Argument Generation & Review
       </Typography>
       <Typography variant="h6" fontWeight="bold" sx={{ mt: 2 }}>
-        Question: {question}
+        Question ID: {question} {/* Display the question ID */}
       </Typography>
 
-      {/* Argument Generation */}
+      {/* --- Argument Generation Section --- */}
       <Grid container spacing={3}>
         <Grid item xs={6}>
           <Typography variant="h6" fontWeight="bold">Pro Arguments</Typography>
@@ -115,17 +209,11 @@ const ArgumentManager = ({ question, setAllArguments, setStep }) => {
         </Grid>
       </Grid>
 
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ mt: 3, width: "100%" }}
-        onClick={handleSubmitArguments}
-        disabled={proArguments.length === 0 && conArguments.length === 0}
-      >
-        Submit Arguments
-      </Button>
+      {/* --- Loading and Error Messages --- */}
+      {isLoading && <Typography>Loading...</Typography>}
+      {error && <Typography color="error">{error}</Typography>}
 
-      {/* Argument Review Section */}
+      {/* --- Argument Review Section --- */}
       {allArguments.length > 0 && (
         <Box sx={{ mt: 4, textAlign: "center" }}>
           <Typography variant="h5" gutterBottom>
@@ -133,7 +221,7 @@ const ArgumentManager = ({ question, setAllArguments, setStep }) => {
           </Typography>
           {allArguments.map((arg, index) => (
             <Paper
-              key={index}
+              key={arg.id || index}  // Use arg.id if available, otherwise index (for new, unsaved arguments)
               sx={{
                 width: "60%",
                 padding: "10px",
@@ -145,43 +233,50 @@ const ArgumentManager = ({ question, setAllArguments, setStep }) => {
                 mt: 1,
               }}
             >
+              {/* --- Display or Edit Field --- */}
               {editingIndex === index ? (
                 <TextField
                   fullWidth
-                  value={arg}
-                  onChange={(event) => handleChange(event, index)}
+                  value={editingArgument ? editingArgument.text : ""} // Use editingArgument.text
+                  onChange={handleChange}
                   variant="outlined"
                   size="small"
                   autoFocus
                 />
               ) : (
-                <Typography>{arg}</Typography>
+                <Typography>{arg.text}</Typography>
               )}
 
+              {/* --- Edit/Save/Delete Buttons --- */}
               <div>
-                <IconButton onClick={() => (editingIndex === index ? handleSave(index) : handleEdit(index))}>
-                  {editingIndex === index ? <SaveIcon color="primary" /> : <EditIcon color="primary" />}
-                </IconButton>
+                {editingIndex === index ? (
+                  <IconButton onClick={handleSave}>
+                    <SaveIcon color="primary" />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={() => handleEdit(index)}>
+                    <EditIcon color="primary" />
+                  </IconButton>
+                )}
                 <IconButton onClick={() => handleDelete(index)}>
                   <DeleteIcon color="error" />
                 </IconButton>
               </div>
             </Paper>
           ))}
-
-          <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={handleAddArgument}>
-            Add Argument
-          </Button>
+            <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={handleAddArgument}>
+                Add Argument
+            </Button>
         </Box>
       )}
 
-      {/* Proceed Button */}
+      {/* --- Proceed Button --- */}
       <Button
         variant="contained"
         color="primary"
         sx={{ mt: 3, width: "100%" }}
-        onClick={() => setStep(4)}
-        disabled={allArguments.length === 0}
+        onClick={() => setStep(4)}  // Move to the next step.
+        disabled={allArguments.length === 0} // Disable if no arguments.
       >
         Proceed
       </Button>
