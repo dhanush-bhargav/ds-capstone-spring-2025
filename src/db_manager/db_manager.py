@@ -1,6 +1,7 @@
 import sqlite3
 from config_reader import ConfigData
 
+
 class DbManager:
     def __init__(self):
         self.config_data = ConfigData("config.conf")
@@ -35,6 +36,18 @@ class DbManager:
 
         connection.close()
         return topics_data
+
+
+    def get_topic_by_id(self, topic_id):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        result = cursor.execute(f"SELECT topic_id, topic_description FROM master_topics WHERE topic_id = {topic_id}").fetchone()
+        connection.close()
+        return {
+            "topic_id": result[0],
+            "topic_name": result[1]
+        }
+
 
 
     def login(self, user_id, password):
@@ -135,7 +148,7 @@ class DbManager:
     def link_argument_category(self, data):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO link_argument_categories (argument_id, category_id) VALUES (?, ?)", data)
+        cursor.executemany("INSERT INTO link_argument_categories (argument_id, category_id) VALUES (?, ?)", data)
         connection.commit()
         rowcount = cursor.rowcount
         res = cursor.execute(f"SELECT id FROM link_argument_categories ORDER BY id DESC LIMIT {rowcount}").fetchall()
@@ -199,3 +212,17 @@ class DbManager:
             argument_data.append({"category_id": category_id, "argument_category": argument_category,
                                   "argument_id": argument_id , "argument": argument})
         return argument_data
+
+
+    def get_unlinked_arguments(self, topic_id):
+        unlinked_arguments_data = []
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        result = cursor.execute(f"""SELECT ma.argument_id, ma.yes_or_no, ma.argument
+                                        FROM master_arguments ma
+                                        WHERE ma.topic_id = {topic_id} AND
+                                        ma.argument_id NOT IN (SELECT argument_id FROM link_argument_categories)""")
+        for row in result:
+            argument_id, yes_or_no, argument = row
+            unlinked_arguments_data.append({"argument_id": argument_id, "yes_or_no": yes_or_no, "argument": argument})
+        return unlinked_arguments_data
