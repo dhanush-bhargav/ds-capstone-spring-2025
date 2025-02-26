@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./QuestionSelection.css";
+import axios from "axios";
 
-const QuestionSelection = ({ setQuestion, setStance, setStrength, setStep, topics, questions }) => {
+const QuestionSelection = ({ token, user, setQuestion, setStance, setStrength, setStep, topics, questions,
+                               setConversationId, setIsLoading, setError }) => {
   const [selectedTopic, setSelectedTopic] = useState("");
   const [selectedQuestion, setSelectedQuestion] = useState("");  // Store question ID
   const [stance, setLocalStance] = useState("");
@@ -21,16 +23,34 @@ const QuestionSelection = ({ setQuestion, setStance, setStrength, setStep, topic
   }, [selectedTopic, topics]);
 
 
-  const handleProceed = () => {
+  const handleProceed = async () => {
     if (!selectedTopic || !selectedQuestion || !stance || !strength) {
       alert("Please complete all selections before proceeding.");
       return;
     }
-
-    setQuestion(selectedQuestion); // Set the question ID
-    setStance(stance);
-    setStrength(strength);
-    setStep(2);
+    setIsLoading(true);
+    setError(null)
+    try {
+        const response = await axios.post('http://localhost:5000/create_conversation', {
+            topic_id: selectedTopic,
+            user_id: user.id,
+            stance: stance,
+            stance_rating: strength,
+            collected_at: "START"
+        }, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        setConversationId(response.data.conversation_id);
+    } catch (error) {
+        setError(error.response?.data?.message || "Failed to create conversation.");
+    }
+     finally {
+        setIsLoading(false);
+        setQuestion(selectedQuestion); // Set the question ID
+        setStance(stance);
+        setStrength(strength);
+        setStep(2);
+    }
   };
 
   return (

@@ -15,25 +15,25 @@ import StepperComponent from "./components/StepperComponent";
 import FloatingNavButtons from "./components/FloatingNavButtons";
 
 const App = () => {
-  // All state variables are defined *outside* the Router, which is correct.
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null);
-  const [questions, setQuestions] = useState([]);
-  const [topics, setTopics] = useState([]);
-  const [allArguments, setAllArguments] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [ratedArguments, setRatedArguments] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token') || null);
-  const [step, setStep] = useState(1);
-  const [question, setQuestion] = useState("");
-  const [stance, setStance] = useState("");
-  const [strength, setStrength] = useState(5);
-  const [finalStance, setFinalStance] = useState("");
-  const [finalStrength, setFinalStrength] = useState(5);
-  const [conversationId, setConversationId] = useState(null);
-  const [selectedTopic, setSelectedTopic] = useState(null);
+    // All state variables are defined *outside* the Router, which is correct.
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [user, setUser] = useState(null);
+    const [questions, setQuestions] = useState([]);
+    const [topics, setTopics] = useState([]);
+    const [allArguments, setAllArguments] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [ratedArguments, setRatedArguments] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [token, setToken] = useState(localStorage.getItem('token') || null);
+    const [step, setStep] = useState(1);
+    const [question, setQuestion] = useState("");
+    const [stance, setStance] = useState("");
+    const [strength, setStrength] = useState(5);
+    const [finalStance, setFinalStance] = useState("");
+    const [finalStrength, setFinalStrength] = useState(5);
+    const [conversationId, setConversationId] = useState(null);
+    const [selectedTopic, setSelectedTopic] = useState(null);
 
   // DO NOT call useNavigate() here.
 
@@ -64,69 +64,37 @@ const App = () => {
         }
     };
 
-     const createConversation = async () => {
+    const fetchQuestions = async () => {
+        //... fetch questions
         setIsLoading(true);
-        setError(null)
         try {
-            const response = await axios.post('http://localhost:5000/create_conversation', {
-                topic_id: selectedTopic,
-                user_id: user.id,
-                stance: stance,
-                stance_rating: strength,
-                collected_at: "START"
-            }, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            setConversationId(response.data.conversation_id);
+          const response = await axios.get('http://localhost:5000/get_topics');
+          // Transform the API response to match the expected structure
+          const transformedTopics = response.data.map(topic => ({
+            id: topic.id,
+            name: topic.name,
+            preMadeQuestions: topic.preMadeQuestions.map(q => ({
+              id: q.id,
+              text: q.topic, // Use 'topic' field as question text
+              topicId: topic.id
+            }))
+          }));
+
+          setTopics(transformedTopics);
+          // Flatten the questions array
+          let allQuestions = [];
+          transformedTopics.forEach(topic => {
+            allQuestions = allQuestions.concat(topic.preMadeQuestions);
+          });
+          setQuestions(allQuestions);
 
 
         } catch (error) {
-            setError(error.response?.data?.message || "Failed to create conversation.");
-        }
-         finally {
-            setIsLoading(false);
+          setError(error.response?.data?.message || 'Failed to load questions.');
+        } finally {
+          setIsLoading(false);
         }
     };
-
-    useEffect(() => {
-        if (step === 1 && selectedTopic && stance && strength && user?.id) {
-            createConversation();
-        }
-    }, [step, selectedTopic, stance, strength, user?.id]);
-
-
-
-  const fetchQuestions = async () => {
-   //... fetch questions
-   setIsLoading(true);
-    try {
-      const response = await axios.get('http://localhost:5000/get_topics');
-      // Transform the API response to match the expected structure
-      const transformedTopics = response.data.map(topic => ({
-        id: topic.id,
-        name: topic.name,
-        preMadeQuestions: topic.preMadeQuestions.map(q => ({
-          id: q.id,
-          text: q.topic, // Use 'topic' field as question text
-          topicId: topic.id
-        }))
-      }));
-
-      setTopics(transformedTopics);
-      // Flatten the questions array
-      let allQuestions = [];
-      transformedTopics.forEach(topic => {
-        allQuestions = allQuestions.concat(topic.preMadeQuestions);
-      });
-      setQuestions(allQuestions);
-
-
-    } catch (error) {
-      setError(error.response?.data?.message || 'Failed to load questions.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
     const fetchTopics = async () => {
     //... fetch topics
@@ -272,13 +240,17 @@ const App = () => {
             {/* --- Conditional Rendering of Components based on step --- */}
             {step === 1 && (
               <QuestionSelection
+                token={token}
+                user={user}
                 setQuestion={setQuestion}
                 setStance={setStance}
                 setStrength={setStrength}
                 setStep={setStep}
                 topics={topics}
                 questions={questions}
-                setSelectedTopic={setSelectedTopic}
+                setConversationId={setConversationId}
+                setIsLoading={setIsLoading}
+                setError={setError}
               />
             )}
             {step === 2 && <Instructions setStep={setStep} />}
