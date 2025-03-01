@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./QuestionSelection.css";
 import axios from "axios";
 
-const QuestionSelection = ({ token, user, setQuestion, setStance, setStrength, setStep, topics, questions,
+const QuestionSelection = ({ token, user, setQuestion, setQuestionId, setStance, setStrength, setStep, topics, questions,
                                setConversationId, setIsLoading, setError }) => {
   const [selectedTopic, setSelectedTopic] = useState("");
   const [selectedQuestion, setSelectedQuestion] = useState("");  // Store question ID
@@ -46,7 +46,7 @@ const QuestionSelection = ({ token, user, setQuestion, setStance, setStrength, s
     }
      finally {
         setIsLoading(false);
-        setQuestion(selectedQuestion); // Set the question ID
+        // setQuestion(selectedQuestion); // Set the question ID
         setStance(stance);
         setStrength(strength);
         setStep(2);
@@ -83,7 +83,18 @@ const QuestionSelection = ({ token, user, setQuestion, setStance, setStrength, s
           <label className="label">Choose a Question:</label>
           <select
             value={selectedQuestion}
-            onChange={(e) => setSelectedQuestion(e.target.value)} // Set question ID
+            onChange={(e) => {
+              const selectElement = e.target;
+              const selectedOption = selectElement.options[selectElement.selectedIndex];
+              console.log(selectedOption.text, selectedOption.value);
+            
+              // Set the text of the selected option (e.g., "Question One")
+              setSelectedQuestion(selectedOption.value);
+              setQuestion(selectedOption.text);
+            
+              // Set the *value* of the selected option (e.g., "1")
+              setQuestionId(selectedOption.value); 
+            }}
             className="select-box"
           >
             <option value="">-- Select a Question --</option>

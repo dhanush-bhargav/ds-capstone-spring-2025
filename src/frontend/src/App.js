@@ -28,6 +28,7 @@ const App = () => {
     const [token, setToken] = useState(localStorage.getItem('token') || null);
     const [step, setStep] = useState(1);
     const [question, setQuestion] = useState("");
+    const [questionId, setQuestionId] = useState("");
     const [stance, setStance] = useState("");
     const [strength, setStrength] = useState(5);
     const [finalStance, setFinalStance] = useState("");
@@ -212,12 +213,17 @@ const App = () => {
     }
   }, [token]);
 
+  // useEffect(() => {
+  //   if (question) {
+  //     fetchArguments(question);
+  //   }
+  // }, [question]);
+
   useEffect(() => {
-    if (question) {
-      fetchArguments(question);
-      fetchCategories(question);
+    if (step === 4) {
+      fetchCategories(questionId);
     }
-  }, [question]);
+  }, [step, questionId, token, fetchCategories]); // Important: Add dependencies
 
   return (
     <Router> {/* <Router> is the top-level component. */}
@@ -243,6 +249,7 @@ const App = () => {
                 token={token}
                 user={user}
                 setQuestion={setQuestion}
+                setQuestionId={setQuestionId}
                 setStance={setStance}
                 setStrength={setStrength}
                 setStep={setStep}
@@ -257,28 +264,29 @@ const App = () => {
             {step === 3 && (
               <ArgumentManager
                 question={question}
+                questionId={questionId}
                 token={token}
                 setAllArguments={setAllArguments}
                 allArguments={allArguments}
                 setStep={setStep}
               />
             )}
-            {step === 4 && <Categorization questionId={question} token={token} setCategories={setCategories} categories={categories} setStep={setStep} />}
-            {step === 5 && <SortedArguments token={token} questionId={question} allArguments={allArguments} categories={categories} setStep={setStep} />}
-            {step === 6 && (
+            {step === 4 && <Categorization questionId={questionId} token={token} setCategories={setCategories} categories={categories} setStep={setStep} />}
+            {/* {step === 5 && <SortedArguments token={token} questionId={questionId} allArguments={allArguments} categories={categories} setStep={setStep} />} */}
+            {step === 5 && (
               <ImplicationRating
                 allArguments={allArguments}
                 setRatedArguments={setRatedArguments}
                 setStep={setStep}
                 categories={categories}
                 token={token}
-                questionId={question}
+                questionId={questionId}
                 conversationId={conversationId}
               />
             )}
-            {step === 7 && (
+            {step === 6 && (
               <FinalEvaluation
-                question={question}
+                question={questionId}
                 stance={stance}
                 strength={strength}
                 finalStance={finalStance}

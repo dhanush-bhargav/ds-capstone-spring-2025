@@ -5,7 +5,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 
-const ArgumentManager = ({ question, setAllArguments, allArguments, setStep, token }) => {
+const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, setStep, token }) => {
     const [currentProArg, setCurrentProArg] = useState("");
     const [currentConArg, setCurrentConArg] = useState("");
     const [editingIndex, setEditingIndex] = useState(null);
@@ -92,7 +92,7 @@ const ArgumentManager = ({ question, setAllArguments, allArguments, setStep, tok
             ];
 
             const response = await axios.post('http://localhost:5000/read_user_arguments', {
-                topic_id: question,
+                topic_id: questionId,
                 arguments: argumentsPayload
             }, {
                 headers: { Authorization: `Bearer ${token}` }
@@ -102,7 +102,7 @@ const ArgumentManager = ({ question, setAllArguments, allArguments, setStep, tok
                 setIsLoading(true)
                 setError(null)
                 try {
-                    const argumentResponse = await axios.get(`http://localhost:5000/get_arguments?topic_id=${question}`);
+                    const argumentResponse = await axios.get(`http://localhost:5000/get_arguments?topic_id=${questionId}`);
                     // Transform the API response into the format expected by `allArguments`
                     if (argumentResponse?.data?.success === true) {
                         const newArguments = argumentResponse.data['arguments'].map((argument_dict) => ({
@@ -135,13 +135,13 @@ const ArgumentManager = ({ question, setAllArguments, allArguments, setStep, tok
             Argument Generation & Review
             </Typography>
             <Typography variant="h6" fontWeight="bold" sx={{ mt: 2 }}>
-            Question ID: {question}
+            Question: {question}
             </Typography>
 
             {/* --- Argument Generation Section --- */}
             <Grid container spacing={3}>
                 <Grid item xs={6}>
-                    <Typography variant="h6" fontWeight="bold">Pro Arguments</Typography>
+                    <Typography variant="h6" fontWeight="bold">YES Arguments</Typography>
                     <TextField
                         fullWidth
                         label="Enter a supporting argument..."
@@ -151,7 +151,7 @@ const ArgumentManager = ({ question, setAllArguments, allArguments, setStep, tok
                         sx={{ mt: 1 }}
                     />
                     <Button variant="contained" color="success" sx={{ mt: 1, width: "100%" }} onClick={handleAddProArgument}>
-                        Add Pro Argument
+                        Add YES Argument
                     </Button>
                     <Box sx={{ mt: 2 }}>
                         {localProArguments.map((arg, index) => (
@@ -201,7 +201,7 @@ const ArgumentManager = ({ question, setAllArguments, allArguments, setStep, tok
                 </Grid>
 
                 <Grid item xs={6}>
-                    <Typography variant="h6" fontWeight="bold">Con Arguments</Typography>
+                    <Typography variant="h6" fontWeight="bold">NO Arguments</Typography>
                     <TextField
                         fullWidth
                         label="Enter an opposing argument..."
@@ -211,7 +211,7 @@ const ArgumentManager = ({ question, setAllArguments, allArguments, setStep, tok
                         sx={{ mt: 1 }}
                     />
                     <Button variant="contained" color="error" sx={{ mt: 1, width: "100%" }} onClick={handleAddConArgument}>
-                        Add Con Argument
+                        Add NO Argument
                     </Button>
                     <Box sx={{ mt: 2 }}>
                         {localConArguments.map((arg, index) => (
@@ -279,3 +279,6 @@ const ArgumentManager = ({ question, setAllArguments, allArguments, setStep, tok
 };
 
 export default ArgumentManager;
+
+
+
