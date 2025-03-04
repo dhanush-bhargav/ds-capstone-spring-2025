@@ -223,7 +223,7 @@ const App = () => {
     if (step === 4) {
       fetchCategories(questionId);
     }
-  }, [step, questionId, token, fetchCategories]); // Important: Add dependencies
+  }, [step, questionId, token]); // Important: Add dependencies
 
   return (
     <Router> {/* <Router> is the top-level component. */}

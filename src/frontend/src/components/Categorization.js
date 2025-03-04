@@ -40,12 +40,12 @@ const Categorization = ({ setCategories, setStep, categories, token, questionId 
                         }
                     }
                     catch {
-                        setError(error.response?.data?.message || "Failed to fetch categories")
+                        setError("Failed to fetch categories")
                     }
                 }
             }
             catch {
-                setError(error.response?.data?.message || "Failed to add categories")
+                setError("Failed to add categories")
             }
         }
     };
