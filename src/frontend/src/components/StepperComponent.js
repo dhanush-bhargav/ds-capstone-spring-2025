@@ -6,7 +6,7 @@ const steps = [
   "Instructions",
   "Generate & Review Arguments", // ✅ Merged this step
   "Categorization",
-  "Sort Arguments",
+  // "Sort Arguments",
   "Rate Implications",
   "Final Evaluation"
 ];
