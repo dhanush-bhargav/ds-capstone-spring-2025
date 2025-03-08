@@ -1,9 +1,11 @@
+// ArgumentManager.js (Previous Page) -  Modified with UUIDs
 import React, { useState } from "react";
 import { Box, Typography, TextField, Button, Grid, Paper, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import { v4 as uuidv4 } from 'uuid'; // Import UUID
 
 const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, setStep, token }) => {
     const [currentProArg, setCurrentProArg] = useState("");
@@ -18,42 +20,47 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
 
     // --- Add Pro Argument (Local) ---
     const handleAddProArgument = () => {
-    if (currentProArg.trim()) {
-      setLocalProArguments([...localProArguments, currentProArg]); // Add to local array
-      setCurrentProArg(""); // Clear input
-    }
+        if (currentProArg.trim()) {
+            setLocalProArguments([...localProArguments, { id: uuidv4(), text: currentProArg }]); // Add with UUID
+            setCurrentProArg(""); // Clear input
+        }
     };
 
     // --- Add Con Argument (Local) ---
     const handleAddConArgument = () => {
-    if (currentConArg.trim()) {
-      setLocalConArguments([...localConArguments, currentConArg]); // Add to local array
-      setCurrentConArg(""); // Clear input
-    }
+        if (currentConArg.trim()) {
+            setLocalConArguments([...localConArguments, { id: uuidv4(), text: currentConArg }]); //Add with UUID
+            setCurrentConArg(""); // Clear input
+        }
     };
 
     const handleEdit = (index, isPro) => {
         const args = isPro ? localProArguments : localConArguments;
         const argToEdit = args[index]
-        setEditingArgument({text: argToEdit, index: index, isPro: isPro})
+        setEditingArgument({ text: argToEdit.text, index: index, isPro: isPro, id: argToEdit.id }) // Store the ID
         setEditingIndex(index);
     }
 
     const handleChange = (event) => {
         // Update the 'text' property of the *editingArgument* object.  This is reactive.
-         if (editingArgument) {
+        if (editingArgument) {
             setEditingArgument({ ...editingArgument, text: event.target.value });
         }
     };
     const handleSave = () => {
-        if(editingArgument) {
+        if (editingArgument) {
             const updatedArgs = [...(editingArgument.isPro ? localProArguments : localConArguments)];
-            updatedArgs[editingArgument.index] = editingArgument.text;
+            // Use the id to find and update the argument
+            const indexToUpdate = updatedArgs.findIndex(arg => arg.id === editingArgument.id);
+            if (indexToUpdate !== -1) {
+              updatedArgs[indexToUpdate] = { ...updatedArgs[indexToUpdate], text: editingArgument.text }; //Update
+            }
 
-            if(editingArgument.isPro){
+
+            if (editingArgument.isPro) {
                 setLocalProArguments(updatedArgs)
             }
-            else{
+            else {
                 setLocalConArguments(updatedArgs)
             }
 
@@ -64,19 +71,32 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
 
     const handleDelete = (index, isPro) => {
         const args = [...(isPro ? localProArguments : localConArguments)];
-        args.splice(index, 1);
+        //Get the id of the argument to delete
+        const idToDelete = args[index].id;
 
-        if(isPro){
-            setLocalProArguments(args)
+        //Filter by ID
+        const filteredArgs = args.filter(arg => arg.id !== idToDelete);
+
+        if (isPro) {
+            setLocalProArguments(filteredArgs)
         } else {
-            setLocalConArguments(args)
+            setLocalConArguments(filteredArgs)
         }
 
-        if (editingIndex === index) { //If the delete one is being edited
+         // Adjust editingIndex *after* filtering.
+         if (editingArgument && editingArgument.id === idToDelete) {
             setEditingIndex(null);
             setEditingArgument(null);
-        } else if (editingIndex > index && editingIndex !== null ) { //If above one is deleted.
-            setEditingIndex(editingIndex - 1)
+        } else if (editingArgument && editingArgument.isPro === isPro) {
+            // Find the new index of the editing argument.
+            const newEditingIndex = filteredArgs.findIndex(arg => arg.id === editingArgument.id);
+             if(newEditingIndex !== -1){
+                setEditingIndex(newEditingIndex);
+             } else { // If not found, clear editing state
+                setEditingIndex(null);
+                setEditingArgument(null);
+            }
+
         }
     }
 
@@ -87,8 +107,8 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
         setError(null);
         try {
             const argumentsPayload = [
-                ...localProArguments.map(arg => ({ yes_or_no: "YES", argument: arg })),
-                ...localConArguments.map(arg => ({ yes_or_no: "NO", argument: arg }))
+                ...localProArguments.map(arg => ({ yes_or_no: "YES", argument: arg.text })), // Use arg.text
+                ...localConArguments.map(arg => ({ yes_or_no: "NO", argument: arg.text }))  // Use arg.text
             ];
 
             const response = await axios.post('http://localhost:5000/read_user_arguments', {
@@ -98,8 +118,8 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
                 headers: { Authorization: `Bearer ${token}` }
             });
 
-            if (response?.data?.success === true){
-                setIsLoading(true)
+            if (response?.data?.success === true) {
+                // setIsLoading(true) // Keep loading true if fetching again
                 setError(null)
                 try {
                     const argumentResponse = await axios.get(`http://localhost:5000/get_arguments?topic_id=${questionId}`);
@@ -109,22 +129,24 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
                             id: argument_dict['argument_id'],
                             text: argument_dict['argument'],
                             pro: argument_dict['yes_or_no'] === "YES",
-                            categoryId: null
+                            categoryId: null  // Initialize categoryId to null
                         }));
                         // Update the global state with the *new* arguments from the API.
-                        setAllArguments([...allArguments, ...newArguments]);
+                        setAllArguments(newArguments); // Replace, don't add, for consistency with categories
                         setStep(4);
                     }
                 }
                 catch (error) {
                     setError(error.response?.data?.message || 'Failed to get arguments')
+                } finally {
+                    setIsLoading(false); //Set loading to false here.
                 }
             }
 
         } catch (error) {
             setError(error.response?.data?.message || 'Failed to submit arguments.');
         } finally {
-            setIsLoading(false);
+            setIsLoading(false); // Make SURE isLoading is set to false
         }
     }
 
@@ -132,10 +154,10 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
     return (
         <Box sx={{ maxWidth: 800, margin: "auto", padding: 3 }}>
             <Typography variant="h4" fontWeight="bold" textAlign="center">
-            Argument Generation & Review
+                Argument Generation & Review
             </Typography>
             <Typography variant="h6" fontWeight="bold" sx={{ mt: 2 }}>
-            Question: {question}
+                Question: {question}
             </Typography>
 
             {/* --- Argument Generation Section --- */}
@@ -155,49 +177,49 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
                     </Button>
                     <Box sx={{ mt: 2 }}>
                         {localProArguments.map((arg, index) => (
-                        <Paper
-                            key={index}
-                            sx={{
-                                width: "100%",
-                                padding: "10px",
-                                margin: "auto",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                                backgroundColor: "#f5f5f5",
-                                mt: 1,
-                            }}
-                        >
-                        {editingIndex === index && editingArgument?.isPro ? (
-                            <TextField
-                                fullWidth
-                                value={editingArgument ? editingArgument.text : ""}
-                                onChange={handleChange}
-                                variant="outlined"
-                                size="small"
-                                autoFocus
-                            />
-                            ) : (
-                            <Typography>{arg}</Typography>
-                        )}
-                        <div>
-                            {editingIndex === index && editingArgument?.isPro? (
-                                <IconButton onClick={handleSave}>
-                                <SaveIcon color="primary" />
-                                </IconButton>
-                            ) : (
-                                <IconButton onClick={() => handleEdit(index, true)}>
-                                <EditIcon color="primary" />
-                                </IconButton>
-                            )}
-                            <IconButton onClick={() => handleDelete(index, true)}>
-                                <DeleteIcon color="error" />
-                            </IconButton>
-                        </div>
+                            <Paper
+                                key={arg.id} // Use the UUID as the key
+                                sx={{
+                                    width: "100%",
+                                    padding: "10px",
+                                    margin: "auto",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                    backgroundColor: "#f5f5f5",
+                                    mt: 1,
+                                }}
+                            >
+                                {editingIndex === index && editingArgument?.isPro ? (
+                                    <TextField
+                                        fullWidth
+                                        value={editingArgument ? editingArgument.text : ""}
+                                        onChange={handleChange}
+                                        variant="outlined"
+                                        size="small"
+                                        autoFocus
+                                    />
+                                ) : (
+                                    <Typography>{arg.text}</Typography> // Display arg.text
+                                )}
+                                <div>
+                                    {editingIndex === index && editingArgument?.isPro ? (
+                                        <IconButton onClick={handleSave}>
+                                            <SaveIcon color="primary" />
+                                        </IconButton>
+                                    ) : (
+                                        <IconButton onClick={() => handleEdit(index, true)}>
+                                            <EditIcon color="primary" />
+                                        </IconButton>
+                                    )}
+                                    <IconButton onClick={() => handleDelete(index, true)}>
+                                        <DeleteIcon color="error" />
+                                    </IconButton>
+                                </div>
 
-                      </Paper>
-                    ))}
-                  </Box>
+                            </Paper>
+                        ))}
+                    </Box>
                 </Grid>
 
                 <Grid item xs={6}>
@@ -215,47 +237,47 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
                     </Button>
                     <Box sx={{ mt: 2 }}>
                         {localConArguments.map((arg, index) => (
-                        <Paper
-                            key={index}
-                            sx={{
-                            width: "100%",
-                            padding: "10px",
-                            margin: "auto",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            backgroundColor: "#f5f5f5",
-                            mt: 1,
-                            }}
-                        >
-                        {editingIndex === index && !editingArgument?.isPro? (
-                            <TextField
-                                fullWidth
-                                value={editingArgument ? editingArgument.text: ""}
-                                onChange={handleChange}
-                                variant="outlined"
-                                size="small"
-                                autoFocus
-                            />
-                        ) : (
-                            <Typography>{arg}</Typography>
-                        )}
-                    <div>
-                        {editingIndex === index && !editingArgument?.isPro ? (
-                            <IconButton onClick={handleSave}>
-                            <SaveIcon color="primary" />
-                            </IconButton>
-                        ) : (
-                            <IconButton onClick={() => handleEdit(index, false)}>
-                            <EditIcon color="primary" />
-                            </IconButton>
-                        )}
-                        <IconButton onClick={() => handleDelete(index, false)}>
-                        <DeleteIcon color="error" />
-                        </IconButton>
-                    </div>
-                    </Paper>
-                    ))}
+                            <Paper
+                                key={arg.id} // Use the UUID as the key
+                                sx={{
+                                    width: "100%",
+                                    padding: "10px",
+                                    margin: "auto",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                    backgroundColor: "#f5f5f5",
+                                    mt: 1,
+                                }}
+                            >
+                                {editingIndex === index && !editingArgument?.isPro ? (
+                                    <TextField
+                                        fullWidth
+                                        value={editingArgument ? editingArgument.text : ""}
+                                        onChange={handleChange}
+                                        variant="outlined"
+                                        size="small"
+                                        autoFocus
+                                    />
+                                ) : (
+                                    <Typography>{arg.text}</Typography> // Display arg.text
+                                )}
+                                <div>
+                                    {editingIndex === index && !editingArgument?.isPro ? (
+                                        <IconButton onClick={handleSave}>
+                                            <SaveIcon color="primary" />
+                                        </IconButton>
+                                    ) : (
+                                        <IconButton onClick={() => handleEdit(index, false)}>
+                                            <EditIcon color="primary" />
+                                        </IconButton>
+                                    )}
+                                    <IconButton onClick={() => handleDelete(index, false)}>
+                                        <DeleteIcon color="error" />
+                                    </IconButton>
+                                </div>
+                            </Paper>
+                        ))}
                     </Box>
                 </Grid>
             </Grid>
@@ -279,6 +301,3 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
 };
 
 export default ArgumentManager;
-
-
-

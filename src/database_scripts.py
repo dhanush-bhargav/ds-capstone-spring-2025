@@ -1,5 +1,11 @@
 from config_reader import ConfigData
 import sqlite3
+import os
+
+database_folder = "database"
+
+if not os.path.exists(database_folder):
+    os.makedirs(database_folder)
 
 #Create SQLite DB file at configured path and open a connection
 config_data = ConfigData("config.conf")
