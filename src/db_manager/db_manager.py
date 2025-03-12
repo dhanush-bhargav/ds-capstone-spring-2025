@@ -127,7 +127,10 @@ class DbManager:
         connection.commit()
         res = cursor.execute(f"SELECT category_id, argument_category FROM master_argument_categories WHERE topic_id = {argument_category_data[0][0]}").fetchall()
         connection.close()
-        result = [item[0] for item in res]
+        result = []
+        for row in res:
+            category_id, argument_category = row
+            result.append({"category_id": category_id, "argument_category": argument_category})
         return result
 
 
