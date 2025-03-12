@@ -125,8 +125,7 @@ class DbManager:
         cursor = connection.cursor()
         cursor.executemany("INSERT INTO master_argument_categories (topic_id, argument_category) VALUES (?, ?)", argument_category_data)
         connection.commit()
-        rowcount = cursor.rowcount
-        res = cursor.execute(f"SELECT category_id FROM master_argument_categories ORDER BY category_id DESC LIMIT {rowcount}").fetchall()
+        res = cursor.execute(f"SELECT category_id, argument_category FROM master_argument_categories WHERE topic_id = {argument_category_data[0][0]}").fetchall()
         connection.close()
         result = [item[0] for item in res]
         return result
@@ -174,10 +173,12 @@ class DbManager:
         argument_categories_data = []
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        result = cursor.execute(f"SELECT category_id, argument_category FROM master_argument_categories WHERE topic_id = {topic_id}")
+        result = cursor.execute(f"SELECT category_id, argument_category FROM master_argument_categories WHERE topic_id = {topic_id}").fetchall()
+        print(result)
         for row in result:
             category_id, argument_category = row
             argument_categories_data.append({"category_id": category_id, "argument_category": argument_category})
+        connection.close()
         return argument_categories_data
 
 
@@ -193,6 +194,7 @@ class DbManager:
                 "yes_or_no": yes_or_no,
                 "argument": argument
             })
+        connection.close()
         return arguments_data
 
 
@@ -211,6 +213,7 @@ class DbManager:
             category_id, argument_category, argument_id, argument = row
             argument_data.append({"category_id": category_id, "argument_category": argument_category,
                                   "argument_id": argument_id , "argument": argument})
+        connection.close()
         return argument_data
 
 
@@ -225,4 +228,5 @@ class DbManager:
         for row in result:
             argument_id, yes_or_no, argument = row
             unlinked_arguments_data.append({"argument_id": argument_id, "yes_or_no": yes_or_no, "argument": argument})
+        connection.close()
         return unlinked_arguments_data

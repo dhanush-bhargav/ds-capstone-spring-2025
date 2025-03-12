@@ -28,6 +28,7 @@ class CategoryWritingTool(BaseTool):
     name: str = "Argument category writing tool"
     description: str = "This tool is used to write argument categories to the database for a given topic"
     args_schema: Type[BaseModel] = CategoryWritingToolInput
+    result_as_answer: bool = True
 
     def _run(self, topic_id: int, categories_list: str) -> str:
         db_manager = DbManager()
@@ -56,7 +57,6 @@ class LinkArgumentToCategoryTool(BaseTool):
         category_argument = json.loads(category_argument_list)
         for item in category_argument:
             write_data.append((item["argument_id"], item["category_id"]))
-        print(write_data)
         result = db_manager.link_argument_category(write_data)
         return json.dumps(result)
 

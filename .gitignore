@@ -1,5 +1,6 @@
 .idea
 database
 **/_pycache_/
+**/__pycache__/
 .venv
 **/node_modules/
