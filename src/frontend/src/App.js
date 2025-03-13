@@ -142,23 +142,23 @@ const App = () => {
     }
   };
 
-    const fetchCategories = async (questionId) => {
-    //.. fetch categories
-    if (!questionId) return;
-        setIsLoading(true);
-        try {
-        const response = await axios.get(`http://localhost:5000/get_argument_categories?topic_id=${questionId}`);
-            const transformedCategories = response.data.argument_categories.map(cat => ({
-            id: cat.category_id,
-            name: cat.argument_category
-        }));
-        setCategories(transformedCategories);
-        } catch (err) {
-        setError(err.response?.data?.message || 'Failed to fetch Categories');
-        } finally {
-        setIsLoading(false);
-        }
-    };
+    // const fetchCategories = async (questionId) => {
+    // //.. fetch categories
+    // if (!questionId) return;
+    //     setIsLoading(true);
+    //     try {
+    //     const response = await axios.get(`http://localhost:5000/get_argument_categories?topic_id=${questionId}`);
+    //         const transformedCategories = response.data.argument_categories.map(cat => ({
+    //         id: cat.category_id,
+    //         name: cat.argument_category
+    //     }));
+    //     setCategories(transformedCategories);
+    //     } catch (err) {
+    //     setError(err.response?.data?.message || 'Failed to fetch Categories');
+    //     } finally {
+    //     setIsLoading(false);
+    //     }
+    // };
 
   const handleNext = () => {
     console.log(`Before handleNext - Current Step: ${step}`);
@@ -219,11 +219,11 @@ const App = () => {
   //   }
   // }, [question]);
 
-  useEffect(() => {
-    if (step === 4) {
-      fetchCategories(questionId);
-    }
-  }, [step, questionId, token]); // Important: Add dependencies
+  // useEffect(() => {
+  //   if (step === 4) {
+  //     fetchCategories(questionId);
+  //   }
+  // }, [step, questionId, token]); // Important: Add dependencies
 
   return (
     <Router> {/* <Router> is the top-level component. */}
