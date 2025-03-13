@@ -32,9 +32,9 @@ class CategoryMatchingAgent(Agent):
         super().__init__(
             name="Argument Category Matching Agent",
             role="Argument to Category Matcher",
-            goal="Given a central topic, you need to match arguments to the most appropriate argument category in the database. "
-                 "First, you need to fetch arguments not linked to any category from the database, then you need to fetch all the argument categories. "
-                 "Once you have both lists, match each argument with the most appropriate category. Each argument needs to be matched to exactly one category. "
+            goal="Given a central topic and a list of argument categories, you need to match arguments to the most appropriate argument category in the database. "
+                 "First, you need to fetch arguments not linked to any category from the database. "
+                 "Then, match each argument with the most appropriate category. Each argument needs to be matched to exactly one category. "
                  "It's okay if some categories don't have any arguments, but don't leave any argument unmatched. "
                  "Once matched, you need to create the link in the database. "
                  "You have been provided with tools to read unlinked arguments, all argument categories and link arguments and categories in the database.",
@@ -43,5 +43,5 @@ class CategoryMatchingAgent(Agent):
             backstory="You are an expert in matching arguments to argument categories for a given topic, using tools to read and write data in the database.",
             allow_delegation=False,
             verbose=True,
-            tools=[unlinked_argument_reading_tool, category_reading_tool, link_argument_to_category_tool]
+            tools=[unlinked_argument_reading_tool, link_argument_to_category_tool]
         )
