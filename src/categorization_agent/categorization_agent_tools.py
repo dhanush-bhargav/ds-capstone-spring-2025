@@ -1,6 +1,6 @@
 from crewai.tools import tool, BaseTool
 from pydantic import BaseModel, Field
-from typing import Type
+from typing import Type, Tuple, Any
 import json
 from db_manager import DbManager
 
@@ -73,3 +73,36 @@ class UnlinkedArgumentReadingTool(BaseTool):
         db_manager = DbManager()
         result = db_manager.get_unlinked_arguments(topic_id)
         return json.dumps(result)
+
+
+def category_validation_guardrail(result: str) -> Tuple[bool, Any]:
+    """Validate category validation task output to meet requirement"""
+    try:
+        result_dict = json.loads(result.raw)
+        guardrail_result = (True, result_dict)
+        if len(result_dict) > 0:
+            for item in result_dict:
+                if len(item.keys()) != 2:
+                    guardrail_result = (False, "keys missing from dictionary")
+                    break
+                else:
+                    if ("category_id" not in item.keys()) or ("argument_category" not in item.keys()):
+                        guardrail_result = (False, "keys missing from dictionary")
+                        break
+        else:
+            guardrail_result = (False, "list is empty")
+        return guardrail_result
+    except Exception as e:
+        return (False, str(e))
+
+
+def category_argument_matching_guardrail(result: str) -> Tuple[bool, Any]:
+    """Validate the output of category matching agent to fit requirement"""
+    try:
+        result_dict = json.loads(result.raw)
+        if type(result_dict) is list :
+            return (True, result_dict)
+        else:
+            return (False, result_dict)
+    except Exception as e:
+        return (False, str(e))

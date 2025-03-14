@@ -22,7 +22,6 @@ class ArgumentFetchingTool(BaseTool):
 
 def validation_agent_guardrail(result: str) -> Tuple[bool, Any]:
     """Validate Argument Validation Agent outputs meets requirements"""
-    print(result)
     try:
         result_dict = json.loads(result.raw)
         for item in result_dict:

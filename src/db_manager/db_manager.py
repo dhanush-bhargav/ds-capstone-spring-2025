@@ -177,7 +177,6 @@ class DbManager:
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
         result = cursor.execute(f"SELECT category_id, argument_category FROM master_argument_categories WHERE topic_id = {topic_id}").fetchall()
-        print(result)
         for row in result:
             category_id, argument_category = row
             argument_categories_data.append({"category_id": category_id, "argument_category": argument_category})
