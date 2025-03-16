@@ -1,11 +1,11 @@
-// ArgumentManager.js (Previous Page) -  Modified with UUIDs
+// ArgumentManager.js
 import React, { useState } from "react";
 import { Box, Typography, TextField, Button, Grid, Paper, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid'; // Import UUID
+import { v4 as uuidv4 } from 'uuid';
 
 const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, setStep, token }) => {
     const [currentProArg, setCurrentProArg] = useState("");
@@ -21,134 +21,154 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
     // --- Add Pro Argument (Local) ---
     const handleAddProArgument = () => {
         if (currentProArg.trim()) {
-            setLocalProArguments([...localProArguments, { id: uuidv4(), text: currentProArg }]); // Add with UUID
-            setCurrentProArg(""); // Clear input
+            //No longer adding ID
+            setLocalProArguments([...localProArguments, {  text: currentProArg }]);
+            setCurrentProArg("");
         }
     };
 
     // --- Add Con Argument (Local) ---
     const handleAddConArgument = () => {
         if (currentConArg.trim()) {
-            setLocalConArguments([...localConArguments, { id: uuidv4(), text: currentConArg }]); //Add with UUID
-            setCurrentConArg(""); // Clear input
+            setLocalConArguments([...localConArguments, {  text: currentConArg }]);
+            setCurrentConArg("");
         }
     };
+  const handleEdit = (index, isPro) => {
+    const args = isPro ? localProArguments : localConArguments;
+    const argToEdit = args[index];
 
-    const handleEdit = (index, isPro) => {
-        const args = isPro ? localProArguments : localConArguments;
-        const argToEdit = args[index]
-        setEditingArgument({ text: argToEdit.text, index: index, isPro: isPro, id: argToEdit.id }) // Store the ID
-        setEditingIndex(index);
-    }
+    // Use findIndex for consistency
+    const globalIndex = allArguments.findIndex(arg =>
+        arg.text === argToEdit.text && arg.pro === isPro
+    );
 
+    setEditingArgument({
+        text: argToEdit.text,
+        index: index,  // Local index
+        isPro: isPro,
+        id: argToEdit.id // Store ID if available
+    });
+    setEditingIndex(index); // Local index is sufficient
+};
     const handleChange = (event) => {
-        // Update the 'text' property of the *editingArgument* object.  This is reactive.
         if (editingArgument) {
             setEditingArgument({ ...editingArgument, text: event.target.value });
         }
     };
-    const handleSave = () => {
-        if (editingArgument) {
-            const updatedArgs = [...(editingArgument.isPro ? localProArguments : localConArguments)];
-            // Use the id to find and update the argument
-            const indexToUpdate = updatedArgs.findIndex(arg => arg.id === editingArgument.id);
-            if (indexToUpdate !== -1) {
-              updatedArgs[indexToUpdate] = { ...updatedArgs[indexToUpdate], text: editingArgument.text }; //Update
-            }
+const handleSave = () => {
+    if (editingArgument) {
+        const updatedArgs = [...(editingArgument.isPro ? localProArguments : localConArguments)];
+        const indexToUpdate = editingArgument.index; // Use local index
+
+        if (indexToUpdate !== -1) {
+            // Create a new object with updated text, preserving the ID if it exists.
+            updatedArgs[indexToUpdate] = {
+                ...updatedArgs[indexToUpdate], // Copy existing properties (like ID)
+                text: editingArgument.text,     // Update the text
+            };
 
 
             if (editingArgument.isPro) {
-                setLocalProArguments(updatedArgs)
-            }
-            else {
-                setLocalConArguments(updatedArgs)
+                setLocalProArguments(updatedArgs);
+            } else {
+                setLocalConArguments(updatedArgs);
             }
 
             setEditingArgument(null);
-            setEditingIndex(null)
+            setEditingIndex(null);
         }
     }
+};
 
-    const handleDelete = (index, isPro) => {
-        const args = [...(isPro ? localProArguments : localConArguments)];
-        //Get the id of the argument to delete
-        const idToDelete = args[index].id;
 
-        //Filter by ID
-        const filteredArgs = args.filter(arg => arg.id !== idToDelete);
+  const handleDelete = (index, isPro) => {
+    const args = [...(isPro ? localProArguments : localConArguments)];
+    const argToDelete = args[index];
 
-        if (isPro) {
-            setLocalProArguments(filteredArgs)
-        } else {
-            setLocalConArguments(filteredArgs)
-        }
+    // Filter by comparing the object.
+    const filteredArgs = args.filter(arg => arg !== argToDelete);
 
-         // Adjust editingIndex *after* filtering.
-         if (editingArgument && editingArgument.id === idToDelete) {
+    if (isPro) {
+      setLocalProArguments(filteredArgs);
+    } else {
+      setLocalConArguments(filteredArgs);
+    }
+
+     // Adjust editingIndex *after* filtering.
+        if (editingArgument && editingArgument.index === index && editingArgument.isPro === isPro) {
             setEditingIndex(null);
             setEditingArgument(null);
         } else if (editingArgument && editingArgument.isPro === isPro) {
-            // Find the new index of the editing argument.
-            const newEditingIndex = filteredArgs.findIndex(arg => arg.id === editingArgument.id);
-             if(newEditingIndex !== -1){
+             // Find the new index of the editing argument.
+            const newEditingIndex = filteredArgs.findIndex(arg => arg.text === editingArgument.text); // Find by text
+            if(newEditingIndex !== -1){
                 setEditingIndex(newEditingIndex);
-             } else { // If not found, clear editing state
+            } else { // If not found, clear editing state
                 setEditingIndex(null);
                 setEditingArgument(null);
             }
-
         }
-    }
+  };
 
-
-    // --- Proceed (Submit to API) ---
     const handleProceed = async () => {
-        setIsLoading(true);
-        setError(null);
-        try {
-            const argumentsPayload = [
-                ...localProArguments.map(arg => ({ yes_or_no: "YES", argument: arg.text })), // Use arg.text
-                ...localConArguments.map(arg => ({ yes_or_no: "NO", argument: arg.text }))  // Use arg.text
-            ];
+    setIsLoading(true);
+    setError(null);
 
-            const response = await axios.post('http://localhost:5000/read_user_arguments', {
-                topic_id: questionId,
-                arguments: argumentsPayload
-            }, {
-                headers: { Authorization: `Bearer ${token}` }
+    try {
+        const argumentsPayload = [
+            ...localProArguments.map(arg => ({ yes_or_no: "YES", argument: arg.text })),
+            ...localConArguments.map(arg => ({ yes_or_no: "NO", argument: arg.text }))
+        ];
+
+        const response = await axios.post('http://localhost:5000/read_user_arguments', {
+            topic_id: questionId,
+            arguments: argumentsPayload
+        }, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+
+        if (response?.data?.success === true) {
+            // Get the argument IDs from the response
+            const returnedArguments = response.data.arguments;
+
+            // Update the local state with arguments AND IDs.  This is the key change.
+            const updatedProArguments = localProArguments.map((localArg, index) => {
+                const matchingReturnedArg = returnedArguments.find(
+                    retArg => retArg.argument === localArg.text && retArg.yes_or_no === "YES"
+                );
+                return {
+                    ...localArg, // Keep existing properties (like text)
+                    id: matchingReturnedArg ? matchingReturnedArg.argument_id : uuidv4(), // Add the ID, or a fallback
+                    pro: true,
+                    categoryId: null,
+                };
             });
 
-            if (response?.data?.success === true) {
-                // setIsLoading(true) // Keep loading true if fetching again
-                setError(null)
-                try {
-                    const argumentResponse = await axios.get(`http://localhost:5000/get_arguments?topic_id=${questionId}`);
-                    // Transform the API response into the format expected by `allArguments`
-                    if (argumentResponse?.data?.success === true) {
-                        const newArguments = argumentResponse.data['arguments'].map((argument_dict) => ({
-                            id: argument_dict['argument_id'],
-                            text: argument_dict['argument'],
-                            pro: argument_dict['yes_or_no'] === "YES",
-                            categoryId: null  // Initialize categoryId to null
-                        }));
-                        // Update the global state with the *new* arguments from the API.
-                        setAllArguments(newArguments); // Replace, don't add, for consistency with categories
-                        setStep(4);
-                    }
-                }
-                catch (error) {
-                    setError(error.response?.data?.message || 'Failed to get arguments')
-                } finally {
-                    setIsLoading(false); //Set loading to false here.
-                }
-            }
+            const updatedConArguments = localConArguments.map((localArg, index) => {
+                const matchingReturnedArg = returnedArguments.find(
+                    retArg => retArg.argument === localArg.text && retArg.yes_or_no === "NO"
+                );
+                return {
+                    ...localArg,
+                    id: matchingReturnedArg ? matchingReturnedArg.argument_id : uuidv4(),
+                    pro: false,
+                    categoryId: null,
+                };
+            });
 
-        } catch (error) {
-            setError(error.response?.data?.message || 'Failed to submit arguments.');
-        } finally {
-            setIsLoading(false); // Make SURE isLoading is set to false
+            // Combine and set all arguments in App.js
+            setAllArguments([...updatedProArguments, ...updatedConArguments]);
+            setStep(4); // Move to the next step (Categorization)
+        } else {
+            setError(response.data.message || 'Failed to submit arguments.');
         }
+    } catch (error) {
+        setError(error.response?.data?.message || 'Failed to submit arguments.');
+    } finally {
+        setIsLoading(false);
     }
+};
 
 
     return (
@@ -175,10 +195,10 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
                     <Button variant="contained" color="success" sx={{ mt: 1, width: "100%" }} onClick={handleAddProArgument}>
                         Add YES Argument
                     </Button>
-                    <Box sx={{ mt: 2 }}>
+                   <Box sx={{ mt: 2 }}>
                         {localProArguments.map((arg, index) => (
                             <Paper
-                                key={arg.id} // Use the UUID as the key
+                                key={arg.id || index} // Use ID if available, otherwise index
                                 sx={{
                                     width: "100%",
                                     padding: "10px",
@@ -200,7 +220,7 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
                                         autoFocus
                                     />
                                 ) : (
-                                    <Typography>{arg.text}</Typography> // Display arg.text
+                                   <Typography>{arg.text} {arg.id && `(ID: ${arg.id})`}</Typography> // Display text and ID
                                 )}
                                 <div>
                                     {editingIndex === index && editingArgument?.isPro ? (
@@ -238,7 +258,7 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
                     <Box sx={{ mt: 2 }}>
                         {localConArguments.map((arg, index) => (
                             <Paper
-                                key={arg.id} // Use the UUID as the key
+                                key={arg.id || index} // Use ID if available, otherwise index
                                 sx={{
                                     width: "100%",
                                     padding: "10px",
@@ -260,7 +280,7 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
                                         autoFocus
                                     />
                                 ) : (
-                                    <Typography>{arg.text}</Typography> // Display arg.text
+                                    <Typography>{arg.text} {arg.id && `(ID: ${arg.id})`}</Typography> // Display text and ID
                                 )}
                                 <div>
                                     {editingIndex === index && !editingArgument?.isPro ? (
@@ -291,8 +311,8 @@ const ArgumentManager = ({ question, questionId, setAllArguments, allArguments, 
                 variant="contained"
                 color="primary"
                 sx={{ mt: 3, width: "100%" }}
-                onClick={handleProceed}  // Call handleProceed
-                disabled={isLoading || (localProArguments.length === 0 && localConArguments.length === 0)} // Disable if loading or no arguments
+                onClick={handleProceed}
+                disabled={isLoading || (localProArguments.length === 0 && localConArguments.length === 0)}
             >
                 Proceed
             </Button>
