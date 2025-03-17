@@ -2,297 +2,437 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  Chip,
+  IconButton,
+} from "@mui/material";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-const Categorization = ({
-    setCategories,
-    setStep,
-    categories,  // Existing categories (if any)
-    questionId,
-    allArguments, // Use allArguments
-    setAllArguments,
-}) => {
-    const [input, setInput] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [tempCategories, setTempCategories] = useState([]); // Local, editable categories
-    const [categorizedArguments, setCategorizedArguments] = useState({});
+const Categorization = (props) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [input, setInput] = useState("");
+  const [localCategory, setLocalCategory] = useState([]);
 
+  const inputStyle = {
+    height: "40px", // Set a fixed height
+    fontSize: "16px", // Ensure text size is consistent
+    padding: "8px 12px", // Add padding for better appearance
+    border: "1px solid #ccc", // Add border to match styling
+    borderRadius: "5px", // Rounded corners for consistency
+  };
 
-    // Initialize tempCategories from props.categories
-    useEffect(() => {
-        setTempCategories(categories || []);
-    }, [categories]);
+  const fetchArguments = async () => {
+    if (props.topicId) {
+      props.updateLoading(true);
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/get_arguments?topic_id=${props.topicId}`
+        );
+        if (response.data.success) {
+          const Arguments = response.data.arguments.map((arg) => ({
+            argument_id: arg.argument_id,
+            argument: arg.argument,
+            yes_or_no: arg.yes_or_no === "YES",
+            category_id: arg.category_id,
+          }));
 
+          const updatedCategories = [...localCategory];
 
-    // Fetch arguments on component mount AND when questionId changes
-    useEffect(() => {
-        const fetchArguments = async () => {
-            if (questionId) {
-                setIsLoading(true);
-                try {
-                    const response = await axios.get(`http://localhost:5000/get_arguments?topic_id=${questionId}`);
-                    if (response.data.success) {
-                        const transformedArguments = response.data.arguments.map(arg => ({
-                            id: arg.argument_id,
-                            text: arg.argument,
-                            pro: arg.yes_or_no === "YES",
-                            categoryId: arg.category_id || null // Include existing categoryId, if any
-                        }));
-                        setAllArguments(transformedArguments); // Update global state.  VERY IMPORTANT
-                        setError(null);
-                    } else {
-                        setError(response.data.message || "Failed to fetch arguments.");
-                    }
-                } catch (error) {
-                    setError(error.response?.data?.message || "Failed to fetch arguments.");
-                } finally {
-                    setIsLoading(false);
-                }
-            }
-        };
-
-        fetchArguments();
-    }, [questionId, setAllArguments]); // Add setAllArguments to dependency array
-
-    // Initialize/update categorizedArguments when tempCategories or allArguments change
-       useEffect(() => {
-        const initialCategorizedArguments = {};
-        tempCategories.forEach((cat) => {
-            initialCategorizedArguments[cat.id] = []; // Initialize arrays for *each* category
-        });
-
-        // Populate with existing categorizations
-        if (allArguments) { // Check if allArguments is populated.
-            allArguments.forEach(arg => {
-                if (arg.categoryId && tempCategories.find(cat => cat.id === arg.categoryId)) { // Ensure category exists
-                    initialCategorizedArguments[arg.categoryId].push(arg.id);
-                }
-            });
-        }
-        setCategorizedArguments(initialCategorizedArguments);
-
-    }, [tempCategories, allArguments]);
-
-
-
-    const handleAddCategory = () => {
-        if (input.trim() !== "") {
-            const newCategoryId = uuidv4(); // Generate a UUID
-            setTempCategories([...tempCategories, { id: newCategoryId, argument_category: input }]);
-            setCategorizedArguments({ ...categorizedArguments, [newCategoryId]: [] }); // Add to categorizedArguments
-            setInput("");
-        }
-    };
-
-
-    const handleEditCategory = (id, newValue) => {
-      const newName = prompt("Enter new category name:", newValue);
-      if(newName !== null && newName.trim() !== ""){
-        setTempCategories(tempCategories.map(category => category.id === id ? { ...category, argument_category: newName } : category));
-      }
-    };
-
-
-   const handleDeleteCategory = (categoryId) => {
-        const updatedCategories = tempCategories.filter(category => category.id !== categoryId);
-        setTempCategories(updatedCategories);
-
-        // Remove the category from categorizedArguments
-        setCategorizedArguments(prevCategorizedArguments => {
-            const { [categoryId]: _, ...rest } = prevCategorizedArguments; // Destructure and remove
-            return { ...rest };
-        });
-    };
-
-    const onDragEnd = (result) => {
-        const { destination, source, draggableId } = result;
-
-        if (!destination) return;
-        if (destination.droppableId === source.droppableId && destination.index === source.index) return;
-
-        setCategorizedArguments(prevCategorizedArguments => {
-            const updatedCategorizedArguments = { ...prevCategorizedArguments };
-
-            // Remove from source
-            const sourceCategoryArguments = [...(updatedCategorizedArguments[source.droppableId] || [])];
-            sourceCategoryArguments.splice(source.index, 1);
-            updatedCategorizedArguments[source.droppableId] = sourceCategoryArguments;
-
-            // Add to destination
-            const destinationCategoryArguments = [...(updatedCategorizedArguments[destination.droppableId] || [])];
-            destinationCategoryArguments.splice(destination.index, 0, draggableId); //draggableId is the argument ID
-            updatedCategorizedArguments[destination.droppableId] = destinationCategoryArguments;
-
-            return updatedCategorizedArguments;
-        });
-    };
-
-
-
-    const handleProceed = async () => {
-        setIsLoading(true);
-        setError(null);
-
-        // 1. Create new categories (if any)
-        const newCategories = tempCategories.filter(tempCat => !categories.some(cat => cat.id === tempCat.id));
-        const newCategoriesPayload = {
-            topic_id: questionId,
-            argument_categories: newCategories.map(cat => ({ argument_category: cat.argument_category }))
-        };
-
-        try {
-             if (newCategories.length > 0) {
-                const createCategoryResponse = await axios.post("http://localhost:5000/read_user_argument_categories", newCategoriesPayload);
-                if (!createCategoryResponse.data.success) {
-                    setError("Failed to create new categories.");
-                     setIsLoading(false); // Important: Stop loading
-                    return; // Stop if category creation fails
-                }
-            //Update the categories with the new categories created.
-             const categoryResponse = await axios.get(`http://localhost:5000/get_argument_categories?topic_id=${questionId}`);
-                if (categoryResponse?.data?.success === true) {
-                    const fetchedCategories = categoryResponse.data.argument_categories.map((category) => ({
-                        id: category.category_id,
-                        argument_category: category.argument_category,
-                    }));
-                    setCategories(fetchedCategories) // Update main categories
-                }
-             }
-
-           // 2. Update argument categorizations (send *all* categorizations)
-
-            const updateArgumentCategoryPayload = {
-                topic_id: questionId,
-                argument_updates: []  // Build this array
+          let defaultCategory = updatedCategories.find(
+            (cat) => cat.argument_category === "Default"
+          );
+          if (!defaultCategory) {
+            const defaultCategoryId = uuidv4();
+            defaultCategory = {
+              id: defaultCategoryId,
+              argument_category: "Default",
+              arguments: [],
             };
-
-            // Iterate through categorizedArguments
-            for (const categoryId in categorizedArguments) {
-                if (categorizedArguments.hasOwnProperty(categoryId)) {
-                    const argumentIds = categorizedArguments[categoryId];
-                    argumentIds.forEach(argumentId => {
-                        updateArgumentCategoryPayload.argument_updates.push({
-                            argument_id: argumentId, // Argument ID
-                            category_id: categoryId    // Category ID
-                        });
-                    });
-                }
+            updatedCategories.push(defaultCategory);
+          }
+          const categorized = {};
+          Arguments.forEach((arg) => {
+            const catId = arg.category_id || defaultCategory.id;
+            if (!categorized[catId]) {
+              categorized[catId] = [];
             }
+            categorized[catId].push(arg);
+          });
 
-            // Send the update request.
-            if(updateArgumentCategoryPayload.argument_updates.length > 0){
-              const updateArgResponse = await axios.post("http://localhost:5000/update_argument_category", updateArgumentCategoryPayload);
-                if (!updateArgResponse.data.success) {
-                    setError("Failed to update argument categorizations.");
-                    setIsLoading(false);
-                    return;
-                }
-            }
-
-
-
-            // Fetch the arguments after updating categories and arguments
-            const argumentResponse = await axios.get(`http://localhost:5000/get_arguments?topic_id=${questionId}`);
-            if (argumentResponse?.data?.success === true) {
-                const newArguments = argumentResponse.data['arguments'].map((argument_dict) => ({
-                    id: argument_dict['argument_id'],
-                    text: argument_dict['argument'],
-                    pro: argument_dict['yes_or_no'] === "YES",
-                    categoryId: argument_dict['category_id'] //KEEP CATEGORY
-                }));
-                setAllArguments(newArguments);
-                setStep(5);
-            } else {
-                setError("Failed to get arguments after categorization");
-            }
-
-
-        } catch (error) {
-            setError(error.response?.data?.message || "An unexpected error occurred.");
-
-        } finally {
-            setIsLoading(false);
+          const finalCategories = updatedCategories.map((category) => {
+            return {
+              ...category,
+              arguments: categorized[category.id] || [],
+            };
+          });
+          setLocalCategory(finalCategories);
+          console.log(localCategory);
+        } else {
+          props.updateError(
+            response.data.message || "Failed to fetch arguments."
+          );
         }
-    };
+      } catch (error) {
+        props.updateError(
+          error.response?.data?.message || "Failed to fetch arguments."
+        );
+      } finally {
+        props.updateLoading(false);
+      }
+    }
+  };
 
+  //   const fetchCategories = async () => {
+  //     props.updateLoading(true);
+  //     try {
+  //       const response = await axios.get(
+  //         `http://localhost:5000/get_argument_categories?topic_id=${props.topicId}`
+  //       );
+  //       if (response.data.success) {
+  //         const categories = response.data.argument_categories.map((cat) => ({
+  //           id: cat.category_id,
+  //           argument_category: cat.argument_category,
+  //           arguments: [],
+  //         }));
+  //         const updatedCategories = [...localCategory];
 
+  //         let defaultCategory = updatedCategories.find(
+  //           (cat) => cat.argument_category === "Default"
+  //         );
+  //         if (!defaultCategory) {
+  //           const defaultCategoryId = uuidv4();
+  //           defaultCategory = {
+  //             id: defaultCategoryId,
+  //             argument_category: "Default",
+  //             arguments: [],
+  //           };
+  //           categories.push(defaultCategory);
+  //         }
+  //         setLocalCategory(categories);
+  //       } else {
+  //         props.updateError(
+  //           response.data.message || "Failed to fetch categories."
+  //         );
+  //       }
+  //     } catch (error) {
+  //       props.updateError(
+  //         error.response?.data?.message || "Failed to fetch categories."
+  //       );
+  //     } finally {
+  //       props.updateLoading(false);
+  //     }
+  //   };
 
-    return (
-        <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Categorize Arguments</h2>
-            <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Enter new category name"
-                className="w-full p-3 border rounded mb-4 text-lg"
-            />
-            <button onClick={handleAddCategory} className="bg-blue-500 text-white p-3 rounded hover:bg-blue-600" disabled={!input.trim()}>Add Category</button>
+  useEffect(() => {
+    // fetchCategories();
+    fetchArguments();
+  }, [props.topicId]);
 
-            {isLoading && <p>Loading...</p>}
-            {error && <p className="text-red-500">{error}</p>}
+  const handleAddCategory = () => {
+    if (input.trim().toLowerCase() === "default") {
+      alert("You cannot name a category 'Default'.");
+      return;
+    }
+    if (input.trim() !== "") {
+      const categoryId = uuidv4();
+      setLocalCategory([
+        ...localCategory,
+        { id: categoryId, argument_category: input, arguments: [] },
+      ]);
+      setInput("");
+    }
+  };
 
-            <DragDropContext onDragEnd={onDragEnd}>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {tempCategories.map(category => (
-                        <Droppable droppableId={category.id} key={category.id}>
-                            {(provided, snapshot) => (
-                                <div
-                                    ref={provided.innerRef}
-                                    {...provided.droppableProps}
-                                    className={`mb-4 ${snapshot.isDraggingOver ? 'bg-gray-100' : ''}`}
-                                >
-                                    <div className="border rounded">
-                                       <div className="p-2 border-b font-bold flex items-center justify-between" style={{display: "flex", gap: "10px", padding: "10px"}}>
-                                            <div style={{flex: 1, padding: "10px"}}>
-                                                <span>{category.argument_category}</span>
-                                            </div>
-                                          <div className="flex items-center" style={{padding: "10px"}}>
-                                            <IconButton onClick={() => handleEditCategory(category.id, category.argument_category)} aria-label="edit category" size="small">
-                                                <EditIcon />
-                                            </IconButton>
-                                          </div>
-                                          <div className="flex items-center" style={{padding: "10px"}}>
-                                            <IconButton onClick={() => handleDeleteCategory(category.id)} aria-label="delete category" size="small">
-                                                <DeleteIcon />
-                                            </IconButton>
-                                         </div>
-                                        </div>
+  const handleEditCategory = (id, value) => {
+    const name = prompt("Enter new category name:", value);
+    if (name !== null && name.trim() !== "") {
+      if (name.trim().toLowerCase() === "default") {
+        alert("You cannot rename a category to 'Default'.");
+        return;
+      }
 
-                                        {/* Display arguments within the category */}
-                                        {categorizedArguments[category.id]?.map((argumentId, index) => {
-                                            const argument = allArguments.find(arg => arg.id === argumentId);
-                                            return argument ? (
-                                                <Draggable key={argument.id} draggableId={argument.id} index={index}>
-                                                    {(provided, snapshot) => (
-                                                        <div
-                                                            ref={provided.innerRef}
-                                                            {...provided.draggableProps}
-                                                            {...provided.dragHandleProps}
-                                                            className={`p-2 border-b  flex items-center justify-between ${snapshot.isDragging ? 'bg-blue-100' : 'hover:bg-gray-100'}`}
-                                                        >
-                                                            <span>{argument.text}</span>
-                                                        </div>
-                                                    )}
-                                                </Draggable>
-                                            ) : null;
-                                        })}
-                                        {provided.placeholder}
-                                    </div>
-                                </div>
-                            )}
-                        </Droppable>
-                    ))}
-                </div>
-            </DragDropContext>
+      setLocalCategory(
+        localCategory.map((c) =>
+          c.id === id ? { ...c, argument_category: name } : c
+        )
+      );
+    }
+  };
 
-            <button onClick={handleProceed} className="mt-4 p-3 bg-green-500 text-white rounded hover:bg-green-600" disabled={isLoading}>Proceed</button>
-        </div>
+  const handleDeleteCategory = (categoryId) => {
+    let updatedCategories = [...localCategory];
+    let defaultArgument = [];
+
+    let categoryToDelete = updatedCategories.find((c) => c.id === categoryId);
+
+    if (categoryToDelete && categoryToDelete.argument_category === "Default") {
+      alert("You cannot delete the Default category.");
+      return;
+    }
+
+    if (categoryToDelete) {
+      defaultArgument = categoryToDelete.arguments || [];
+    }
+    updatedCategories = updatedCategories.filter((c) => c.id !== categoryId);
+
+    let defaultCategory = updatedCategories.find(
+      (cat) => cat.argument_category === "Default"
     );
+    if (!defaultCategory) {
+      const defaultCategoryId = uuidv4();
+      defaultCategory = {
+        id: defaultCategoryId,
+        argument_category: "Default",
+        arguments: defaultArgument,
+      };
+      updatedCategories.push(defaultCategory);
+    } else {
+      defaultCategory.arguments = [
+        ...defaultCategory.arguments,
+        ...defaultArgument,
+      ];
+    }
+    setLocalCategory(updatedCategories);
+  };
+
+  const onDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) return;
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    )
+      return;
+
+    setLocalCategory((prevCategories) => {
+      let draggedArgument;
+      for (const category of prevCategories) {
+        draggedArgument = category.arguments.find(
+          (arg) => String(arg.argument_id) === draggableId
+        );
+        if (draggedArgument) break;
+      }
+
+      if (!draggedArgument) return;
+
+      // 2. Create a *copy* (no need for a deep copy here).
+      const updatedCategories = [...prevCategories];
+
+      // 3. Remove from source.
+      const sourceCategoryIndex = updatedCategories.findIndex(
+        (cat) => String(cat.id) === source.droppableId
+      );
+      if (sourceCategoryIndex === -1) return; // Source category not found (shouldn't happen).
+
+      updatedCategories[sourceCategoryIndex] = {
+        ...updatedCategories[sourceCategoryIndex],
+        arguments: updatedCategories[sourceCategoryIndex].arguments.filter(
+          (arg) => String(arg.argument_id) !== draggableId
+        ),
+      };
+
+      // 4. Add to destination.
+      const destinationCategoryIndex = updatedCategories.findIndex(
+        (cat) => String(cat.id) === destination.droppableId
+      );
+      if (destinationCategoryIndex === -1) return; // Destination category not found (shouldn't happen).
+
+      updatedCategories[destinationCategoryIndex] = {
+        ...updatedCategories[destinationCategoryIndex],
+        arguments: [
+          ...updatedCategories[destinationCategoryIndex].arguments.slice(
+            0,
+            destination.index
+          ),
+          { ...draggedArgument }, // Add the dragged argument. No need to change category_id here.
+          ...updatedCategories[destinationCategoryIndex].arguments.slice(
+            destination.index
+          ),
+        ],
+      };
+
+      return updatedCategories; // Return the *new* state.
+    });
+  };
+
+  const handleProceed = async () => {
+    setIsSubmitting(true);
+    props.updateLoading(true);
+    props.updateError(null);
+    props.updateCategories(localCategory);
+    props.updateStep(5);
+
+    const categoriesPayload = {
+      topic_id: props.topicId,
+      argument_categories: localCategory
+        .filter((c) => c.argument_category !== "Default") // Skip Default
+        .map((c) => ({
+          argument_category: c.argument_category,
+        })),
+    };
+    console.log(categoriesPayload);
+
+    try {
+      if (localCategory.length > 0) {
+        const response = await axios.post(
+          "http://localhost:5000/read_user_argument_categories",
+          categoriesPayload
+        );
+        if (response?.data?.success === true) {
+          props.updateCategoriesId(response.data.category_ids);
+          props.updateLoading(true);
+          props.updateStep(5);
+        } else {
+          props.updateError("Failed to create new categories.");
+          props.updateLoading(false);
+          return;
+        }
+      }
+    } catch (error) {
+      props.updateError(
+        error.message || "An unexpected error occurred."
+      );
+    } finally {
+      props.updateLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <h2 className="text-2xl font-bold mb-4">Categorize Arguments</h2>
+      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <TextField
+          variant="outlined"
+          placeholder="Enter new category name"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          fullWidth
+          sx={{
+            "& .MuiInputBase-root": {
+              height: "30px", // Ensures same height as button
+            },
+          }}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleAddCategory}
+          sx={{
+            height: "30px",
+            minWidth: "50px",
+          }}
+        >
+          Add Category
+        </Button>
+      </Box>
+
+      {props.isLoading && <p>Loading...</p>}
+      {props.error && <p className="text-red-500">{props.error}</p>}
+
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="categories-container">
+          {localCategory.map((category) => (
+            <Droppable
+              droppableId={String(category.id)}
+              key={String(category.id)}
+            >
+              {(provided) => (
+                <Box
+                  className="category"
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                  sx={{
+                    alignItems: "center",
+                    gap: 2,
+                    border: "2px solid #ccc",
+                    borderRadius: "8px",
+                    width: "100%",
+                    padding: "8px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <Box sx={{ display: "flex", gap: 0.5, flexShrink: 0 }}>
+                    <Typography
+                      variant="h6"
+                      gutterBottom
+                      sx={{
+                        margin: 0,
+                        flexGrow: 1,
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {category.argument_category}
+                    </Typography>
+                    <IconButton
+                      color="primary"
+                      size="small"
+                      sx={{ width: "30px", height: "30px", padding: "4px" }}
+                      onClick={() =>
+                        handleEditCategory(
+                          category.id,
+                          category.argument_category
+                        )
+                      }
+                    >
+                      <EditIcon fontSize="small" />
+                    </IconButton>
+                    <IconButton
+                      color="error"
+                      size="small"
+                      sx={{ width: "30px", height: "30px", padding: "4px" }}
+                      onClick={() => handleDeleteCategory(category.id)}
+                    >
+                      <DeleteIcon fontSize="small" />
+                    </IconButton>
+                  </Box>
+
+                  <div className="arguments-list">
+                    {category.arguments.map((argument, index) => (
+                      <Draggable
+                        key={argument.argument_id}
+                        draggableId={String(argument.argument_id)}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <div
+                            className="argument-item"
+                            style={{ padding: "10px" }}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <Chip label={argument.argument} />
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                </Box>
+              )}
+            </Droppable>
+          ))}
+        </div>
+      </DragDropContext>
+
+      <button
+        onClick={handleProceed}
+        className="mt-4 p-3 bg-green-500 text-white rounded hover:bg-green-600"
+        disabled={isSubmitting}
+      >
+        Proceed
+      </button>
+    </div>
+  );
 };
 
 export default Categorization;
