@@ -1,6 +1,7 @@
 import React from "react";
 
-const Instructions = ({ setStep }) => {
+export const Instructions = (props) => {
+  props.updateLoading(false);
   return (
     <div className="text-center">
       <h2 className="text-xl font-bold mb-4">Instructions</h2>
@@ -14,7 +15,7 @@ const Instructions = ({ setStep }) => {
         <li>You will later categorize and evaluate these arguments.</li>
       </ul>
       <button 
-        onClick={() => setStep(3)} 
+        onClick={() => props.updateStep(3)} 
         className="bg-blue-500 text-white px-6 py-2 rounded"
       >
         Next
@@ -22,5 +23,3 @@ const Instructions = ({ setStep }) => {
     </div>
   );
 };
-
-export default Instructions;
