@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Select, MenuItem, FormControl, InputLabel, Button, Paper } from "@mui/material";
-import "./ImplicationRating.css"
 import axios from "axios";
 
 const ImplicationRating = ({ allArguments, setRatedArguments, setStep, categories, token, questionId, conversationId }) => {

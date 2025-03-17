@@ -6,46 +6,54 @@ import {
   Routes,
   Route,
   Navigate,
-  useNavigate,
 } from "react-router-dom";
 import "./App.css";
 import LoginPage from "./components/LoginPage";
 import QuestionSelection from "./components/QuestionSelection";
-import Instructions from "./components/Instructions";
+import { Instructions } from "./components/Small Components";
 import ArgumentManager from "./components/ArgumentManager";
 import Categorization from "./components/Categorization";
-import SortedArguments from "./components/SortedArguments";
 import ImplicationRating from "./components/ImplicationRating";
 import FinalEvaluation from "./components/FinalEvaluation";
 import StepperComponent from "./components/StepperComponent";
 import FloatingNavButtons from "./components/FloatingNavButtons";
 
 const App = () => {
-  // All state variables are defined *outside* the Router, which is correct.
-  // TODO: Switch back to false
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
-  const [questions, setQuestions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Topics
   const [topics, setTopics] = useState([]);
-  const [allArguments, setAllArguments] = useState([]);
+  const [topicId, setTopicId] = useState(null);
+  const [topic, setTopic] = useState("");
+
+  //Instructions
+  const [instructions, setInstructions] = useState("");
+
+  // Question and Question ID
+  const [questions, setQuestions] = useState([]);
+  const [question, setQuestion] = useState("");
+  const [questionId, setQuestionId] = useState("");
+
+  // Arguments
+  const [yesArguments, setYesArguments] = useState([]);
+  const [noArguments, setNoArguments] = useState([]);
+  const [argumentIds, setArgumentIds] = useState([]);
+
   const [categories, setCategories] = useState([]);
   const [ratedArguments, setRatedArguments] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+
+
   const [error, setError] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [step, setStep] = useState(1);
-  const [question, setQuestion] = useState("");
-  const [questionId, setQuestionId] = useState("");
+
   const [stance, setStance] = useState("");
   const [strength, setStrength] = useState(5);
   const [finalStance, setFinalStance] = useState("");
   const [finalStrength, setFinalStrength] = useState(5);
   const [conversationId, setConversationId] = useState(null);
-  const [selectedTopic, setSelectedTopic] = useState(null);
-
-  // DO NOT call useNavigate() here.
-
-  // handleLogin, createConversation, fetchQuestions, fetchTopics, fetchArguments, fetchCategories are all defined *outside* the Router, which is correct.
 
   const handleLogin = async (username, password) => {
     setIsLoading(true);
@@ -77,7 +85,6 @@ const App = () => {
       setIsLoading(false);
     }
   };
-
   const fetchQuestions = async () => {
     //... fetch questions
     setIsLoading(true);
@@ -107,7 +114,6 @@ const App = () => {
       setIsLoading(false);
     }
   };
-
   const fetchTopics = async () => {
     //... fetch topics
     setIsLoading(true);
@@ -130,31 +136,6 @@ const App = () => {
       setIsLoading(false);
     }
   };
-
-  const fetchArguments = async (questionId) => {
-    //... fetch arguments
-    if (!questionId) return;
-    setIsLoading(true);
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/get_arguments?topic_id=${questionId}`
-      );
-
-      const transformedArguments = response.data.arguments.map((arg) => ({
-        id: arg.argument_id,
-        text: arg.argument,
-        pro: arg.yes_or_no === "YES", // Convert "YES"/"NO" to boolean
-        categoryId: null, // Initialize categoryId
-      }));
-
-      setAllArguments(transformedArguments);
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to fetch arguments");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const handleNext = () => {
     console.log(`Before handleNext - Current Step: ${step}`);
 
@@ -168,12 +149,7 @@ const App = () => {
           nextStep = 3;
           break;
         case 3:
-          if (allArguments.length === 0) {
-            console.warn("⚠️ No arguments found. Cannot proceed.");
-            nextStep = prevStep; // Stay on the same step
-          } else {
-            nextStep = 4;
-          }
+          nextStep = 4;
           break;
         case 4:
           nextStep = 5;
@@ -191,7 +167,6 @@ const App = () => {
       return nextStep;
     });
   };
-
   const handleBack = () => {
     console.log(`Before handleBack - Current Step: ${step}`);
     setStep((prev) => {
@@ -200,6 +175,56 @@ const App = () => {
       return newStep;
     });
   };
+
+  const updateTopic = (topicIdProp) => {
+    setTopicId(topicIdProp);
+    const topicIdNum = parseInt(topicIdProp, 10);
+    const selectedTopic = topics.find((t) => {
+      return t.id === topicIdNum;
+    });
+    setTopic(selectedTopic);
+    if (selectedTopic) {
+      setQuestions(selectedTopic.preMadeQuestions);
+    }
+  };
+  const updateQuestion = (questionIdProp) => {
+    setQuestionId(questionIdProp);
+    const questionIdNum = parseInt(questionIdProp, 10);
+    const question = questions.find((q) => {
+      return q.id === questionIdNum;
+    })?.text;
+    setQuestion(question);
+  };
+  const updateStance = (stance) => {
+    setStance(stance);
+  };
+  const updateStrength = (strength) => {
+    setStrength(strength);
+  };
+  const updateConversationId = (conversationId) => {
+    setConversationId(conversationId);
+  };
+
+  const updateYesArguments = (argumentsList) => {
+    setYesArguments(argumentsList);
+  };
+  const updateNoArguments = (argumentsList) => {
+    setNoArguments(argumentsList);
+  };
+  const updateArgumentIds = (ids) => {
+    setArgumentIds(ids);
+  };
+
+  const updateError = (error) => {
+    setError(error);
+  };
+  const updateStep = (step) => {
+    setStep(step);
+  };
+  const updateLoading = (isLoading) => {
+    setIsLoading(isLoading);
+  };
+
   useEffect(() => {
     if (token) {
       fetchQuestions();
@@ -207,64 +232,67 @@ const App = () => {
     }
   }, [token]);
 
-  // useEffect(() => {
-  //   if (question) {
-  //     fetchArguments(question);
-  //   }
-  // }, [question]);
-
-  // useEffect(() => {
-  //   if (step === 4) {
-  //     fetchCategories(questionId);
-  //   }
-  // }, [step, questionId, token]); // Important: Add dependencies
-
   return (
     <Router>
-      {" "}
-      {/* <Router> is the top-level component. */}
       <div className="container mx-auto p-6">
         {!isAuthenticated ? (
-          // Login Routes (when not authenticated)
           <Routes>
             <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Routes>
         ) : (
-          // Authenticated App Content
           <>
-            {/* Stepper (always rendered when authenticated) */}
-
             <StepperComponent step={step} />
             {isLoading && <p>Loading...</p>}
             {error && <p style={{ color: "red" }}>{error}</p>}
-
-            {/* --- Conditional Rendering of Components based on step --- */}
             {step === 1 && (
               <QuestionSelection
+                updateTopic={updateTopic}
+                updateError={updateError}
+                updateQuestion={updateQuestion}
+                updateStance={updateStance}
+                updateStrength={updateStrength}
+                updateStep={updateStep}
+                updateConversationId={updateConversationId}
+                updateLoading={updateLoading}
                 token={token}
                 user={user}
-                setQuestion={setQuestion}
-                setQuestionId={setQuestionId}
-                setStance={setStance}
-                setStrength={setStrength}
-                setStep={setStep}
+                stance={stance}
+                topic={topic}
+                topicId={topicId}
                 topics={topics}
+                strength={strength}
                 questions={questions}
-                setConversationId={setConversationId}
-                setIsLoading={setIsLoading}
-                setError={setError}
-              />
-            )}
-            {step === 2 && <Instructions setStep={setStep} />}
-            {step === 3 && (
-              <ArgumentManager
                 question={question}
                 questionId={questionId}
+              />
+            )}
+            {step === 2 && (
+              <Instructions
+                updateStep={updateStep}
+                updateLoading={updateLoading}
+              />
+            )}
+            {step === 3 && (
+              <ArgumentManager
+                updateStep={updateStep}
+                updateLoading={updateLoading}
+                updateYesArguments={updateYesArguments}
+                updateNoArguments={updateNoArguments}
+                updateArgumentIds={updateArgumentIds}
+
+                updateError={updateError}
+                yesArguments={yesArguments}
+                noArguments={noArguments}
+                topic={topic}
+                topicId={topicId}
+                isLoading={isLoading}
+                error={error}
+
+
+
+                question={question}
                 token={token}
-                setAllArguments={setAllArguments}
-                allArguments={allArguments}
-                setStep={setStep}
               />
             )}
             {step === 4 && (
@@ -273,15 +301,11 @@ const App = () => {
                 token={token}
                 setCategories={setCategories}
                 categories={categories}
-                allArguments={allArguments}
-                setAllArguments={setAllArguments}
                 setStep={setStep}
               />
             )}
-            {/* {step === 5 && <SortedArguments token={token} questionId={questionId} allArguments={allArguments} categories={categories} setStep={setStep} />} */}
             {step === 5 && (
               <ImplicationRating
-                allArguments={allArguments}
                 setRatedArguments={setRatedArguments}
                 setStep={setStep}
                 categories={categories}
