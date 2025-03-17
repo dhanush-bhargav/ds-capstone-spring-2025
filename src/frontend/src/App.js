@@ -10,13 +10,16 @@ import {
 import "./App.css";
 import LoginPage from "./components/LoginPage";
 import QuestionSelection from "./components/QuestionSelection";
-import { Instructions } from "./components/Small Components";
+import {
+  Instructions,
+  FloatingNavButtons,
+  StepperComponent,
+} from "./components/Small Components";
 import ArgumentManager from "./components/ArgumentManager";
 import Categorization from "./components/Categorization";
 import ImplicationRating from "./components/ImplicationRating";
 import FinalEvaluation from "./components/FinalEvaluation";
-import StepperComponent from "./components/StepperComponent";
-import FloatingNavButtons from "./components/FloatingNavButtons";
+import { Box } from "@mui/material";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,9 +44,11 @@ const App = () => {
   const [noArguments, setNoArguments] = useState([]);
   const [argumentIds, setArgumentIds] = useState([]);
 
+  // Categories
   const [categories, setCategories] = useState([]);
-  const [ratedArguments, setRatedArguments] = useState([]);
+  const [categoriesId, setCategoriesId] = useState([]);
 
+  const [ratedArguments, setRatedArguments] = useState([]);
 
   const [error, setError] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || null);
@@ -149,7 +154,7 @@ const App = () => {
           nextStep = 3;
           break;
         case 3:
-          nextStep = 4;
+          argumentIds.length > 0 ? (nextStep = 4) : (nextStep = 3);
           break;
         case 4:
           nextStep = 5;
@@ -204,7 +209,6 @@ const App = () => {
   const updateConversationId = (conversationId) => {
     setConversationId(conversationId);
   };
-
   const updateYesArguments = (argumentsList) => {
     setYesArguments(argumentsList);
   };
@@ -214,15 +218,23 @@ const App = () => {
   const updateArgumentIds = (ids) => {
     setArgumentIds(ids);
   };
+  const updateCategories = (categories) => {
+    setCategories(categories);
+  };
+  const updateCategoriesId = (ids) => {
+    setCategoriesId(ids);
+  };
 
   const updateError = (error) => {
     setError(error);
   };
   const updateStep = (step) => {
     setStep(step);
+    console.log("ArgId = ", argumentIds);
+    console.log("CatId = ", categoriesId);
   };
-  const updateLoading = (isLoading) => {
-    setIsLoading(isLoading);
+  const updateLoading = (Loading) => {
+    setIsLoading(Loading);
   };
 
   useEffect(() => {
@@ -234,110 +246,140 @@ const App = () => {
 
   return (
     <Router>
-      <div className="container mx-auto p-6">
+      <>
         {!isAuthenticated ? (
           <Routes>
             <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Routes>
         ) : (
-          <>
-            <StepperComponent step={step} />
-            {isLoading && <p>Loading...</p>}
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            {step === 1 && (
-              <QuestionSelection
-                updateTopic={updateTopic}
-                updateError={updateError}
-                updateQuestion={updateQuestion}
-                updateStance={updateStance}
-                updateStrength={updateStrength}
-                updateStep={updateStep}
-                updateConversationId={updateConversationId}
-                updateLoading={updateLoading}
-                token={token}
-                user={user}
-                stance={stance}
-                topic={topic}
-                topicId={topicId}
-                topics={topics}
-                strength={strength}
-                questions={questions}
-                question={question}
-                questionId={questionId}
-              />
-            )}
-            {step === 2 && (
-              <Instructions
-                updateStep={updateStep}
-                updateLoading={updateLoading}
-              />
-            )}
-            {step === 3 && (
-              <ArgumentManager
-                updateStep={updateStep}
-                updateLoading={updateLoading}
-                updateYesArguments={updateYesArguments}
-                updateNoArguments={updateNoArguments}
-                updateArgumentIds={updateArgumentIds}
+          <Box
+            sx={{
+              width: "100vw",
+              height: "100vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#f5f5f5",
+              transition: "height 0.5s ease-in-out"
+            }}
+          >
+            <Box
+              sx={{
+                width: "800px",
+                maxHeight: "auto",
+                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                margin: "auto",
+                padding: "20mm",
+                display: "flex",
+                flexDirection: "column",
+                border: "1px solid #ccc",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "height 0.5s ease-in-out"
+              }}
+            >
+              <StepperComponent step={step} />
+              {isLoading && <p>Loading...</p>}
+              {error && <p style={{ color: "red" }}>{error}</p>}
+              {step === 1 && (
+                <QuestionSelection
+                  updateTopic={updateTopic}
+                  updateError={updateError}
+                  updateQuestion={updateQuestion}
+                  updateStance={updateStance}
+                  updateStrength={updateStrength}
+                  updateStep={updateStep}
+                  updateConversationId={updateConversationId}
+                  updateLoading={updateLoading}
+                  token={token}
+                  user={user}
+                  stance={stance}
+                  topic={topic}
+                  topicId={topicId}
+                  topics={topics}
+                  strength={strength}
+                  questions={questions}
+                  question={question}
+                  questionId={questionId}
+                />
+              )}
+              {step === 2 && (
+                <Instructions
+                  updateStep={updateStep}
+                  updateLoading={updateLoading}
+                />
+              )}
+              {step === 3 && (
+                <ArgumentManager
+                  updateStep={updateStep}
+                  updateLoading={updateLoading}
+                  updateYesArguments={updateYesArguments}
+                  updateNoArguments={updateNoArguments}
+                  updateArgumentIds={updateArgumentIds}
+                  updateError={updateError}
+                  yesArguments={yesArguments}
+                  noArguments={noArguments}
+                  topic={topic}
+                  topicId={topicId}
+                  isLoading={isLoading}
+                  error={error}
+                  question={question}
+                  token={token}
+                />
+              )}
+              {step === 4 && (
+                <Categorization
+                  updateStep={updateStep}
+                  updateLoading={updateLoading}
+                  updateError={updateError}
+                  updateCategories={updateCategories}
+                  updateCategoriesId={updateCategoriesId}
+                  yesArguments={yesArguments}
+                  noArguments={noArguments}
+                  topic={topic}
+                  topicId={topicId}
+                  isLoading={isLoading}
+                  error={error}
+                  categories={categories}
+                  token={token}
+                />
+              )}
+              {step === 5 && (
+                <ImplicationRating
+                  setRatedArguments={setRatedArguments}
+                  setStep={setStep}
+                  categories={categories}
+                  token={token}
+                  questionId={questionId}
+                  conversationId={conversationId}
+                />
+              )}
+              {step === 6 && (
+                <FinalEvaluation
+                  question={questionId}
+                  stance={stance}
+                  strength={strength}
+                  finalStance={finalStance}
+                  finalStrength={finalStrength}
+                  setFinalStance={setFinalStance}
+                  setFinalStrength={setFinalStrength}
+                  token={token}
+                  conversationId={conversationId}
+                />
+              )}
 
-                updateError={updateError}
-                yesArguments={yesArguments}
-                noArguments={noArguments}
-                topic={topic}
-                topicId={topicId}
-                isLoading={isLoading}
-                error={error}
-
-
-
-                question={question}
-                token={token}
+              {/* Floating Navigation Buttons */}
+              <FloatingNavButtons
+                onBack={handleBack}
+                onNext={handleNext}
+                disableBack={step === 1}
+                disableNext={step === 7}
               />
-            )}
-            {step === 4 && (
-              <Categorization
-                questionId={questionId}
-                token={token}
-                setCategories={setCategories}
-                categories={categories}
-                setStep={setStep}
-              />
-            )}
-            {step === 5 && (
-              <ImplicationRating
-                setRatedArguments={setRatedArguments}
-                setStep={setStep}
-                categories={categories}
-                token={token}
-                questionId={questionId}
-                conversationId={conversationId}
-              />
-            )}
-            {step === 6 && (
-              <FinalEvaluation
-                question={questionId}
-                stance={stance}
-                strength={strength}
-                finalStance={finalStance}
-                finalStrength={finalStrength}
-                setFinalStance={setFinalStance}
-                setFinalStrength={setFinalStrength}
-                token={token}
-                conversationId={conversationId}
-              />
-            )}
-
-            {/* Floating Navigation Buttons */}
-            <FloatingNavButtons
-              onBack={handleBack}
-              onNext={handleNext}
-              disableBack={step === 1}
-              disableNext={step === 7}
-            />
-          </>
+            </Box>
+          </Box>
         )}
-      </div>
+      </>
     </Router>
   );
 };

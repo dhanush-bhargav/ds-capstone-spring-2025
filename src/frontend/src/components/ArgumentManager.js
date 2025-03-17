@@ -27,6 +27,7 @@ const ArgumentManager = (props) => {
   );
   const [inputYesValue, setInputYesValue] = useState("");
   const [inputNoValue, setInputNoValue] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     setLocalYesArguments(props.yesArguments || []);
@@ -108,20 +109,12 @@ const ArgumentManager = (props) => {
       setEditingIndex(null);
       setEditingArgument(null);
     }
-    // else if (editingArgument && editingArgument.yes_or_no === yes_or_no) {
-    //   const newEditingIndex = filteredArgs.findIndex(
-    //     (arg) => arg.text === editingArgument.text
-    //   );
-    //   if (newEditingIndex !== -1) {
-    //     setEditingIndex(newEditingIndex);
-    //   } else {
-    //     setEditingIndex(null);
-    //     setEditingArgument(null);
-    //   }
-    // }
   };
 
   const handleProceed = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
     props.updateLoading(true);
     props.updateError(null);
     props.updateYesArguments(localYesArguments);
@@ -151,6 +144,8 @@ const ArgumentManager = (props) => {
       );
 
       if (response?.data?.success === true) {
+        props.updateArgumentIds(response.data.argument_ids);
+        props.updateLoading(true);
         props.updateStep(4);
       } else {
         props.updateError(
@@ -162,7 +157,9 @@ const ArgumentManager = (props) => {
         error.response?.data?.message || "Failed to submit arguments."
       );
     } finally {
+      setIsSubmitting(false);
       props.updateLoading(false);
+      props.updateError(null);
     }
   };
 
@@ -194,6 +191,7 @@ const ArgumentManager = (props) => {
             color="success"
             sx={{ mt: 1, width: "100%" }}
             onClick={addProArgument}
+            disabled={inputYesValue.trim() === "" || isSubmitting}
           >
             Add YES Argument
           </Button>
@@ -262,6 +260,7 @@ const ArgumentManager = (props) => {
             color="error"
             sx={{ mt: 1, width: "100%" }}
             onClick={addConArgument}
+            disabled={inputNoValue.trim() === "" || isSubmitting}
           >
             Add NO Argument
           </Button>
@@ -325,7 +324,7 @@ const ArgumentManager = (props) => {
         sx={{ mt: 3, width: "100%" }}
         onClick={handleProceed}
         disabled={
-          props.isLoading ||
+          isSubmitting ||
           (localYesArguments.length === 0 && localNoArguments.length === 0)
         }
       >
