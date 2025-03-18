@@ -329,7 +329,7 @@ const App = () => {
                   yesArguments={yesArguments}
                   noArguments={noArguments}
                   topic={topic}
-                  topicId={topicId}
+                  topicId={questionId}
                   isLoading={isLoading}
                   error={error}
                   question={question}
@@ -346,7 +346,7 @@ const App = () => {
                   yesArguments={yesArguments}
                   noArguments={noArguments}
                   topic={topic}
-                  topicId={topicId}
+                  topicId={questionId}
                   isLoading={isLoading}
                   error={error}
                   categories={categories}
@@ -368,7 +368,7 @@ const App = () => {
                   categoriesId={categoriesId}
                   question={question}
                   topic={topic}
-                  topicId={topicId}
+                  topicId={questionId}
                   conversationId={conversationId}
 
                   error={error}
