@@ -10,7 +10,9 @@ import {
   Box,
   Typography,
   Paper,
-  List, ListItem, ListItemText,
+  List,
+  ListItem,
+  ListItemText,
   IconButton,
 } from "@mui/material";
 
@@ -22,9 +24,32 @@ const Categorization = (props) => {
   const [noArguments, setNoArguments] = useState([]);
 
   useEffect(() => {
-    setYesArguments(props.yesArguments);
-    setNoArguments(props.noArguments);
+    const fetchArguments = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/get_arguments?topic_id=${props.topicId}`);
+        if (response.data.success) {
+          const existingYes = new Map(props.yesArguments?.map(arg => [arg.text, arg]));
+          const existingNo = new Map(props.noArguments?.map(arg => [arg.text, arg]));
+  
+          response.data.arguments.forEach((arg) => {
+            if (arg.yes_or_no === "YES") {
+              existingYes.set(arg.argument, { text: arg.argument, id: arg.argument_id });
+            } else {
+              existingNo.set(arg.argument, { text: arg.argument, id: arg.argument_id });
+            }
+          });
+  
+          setYesArguments(Array.from(existingYes.values()));
+          setNoArguments(Array.from(existingNo.values()));
+        }
+      } catch (error) {
+        console.error("Error fetching arguments:", error);
+      }
+    };
+    fetchArguments();
+    
   }, [props.yesArguments, props.noArguments]);
+  
 
   const handleAddCategory = () => {
     if (input.trim() !== "") {
@@ -63,10 +88,9 @@ const Categorization = (props) => {
 
     const categoriesPayload = {
       topic_id: props.topicId,
-      argument_categories: localCategory
-        .map((c) => ({
-          argument_category: c.argument_category,
-        })),
+      argument_categories: localCategory.map((c) => ({
+        argument_category: c.argument_category,
+      })),
     };
     console.log(categoriesPayload);
 
@@ -79,7 +103,7 @@ const Categorization = (props) => {
         if (response?.data?.success === true) {
           props.updateCategoriesId(response.data.category_ids);
           props.updateLoading(true);
-          props.updateStep(5); 
+          props.updateStep(5);
         } else {
           props.updateError("Failed to create new categories.");
           props.updateLoading(false);
@@ -89,7 +113,7 @@ const Categorization = (props) => {
     } catch (error) {
       props.updateError(error.message || "An unexpected error occurred.");
     } finally {
-        setIsSubmitting(false);
+      setIsSubmitting(false);
       props.updateLoading(false);
     }
   };
@@ -98,43 +122,43 @@ const Categorization = (props) => {
     <div>
       <h2 className="text-2xl font-bold mb-4">Category Creation</h2>
       <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        gap: 4,
-        padding: 4,
-        backgroundColor: "#f5f5f5",
-      }}
-    >
-      {/* First List */}
-      <Paper sx={{ padding: 2, minWidth: 200 }}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Yes Arguments
-        </Typography>
-        <List>
-          {yesArguments.map((item, index) => (
-            <ListItem key={index} divider>
-              <ListItemText primary={item.text} />
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          gap: 4,
+          padding: 4,
+          backgroundColor: "#f5f5f5",
+        }}
+      >
+        {/* First List */}
+        <Paper sx={{ padding: 2, minWidth: 200 }}>
+          <Typography variant="h6" align="center" gutterBottom>
+            Yes Arguments
+          </Typography>
+          <List>
+            {yesArguments.map((item, index) => (
+              <ListItem key={index} divider>
+                <ListItemText primary={item.text} />
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
 
-      {/* Second List */}
-      <Paper sx={{ padding: 2, minWidth: 200 }}>
-        <Typography variant="h6" align="center" gutterBottom>
-        No Arguments
-        </Typography>
-        <List>
-          {noArguments.map((item, index) => (
-            <ListItem key={index} divider>
-              <ListItemText primary={item.text} />
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
-    </Box>
+        {/* Second List */}
+        <Paper sx={{ padding: 2, minWidth: 200 }}>
+          <Typography variant="h6" align="center" gutterBottom>
+            No Arguments
+          </Typography>
+          <List>
+            {noArguments.map((item, index) => (
+              <ListItem key={index} divider>
+                <ListItemText primary={item.text} />
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
+      </Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
         <TextField
           variant="outlined"
