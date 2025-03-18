@@ -75,11 +75,13 @@ const Categorization = (props) => {
         const response = await axios.post(
           "http://localhost:5000/read_user_argument_categories",
           categoriesPayload
-        );
+        ).then((response) => {
+          props.updateStep(5);
+          return response;
+        });
         if (response?.data?.success === true) {
           props.updateCategoriesId(response.data.category_ids);
           props.updateLoading(true);
-          props.updateStep(5);
         } else {
           props.updateError("Failed to create new categories.");
           props.updateLoading(false);

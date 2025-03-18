@@ -21,14 +21,12 @@ const ImplicationRating = (props) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        props.isLoading(true);
         const response = await fetch(
           `http://localhost:5000/get_argument_categories?topic_id=1${props.topicId}`
         ); // Replace with actual API URL
         const data = await response.json();
 
         if (data.success) {
-          props.isLoading(false);
           const categoryMap = {};
           data.argument_categories.forEach(
             ({ category_id, argument_category }) => {
@@ -54,7 +52,6 @@ const ImplicationRating = (props) => {
   useEffect(() => {
     const fetchArguments = async () => {
       try {
-        props.isLoading(true);
         if (Object.keys(categoryData).length === 0) return;
 
         const updatedCategoryData = { ...categoryData };
@@ -66,7 +63,6 @@ const ImplicationRating = (props) => {
           const data = await response.json();
 
           if (data.success) {
-            props.isLoading(false);
             updatedCategoryData[category_id].argumentList =
               data.arguments_by_category.map((arg) => ({
                 ...arg,
@@ -229,7 +225,7 @@ const ImplicationRating = (props) => {
         color="primary"
         onClick={handleSubmit}
         sx={{ mt: 2, width: "100%" }}
-        disabled={isSubmitting || props.isLoading}
+        disabled={isSubmitting}
       >
         Submit Ratings
       </Button>
