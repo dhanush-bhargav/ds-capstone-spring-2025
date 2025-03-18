@@ -48,7 +48,9 @@ const App = () => {
   const [categories, setCategories] = useState([]);
   const [categoriesId, setCategoriesId] = useState([]);
 
-  const [ratedArguments, setRatedArguments] = useState([]);
+  // Implication
+  const [implication, setImplication] = useState([]);
+  const [implicationIds, setImplicationIds] = useState("");
 
   const [error, setError] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token") || null);
@@ -224,6 +226,12 @@ const App = () => {
   const updateCategoriesId = (ids) => {
     setCategoriesId(ids);
   };
+  const updateImplication = (implication) => {
+    setImplication(implication);
+  };
+  const updateImplicationIds = (id) => {
+    setImplicationIds(id);
+  };
 
   const updateError = (error) => {
     setError(error);
@@ -347,17 +355,30 @@ const App = () => {
               )}
               {step === 5 && (
                 <ImplicationRating
-                  setRatedArguments={setRatedArguments}
-                  setStep={setStep}
+                  updateStep={updateStep}
+                  updateLoading={updateLoading}
+                  updateError={updateError}
+                  updateImplication={updateImplication}
+                  updateCategoriesId={updateCategoriesId}
+                  updateCategories={updateCategories}
+                  updateImplicationIds={updateImplicationIds}
+                  implication={implication}
+
                   categories={categories}
-                  token={token}
-                  questionId={questionId}
+                  categoriesId={categoriesId}
+                  question={question}
+                  topic={topic}
+                  topicId={topicId}
                   conversationId={conversationId}
+
+                  error={error}
+                  isLoading={isLoading}
+                  token={token}
                 />
               )}
               {step === 6 && (
                 <FinalEvaluation
-                  question={questionId}
+                  question={question}
                   stance={stance}
                   strength={strength}
                   finalStance={finalStance}
