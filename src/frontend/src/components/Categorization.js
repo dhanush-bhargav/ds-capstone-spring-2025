@@ -28,16 +28,20 @@ const Categorization = (props) => {
       try {
         const response = await axios.get(`http://localhost:5000/get_arguments?topic_id=${props.topicId}`);
         if (response.data.success) {
-          const existingYes = new Map(props.yesArguments?.map(arg => [arg.text, arg]));
-          const existingNo = new Map(props.noArguments?.map(arg => [arg.text, arg]));
-  
-          response.data.arguments.forEach((arg) => {
-            if (arg.yes_or_no === "YES") {
-              existingYes.set(arg.argument, { text: arg.argument, id: arg.argument_id });
-            } else {
-              existingNo.set(arg.argument, { text: arg.argument, id: arg.argument_id });
-            }
+          const existingYes = response.data.arguments.filter(arg => arg.yes_or_no==="YES").map(arg => {
+            return {text: arg.argument, id: arg.argument_id}
           });
+          const existingNo = response.data.arguments.filter(arg => arg.yes_or_no==="NO").map(arg => {
+            return {text: arg.argument, id: arg.argument_id}
+          });
+  
+          // response.data.arguments.forEach((arg) => {
+          //   if (arg.yes_or_no === "YES") {
+          //     existingYes.set(arg.argument, { text: arg.argument, id: arg.argument_id });
+          //   } else {
+          //     existingNo.set(arg.argument, { text: arg.argument, id: arg.argument_id });
+          //   }
+          // });
   
           setYesArguments(Array.from(existingYes.values()));
           setNoArguments(Array.from(existingNo.values()));
