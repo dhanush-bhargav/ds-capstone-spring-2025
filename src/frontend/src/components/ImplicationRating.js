@@ -10,7 +10,6 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
-import {} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import axios from "axios";
 
@@ -22,7 +21,7 @@ const ImplicationRating = (props) => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/get_argument_categories?topic_id=1${props.topicId}`
+          `http://localhost:5000/get_argument_categories?topic_id=${props.topicId}`
         ); // Replace with actual API URL
         const data = await response.json();
 
