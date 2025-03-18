@@ -3,57 +3,59 @@ import "./QuestionSelection.css";
 import axios from "axios";
 
 const QuestionSelection = (props) => {
-  const [selectedTopic, setSelectedTopic] = useState(null);
-  const [selectedQuestion, setSelectedQuestion] = useState(null);
-
-
-  useEffect(() => {
-    if (props.topics && props.topics.length > 0 && props.topicId) {
-      setSelectedTopic(props.topic);
-      props.updateQuestion("");
-    } else {
-      setSelectedTopic(null);
-      props.updateQuestion([]);
-    }
-  }, [props.topics, props.topicId]);
+  const [stance, setStance] = useState(props.stance || "");
+  const [strength, setStrength] = useState(props.strength || 5);
+  const [questionId, setQuestionId] = useState(props.questionId || "");
+  const [topicId, setTopicId] = useState(props.topicId || "");
 
   useEffect(() => {
-    if (props.questions && props.questions.length > 0 && props.questionId) {
-      setSelectedQuestion(props.question);
-    } else {
-      setSelectedQuestion(null);
-      props.updateStance("");
-      props.updateStrength("");
-      props.updateConversationId("");
-    }
-  }, [props.questions, props.questionId]);
+    setStance("")
+    setStrength(5)
+    props.updateTopic(topicId);
+    props.updateQuestion(questionId);
+    props.updateStance("");
+    props.updateStrength("");
+    props.updateConversationId("");
+  }, [topicId, questionId]);
 
-
-  const handleProceed = async () => {if (!props.topic || !props.question || !props.stance || !props.strength) {
+  const handleProceed = async () => {
+    if (!topicId || !questionId || !stance || !strength) {
       alert("Please complete all selections before proceeding.");
       return;
     }
+    props.updateTopic(props.topicId);
+    props.updateQuestion(props.questionId);
+    props.updateStance(props.stance);
+    props.updateStrength(props.strength);
+    props.updateStep(2);
     props.updateLoading(true);
-    props.updateError(null)
+    props.updateError(null);
     try {
-        const response = await axios.post('http://localhost:5000/create_conversation', {
-            topic_id: props.topicId,
-            user_id: props.user.id,
-            stance: props.stance,
-            stance_rating: props.strength,
-            collected_at: "START"
-        }, {
-            headers: { Authorization: `Bearer ${props.token}` }
-        });
-        props.updateConversationId(response.data.conversation_id);
+      const response = await axios.post(
+        "http://localhost:5000/create_conversation",
+        {
+          topic_id: props.questionId,
+          user_id: props.user.id,
+          stance: stance,
+          stance_rating: strength,
+          collected_at: "START",
+        },
+        {
+          headers: { Authorization: `Bearer ${props.token}` },
+        }
+      );
+      props.updateConversationId(response.data.conversation_id);
     } catch (error) {
-        props.updateError(error.response?.data?.message || "Failed to create conversation.");
-    }
-     finally {
-        props.updateLoading(true);
-        props.updateStance(props.stance);
-        props.updateStrength(props.strength);
-        props.updateStep(2);
+      props.updateError(
+        error.response?.data?.message || "Failed to create conversation."
+      );
+    } finally {
+      props.updateLoading(true);
+      props.updateTopic(props.topicId);
+      props.updateQuestion(props.questionId);
+      props.updateStance(props.stance);
+      props.updateStrength(props.strength);
+      props.updateStep(2);
     }
   };
 
@@ -63,9 +65,9 @@ const QuestionSelection = (props) => {
       <div className="section">
         <label className="label">Choose a Topic:</label>
         <select
-          value={props.topicId || ""}
+          value={topicId || ""}
           onChange={(e) => {
-            props.updateTopic(e.target.value)
+            setTopicId(e.target.value);
           }}
           className="select-box"
         >
@@ -81,9 +83,9 @@ const QuestionSelection = (props) => {
         <div className="section">
           <label className="label">Choose a Question:</label>
           <select
-            value={props.questionId || ""}
+            value={questionId || ""}
             onChange={(e) => {
-              props.updateQuestion(e.target.value);
+              setQuestionId(e.target.value);
             }}
             className="select-box"
           >
@@ -104,8 +106,8 @@ const QuestionSelection = (props) => {
               type="radio"
               name="stance"
               value="Yes"
-              checked={props.stance === "Yes"}
-              onChange={() => props.updateStance("Yes")}
+              checked={stance === "Yes"}
+              onChange={() => setStance("Yes")}
             />
             Yes
           </label>
@@ -114,8 +116,8 @@ const QuestionSelection = (props) => {
               type="radio"
               name="stance"
               value="No"
-              checked={props.stance === "No"}
-              onChange={() => props.updateStance("No")}
+              checked={stance === "No"}
+              onChange={() => setStance("No")}
             />
             No
           </label>
@@ -130,8 +132,8 @@ const QuestionSelection = (props) => {
                 type="radio"
                 name="strength"
                 value={i + 1}
-                checked={props.strength === i + 1}
-                onChange={() => props.updateStrength(i + 1)}
+                checked={strength === i + 1}
+                onChange={() => setStrength(i + 1)}
               />
               {i + 1}
             </label>
