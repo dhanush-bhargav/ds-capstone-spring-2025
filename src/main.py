@@ -29,7 +29,6 @@ class App:
     def read_user_arguments(self, request_data):
         try:
             crew_result = self.data_ingestion_crew.ingest_arguments(request_data['topic_id'], request_data['arguments'])
-            print(crew_result)
             result = {
                 "success": True,
                 "argument_ids": crew_result.raw,
@@ -44,9 +43,7 @@ class App:
 
     def read_user_argument_categories(self, request_data):
         try:
-            crew_result = self.data_ingestion_crew.ingest_argument_categories(request_data['topic_id'],
-                                                                              request_data['argument_categories'])
-            print(crew_result)
+            crew_result = self.data_ingestion_crew.ingest_argument_categories(request_data['topic_id'], request_data['argument_categories'])
             result = {
                 "success": True,
                 "argument_ids": crew_result.raw,

@@ -1,127 +1,222 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Select, MenuItem, FormControl, InputLabel, Button, Paper } from "@mui/material";
-import "./ImplicationRating.css"
+import {
+  Box,
+  Typography,
+  Button,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  CircularProgress,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import axios from "axios";
 
-const ImplicationRating = ({ allArguments, setRatedArguments, setStep, categories, token, questionId, conversationId }) => {
-  const [ratings, setRatings] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+const ImplicationRating = (props) => {
+  const [categoryData, setCategoryData] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Initialize ratings when allArguments or categories change
   useEffect(() => {
-    if (allArguments && allArguments.length > 0) {
-      setRatings(
-        allArguments.map((arg) => ({
-          argumentId: arg.id, // Store the argument ID, not the text
-          categoryId: arg.categoryId || null, // Use existing categoryId, default to null
-          implication: "Positive",  // Default
-        }))
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/get_argument_categories?topic_id=${props.topicId}`
+        ); // Replace with actual API URL
+        const data = await response.json();
+
+        if (data.success) {
+          const categoryMap = {};
+          data.argument_categories.forEach(
+            ({ category_id, argument_category }) => {
+              if (!categoryMap[category_id]) {
+                categoryMap[category_id] = {
+                  category_id,
+                  argument_category,
+                  argumentList: [],
+                };
+              }
+            }
+          );
+          setCategoryData(categoryMap);
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const fetchArguments = async () => {
+      try {
+        if (Object.keys(categoryData).length === 0) return;
+
+        const updatedCategoryData = { ...categoryData };
+
+        for (const category_id of Object.keys(categoryData)) {
+          const response = await fetch(
+            `http://localhost:5000/get_arguments_by_category?topic_id=${props.topicId}&category_id=${category_id}`
+          );
+          const data = await response.json();
+
+          if (data.success) {
+            updatedCategoryData[category_id].argumentList =
+              data.arguments_by_category.map((arg) => ({
+                ...arg,
+                rating: "",
+              })) || [];
+          }
+        }
+
+        setCategoryData(updatedCategoryData);
+        props.updateLoading(false);
+      } catch (error) {
+        console.error("Error fetching arguments:", error);
+        props.updateLoading(false);
+      }
+    };
+    console.log(categoryData);
+
+    fetchArguments();
+  }, [Object.keys(categoryData).length]);
+
+  const handleRatingChange = (category_id, argument_id, newRating) => {
+    if (!newRating) return;
+
+    setCategoryData((prevData) => {
+      if (!prevData[category_id]) return prevData;
+
+      const updatedData = JSON.parse(JSON.stringify(prevData));
+      updatedData[category_id].argumentList = updatedData[
+        category_id
+      ].argumentList.map((arg) =>
+        arg.argument_id === argument_id ? { ...arg, rating: newRating } : arg
       );
-    } else {
-      setRatings([]);
-    }
-  }, [allArguments]);
 
-  const handleRatingChange = (index, newRating) => {
-    const updatedRatings = [...ratings];
-    updatedRatings[index].implication = newRating;
-    setRatings(updatedRatings);
-  };
-
-  const handleCategoryChange = (index, newCategory) => {
-    const updatedRatings = [...ratings];
-    updatedRatings[index].categoryId = newCategory;
-    setRatings(updatedRatings);
+      return updatedData;
+    });
   };
 
   const handleSubmit = async () => {
-      setIsLoading(true);
-      setError(null)
+    setIsSubmitting(true);
+    props.updateLoading(true);
+    props.updateError(null);
+
     try {
-      // Prepare the data for the API request
-        const implicationsData = ratings.map(r => ({
-        argument_id: r.argumentId,
-        category_id: r.categoryId,
-        implication: r.implication
-      }));
+        if (Object.keys(categoryData).length === 0) {
+            console.error("categoryData is empty at the time of submission!");
+            props.updateError("No data to submit. Please rate at least one argument.");
+            setIsSubmitting(false);
+            return;
+        }
+        const copiedCategoryData = JSON.parse(JSON.stringify(categoryData));
 
+        const payload = [];
+        Object.values(copiedCategoryData).forEach((category) => {
+            if (!category.argumentList) return;
 
-      // Make the API call
-      const response = await axios.post('http://localhost:5000/read_implications', {
-          conversation_id: conversationId,
-          implications: implicationsData
-      }, {
-          headers: { Authorization: `Bearer ${token}` }
-      });
+            category.argumentList.forEach((arg) => {
+                if (arg.rating) {
+                    payload.push({
+                        category_id: category.category_id,
+                        argument_id: arg.argument_id,
+                        implication: arg.rating,
+                    });
+                }
+            });
+        });
+        console.log("Payload to be sent:", JSON.stringify(payload, null, 2));
 
-      setRatedArguments(ratings); // Update parent state (optional, for display)
-      setStep((prev) => prev + 1);
+        if (payload.length === 0) {
+            console.error("No rated arguments found! Submitting an empty payload.");
+            props.updateError("Please rate at least one argument before submitting.");
+            setIsSubmitting(false);
+            return;
+        }
 
+        console.log(props.conversationId)
+
+        const response = await axios.post(
+            "http://localhost:5000/read_implications",
+            {
+                conversation_id: props.conversationId,
+                implications: payload,
+            },
+            {
+                headers: { Authorization: `Bearer ${props.token}` },
+            }
+        );
+        console.log(response)
+
+        if (response?.data?.success === true) {
+            props.updateImplicationIds(response.data.implication_id);
+            props.updateStep(6);
+        } else {
+            props.updateError(response.data.message || "Failed to submit ratings.");
+        }
     } catch (error) {
-        setError(error.response?.data?.message || 'Failed to submit ratings.');
+      console.log(error);
+        props.updateError(error.response?.data?.message || "Failed to submit ratings.");
+    } finally {
+        props.updateLoading(false);
     }
-    finally{
-        setIsLoading(false)
-    }
-  };
-
-    const getCategoryName = (categoryId) => {
-    if (!categoryId) {
-      return "Uncategorized";
-    }
-    const category = categories.find(cat => cat.id === categoryId);
-    return category ? category.name : "Unknown Category";
-  };
+};
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box>
       <Typography variant="h4" gutterBottom>
         Rate the Implications of Each Argument
       </Typography>
-      {isLoading && <p>Loading...</p>}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      {ratings.length > 0 ? (
-        ratings.map((item, index) => (
-          <Paper key={item.argumentId} sx={{ p: 2, mb: 2, backgroundColor: "#f5f5f5" }}>
-            <Typography variant="body1" fontWeight="bold">
-              Argument:
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 1 }}>
-              {allArguments.find(arg => arg.id === item.argumentId)?.text}
-            </Typography>
-            <FormControl fullWidth sx={{ mb: 1 }}>
-              <InputLabel>Category</InputLabel>
-              <Select
-                value={item.categoryId || null} // Use categoryId
-                onChange={(e) => handleCategoryChange(index, e.target.value)}
-                label="Category"
-              >
-                <MenuItem value={null}>Uncategorized</MenuItem>
-                {categories.map((cat) => (
-                  <MenuItem key={cat.id} value={cat.id}>
-                    {cat.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl fullWidth>
-              <InputLabel>Rating</InputLabel>
-              <Select
-                value={item.implication}
-                onChange={(e) => handleRatingChange(index, e.target.value)}
-                label="Rating"
-              >
-                <MenuItem value="Positive">Positive</MenuItem>
-                <MenuItem value="Neutral">Neutral</MenuItem>
-                <MenuItem value="Negative">Negative</MenuItem>
-              </Select>
-            </FormControl>
-          </Paper>
-        ))
+      {props.isLoading ? (
+        <CircularProgress />
       ) : (
-        <Typography variant="body1">No arguments available for rating.</Typography>
+        Object.entries(categoryData).map(
+          ([category_id, { argument_category, argumentList }]) => (
+            <Accordion key={category_id}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography variant="h6">{argument_category}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                {argumentList?.length > 0 ? (
+                  argumentList.map(({ argument_id, argument, rating }) => (
+                    <div key={argument_id} style={{ marginBottom: "15px" }}>
+                      <Typography key={argument_id} sx={{ marginBottom: 1 }}>
+                        • {argument}
+                      </Typography>
+                      <ToggleButtonGroup
+                        value={rating}
+                        exclusive
+                        onChange={(event, newRating) =>
+                          handleRatingChange(
+                            category_id,
+                            argument_id,
+                            newRating
+                          )
+                        }
+                        size="small"
+                        aria-label="argument rating"
+                      >
+                        <ToggleButton value="Positive" aria-label="positive">
+                          👍 Positive
+                        </ToggleButton>
+                        <ToggleButton value="Neutral" aria-label="neutral">
+                          😐 Neutral
+                        </ToggleButton>
+                        <ToggleButton value="Negative" aria-label="negative">
+                          👎 Negative
+                        </ToggleButton>
+                      </ToggleButtonGroup>
+                    </div>
+                  ))
+                ) : (
+                  <Typography>No arguments available</Typography>
+                )}
+              </AccordionDetails>
+            </Accordion>
+          )
+        )
       )}
 
       <Button
@@ -129,7 +224,7 @@ const ImplicationRating = ({ allArguments, setRatedArguments, setStep, categorie
         color="primary"
         onClick={handleSubmit}
         sx={{ mt: 2, width: "100%" }}
-        disabled={isLoading}
+        disabled={isSubmitting}
       >
         Submit Ratings
       </Button>
