@@ -23,10 +23,10 @@ const QuestionSelection = (props) => {
       alert("Please complete all selections before proceeding.");
       return;
     }
-    props.updateTopic(props.topicId);
-    props.updateQuestion(props.questionId);
-    props.updateStance(props.stance);
-    props.updateStrength(props.strength);
+    props.updateTopic(topicId);
+    props.updateQuestion(questionId);
+    props.updateStance(stance);
+    props.updateStrength(strength);
     props.updateStep(2);
     props.updateLoading(true);
     props.updateError(null);
@@ -34,7 +34,7 @@ const QuestionSelection = (props) => {
       const response = await axios.post(
         "http://localhost:5000/create_conversation",
         {
-          topic_id: props.questionId,
+          topic_id: topicId,
           user_id: props.user.id,
           stance: stance,
           stance_rating: strength,
@@ -51,10 +51,10 @@ const QuestionSelection = (props) => {
       );
     } finally {
       props.updateLoading(true);
-      props.updateTopic(props.topicId);
-      props.updateQuestion(props.questionId);
-      props.updateStance(props.stance);
-      props.updateStrength(props.strength);
+      props.updateTopic(topicId);
+      props.updateQuestion(questionId);
+      props.updateStance(stance);
+      props.updateStrength(strength);
       props.updateStep(2);
     }
   };

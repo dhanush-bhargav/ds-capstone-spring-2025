@@ -232,6 +232,15 @@ const App = () => {
   const updateImplicationIds = (id) => {
     setImplicationIds(id);
   };
+  const updateInstructions = (instructions) => {
+    setInstructions(instructions);
+  };
+  const updateFinalStance = (stance) => {
+    setFinalStance(stance);
+  };
+  const updateFinalStrength = (strength) => {
+    setFinalStrength(strength);
+  };
 
   const updateError = (error) => {
     setError(error);
@@ -269,7 +278,7 @@ const App = () => {
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "#f5f5f5",
-              transition: "height 0.5s ease-in-out"
+              transition: "height 0.5s ease-in-out",
             }}
           >
             <Box
@@ -284,7 +293,7 @@ const App = () => {
                 border: "1px solid #ccc",
                 alignItems: "center",
                 justifyContent: "center",
-                transition: "height 0.5s ease-in-out"
+                transition: "height 0.5s ease-in-out",
               }}
             >
               <StepperComponent step={step} />
@@ -363,14 +372,12 @@ const App = () => {
                   updateCategories={updateCategories}
                   updateImplicationIds={updateImplicationIds}
                   implication={implication}
-
                   categories={categories}
                   categoriesId={categoriesId}
                   question={question}
                   topic={topic}
                   topicId={questionId}
                   conversationId={conversationId}
-
                   error={error}
                   isLoading={isLoading}
                   token={token}
@@ -378,13 +385,22 @@ const App = () => {
               )}
               {step === 6 && (
                 <FinalEvaluation
+                  updateFinalStance={updateFinalStance}
+                  updateFinalStrength={updateFinalStrength}
+                  updateStep={updateStep}
+                  updateLoading={updateLoading}
+                  updateError={updateError}
+                  updateStance={updateStance}
+                  updateStrength={updateStrength}
+                  isLoading={isLoading}
+                  error={error}
+
                   question={question}
                   stance={stance}
                   strength={strength}
+                  
                   finalStance={finalStance}
                   finalStrength={finalStrength}
-                  setFinalStance={setFinalStance}
-                  setFinalStrength={setFinalStrength}
                   token={token}
                   conversationId={conversationId}
                 />
