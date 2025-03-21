@@ -1,0 +1,29 @@
+{
+  "request_body": {
+    "topic_id": 2,
+    "arguments": [
+      {"yes_or_no": "YES", "argument": "Same-sex couples deserve the same legal rights as heterosexual couples."},
+      {"yes_or_no": "YES", "argument": "Marriage equality is a fundamental civil right."},
+      {"yes_or_no": "YES", "argument": "Denying same-sex marriage is a form of discrimination."},
+      {"yes_or_no": "YES", "argument": "Legal protections ensure that LGBTQ+ families are treated equally under the law."},
+      {"yes_or_no": "YES", "argument": "Most Americans support marriage equality, reflecting changing social values."},
+      {"yes_or_no": "YES", "argument": "Same-sex marriage bans have historically caused harm to LGBTQ+ individuals."},
+      {"yes_or_no": "YES", "argument": "Denying marriage equality goes against the principle of separation of church and state."},
+      {"yes_or_no": "YES", "argument": "Marriage provides legal benefits such as inheritance and healthcare rights."},
+      {"yes_or_no": "YES", "argument": "Federally protecting same-sex marriage prevents discrimination at the state level."},
+      {"yes_or_no": "YES", "argument": "Equality under the law strengthens democracy and social progress."},
+  
+      {"yes_or_no": "NO", "argument": "Marriage should be defined as between a man and a woman."},
+      {"yes_or_no": "NO", "argument": "Same-sex marriage contradicts religious beliefs held by many Americans."},
+      {"yes_or_no": "NO", "argument": "The government should not interfere in defining marriage."},
+      {"yes_or_no": "NO", "argument": "States should have the right to decide marriage laws individually."},
+      {"yes_or_no": "NO", "argument": "Legalizing same-sex marriage could lead to future changes in marriage laws."},
+      {"yes_or_no": "NO", "argument": "Religious organizations may be forced to recognize same-sex marriages."},
+      {"yes_or_no": "NO", "argument": "Traditional marriage has been a cornerstone of society for centuries."},
+      {"yes_or_no": "NO", "argument": "Marriage equality could conflict with parental rights in religious households."},
+      {"yes_or_no": "NO", "argument": "Some people believe same-sex marriage could weaken the institution of marriage."},
+      {"yes_or_no": "NO", "argument": "Protecting same-sex marriage at the federal level is unnecessary given existing laws."}
+  ]
+
+  }
+}

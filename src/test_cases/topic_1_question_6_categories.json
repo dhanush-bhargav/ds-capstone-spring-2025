@@ -1,0 +1,14 @@
+{
+  "request_body": {
+    "topic_id": 1,
+    "argument_categories": [
+      {"argument_category": "Judicial Independence"},
+      {"argument_category": "Government Efficiency"},
+      {"argument_category": "Political Fairness"},
+      {"argument_category": "Legal and Constitutional Concerns"},
+      {"argument_category": "Public Trust and Accountability"},
+      {"argument_category": "Institutional Stability"},
+      {"argument_category": "Modernization of the Judiciary"}
+    ]
+  }
+}

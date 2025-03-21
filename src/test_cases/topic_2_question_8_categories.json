@@ -1,0 +1,15 @@
+{
+    "request_body": {
+      "topic_id": 2,
+      "argument_categories": [
+        {"argument_category": "LGBTQ+ Rights and Equality"},
+        {"argument_category": "Legal and Constitutional Concerns"},
+        {"argument_category": "Religious Freedom and Beliefs"},
+        {"argument_category": "Public Trust and Social Acceptance"},
+        {"argument_category": "State vs. Federal Authority"},
+        {"argument_category": "Impact on Traditional Institutions"},
+        {"argument_category": "Civil Rights and Discrimination"}
+      ]
+    }
+  }
+  

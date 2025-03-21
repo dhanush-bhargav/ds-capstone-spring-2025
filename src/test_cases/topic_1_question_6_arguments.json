@@ -1,0 +1,31 @@
+{
+  "request_body": {
+    "topic_id": 1,
+    "arguments": [
+      {"yes_or_no": "YES", "argument": "Lifetime appointments give justices too much unchecked power."},
+      {"yes_or_no": "YES", "argument": "Term limits would prevent any single justice from serving for decades."},
+      {"yes_or_no": "YES", "argument": "They would ensure a more dynamic and modern judiciary."},
+      {"yes_or_no": "YES", "argument": "Regular turnover would make the court more representative of society."},
+      {"yes_or_no": "YES", "argument": "It would reduce the politicization of Supreme Court appointments."},
+      {"yes_or_no": "YES", "argument": "Justices serving too long may become out of touch with modern legal issues."},
+      {"yes_or_no": "YES", "argument": "Mandatory retirement ages exist in many other judicial systems."},
+      {"yes_or_no": "YES", "argument": "Term limits could prevent strategic retirements for political advantage."},
+      {"yes_or_no": "YES", "argument": "Presidents should not be able to shape the court’s future for decades."},
+      {"yes_or_no": "YES", "argument": "A structured system would ensure a predictable and fair appointment process."},
+  
+      {"yes_or_no": "NO", "argument": "Lifetime appointments ensure judicial independence from political pressure."},
+      {"yes_or_no": "NO", "argument": "Term limits could lead to more frequent and contentious nominations."},
+      {"yes_or_no": "NO", "argument": "Experienced justices bring deep legal expertise to decisions."},
+      {"yes_or_no": "NO", "argument": "A stable Supreme Court prevents abrupt changes in legal interpretation."},
+      {"yes_or_no": "NO", "argument": "The Founding Fathers designed lifetime appointments to avoid political influence."},
+      {"yes_or_no": "NO", "argument": "Shorter terms could increase partisan influence over judicial appointments."},
+      {"yes_or_no": "NO", "argument": "Frequent turnover could undermine consistency in constitutional interpretation."},
+      {"yes_or_no": "NO", "argument": "The U.S. has historically operated well with lifetime judicial appointments."},
+      {"yes_or_no": "NO", "argument": "Term limits might discourage highly qualified candidates from serving."},
+      {"yes_or_no": "NO", "argument": "The Supreme Court is meant to be an institution above politics, not subject to term limits."}
+  ]
+  
+      
+    
+  }
+}

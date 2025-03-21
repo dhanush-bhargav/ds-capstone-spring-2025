@@ -1,0 +1,31 @@
+{
+  "request_body": {
+    "topic_id": 2,
+    "arguments": [
+      {"yes_or_no": "YES", "argument": "Reparations would address the generational wealth gap caused by slavery."},
+      {"yes_or_no": "YES", "argument": "The U.S. government has a moral obligation to compensate for historical injustices."},
+      {"yes_or_no": "YES", "argument": "Other groups, such as Japanese Americans, have received reparations for past injustices."},
+      {"yes_or_no": "YES", "argument": "Reparations can help fund education and economic opportunities for Black communities."},
+      {"yes_or_no": "YES", "argument": "Acknowledging past injustices through reparations strengthens national unity."},
+      {"yes_or_no": "YES", "argument": "Racial discrimination did not end with slavery, and reparations address ongoing disparities."},
+      {"yes_or_no": "YES", "argument": "Reparations can help correct the systemic disadvantages still affecting Black Americans today."},
+      {"yes_or_no": "YES", "argument": "Many families and institutions still benefit from wealth created through slavery."},
+      {"yes_or_no": "YES", "argument": "Countries such as Germany have provided reparations for historical wrongs, setting a precedent."},
+      {"yes_or_no": "YES", "argument": "Reparations would serve as a formal acknowledgment of the suffering of enslaved peoples."},
+      
+      {"yes_or_no": "NO", "argument": "No one alive today was directly involved in slavery, making reparations unjust."},
+      {"yes_or_no": "NO", "argument": "It would be impossible to determine who should receive reparations."},
+      {"yes_or_no": "NO", "argument": "Taxpayers should not be responsible for compensating past injustices."},
+      {"yes_or_no": "NO", "argument": "Reparations could increase racial division rather than heal wounds."},
+      {"yes_or_no": "NO", "argument": "There are more effective ways to address racial inequality, such as education reform."},
+      {"yes_or_no": "NO", "argument": "Many Americans are descendants of immigrants who had no involvement in slavery."},
+      {"yes_or_no": "NO", "argument": "Providing reparations would be financially unsustainable for the government."},
+      {"yes_or_no": "NO", "argument": "Enslaved people were freed over 150 years ago, making reparations unnecessary today."},
+      {"yes_or_no": "NO", "argument": "Efforts should focus on improving economic opportunities for all disadvantaged people, not just one group."},
+      {"yes_or_no": "NO", "argument": "Slavery was a tragic part of history, but financial compensation won't change the past."}
+  ]
+  
+      
+    
+  }
+}

@@ -1,0 +1,15 @@
+{
+    "request_body": {
+      "topic_id": 2,
+      "argument_categories": [
+        {"argument_category": "Freedom of Speech and Censorship"},
+        {"argument_category": "Protection of Marginalized Communities"},
+        {"argument_category": "Legal and Constitutional Concerns"},
+        {"argument_category": "Public Safety and Social Stability"},
+        {"argument_category": "Online and Social Media Regulation"},
+        {"argument_category": "Government Overreach"},
+        {"argument_category": "Enforceability and Practicality"}
+      ]
+    }
+  }
+  

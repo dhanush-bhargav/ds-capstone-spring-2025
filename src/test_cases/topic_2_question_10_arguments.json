@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 2,
+    "arguments": [
+      {"yes_or_no": "YES", "argument": "Parents should have a say in their children's education to align with their values."},
+      {"yes_or_no": "YES", "argument": "Schools should respect parental rights when teaching sensitive topics."},
+      {"yes_or_no": "YES", "argument": "Parental involvement in curriculum decisions ensures transparency in education."},
+      {"yes_or_no": "YES", "argument": "Parents fund public schools through taxes and should have influence over what is taught."},
+      {"yes_or_no": "YES", "argument": "Some topics, such as sex education, should be optional based on parental preference."},
+      {"yes_or_no": "YES", "argument": "Parents know their children's learning needs better than government bureaucrats."},
+      {"yes_or_no": "YES", "argument": "Education should reinforce family values, not contradict them."},
+      {"yes_or_no": "YES", "argument": "Giving parents control ensures that controversial subjects are taught appropriately."},
+      {"yes_or_no": "YES", "argument": "Allowing parental oversight prevents political bias in school curriculums."},
+      {"yes_or_no": "YES", "argument": "Parental choice in education fosters a more diverse and responsive learning system."},
+      
+      {"yes_or_no": "NO", "argument": "Educators and experts, not parents, should decide what is best for student learning."},
+      {"yes_or_no": "NO", "argument": "A standardized curriculum ensures all students receive the same quality education."},
+      {"yes_or_no": "NO", "argument": "Parental control could lead to the exclusion of important subjects like evolution or history."},
+      {"yes_or_no": "NO", "argument": "If parents dictate school curriculums, education could become fragmented and inconsistent."},
+      {"yes_or_no": "NO", "argument": "Schools should teach critical thinking, not just reinforce personal beliefs."},
+      {"yes_or_no": "NO", "argument": "Allowing parents to remove topics they dislike could limit exposure to diverse perspectives."},
+      {"yes_or_no": "NO", "argument": "Education should prepare students for the real world, not just reflect individual family ideologies."},
+      {"yes_or_no": "NO", "argument": "Parental interference in school curriculums could politicize education unnecessarily."},
+      {"yes_or_no": "NO", "argument": "Qualified teachers and curriculum developers should guide educational content, not public opinion."},
+      {"yes_or_no": "NO", "argument": "Overruling educators could lead to misinformation being spread in schools."}
+  ]
+  }
+}

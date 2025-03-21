@@ -1,0 +1,30 @@
+{
+  "request_body": {
+    "topic_id": 2,
+    "arguments": [
+      {"yes_or_no": "YES", "argument": "Transgender athletes should be able to compete in alignment with their gender identity for inclusivity."},
+      {"yes_or_no": "YES", "argument": "Banning transgender athletes from teams of their gender identity is discriminatory."},
+      {"yes_or_no": "YES", "argument": "Sports organizations can implement fair policies to ensure competition remains balanced."},
+      {"yes_or_no": "YES", "argument": "Scientific studies show that hormone therapy reduces biological differences over time."},
+      {"yes_or_no": "YES", "argument": "Excluding transgender athletes can harm their mental health and well-being."},
+      {"yes_or_no": "YES", "argument": "Many sports already have guidelines in place for transgender participation."},
+      {"yes_or_no": "YES", "argument": "Transgender people should not be forced to compete in categories that do not align with their identity."},
+      {"yes_or_no": "YES", "argument": "Equality in sports should be prioritized over outdated gender norms."},
+      {"yes_or_no": "YES", "argument": "Physical differences exist in all athletes, yet they are not used to exclude non-trans competitors."},
+      {"yes_or_no": "YES", "argument": "Denying transgender athletes their rights could set a dangerous precedent for discrimination in other areas."},
+      
+      {"yes_or_no": "NO", "argument": "Biological differences give transgender women an unfair advantage in women's sports."},
+      {"yes_or_no": "NO", "argument": "Transgender participation may undermine the integrity of sex-segregated sports."},
+      {"yes_or_no": "NO", "argument": "Allowing transgender athletes to compete could discourage cisgender women from participating."},
+      {"yes_or_no": "NO", "argument": "Performance differences between biological sexes remain even after hormone therapy."},
+      {"yes_or_no": "NO", "argument": "Fair competition requires physical categories based on biological sex, not gender identity."},
+      {"yes_or_no": "NO", "argument": "Creating additional categories for transgender athletes is a more balanced approach."},
+      {"yes_or_no": "NO", "argument": "Sports records and achievements could become unfairly skewed if biological differences are ignored."},
+      {"yes_or_no": "NO", "argument": "Not all sports organizations have clear policies on how to integrate transgender athletes fairly."},
+      {"yes_or_no": "NO", "argument": "Policies favoring inclusion over fairness could hurt female athletes' opportunities."},
+      {"yes_or_no": "NO", "argument": "Scientific research on the impact of transgender athletes in sports is still evolving, making policy decisions premature."}
+  
+      
+    ]
+  }
+}

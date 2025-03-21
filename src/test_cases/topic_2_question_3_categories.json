@@ -1,0 +1,15 @@
+{
+    "request_body": {
+      "topic_id": 2,
+      "argument_categories": [
+        {"argument_category": "Historical Preservation vs. Revisionism"},
+        {"argument_category": "Racial and Social Justice"},
+        {"argument_category": "Public Trust and Accountability"},
+        {"argument_category": "Cultural and Heritage Considerations"},
+        {"argument_category": "Impact on Public Spaces"},
+        {"argument_category": "Legal and Constitutional Concerns"},
+        {"argument_category": "Alternative Solutions (Relocation, Contextualization)"}
+      ]
+    }
+  }
+  

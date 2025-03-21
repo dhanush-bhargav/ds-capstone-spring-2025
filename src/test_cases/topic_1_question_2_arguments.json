@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 1,
+    "arguments": [
+        {"yes_or_no": "YES", "argument": "Term limits prevent career politicians from accumulating excessive power."},
+        {"yes_or_no": "YES", "argument": "They encourage fresh ideas and new perspectives in Congress."},
+        {"yes_or_no": "YES", "argument": "Term limits reduce the influence of lobbyists over long-term incumbents."},
+        {"yes_or_no": "YES", "argument": "They help eliminate political stagnation and corruption."},
+        {"yes_or_no": "YES", "argument": "Voter choice is often limited due to the advantage of incumbency."},
+        {"yes_or_no": "YES", "argument": "They can reduce partisan gridlock by ensuring turnover."},
+        {"yes_or_no": "YES", "argument": "Long-serving members may lose touch with their constituents."},
+        {"yes_or_no": "YES", "argument": "Congress should reflect the evolving views of society."},
+        {"yes_or_no": "YES", "argument": "Term limits can prevent dynastic politics in legislative bodies."},
+        {"yes_or_no": "YES", "argument": "Other branches have term limits, so Congress should too."},
+    
+        {"yes_or_no": "NO", "argument": "Elections already serve as a natural term limit."},
+        {"yes_or_no": "NO", "argument": "Experienced lawmakers bring valuable knowledge and expertise."},
+        {"yes_or_no": "NO", "argument": "Term limits could empower unelected bureaucrats and lobbyists."},
+        {"yes_or_no": "NO", "argument": "Voters should decide how long a representative serves."},
+        {"yes_or_no": "NO", "argument": "Frequent turnover could lead to legislative inefficiency."},
+        {"yes_or_no": "NO", "argument": "New members would take time to learn legislative processes."},
+        {"yes_or_no": "NO", "argument": "Strong legislators may be forced out despite public support."},
+        {"yes_or_no": "NO", "argument": "Term limits could weaken Congress’s ability to challenge the executive branch."},
+        {"yes_or_no": "NO", "argument": "Leadership positions in Congress require long-term experience."},
+        {"yes_or_no": "NO", "argument": "The real issue is campaign finance reform, not term limits."}
+    ]
+  }
+}
