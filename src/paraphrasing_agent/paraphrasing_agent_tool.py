@@ -9,7 +9,7 @@ class ArgumentWritingToolInput(BaseModel):
     topic_id: int = Field(..., description="id of the topic for which to write the new arguments")
     arguments_data: str = Field(..., description="list of arguments to be written into the "
                                                                   "database, each list item is a dictionary of the "
-                                                                  "form {yes_or_no: str, argument: str}")
+                                                                  "form {argument: str}")
 
 class ArgumentWritingTool(BaseTool):
     name: str = "Argument writing tool"
@@ -23,6 +23,6 @@ class ArgumentWritingTool(BaseTool):
         arguments = json.loads(arguments_data)
         write_data = []
         for item in arguments:
-            write_data.append((topic_id, item["yes_or_no"], item["argument"]))
+            write_data.append((topic_id, item["argument"]))
         result = db_manager.create_argument(write_data)
         return json.dumps(result)

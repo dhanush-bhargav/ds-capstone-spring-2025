@@ -56,7 +56,6 @@ cursor.execute("""CREATE TABLE master_argument_categories (
 cursor.execute("""CREATE TABLE master_arguments (
                       argument_id INTEGER PRIMARY KEY AUTOINCREMENT,
                       topic_id INTEGER NOT NULL,
-                      yes_or_no VARCHAR(5) NOT NULL,
                       argument TEXT NOT NULL
                     )""")
 
