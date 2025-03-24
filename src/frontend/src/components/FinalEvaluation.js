@@ -60,7 +60,7 @@ const FinalEvaluation = (props) => {
       }}
     >
       <Typography variant="h4" fontWeight="bold" textAlign="center">
-        Final Evaluation
+        Current Evaluation
       </Typography>
 
       <Typography variant="h6" fontWeight="bold" sx={{ mt: 2 }}>

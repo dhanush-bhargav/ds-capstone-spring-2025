@@ -120,31 +120,17 @@ const Categorization = (props) => {
                     justifyContent: "center",
                     alignItems: "flex-start",
                     gap: 4,
-                    padding: 4,
+                    paddingBottom: 4,
                     backgroundColor: "#f5f5f5",
                 }}
             >
                 {/* First List */}
                 <Paper sx={{ padding: 2, minWidth: 200 }}>
                     <Typography variant="h6" align="center" gutterBottom>
-                        Yes Arguments
+                        Arguments
                     </Typography>
                     <List>
                         {yesArguments.map((item, index) => (
-                            <ListItem key={index} divider>
-                                <ListItemText primary={item.text} />
-                            </ListItem>
-                        ))}
-                    </List>
-                </Paper>
-
-                {/* Second List */}
-                <Paper sx={{ padding: 2, minWidth: 200 }}>
-                    <Typography variant="h6" align="center" gutterBottom>
-                        No Arguments
-                    </Typography>
-                    <List>
-                        {noArguments.map((item, index) => (
                             <ListItem key={index} divider>
                                 <ListItemText primary={item.text} />
                             </ListItem>

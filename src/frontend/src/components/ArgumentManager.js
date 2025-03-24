@@ -173,145 +173,72 @@ const ArgumentManager = (props) => {
       </Typography>
 
       {/* --- Argument Generation Section --- */}
-      <Grid container spacing={3}>
-        <Grid item xs={6}>
-          <Typography variant="h6" fontWeight="bold">
-            YES Arguments
-          </Typography>
-          <TextField
-            fullWidth
-            label="Enter a supporting argument..."
-            variant="outlined"
-            value={inputYesValue}
-            onChange={(e) => setInputYesValue(e.target.value)}
-            sx={{ mt: 1 }}
-          />
-          <Button
-            variant="contained"
-            color="success"
-            sx={{ mt: 1, width: "100%" }}
-            onClick={addProArgument}
-            disabled={inputYesValue.trim() === "" || isSubmitting}
+      <Typography variant="h6" fontWeight="bold">
+        Arguments
+      </Typography>
+      <TextField
+        fullWidth
+        label="Enter a supporting argument..."
+        variant="outlined"
+        value={inputYesValue}
+        onChange={(e) => setInputYesValue(e.target.value)}
+        sx={{ mt: 1 }}
+      />
+      <Button
+        variant="contained"
+        color="success"
+        sx={{ mt: 1, width: "100%" }}
+        onClick={addProArgument}
+        disabled={inputYesValue.trim() === "" || isSubmitting}
+      >
+        Add Argument
+      </Button>
+      <Box sx={{ mt: 2 }}>
+        {localYesArguments.map((arg, index) => (
+          <Paper
+            key={arg.id || index} // Use ID if available, otherwise index
+            sx={{
+              width: "100%",
+              padding: "10px",
+              margin: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              backgroundColor: "#f5f5f5",
+              mt: 1,
+            }}
           >
-            Add YES Argument
-          </Button>
-          <Box sx={{ mt: 2 }}>
-            {localYesArguments.map((arg, index) => (
-              <Paper
-                key={arg.id || index} // Use ID if available, otherwise index
-                sx={{
-                  width: "100%",
-                  padding: "10px",
-                  margin: "auto",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  backgroundColor: "#f5f5f5",
-                  mt: 1,
-                }}
-              >
-                {editingIndex === index && editingArgument?.yes_or_no ? (
-                  <TextField
-                    fullWidth
-                    value={editingArgument ? editingArgument.text : ""}
-                    onChange={handleChange}
-                    variant="outlined"
-                    size="small"
-                    autoFocus
-                  />
-                ) : (
-                  <Typography>
-                    {arg.text} {arg.id && `(ID: ${arg.id})`}
-                  </Typography> // Display text and ID
-                )}
-                <div>
-                  {editingIndex === index && editingArgument?.yes_or_no ? (
-                    <IconButton onClick={handleSave}>
-                      <SaveIcon color="primary" />
-                    </IconButton>
-                  ) : (
-                    <IconButton onClick={() => handleEdit(index, true)}>
-                      <EditIcon color="primary" />
-                    </IconButton>
-                  )}
-                  <IconButton onClick={() => handleDelete(index, true)}>
-                    <DeleteIcon color="error" />
-                  </IconButton>
-                </div>
-              </Paper>
-            ))}
-          </Box>
-        </Grid>
-
-        <Grid item xs={6}>
-          <Typography variant="h6" fontWeight="bold">
-            NO Arguments
-          </Typography>
-          <TextField
-            fullWidth
-            label="Enter an opposing argument..."
-            variant="outlined"
-            value={inputNoValue}
-            onChange={(e) => setInputNoValue(e.target.value)}
-            sx={{ mt: 1 }}
-          />
-          <Button
-            variant="contained"
-            color="error"
-            sx={{ mt: 1, width: "100%" }}
-            onClick={addConArgument}
-            disabled={inputNoValue.trim() === "" || isSubmitting}
-          >
-            Add NO Argument
-          </Button>
-          <Box sx={{ mt: 2 }}>
-            {localNoArguments.map((arg, index) => (
-              <Paper
-                key={arg.id || index} // Use ID if available, otherwise index
-                sx={{
-                  width: "100%",
-                  padding: "10px",
-                  margin: "auto",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  backgroundColor: "#f5f5f5",
-                  mt: 1,
-                }}
-              >
-                {editingIndex === index && !editingArgument?.yes_or_no ? (
-                  <TextField
-                    fullWidth
-                    value={editingArgument ? editingArgument.text : ""}
-                    onChange={handleChange}
-                    variant="outlined"
-                    size="small"
-                    autoFocus
-                  />
-                ) : (
-                  <Typography>
-                    {arg.text} {arg.id && `(ID: ${arg.id})`}
-                  </Typography> // Display text and ID
-                )}
-                <div>
-                  {editingIndex === index && !editingArgument?.yes_or_no ? (
-                    <IconButton onClick={handleSave}>
-                      <SaveIcon color="primary" />
-                    </IconButton>
-                  ) : (
-                    <IconButton onClick={() => handleEdit(index, false)}>
-                      <EditIcon color="primary" />
-                    </IconButton>
-                  )}
-                  <IconButton onClick={() => handleDelete(index, false)}>
-                    <DeleteIcon color="error" />
-                  </IconButton>
-                </div>
-              </Paper>
-            ))}
-          </Box>
-        </Grid>
-      </Grid>
+            {editingIndex === index && editingArgument?.yes_or_no ? (
+              <TextField
+                fullWidth
+                value={editingArgument ? editingArgument.text : ""}
+                onChange={handleChange}
+                variant="outlined"
+                size="small"
+                autoFocus
+              />
+            ) : (
+              <Typography>
+                {arg.text} {arg.id && `(ID: ${arg.id})`}
+              </Typography> // Display text and ID
+            )}
+            <div>
+              {editingIndex === index && editingArgument?.yes_or_no ? (
+                <IconButton onClick={handleSave}>
+                  <SaveIcon color="primary" />
+                </IconButton>
+              ) : (
+                <IconButton onClick={() => handleEdit(index, true)}>
+                  <EditIcon color="primary" />
+                </IconButton>
+              )}
+              <IconButton onClick={() => handleDelete(index, true)}>
+                <DeleteIcon color="error" />
+              </IconButton>
+            </div>
+          </Paper>
+        ))}
+      </Box>
 
       {/* --- Loading and Error Messages --- */}
       {props.isLoading && <Typography>Loading...</Typography>}
