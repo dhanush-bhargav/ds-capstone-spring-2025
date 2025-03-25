@@ -19,40 +19,30 @@ const ArgumentManager = (props) => {
 
   const [editingIndex, setEditingIndex] = useState(null);
   const [editingArgument, setEditingArgument] = useState(null);
-  const [localYesArguments, setLocalYesArguments] = useState(
+  const [localArguments, setLocalArguments] = useState(
     props.yesArguments || []
   );
-  const [localNoArguments, setLocalNoArguments] = useState(
-    props.noArguments || []
-  );
   const [inputYesValue, setInputYesValue] = useState("");
-  const [inputNoValue, setInputNoValue] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    setLocalYesArguments(props.yesArguments || []);
-    setLocalNoArguments(props.noArguments || []);
+    setLocalArguments(props.yesArguments || []);
     setEditingIndex(null);
     setEditingArgument(null);
-  }, [props.yesArguments, props.noArguments]);
+  }, [props.yesArguments]);
 
   const addProArgument = () => {
-    setLocalYesArguments([...localYesArguments, { text: inputYesValue }]);
+    setLocalArguments([...localArguments, { text: inputYesValue }]);
     setInputYesValue("");
   };
-  const addConArgument = () => {
-    setLocalNoArguments([...localNoArguments, { text: inputNoValue }]);
-    setInputNoValue("");
-  };
 
-  const handleEdit = (index, yes_or_no) => {
-    const args = yes_or_no ? localYesArguments : localNoArguments;
+  const handleEdit = (index) => {
+    const args = localArguments;
     const argToEdit = args[index];
 
     setEditingArgument({
       text: argToEdit.text,
       index: index,
-      yes_or_no: yes_or_no,
       id: argToEdit.id,
     });
     setEditingIndex(index);
@@ -66,9 +56,7 @@ const ArgumentManager = (props) => {
 
   const handleSave = () => {
     if (editingArgument) {
-      const updatedArgs = [
-        ...(editingArgument.yes_or_no ? localYesArguments : localNoArguments),
-      ];
+      const updatedArgs = [...localArguments];
       const indexToUpdate = editingArgument.index;
       if (indexToUpdate !== -1) {
         updatedArgs[indexToUpdate] = {
@@ -77,35 +65,22 @@ const ArgumentManager = (props) => {
           id: editingArgument.id,
         };
 
-        if (editingArgument.yes_or_no) {
-          setLocalYesArguments(updatedArgs);
-        } else {
-          setLocalNoArguments(updatedArgs);
-        }
-
+        setLocalArguments(updatedArgs);
         setEditingArgument(null);
         setEditingIndex(null);
       }
     }
   };
 
-  const handleDelete = (index, yes_or_no) => {
-    const args = [...(yes_or_no ? localYesArguments : localNoArguments)];
+  const handleDelete = (index) => {
+    const args = [...localArguments];
     const argToDelete = args[index];
     const filteredArgs = args.filter((arg) => arg !== argToDelete);
 
-    if (yes_or_no) {
-      setLocalYesArguments(filteredArgs);
-    } else {
-      setLocalNoArguments(filteredArgs);
-    }
+    setLocalArguments(filteredArgs);
 
     // Adjust editingIndex *after* filtering.
-    if (
-      editingArgument &&
-      editingArgument.index === index &&
-      editingArgument.yes_or_no === yes_or_no
-    ) {
+    if (editingArgument && editingArgument.index === index) {
       setEditingIndex(null);
       setEditingArgument(null);
     }
@@ -117,17 +92,11 @@ const ArgumentManager = (props) => {
 
     props.updateLoading(true);
     props.updateError(null);
-    props.updateYesArguments(localYesArguments);
-    props.updateNoArguments(localNoArguments);
+    props.updateYesArguments(localArguments);
 
     try {
       const argumentsPayload = [
-        ...localYesArguments.map((arg) => ({
-          yes_or_no: "YES",
-          argument: arg.text,
-        })),
-        ...localNoArguments.map((arg) => ({
-          yes_or_no: "NO",
+        ...localArguments.map((arg) => ({
           argument: arg.text,
         })),
       ];
@@ -194,7 +163,7 @@ const ArgumentManager = (props) => {
         Add Argument
       </Button>
       <Box sx={{ mt: 2 }}>
-        {localYesArguments.map((arg, index) => (
+        {localArguments.map((arg, index) => (
           <Paper
             key={arg.id || index} // Use ID if available, otherwise index
             sx={{
@@ -208,7 +177,7 @@ const ArgumentManager = (props) => {
               mt: 1,
             }}
           >
-            {editingIndex === index && editingArgument?.yes_or_no ? (
+            {editingIndex === index && editingArgument ? (
               <TextField
                 fullWidth
                 value={editingArgument ? editingArgument.text : ""}
@@ -228,11 +197,11 @@ const ArgumentManager = (props) => {
                   <SaveIcon color="primary" />
                 </IconButton>
               ) : (
-                <IconButton onClick={() => handleEdit(index, true)}>
+                <IconButton onClick={() => handleEdit(index)}>
                   <EditIcon color="primary" />
                 </IconButton>
               )}
-              <IconButton onClick={() => handleDelete(index, true)}>
+              <IconButton onClick={() => handleDelete(index)}>
                 <DeleteIcon color="error" />
               </IconButton>
             </div>
@@ -250,10 +219,7 @@ const ArgumentManager = (props) => {
         color="primary"
         sx={{ mt: 3, width: "100%" }}
         onClick={handleProceed}
-        disabled={
-          isSubmitting ||
-          (localYesArguments.length === 0 && localNoArguments.length === 0)
-        }
+        disabled={isSubmitting || localArguments.length === 0}
       >
         Proceed
       </Button>
