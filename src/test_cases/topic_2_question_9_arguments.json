@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 2,
+    "arguments": [
+      {"argument": "Some drag performances contain explicit content that is not appropriate for children."},
+      {"argument": "Public events should ensure performances align with community standards."},
+      {"argument": "Parents should have control over what their children are exposed to in public."},
+      {"argument": "Drag performances in certain venues may not be suitable for all audiences."},
+      {"argument": "Some argue that drag performances could promote gender ideology to minors."},
+      {"argument": "Regulating public performances ensures they are appropriate for all viewers."},
+      {"argument": "Public spaces should remain neutral and avoid controversial performances."},
+      {"argument": "Certain forms of drag performance may blur the lines between entertainment and activism."},
+      {"argument": "Protecting community values should take precedence over unrestricted performances."},
+      {"argument": "Not all drag performances are offensive, but some regulations are necessary."},
+  
+      {"argument": "Restricting drag performances violates free speech and artistic expression."},
+      {"argument": "Drag is a legitimate form of entertainment and self-expression."},
+      {"argument": "Targeting drag performances could lead to broader censorship of other art forms."},
+      {"argument": "Not all drag performances contain adult themes or inappropriate content."},
+      {"argument": "Parents can decide whether their children attend drag events."},
+      {"argument": "There is no legal basis for restricting drag performances differently from other performances."},
+      {"argument": "Laws regulating public performances should apply equally to all entertainment forms."},
+      {"argument": "Drag culture is part of LGBTQ+ identity and should be protected."},
+      {"argument": "Banning drag performances could encourage discrimination against LGBTQ+ individuals."},
+      {"argument": "People who oppose drag performances can simply choose not to attend them."}
+  ]
+  }
+}

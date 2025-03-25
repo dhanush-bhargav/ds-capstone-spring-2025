@@ -20,23 +20,18 @@ const Categorization = (props) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [input, setInput] = useState("");
     const [localCategory, setLocalCategory] = useState([]);
-    const [yesArguments, setYesArguments] = useState([]);
-    const [noArguments, setNoArguments] = useState([]);
+    const [localArguments, setLocalArguments] = useState([]);
 
     useEffect(() => {
         const fetchArguments = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/get_arguments?topic_id=${props.topicId}`);
                 if (response.data.success) {
-                    const existingYes = response.data.arguments.filter(arg => arg.yes_or_no==="YES").map(arg => {
-                        return {text: arg.argument, id: arg.argument_id}
-                    });
-                    const existingNo = response.data.arguments.filter(arg => arg.yes_or_no==="NO").map(arg => {
+                    const existingArguments = response.data.arguments.map(arg => {
                         return {text: arg.argument, id: arg.argument_id}
                     });
 
-                    setYesArguments(Array.from(existingYes.values()));
-                    setNoArguments(Array.from(existingNo.values()));
+                    setLocalArguments(Array.from(existingArguments.values()));
                 }
             } catch (error) {
                 console.error("Error fetching arguments:", error);
@@ -44,7 +39,7 @@ const Categorization = (props) => {
         };
         fetchArguments();
 
-    }, [props.yesArguments, props.noArguments]);
+    }, [props.yesArguments]);
 
 
     const handleAddCategory = () => {
@@ -120,31 +115,17 @@ const Categorization = (props) => {
                     justifyContent: "center",
                     alignItems: "flex-start",
                     gap: 4,
-                    padding: 4,
+                    paddingBottom: 4,
                     backgroundColor: "#f5f5f5",
                 }}
             >
                 {/* First List */}
                 <Paper sx={{ padding: 2, minWidth: 200 }}>
                     <Typography variant="h6" align="center" gutterBottom>
-                        Yes Arguments
+                        Arguments
                     </Typography>
                     <List>
-                        {yesArguments.map((item, index) => (
-                            <ListItem key={index} divider>
-                                <ListItemText primary={item.text} />
-                            </ListItem>
-                        ))}
-                    </List>
-                </Paper>
-
-                {/* Second List */}
-                <Paper sx={{ padding: 2, minWidth: 200 }}>
-                    <Typography variant="h6" align="center" gutterBottom>
-                        No Arguments
-                    </Typography>
-                    <List>
-                        {noArguments.map((item, index) => (
+                        {localArguments.map((item, index) => (
                             <ListItem key={index} divider>
                                 <ListItemText primary={item.text} />
                             </ListItem>

@@ -296,7 +296,7 @@ const App = () => {
                 transition: "height 0.5s ease-in-out",
               }}
             >
-              <StepperComponent step={step} />
+              {/* <StepperComponent step={step} /> */}
               {isLoading && <p>Loading...</p>}
               {error && <p style={{ color: "red" }}>{error}</p>}
               {step === 1 && (

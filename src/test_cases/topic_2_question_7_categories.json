@@ -1,0 +1,15 @@
+{
+    "request_body": {
+      "topic_id": 2,
+      "argument_categories": [
+        {"argument_category": "Cultural Appropriation and Stereotypes"},
+        {"argument_category": "Indigenous Rights and Representation"},
+        {"argument_category": "Public Trust and Accountability"},
+        {"argument_category": "Tradition vs. Social Progress"},
+        {"argument_category": "Economic and Institutional Impact"},
+        {"argument_category": "Freedom of Expression"},
+        {"argument_category": "Impact on Sports and Fan Identity"}
+      ]
+    }
+  }
+  

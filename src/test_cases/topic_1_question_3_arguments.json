@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 1,
+    "arguments": [
+      {"argument": "Residents deserve full representation in Congress."},
+      {"argument": "They pay federal taxes but lack voting power in Congress."},
+      {"argument": "Statehood would ensure equal rights for all U.S. citizens."},
+      {"argument": "It aligns with democratic principles of representation."},
+      {"argument": "Statehood could boost economic development in Puerto Rico."},
+      {"argument": "D.C. residents deserve the same voting rights as other Americans."},
+      {"argument": "The U.S. already governs both regions, so they should have full statehood rights."},
+      {"argument": "Statehood would improve infrastructure and social services in Puerto Rico."},
+      {"argument": "It would end colonial-style governance over Puerto Rico."},
+      {"argument": "A majority of residents in both territories support statehood."},
+  
+      {"argument": "Statehood could shift political power significantly."},
+      {"argument": "Puerto Rico has voted against statehood in the past."},
+      {"argument": "Washington, D.C., was designed to be a neutral federal district."},
+      {"argument": "Statehood could lead to complex constitutional issues."},
+      {"argument": "It would increase federal spending to support two new states."},
+      {"argument": "Puerto Rico’s economy is not stable enough for statehood."},
+      {"argument": "D.C. statehood could challenge the balance of power in Congress."},
+      {"argument": "Puerto Rico’s cultural and linguistic differences complicate statehood."},
+      {"argument": "Other U.S. territories may also demand statehood, creating a precedent."},
+      {"argument": "There are alternative ways to grant representation without full statehood."}
+  ]   
+  }
+}

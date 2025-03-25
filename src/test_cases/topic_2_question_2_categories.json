@@ -1,0 +1,15 @@
+{
+    "request_body": {
+      "topic_id": 2,
+      "argument_categories": [
+        {"argument_category": "Education and Public Awareness"},
+        {"argument_category": "Political Fairness"},
+        {"argument_category": "Legal and Constitutional Concerns"},
+        {"argument_category": "Historical Accuracy and Representation"},
+        {"argument_category": "Social and Racial Justice"},
+        {"argument_category": "Parental Rights and Curriculum Control"},
+        {"argument_category": "Impact on Student Learning"}
+      ]
+    }
+  }
+  

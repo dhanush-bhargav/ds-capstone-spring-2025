@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 2,
+    "arguments": [
+      {"argument": "Native American mascots are offensive and perpetuate harmful stereotypes."},
+      {"argument": "Many Indigenous groups have spoken out against the use of these mascots."},
+      {"argument": "Using cultural symbols as mascots disrespects Native traditions and history."},
+      {"argument": "Banning them promotes inclusivity and respect for all cultures."},
+      {"argument": "Many schools and teams have successfully changed their mascots without issue."},
+      {"argument": "Racist imagery should not be celebrated in sports or any public space."},
+      {"argument": "Research shows that Native mascots negatively impact Indigenous youth."},
+      {"argument": "Allowing Native mascots reinforces outdated and harmful representations."},
+      {"argument": "Mascots should reflect positive, unifying symbols rather than cultural stereotypes."},
+      {"argument": "Other racial and ethnic groups are not used as mascots, so Native Americans should not be either."},
+  
+      {"argument": "Many Native American mascots were created to honor Indigenous cultures."},
+      {"argument": "Banning mascots erases Native American representation in sports."},
+      {"argument": "Mascots are meant to unite fans, not to offend anyone."},
+      {"argument": "Native American mascots have been part of sports traditions for decades."},
+      {"argument": "Some Indigenous people and tribes do not find mascots offensive."},
+      {"argument": "There are bigger issues affecting Native American communities than mascots."},
+      {"argument": "Changing mascots would be costly and unnecessary for many teams and schools."},
+      {"argument": "Banning mascots could lead to excessive censorship in other areas."},
+      {"argument": "Many fans and alumni feel strongly about preserving their team’s traditions."},
+      {"argument": "The focus should be on cultural education rather than mascot bans."}
+  ]
+  }
+}

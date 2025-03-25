@@ -1,0 +1,27 @@
+{
+  "request_body": {
+    "topic_id": 1,
+    "arguments": [
+      {"argument": "The Electoral College can result in a president winning without the popular vote, undermining democratic legitimacy."},
+      {"argument": "It gives disproportionate influence to smaller states, distorting representative democracy."},
+      {"argument": "Swing states receive excessive attention, while solidly red or blue states are largely ignored in campaigns."},
+      {"argument": "Faithless electors can defy the will of the people, introducing uncertainty into elections."},
+      {"argument": "It discourages voter turnout in non-competitive states, as votes may feel meaningless."},
+      {"argument": "The system was designed in part to protect slavery-era interests, making it outdated and undemocratic."},
+      {"argument": "A direct popular vote would ensure that every citizen’s vote carries equal weight nationwide."},
+      {"argument": "The winner-takes-all system in most states ignores minority voices within those states."},
+      {"argument": "It has led to controversial elections where candidates win despite losing the popular vote, causing national division."},
+      {"argument": "Modern technology and communication make it unnecessary, as direct democracy is now feasible."},
+      {"argument": "The Electoral College ensures that smaller states have a voice in presidential elections."},
+      {"argument": "It prevents highly populated urban areas from dominating elections, preserving regional balance."},
+      {"argument": "The system forces candidates to appeal to a broad coalition rather than just focusing on population centers."},
+      {"argument": "It upholds the federalist structure of the U.S. by balancing state and national interests."},
+      {"argument": "A nationwide popular vote could lead to logistical challenges, including nationwide recounts in close elections."},
+      {"argument": "The Electoral College provides stability and has generally worked as intended for over two centuries."},
+      {"argument": "Abolishing it could lead to more fragmented elections with multiple candidates winning significant shares of the vote."},
+      {"argument": "It discourages extreme regionalism by ensuring candidates need broad geographic support."},
+      {"argument": "The current system prevents a scenario where a candidate wins with only a small percentage of votes due to vote splitting."},
+      {"argument": "Changing the system would require a constitutional amendment, which is extremely difficult to achieve."}
+    ]
+  }
+}

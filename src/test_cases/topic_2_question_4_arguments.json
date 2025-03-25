@@ -1,0 +1,31 @@
+{
+  "request_body": {
+    "topic_id": 2,
+    "arguments": [
+      {"argument": "Reparations would address the generational wealth gap caused by slavery."},
+      {"argument": "The U.S. government has a moral obligation to compensate for historical injustices."},
+      {"argument": "Other groups, such as Japanese Americans, have received reparations for past injustices."},
+      {"argument": "Reparations can help fund education and economic opportunities for Black communities."},
+      {"argument": "Acknowledging past injustices through reparations strengthens national unity."},
+      {"argument": "Racial discrimination did not end with slavery, and reparations address ongoing disparities."},
+      {"argument": "Reparations can help correct the systemic disadvantages still affecting Black Americans today."},
+      {"argument": "Many families and institutions still benefit from wealth created through slavery."},
+      {"argument": "Countries such as Germany have provided reparations for historical wrongs, setting a precedent."},
+      {"argument": "Reparations would serve as a formal acknowledgment of the suffering of enslaved peoples."},
+      
+      {"argument": "No one alive today was directly involved in slavery, making reparations unjust."},
+      {"argument": "It would be impossible to determine who should receive reparations."},
+      {"argument": "Taxpayers should not be responsible for compensating past injustices."},
+      {"argument": "Reparations could increase racial division rather than heal wounds."},
+      {"argument": "There are more effective ways to address racial inequality, such as education reform."},
+      {"argument": "Many Americans are descendants of immigrants who had no involvement in slavery."},
+      {"argument": "Providing reparations would be financially unsustainable for the government."},
+      {"argument": "Enslaved people were freed over 150 years ago, making reparations unnecessary today."},
+      {"argument": "Efforts should focus on improving economic opportunities for all disadvantaged people, not just one group."},
+      {"argument": "Slavery was a tragic part of history, but financial compensation won't change the past."}
+  ]
+  
+      
+    
+  }
+}
