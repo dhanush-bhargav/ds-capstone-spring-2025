@@ -2,27 +2,27 @@
   "request_body": {
     "topic_id": 1,
     "arguments": [
-      {"yes_or_no": "YES", "argument": "Being born outside the U.S. does not determine one's loyalty to the country."},
-      {"yes_or_no": "YES", "argument": "It would allow highly qualified individuals to contribute to leadership."},
-      {"yes_or_no": "YES", "argument": "The U.S. is a nation of immigrants, and this should be reflected in its leadership."},
-      {"yes_or_no": "YES", "argument": "Naturalized citizens already serve in Congress and other high offices."},
-      {"yes_or_no": "YES", "argument": "Other countries allow foreign-born citizens to hold their highest offices."},
-      {"yes_or_no": "YES", "argument": "It would prevent discrimination against naturalized citizens."},
-      {"yes_or_no": "YES", "argument": "The focus should be on a candidate’s experience, not birthplace."},
-      {"yes_or_no": "YES", "argument": "Restricting presidential eligibility limits democracy and voter choice."},
-      {"yes_or_no": "YES", "argument": "Modern vetting processes can ensure national security concerns are addressed."},
-      {"yes_or_no": "YES", "argument": "It would make the U.S. a more inclusive and progressive democracy."},
+      {"argument": "Being born outside the U.S. does not determine one's loyalty to the country."},
+      {"argument": "It would allow highly qualified individuals to contribute to leadership."},
+      {"argument": "The U.S. is a nation of immigrants, and this should be reflected in its leadership."},
+      {"argument": "Naturalized citizens already serve in Congress and other high offices."},
+      {"argument": "Other countries allow foreign-born citizens to hold their highest offices."},
+      {"argument": "It would prevent discrimination against naturalized citizens."},
+      {"argument": "The focus should be on a candidate’s experience, not birthplace."},
+      {"argument": "Restricting presidential eligibility limits democracy and voter choice."},
+      {"argument": "Modern vetting processes can ensure national security concerns are addressed."},
+      {"argument": "It would make the U.S. a more inclusive and progressive democracy."},
   
-      {"yes_or_no": "NO", "argument": "The natural-born citizen requirement protects national security."},
-      {"yes_or_no": "NO", "argument": "Foreign influence could compromise a president’s loyalty to the U.S."},
-      {"yes_or_no": "NO", "argument": "The Founding Fathers implemented the rule to prevent foreign interference."},
-      {"yes_or_no": "NO", "argument": "A foreign-born president may prioritize the interests of their birth country."},
-      {"yes_or_no": "NO", "argument": "Citizenship through birth ensures a lifetime of commitment to the U.S."},
-      {"yes_or_no": "NO", "argument": "A change in eligibility could lead to calls for further constitutional changes."},
-      {"yes_or_no": "NO", "argument": "Naturalized citizens already hold many influential political roles."},
-      {"yes_or_no": "NO", "argument": "The rule has existed for centuries without major issues."},
-      {"yes_or_no": "NO", "argument": "There are many qualified natural-born citizens available to run for president."},
-      {"yes_or_no": "NO", "argument": "Removing the requirement could lead to unintended political consequences."}
+      {"argument": "The natural-born citizen requirement protects national security."},
+      {"argument": "Foreign influence could compromise a president’s loyalty to the U.S."},
+      {"argument": "The Founding Fathers implemented the rule to prevent foreign interference."},
+      {"argument": "A foreign-born president may prioritize the interests of their birth country."},
+      {"argument": "Citizenship through birth ensures a lifetime of commitment to the U.S."},
+      {"argument": "A change in eligibility could lead to calls for further constitutional changes."},
+      {"argument": "Naturalized citizens already hold many influential political roles."},
+      {"argument": "The rule has existed for centuries without major issues."},
+      {"argument": "There are many qualified natural-born citizens available to run for president."},
+      {"argument": "Removing the requirement could lead to unintended political consequences."}
   ]
   }
 }

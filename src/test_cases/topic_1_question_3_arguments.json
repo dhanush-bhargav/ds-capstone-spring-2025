@@ -2,27 +2,27 @@
   "request_body": {
     "topic_id": 1,
     "arguments": [
-      {"yes_or_no": "YES", "argument": "Residents deserve full representation in Congress."},
-      {"yes_or_no": "YES", "argument": "They pay federal taxes but lack voting power in Congress."},
-      {"yes_or_no": "YES", "argument": "Statehood would ensure equal rights for all U.S. citizens."},
-      {"yes_or_no": "YES", "argument": "It aligns with democratic principles of representation."},
-      {"yes_or_no": "YES", "argument": "Statehood could boost economic development in Puerto Rico."},
-      {"yes_or_no": "YES", "argument": "D.C. residents deserve the same voting rights as other Americans."},
-      {"yes_or_no": "YES", "argument": "The U.S. already governs both regions, so they should have full statehood rights."},
-      {"yes_or_no": "YES", "argument": "Statehood would improve infrastructure and social services in Puerto Rico."},
-      {"yes_or_no": "YES", "argument": "It would end colonial-style governance over Puerto Rico."},
-      {"yes_or_no": "YES", "argument": "A majority of residents in both territories support statehood."},
+      {"argument": "Residents deserve full representation in Congress."},
+      {"argument": "They pay federal taxes but lack voting power in Congress."},
+      {"argument": "Statehood would ensure equal rights for all U.S. citizens."},
+      {"argument": "It aligns with democratic principles of representation."},
+      {"argument": "Statehood could boost economic development in Puerto Rico."},
+      {"argument": "D.C. residents deserve the same voting rights as other Americans."},
+      {"argument": "The U.S. already governs both regions, so they should have full statehood rights."},
+      {"argument": "Statehood would improve infrastructure and social services in Puerto Rico."},
+      {"argument": "It would end colonial-style governance over Puerto Rico."},
+      {"argument": "A majority of residents in both territories support statehood."},
   
-      {"yes_or_no": "NO", "argument": "Statehood could shift political power significantly."},
-      {"yes_or_no": "NO", "argument": "Puerto Rico has voted against statehood in the past."},
-      {"yes_or_no": "NO", "argument": "Washington, D.C., was designed to be a neutral federal district."},
-      {"yes_or_no": "NO", "argument": "Statehood could lead to complex constitutional issues."},
-      {"yes_or_no": "NO", "argument": "It would increase federal spending to support two new states."},
-      {"yes_or_no": "NO", "argument": "Puerto Rico’s economy is not stable enough for statehood."},
-      {"yes_or_no": "NO", "argument": "D.C. statehood could challenge the balance of power in Congress."},
-      {"yes_or_no": "NO", "argument": "Puerto Rico’s cultural and linguistic differences complicate statehood."},
-      {"yes_or_no": "NO", "argument": "Other U.S. territories may also demand statehood, creating a precedent."},
-      {"yes_or_no": "NO", "argument": "There are alternative ways to grant representation without full statehood."}
+      {"argument": "Statehood could shift political power significantly."},
+      {"argument": "Puerto Rico has voted against statehood in the past."},
+      {"argument": "Washington, D.C., was designed to be a neutral federal district."},
+      {"argument": "Statehood could lead to complex constitutional issues."},
+      {"argument": "It would increase federal spending to support two new states."},
+      {"argument": "Puerto Rico’s economy is not stable enough for statehood."},
+      {"argument": "D.C. statehood could challenge the balance of power in Congress."},
+      {"argument": "Puerto Rico’s cultural and linguistic differences complicate statehood."},
+      {"argument": "Other U.S. territories may also demand statehood, creating a precedent."},
+      {"argument": "There are alternative ways to grant representation without full statehood."}
   ]   
   }
 }

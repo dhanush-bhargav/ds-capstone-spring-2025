@@ -2,27 +2,27 @@
   "request_body": {
     "topic_id": 1,
     "arguments": [
-    {"yes_or_no": "YES", "argument": "The filibuster obstructs majority rule and democratic decision-making."},
-    {"yes_or_no": "YES", "argument": "It leads to legislative gridlock and prevents necessary reforms."},
-    {"yes_or_no": "YES", "argument": "The filibuster was historically used to block civil rights legislation."},
-    {"yes_or_no": "YES", "argument": "It gives too much power to the minority party to obstruct governance."},
-    {"yes_or_no": "YES", "argument": "Eliminating it would ensure a more efficient legislative process."},
-    {"yes_or_no": "YES", "argument": "It prevents Congress from responding quickly to urgent issues."},
-    {"yes_or_no": "YES", "argument": "The filibuster has been increasingly abused for partisan purposes."},
-    {"yes_or_no": "YES", "argument": "Many state legislatures operate effectively without a filibuster."},
-    {"yes_or_no": "YES", "argument": "It was not originally part of the Constitution and is an outdated rule."},
-    {"yes_or_no": "YES", "argument": "Eliminating it would increase government accountability and responsiveness."},
+    {"argument": "The filibuster obstructs majority rule and democratic decision-making."},
+    {"argument": "It leads to legislative gridlock and prevents necessary reforms."},
+    {"argument": "The filibuster was historically used to block civil rights legislation."},
+    {"argument": "It gives too much power to the minority party to obstruct governance."},
+    {"argument": "Eliminating it would ensure a more efficient legislative process."},
+    {"argument": "It prevents Congress from responding quickly to urgent issues."},
+    {"argument": "The filibuster has been increasingly abused for partisan purposes."},
+    {"argument": "Many state legislatures operate effectively without a filibuster."},
+    {"argument": "It was not originally part of the Constitution and is an outdated rule."},
+    {"argument": "Eliminating it would increase government accountability and responsiveness."},
 
-    {"yes_or_no": "NO", "argument": "The filibuster protects minority party rights in the Senate."},
-    {"yes_or_no": "NO", "argument": "It ensures that major laws require broad bipartisan support."},
-    {"yes_or_no": "NO", "argument": "Removing it could lead to frequent and extreme policy changes."},
-    {"yes_or_no": "NO", "argument": "The filibuster encourages compromise and debate."},
-    {"yes_or_no": "NO", "argument": "Without it, the Senate could pass laws too hastily."},
-    {"yes_or_no": "NO", "argument": "The filibuster serves as a check on the power of the ruling party."},
-    {"yes_or_no": "NO", "argument": "Both parties have used the filibuster to block harmful legislation."},
-    {"yes_or_no": "NO", "argument": "Eliminating it could make the Senate function like the House of Representatives."},
-    {"yes_or_no": "NO", "argument": "It helps maintain long-term stability in U.S. policies."},
-    {"yes_or_no": "NO", "argument": "Modifying rather than eliminating the filibuster would be a better solution."}
+    {"argument": "The filibuster protects minority party rights in the Senate."},
+    {"argument": "It ensures that major laws require broad bipartisan support."},
+    {"argument": "Removing it could lead to frequent and extreme policy changes."},
+    {"argument": "The filibuster encourages compromise and debate."},
+    {"argument": "Without it, the Senate could pass laws too hastily."},
+    {"argument": "The filibuster serves as a check on the power of the ruling party."},
+    {"argument": "Both parties have used the filibuster to block harmful legislation."},
+    {"argument": "Eliminating it could make the Senate function like the House of Representatives."},
+    {"argument": "It helps maintain long-term stability in U.S. policies."},
+    {"argument": "Modifying rather than eliminating the filibuster would be a better solution."}
       
     ]
   }

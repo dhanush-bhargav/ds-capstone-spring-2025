@@ -2,27 +2,27 @@
   "request_body": {
     "topic_id": 1,
     "arguments": [
-      {"yes_or_no": "YES", "argument": "Civics education strengthens democracy by informing future voters."},
-      {"yes_or_no": "YES", "argument": "It ensures that students understand their rights and responsibilities."},
-      {"yes_or_no": "YES", "argument": "A lack of civic knowledge leads to voter apathy and misinformation."},
-      {"yes_or_no": "YES", "argument": "Teaching civics fosters critical thinking about government policies."},
-      {"yes_or_no": "YES", "argument": "A well-informed electorate leads to better governance and accountability."},
-      {"yes_or_no": "YES", "argument": "Civics education reduces polarization by promoting constructive debate."},
-      {"yes_or_no": "YES", "argument": "It helps students understand the impact of government on daily life."},
-      {"yes_or_no": "YES", "argument": "Civic knowledge is crucial in an age of increasing political misinformation."},
-      {"yes_or_no": "YES", "argument": "It prepares students to actively participate in their communities."},
-      {"yes_or_no": "YES", "argument": "Mandating civics ensures that all students, regardless of background, are educated on government functions."},
+      {"argument": "Civics education strengthens democracy by informing future voters."},
+      {"argument": "It ensures that students understand their rights and responsibilities."},
+      {"argument": "A lack of civic knowledge leads to voter apathy and misinformation."},
+      {"argument": "Teaching civics fosters critical thinking about government policies."},
+      {"argument": "A well-informed electorate leads to better governance and accountability."},
+      {"argument": "Civics education reduces polarization by promoting constructive debate."},
+      {"argument": "It helps students understand the impact of government on daily life."},
+      {"argument": "Civic knowledge is crucial in an age of increasing political misinformation."},
+      {"argument": "It prepares students to actively participate in their communities."},
+      {"argument": "Mandating civics ensures that all students, regardless of background, are educated on government functions."},
   
-      {"yes_or_no": "NO", "argument": "Curriculum decisions should be made at the state and local levels."},
-      {"yes_or_no": "NO", "argument": "Mandating civics education could lead to political bias in schools."},
-      {"yes_or_no": "NO", "argument": "Some schools may not have the resources to implement civics programs effectively."},
-      {"yes_or_no": "NO", "argument": "Forcing civics classes may not increase student engagement or interest."},
-      {"yes_or_no": "NO", "argument": "There are already existing subjects that incorporate civics-related topics."},
-      {"yes_or_no": "NO", "argument": "Education should focus more on STEM and job-oriented skills."},
-      {"yes_or_no": "NO", "argument": "Parents, not the government, should decide their child's civic education."},
-      {"yes_or_no": "NO", "argument": "Too much government involvement in education limits school autonomy."},
-      {"yes_or_no": "NO", "argument": "Some argue that civic responsibility is better taught through real-world experiences rather than in a classroom."},
-      {"yes_or_no": "NO", "argument": "Mandatory courses may not improve civic engagement if students remain disengaged."}
+      {"argument": "Curriculum decisions should be made at the state and local levels."},
+      {"argument": "Mandating civics education could lead to political bias in schools."},
+      {"argument": "Some schools may not have the resources to implement civics programs effectively."},
+      {"argument": "Forcing civics classes may not increase student engagement or interest."},
+      {"argument": "There are already existing subjects that incorporate civics-related topics."},
+      {"argument": "Education should focus more on STEM and job-oriented skills."},
+      {"argument": "Parents, not the government, should decide their child's civic education."},
+      {"argument": "Too much government involvement in education limits school autonomy."},
+      {"argument": "Some argue that civic responsibility is better taught through real-world experiences rather than in a classroom."},
+      {"argument": "Mandatory courses may not improve civic engagement if students remain disengaged."}
   ]
    
   }

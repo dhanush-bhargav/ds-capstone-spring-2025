@@ -2,27 +2,27 @@
   "request_body": {
     "topic_id": 2,
     "arguments": [
-      {"yes_or_no": "YES", "argument": "Confederate monuments honor a history rooted in slavery and oppression."},
-      {"yes_or_no": "YES", "argument": "Removing them acknowledges the harm caused by the Confederacy."},
-      {"yes_or_no": "YES", "argument": "Public spaces should reflect shared values, not divisive historical figures."},
-      {"yes_or_no": "YES", "argument": "Many Confederate statues were erected to uphold white supremacy, not history."},
-      {"yes_or_no": "YES", "argument": "Relocating them to museums preserves history without glorifying oppression."},
-      {"yes_or_no": "YES", "argument": "The U.S. should not celebrate those who fought against the Union."},
-      {"yes_or_no": "YES", "argument": "Keeping these monuments sends the wrong message about racial equality."},
-      {"yes_or_no": "YES", "argument": "Memorializing Confederates undermines progress toward social justice."},
-      {"yes_or_no": "YES", "argument": "Other countries do not publicly celebrate those who fought to preserve injustice."},
-      {"yes_or_no": "YES", "argument": "Public statues should honor unity, not division."},
+      {"argument": "Confederate monuments honor a history rooted in slavery and oppression."},
+      {"argument": "Removing them acknowledges the harm caused by the Confederacy."},
+      {"argument": "Public spaces should reflect shared values, not divisive historical figures."},
+      {"argument": "Many Confederate statues were erected to uphold white supremacy, not history."},
+      {"argument": "Relocating them to museums preserves history without glorifying oppression."},
+      {"argument": "The U.S. should not celebrate those who fought against the Union."},
+      {"argument": "Keeping these monuments sends the wrong message about racial equality."},
+      {"argument": "Memorializing Confederates undermines progress toward social justice."},
+      {"argument": "Other countries do not publicly celebrate those who fought to preserve injustice."},
+      {"argument": "Public statues should honor unity, not division."},
       
-      {"yes_or_no": "NO", "argument": "Confederate monuments are a part of American history, and history should not be erased."},
-      {"yes_or_no": "NO", "argument": "Removing statues could set a precedent for eliminating any controversial historical figure."},
-      {"yes_or_no": "NO", "argument": "They serve as educational tools to discuss the Civil War and its consequences."},
-      {"yes_or_no": "NO", "argument": "Not everyone who fought for the Confederacy was fighting to uphold slavery."},
-      {"yes_or_no": "NO", "argument": "Public monuments should not be removed based on contemporary political views."},
-      {"yes_or_no": "NO", "argument": "Monuments should be contextualized rather than removed."},
-      {"yes_or_no": "NO", "argument": "People should have the right to honor their heritage, even if controversial."},
-      {"yes_or_no": "NO", "argument": "Many statues were built with public funding and should remain as historical markers."},
-      {"yes_or_no": "NO", "argument": "History should be preserved, not rewritten or hidden."},
-      {"yes_or_no": "NO", "argument": "Focusing on statues distracts from addressing present-day racial inequalities."}
+      {"argument": "Confederate monuments are a part of American history, and history should not be erased."},
+      {"argument": "Removing statues could set a precedent for eliminating any controversial historical figure."},
+      {"argument": "They serve as educational tools to discuss the Civil War and its consequences."},
+      {"argument": "Not everyone who fought for the Confederacy was fighting to uphold slavery."},
+      {"argument": "Public monuments should not be removed based on contemporary political views."},
+      {"argument": "Monuments should be contextualized rather than removed."},
+      {"argument": "People should have the right to honor their heritage, even if controversial."},
+      {"argument": "Many statues were built with public funding and should remain as historical markers."},
+      {"argument": "History should be preserved, not rewritten or hidden."},
+      {"argument": "Focusing on statues distracts from addressing present-day racial inequalities."}
   ]
   }
 }

@@ -2,27 +2,27 @@
   "request_body": {
     "topic_id": 2,
     "arguments": [
-      {"yes_or_no": "YES", "argument": "CRT helps students understand systemic racism and its historical roots."},
-      {"yes_or_no": "YES", "argument": "Teaching CRT fosters critical thinking and discussion about racial issues."},
-      {"yes_or_no": "YES", "argument": "Ignoring systemic discrimination does not make it disappear."},
-      {"yes_or_no": "YES", "argument": "Education should include the full scope of American history, including racial injustices."},
-      {"yes_or_no": "YES", "argument": "CRT equips students with knowledge to challenge and address inequality."},
-      {"yes_or_no": "YES", "argument": "A diverse curriculum promotes inclusivity and understanding among students."},
-      {"yes_or_no": "YES", "argument": "Racism continues to impact society, and CRT helps explain its persistence."},
-      {"yes_or_no": "YES", "argument": "Denying discussions about race hinders progress toward equality."},
-      {"yes_or_no": "YES", "argument": "CRT encourages open conversations rather than sweeping racial issues under the rug."},
-      {"yes_or_no": "YES", "argument": "Historical accuracy requires acknowledging how laws and policies have shaped racial disparities."},
+      {"argument": "CRT helps students understand systemic racism and its historical roots."},
+      {"argument": "Teaching CRT fosters critical thinking and discussion about racial issues."},
+      {"argument": "Ignoring systemic discrimination does not make it disappear."},
+      {"argument": "Education should include the full scope of American history, including racial injustices."},
+      {"argument": "CRT equips students with knowledge to challenge and address inequality."},
+      {"argument": "A diverse curriculum promotes inclusivity and understanding among students."},
+      {"argument": "Racism continues to impact society, and CRT helps explain its persistence."},
+      {"argument": "Denying discussions about race hinders progress toward equality."},
+      {"argument": "CRT encourages open conversations rather than sweeping racial issues under the rug."},
+      {"argument": "Historical accuracy requires acknowledging how laws and policies have shaped racial disparities."},
       
-      {"yes_or_no": "NO", "argument": "CRT promotes divisiveness by framing issues through race rather than unity."},
-      {"yes_or_no": "NO", "argument": "Young students may not have the maturity to fully grasp complex racial theories."},
-      {"yes_or_no": "NO", "argument": "CRT could lead to feelings of guilt or resentment among students."},
-      {"yes_or_no": "NO", "argument": "Public schools should focus on objective history rather than political ideology."},
-      {"yes_or_no": "NO", "argument": "Teaching CRT may overemphasize race in situations where other factors play a role."},
-      {"yes_or_no": "NO", "argument": "Parents should have more control over what their children are taught regarding race."},
-      {"yes_or_no": "NO", "argument": "CRT presents a biased perspective that may not reflect the views of all Americans."},
-      {"yes_or_no": "NO", "argument": "There are alternative ways to teach about racism without using CRT."},
-      {"yes_or_no": "NO", "argument": "Students should be encouraged to think independently rather than adopting a specific framework."},
-      {"yes_or_no": "NO", "argument": "CRT could create racial tension among students by focusing on differences rather than commonalities."}
+      {"argument": "CRT promotes divisiveness by framing issues through race rather than unity."},
+      {"argument": "Young students may not have the maturity to fully grasp complex racial theories."},
+      {"argument": "CRT could lead to feelings of guilt or resentment among students."},
+      {"argument": "Public schools should focus on objective history rather than political ideology."},
+      {"argument": "Teaching CRT may overemphasize race in situations where other factors play a role."},
+      {"argument": "Parents should have more control over what their children are taught regarding race."},
+      {"argument": "CRT presents a biased perspective that may not reflect the views of all Americans."},
+      {"argument": "There are alternative ways to teach about racism without using CRT."},
+      {"argument": "Students should be encouraged to think independently rather than adopting a specific framework."},
+      {"argument": "CRT could create racial tension among students by focusing on differences rather than commonalities."}
   ]
   
     

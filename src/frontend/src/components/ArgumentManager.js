@@ -192,7 +192,7 @@ const ArgumentManager = (props) => {
               </Typography> // Display text and ID
             )}
             <div>
-              {editingIndex === index && editingArgument?.yes_or_no ? (
+              {editingIndex === index && editingArgument ? (
                 <IconButton onClick={handleSave}>
                   <SaveIcon color="primary" />
                 </IconButton>
