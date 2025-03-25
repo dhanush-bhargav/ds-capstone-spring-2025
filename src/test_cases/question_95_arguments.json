@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 95,
+    "arguments": [
+      {"argument": "Making the Pledge of Allegiance mandatory in schools promotes national unity and pride among students."},
+      {"argument": "It fosters a sense of patriotism and reminds students of the values and freedoms they enjoy as Americans."},
+      {"argument": "It encourages students to develop a respect for the country and its institutions, helping to build civic responsibility."},
+      {"argument": "Reciting the Pledge of Allegiance daily can help to instill discipline, routine, and respect for authority in students."},
+      {"argument": "Mandatory recitation of the Pledge helps children to understand the importance of democracy, freedom, and equality."},
+      {"argument": "It can serve as a daily reminder of the shared identity and values that unite people across the country."},
+      {"argument": "The Pledge is a way to show respect for the sacrifices made by military personnel and others who have served the country."},
+      {"argument": "Making the Pledge mandatory helps create a culture of respect for the nation and its symbols in the next generation."},
+      {"argument": "It serves as an inclusive tradition that brings students together regardless of their background or personal beliefs."},
+      {"argument": "The Pledge of Allegiance can teach children the importance of civic duty and patriotism from an early age."},
+
+      {"argument": "Making the Pledge of Allegiance mandatory infringes on students' freedom of speech and their right to opt out."},
+      {"argument": "Forcing students to recite the Pledge may violate the separation of church and state, particularly in regard to the phrase 'under God'."},
+      {"argument": "Mandatory recitation could lead to students reciting the Pledge without understanding its meaning, which defeats its purpose."},
+      {"argument": "Students should have the right to express their patriotism in their own way, rather than being forced to follow a prescribed ritual."},
+      {"argument": "Mandatory participation in the Pledge may alienate students who hold different beliefs or who have objections to the symbolism."},
+      {"argument": "It should be a personal decision whether or not to recite the Pledge, as it involves personal and philosophical beliefs."},
+      {"argument": "Enforcing the Pledge could lead to a culture of conformity, stifling students' ability to think critically and independently."},
+      {"argument": "The Pledge of Allegiance is a symbolic act, and its value should be rooted in genuine belief, not coerced participation."},
+      {"argument": "Forcing students to recite the Pledge could create a divide between those who participate willingly and those who feel compelled to do so."},
+      {"argument": "The Pledge of Allegiance is a personal expression of patriotism, and it should not be made a mandatory part of the school routine."}
+    ]
+  }
+}

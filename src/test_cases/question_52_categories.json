@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 52,
+    "argument_categories": [
+      {"argument_category": "Rehabilitation"},
+      {"argument_category": "Cost Efficiency"},
+      {"argument_category": "Ethics & Justice"},
+      {"argument_category": "Transparency & Accountability"},
+      {"argument_category": "Incarceration Rates"},
+      {"argument_category": "Prison Conditions"},
+      {"argument_category": "Economic Impact"},
+      {"argument_category": "Government & Policy"},
+      {"argument_category": "Innovation & Flexibility"},
+      {"argument_category": "Corruption & Lobbying"}
+    ]
+  }
+}

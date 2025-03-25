@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 96,
+    "argument_categories": [
+      {"argument_category": "Freedom"},
+      {"argument_category": "Respect"},
+      {"argument_category": "Expression"},
+      {"argument_category": "Unity"},
+      {"argument_category": "Role Models"},
+      {"argument_category": "Tradition"},
+      {"argument_category": "Patriotism"},
+      {"argument_category": "Social Issues"},
+      {"argument_category": "Rights"},
+      {"argument_category": "Conformity"}
+    ]
+  }
+}

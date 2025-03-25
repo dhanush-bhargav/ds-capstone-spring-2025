@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 53,
+    "arguments": [
+      {"argument": "Legalization reduces the burden on the criminal justice system by eliminating unnecessary arrests."},
+      {"argument": "Tax revenue from legal marijuana sales can fund public services like education and healthcare."},
+      {"argument": "Regulation ensures product safety, reducing risks associated with contaminated or unsafe cannabis."},
+      {"argument": "Legalization creates jobs and boosts local economies through a regulated cannabis industry."},
+      {"argument": "Marijuana has medical benefits, and broader legalization improves access for those in need."},
+      {"argument": "Prohibition disproportionately affects minority communities, contributing to racial disparities in incarceration."},
+      {"argument": "Legalization weakens illegal drug markets, reducing crime associated with unregulated sales."},
+      {"argument": "Adults should have the right to make their own choices regarding marijuana use, similar to alcohol."},
+      {"argument": "States with legalization have not seen significant increases in crime or public health issues."},
+      {"argument": "Regulated sales allow for age restrictions and better prevention of underage use."},
+
+      {"argument": "Marijuana use can impair cognitive function, especially in young users."},
+      {"argument": "Legalization may lead to increased cases of addiction and substance abuse issues."},
+      {"argument": "Marijuana can act as a gateway drug, increasing the risk of harder drug use."},
+      {"argument": "Legalization could lead to more impaired driving incidents and traffic accidents."},
+      {"argument": "Workplace productivity and safety could decline with increased marijuana use."},
+      {"argument": "The long-term health effects of marijuana use are still not fully understood."},
+      {"argument": "More access to marijuana may increase youth usage despite regulations."},
+      {"argument": "The marijuana industry could become dominated by large corporations, reducing small business opportunities."},
+      {"argument": "State-by-state legalization allows for better control than a nationwide policy."},
+      {"argument": "Federal legalization may conflict with international drug control agreements."}
+    ]
+  }
+}

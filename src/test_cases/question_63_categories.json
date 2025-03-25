@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 63,
+    "argument_categories": [
+      {"argument_category": "Competition"},
+      {"argument_category": "Innovation"},
+      {"argument_category": "Consumer Choice"},
+      {"argument_category": "Regulation"},
+      {"argument_category": "Market Power"},
+      {"argument_category": "Economic Impact"},
+      {"argument_category": "Privacy & Data"},
+      {"argument_category": "Global Competitiveness"},
+      {"argument_category": "Government Intervention"},
+      {"argument_category": "Tech Ecosystem"}
+    ]
+  }
+}

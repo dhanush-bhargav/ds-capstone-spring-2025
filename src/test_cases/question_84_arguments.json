@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 84,
+    "arguments": [
+      {"argument": "Outlawing sanctuary cities ensures consistent enforcement of federal immigration laws."},
+      {"argument": "Sanctuary cities undermine the authority of federal immigration agencies and encourage illegal immigration."},
+      {"argument": "It prevents local governments from obstructing federal immigration enforcement and undermines the rule of law."},
+      {"argument": "Outlawing sanctuary cities would reduce the burden on federal resources and ensure all jurisdictions comply with immigration laws."},
+      {"argument": "It helps protect national security by ensuring that immigration enforcement is not hindered by local policies."},
+      {"argument": "Outlawing sanctuary cities would send a strong message about the U.S. commitment to upholding immigration laws."},
+      {"argument": "It would prevent local governments from adopting policies that may lead to increased crime and strain public services."},
+      {"argument": "Outlawing sanctuary cities ensures that undocumented individuals are not shielded from deportation after committing crimes."},
+      {"argument": "It would promote uniformity in immigration enforcement and avoid confusion or discrepancies between local and federal policies."},
+      {"argument": "Sanctuary cities can foster distrust between local law enforcement and federal authorities, making cooperation more difficult."},
+
+      {"argument": "Sanctuary cities protect vulnerable communities by encouraging immigrants to report crimes without fear of deportation."},
+      {"argument": "Outlawing sanctuary cities could lead to racial profiling and discrimination against immigrants, even those who are legal residents."},
+      {"argument": "Sanctuary cities allow local governments to prioritize public safety by focusing on crime prevention, not immigration enforcement."},
+      {"argument": "Local governments should have the autonomy to make decisions that best serve their communities, especially regarding immigration."},
+      {"argument": "Sanctuary cities improve community policing by building trust between immigrant populations and local law enforcement."},
+      {"argument": "Outlawing sanctuary cities would waste resources by forcing local law enforcement to enforce federal immigration policies."},
+      {"argument": "Sanctuary cities are essential for protecting families and keeping communities intact, rather than tearing them apart."},
+      {"argument": "Outlawing sanctuary cities would harm local economies by driving away immigrants who contribute to the workforce."},
+      {"argument": "Sanctuary cities respect human rights by offering asylum and protection to those fleeing dangerous situations."},
+      {"argument": "It would lead to a breakdown in relations between federal, state, and local governments, creating unnecessary tension."}
+    ]
+  }
+}

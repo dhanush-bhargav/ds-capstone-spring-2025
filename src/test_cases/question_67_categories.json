@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 67,
+    "argument_categories": [
+      {"argument_category": "Privacy & Security"},
+      {"argument_category": "Government & Law Enforcement"},
+      {"argument_category": "Cybercrime & Crime Prevention"},
+      {"argument_category": "Consumer Impact"},
+      {"argument_category": "Technical Challenges"},
+      {"argument_category": "Economic Impact"},
+      {"argument_category": "National Security"},
+      {"argument_category": "Regulation & Oversight"},
+      {"argument_category": "Access & Inequality"},
+      {"argument_category": "Public Safety"}
+    ]
+  }
+}

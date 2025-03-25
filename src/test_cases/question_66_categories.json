@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 66,
+    "argument_categories": [
+      {"argument_category": "Access & Equity"},
+      {"argument_category": "Affordability"},
+      {"argument_category": "Infrastructure"},
+      {"argument_category": "Competition"},
+      {"argument_category": "Innovation"},
+      {"argument_category": "Government Control"},
+      {"argument_category": "Consumer Protection"},
+      {"argument_category": "Regulation"},
+      {"argument_category": "Economic Impact"},
+      {"argument_category": "Digital Rights"}
+    ]
+  }
+}

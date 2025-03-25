@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 79,
+    "arguments": [
+      {"argument": "Learning a second language improves cognitive skills and memory."},
+      {"argument": "Bilingualism increases career opportunities in a globalized economy."},
+      {"argument": "It enhances cultural awareness and appreciation of diversity."},
+      {"argument": "Early language learning is easier and leads to higher proficiency."},
+      {"argument": "Knowing multiple languages can improve communication skills and adaptability."},
+      {"argument": "It strengthens problem-solving and critical thinking abilities."},
+      {"argument": "Bilingual individuals have better job prospects in international business and diplomacy."},
+      {"argument": "Speaking another language can improve travel experiences and global connections."},
+      {"argument": "Learning a second language can delay cognitive decline and reduce the risk of dementia."},
+      {"argument": "Multilingualism promotes social inclusion and helps integrate diverse communities."},
+
+      {"argument": "Students should have the freedom to choose subjects based on their interests and goals."},
+      {"argument": "Mandating a second language may take time away from core subjects like math and science."},
+      {"argument": "Not all students will use a second language in their careers or daily lives."},
+      {"argument": "Language learning can be difficult and stressful for some students."},
+      {"argument": "Resources for language programs may be better spent on other educational priorities."},
+      {"argument": "Some schools may not have qualified teachers to provide effective language instruction."},
+      {"argument": "Requiring a second language may not be practical for students with learning disabilities."},
+      {"argument": "Technology and translation apps reduce the necessity of learning another language."},
+      {"argument": "Different regions have different language needs, making a universal requirement ineffective."},
+      {"argument": "Forcing students to learn a language they are not interested in can reduce motivation for learning."}
+    ]
+  }
+}

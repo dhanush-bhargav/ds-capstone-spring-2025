@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 61,
+    "argument_categories": [
+      {"argument_category": "Online Safety"},
+      {"argument_category": "Privacy"},
+      {"argument_category": "Free Speech"},
+      {"argument_category": "Cybercrime"},
+      {"argument_category": "Regulation & Oversight"},
+      {"argument_category": "Election Security"},
+      {"argument_category": "User Experience"},
+      {"argument_category": "Social Media Business"},
+      {"argument_category": "Technology & Feasibility"},
+      {"argument_category": "Anonymity & Identity"}
+    ]
+  }
+}

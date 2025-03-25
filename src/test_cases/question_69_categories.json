@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 69,
+    "argument_categories": [
+      {"argument_category": "Privacy & Control"},
+      {"argument_category": "Transparency & Trust"},
+      {"argument_category": "Data Security"},
+      {"argument_category": "Ethical Principles"},
+      {"argument_category": "Business Impact"},
+      {"argument_category": "User Engagement"},
+      {"argument_category": "Legal & Regulatory"},
+      {"argument_category": "Data Misuse & Abuse"},
+      {"argument_category": "User Experience"},
+      {"argument_category": "Consent Management"}
+    ]
+  }
+}

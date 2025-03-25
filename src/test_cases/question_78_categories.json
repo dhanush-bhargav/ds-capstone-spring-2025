@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 78,
+    "argument_categories": [
+      {"argument_category": "Health"},
+      {"argument_category": "Accuracy"},
+      {"argument_category": "Consent"},
+      {"argument_category": "Equality"},
+      {"argument_category": "Myths"},
+      {"argument_category": "Parental Rights"},
+      {"argument_category": "Religion"},
+      {"argument_category": "Curriculum"},
+      {"argument_category": "Age Appropriateness"},
+      {"argument_category": "Autonomy"}
+    ]
+  }
+}

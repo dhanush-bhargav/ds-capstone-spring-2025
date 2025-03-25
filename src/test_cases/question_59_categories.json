@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 59,
+    "argument_categories": [
+      {"argument_category": "Corporate Accountability"},
+      {"argument_category": "Public Safety"},
+      {"argument_category": "Legal Precedent"},
+      {"argument_category": "Crime Responsibility"},
+      {"argument_category": "Regulation & Laws"},
+      {"argument_category": "Economic Impact"},
+      {"argument_category": "Gun Rights"},
+      {"argument_category": "Victim Compensation"},
+      {"argument_category": "Product Liability"},
+      {"argument_category": "Policy Effectiveness"}
+    ]
+  }
+}

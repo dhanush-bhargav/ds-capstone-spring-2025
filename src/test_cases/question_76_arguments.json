@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 76,
+    "arguments": [
+      {"argument": "Standardized tests create excessive stress and anxiety for students."},
+      {"argument": "They do not accurately measure a student's intelligence or potential."},
+      {"argument": "Standardized testing narrows the curriculum, focusing too much on test preparation."},
+      {"argument": "Test scores are often influenced by socioeconomic status rather than ability."},
+      {"argument": "They can reinforce racial and economic disparities in education."},
+      {"argument": "Schools sometimes manipulate test results to meet performance benchmarks."},
+      {"argument": "Teachers are forced to 'teach to the test' rather than encouraging critical thinking."},
+      {"argument": "There are better ways to assess students, such as project-based evaluations."},
+      {"argument": "High-stakes testing can unfairly determine a student’s future opportunities."},
+      {"argument": "Eliminating standardized testing allows for a more holistic approach to education."},
+
+      {"argument": "Standardized testing provides an objective way to measure student performance."},
+      {"argument": "It helps identify achievement gaps and areas that need improvement."},
+      {"argument": "Test scores are useful for college admissions and scholarship opportunities."},
+      {"argument": "Standardized tests hold schools accountable for student learning outcomes."},
+      {"argument": "They provide measurable data to compare educational performance across schools and districts."},
+      {"argument": "Without standardized tests, alternative assessments may be subjective and inconsistent."},
+      {"argument": "Removing standardized tests could lower academic standards."},
+      {"argument": "They help identify students who need additional academic support."},
+      {"argument": "Standardized testing ensures that students meet basic proficiency levels in core subjects."},
+      {"argument": "They provide a benchmark for evaluating the effectiveness of educational policies."}
+    ]
+  }
+}
