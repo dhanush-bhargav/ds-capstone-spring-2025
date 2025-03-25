@@ -231,3 +231,13 @@ class DbManager:
             unlinked_arguments_data.append({"argument_id": argument_id, "argument": argument})
         connection.close()
         return unlinked_arguments_data
+
+
+    def add_user(self, user_data):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        result = cursor.execute(f"""INSERT INTO users (user_id, user_name, password) VALUES (?,?,?)""",
+                                user_data)
+        connection.commit()
+        return user_data
+
