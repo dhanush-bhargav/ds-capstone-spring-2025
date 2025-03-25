@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 75,
+    "arguments": [
+      {"argument": "Charter schools offer parents and students more educational choices."},
+      {"argument": "They promote competition, encouraging public schools to improve."},
+      {"argument": "Charter schools can experiment with innovative teaching methods."},
+      {"argument": "They provide alternatives for students in underperforming public schools."},
+      {"argument": "Charter schools often have specialized programs that cater to different learning needs."},
+      {"argument": "They can operate with more flexibility than traditional public schools, leading to better outcomes."},
+      {"argument": "Public funding for charter schools ensures that all families, regardless of income, can access them."},
+      {"argument": "Many charter schools outperform traditional public schools in standardized testing."},
+      {"argument": "They can be held accountable by closing underperforming charter schools."},
+      {"argument": "Charter schools can help reduce overcrowding in traditional public schools."},
+
+      {"argument": "Public funds should be used to improve traditional public schools, not diverted to charters."},
+      {"argument": "Charter schools lack the same level of oversight and accountability as public schools."},
+      {"argument": "They can cherry-pick students, leaving public schools with higher-need populations."},
+      {"argument": "Some charter schools are run by for-profit organizations, raising ethical concerns."},
+      {"argument": "Charter schools may drain resources from struggling public schools."},
+      {"argument": "Teachers in charter schools often receive lower pay and fewer benefits."},
+      {"argument": "Charter schools sometimes close unexpectedly, leaving students without stability."},
+      {"argument": "They do not always outperform public schools, despite claims of better results."},
+      {"argument": "Funding charters may increase segregation based on income or race."},
+      {"argument": "Charter schools can weaken the public education system by diverting funds and students."}
+    ]
+  }
+}

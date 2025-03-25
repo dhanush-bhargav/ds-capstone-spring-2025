@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 91,
+    "argument_categories": [
+      {"argument_category": "Constitutional Rights"},
+      {"argument_category": "Public Safety"},
+      {"argument_category": "Self-Defense"},
+      {"argument_category": "Gun Culture"},
+      {"argument_category": "Precedent and Freedom"},
+      {"argument_category": "Effectiveness"},
+      {"argument_category": "Cultural Identity"},
+      {"argument_category": "Government Overreach"},
+      {"argument_category": "Mental Health and Law Enforcement"},
+      {"argument_category": "Personal Liberty"}
+    ]
+  }
+}

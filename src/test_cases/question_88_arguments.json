@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 88,
+    "arguments": [
+      {"argument": "Providing access to public benefits helps improve the health, safety, and well-being of undocumented immigrants."},
+      {"argument": "It ensures that undocumented immigrants, who contribute to the economy, have access to basic needs like healthcare and education."},
+      {"argument": "Access to public benefits can promote social integration and help undocumented immigrants become productive members of society."},
+      {"argument": "Providing benefits prevents the spread of communicable diseases by ensuring that immigrants can receive healthcare."},
+      {"argument": "Access to public benefits can reduce the financial burden on emergency services and hospitals that provide care regardless of immigration status."},
+      {"argument": "It ensures that vulnerable populations, including children of undocumented immigrants, receive the care and support they need to thrive."},
+      {"argument": "Providing benefits allows undocumented immigrants to contribute more effectively to the economy by supporting their health and education."},
+      {"argument": "It aligns with human rights principles by providing basic support to those who are living and working in the country."},
+      {"argument": "Access to public benefits can help reduce poverty and homelessness among undocumented immigrants, improving public health and safety."},
+      {"argument": "Providing public benefits ensures that undocumented immigrants have the means to meet basic human needs, reducing inequality and societal tensions."},
+
+      {"argument": "Undocumented immigrants should not have access to public benefits as they are not legally authorized to be in the country."},
+      {"argument": "Providing public benefits to undocumented immigrants places a strain on public resources, which should be reserved for citizens and legal residents."},
+      {"argument": "Allowing undocumented immigrants to access public benefits may encourage further illegal immigration."},
+      {"argument": "It creates an incentive for people to come to the U.S. illegally in hopes of receiving benefits, which could undermine immigration laws."},
+      {"argument": "Public benefits are funded by taxpayer dollars, and it is unfair to allocate these funds to individuals who have not contributed to the system."},
+      {"argument": "Providing public benefits to undocumented immigrants could discourage legal immigration and undermine the integrity of the immigration system."},
+      {"argument": "Undocumented immigrants already use emergency services, so providing them additional public benefits may create dependency on government assistance."},
+      {"argument": "Access to public benefits should be based on legal residency status to ensure that resources are allocated appropriately to citizens and legal residents."},
+      {"argument": "Allowing undocumented immigrants to access benefits could create resentment and divisions among U.S. citizens who are not eligible for the same benefits."},
+      {"argument": "Public benefits should be reserved for those who have followed the legal immigration process and contributed to the country through taxes."}
+    ]
+  }
+}

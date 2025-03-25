@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 57,
+    "argument_categories": [
+      {"argument_category": "Judicial Discretion"},
+      {"argument_category": "Crime Deterrence"},
+      {"argument_category": "Sentencing Fairness"},
+      {"argument_category": "Prison Overcrowding"},
+      {"argument_category": "Racial Justice"},
+      {"argument_category": "Law Enforcement"},
+      {"argument_category": "Victim Rights"},
+      {"argument_category": "Public Safety"},
+      {"argument_category": "Legal Efficiency"},
+      {"argument_category": "Rehabilitation"}
+    ]
+  }
+}

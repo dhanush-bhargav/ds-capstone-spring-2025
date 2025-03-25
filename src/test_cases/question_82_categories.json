@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 82,
+    "argument_categories": [
+      {"argument_category": "Law"},
+      {"argument_category": "Economy"},
+      {"argument_category": "Social Services"},
+      {"argument_category": "Integration"},
+      {"argument_category": "Exploitation"},
+      {"argument_category": "Public Resources"},
+      {"argument_category": "Immigration Process"},
+      {"argument_category": "Unfairness"},
+      {"argument_category": "Job Competition"},
+      {"argument_category": "Government Services"}
+    ]
+  }
+}

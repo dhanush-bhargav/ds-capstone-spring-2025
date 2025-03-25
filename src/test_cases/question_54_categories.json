@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 54,
+    "argument_categories": [
+      {"argument_category": "Public Safety"},
+      {"argument_category": "Crime Prevention"},
+      {"argument_category": "Community Investment"},
+      {"argument_category": "Police Accountability"},
+      {"argument_category": "Social Services"},
+      {"argument_category": "Law Enforcement Training"},
+      {"argument_category": "Racial & Social Equity"},
+      {"argument_category": "Budget & Funding"},
+      {"argument_category": "Alternative Policing Models"},
+      {"argument_category": "Government Policy & Reform"}
+    ]
+  }
+}

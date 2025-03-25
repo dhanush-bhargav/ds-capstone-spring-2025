@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 80,
+    "arguments": [
+      {"argument": "School uniforms promote equality by reducing visible socio-economic differences."},
+      {"argument": "Uniforms reduce peer pressure and bullying related to clothing choices."},
+      {"argument": "They help create a sense of unity and school pride among students."},
+      {"argument": "Uniforms can reduce distractions, allowing students to focus more on their studies."},
+      {"argument": "They simplify the morning routine and reduce decision fatigue for students and parents."},
+      {"argument": "Uniforms contribute to a more professional and disciplined learning environment."},
+      {"argument": "They make it easier to identify outsiders or intruders on school grounds."},
+      {"argument": "School uniforms are often more affordable than buying multiple fashion outfits."},
+      {"argument": "Uniforms can improve students' sense of belonging and emotional well-being."},
+      {"argument": "They can enhance students' focus on education rather than appearance."},
+
+      {"argument": "Requiring uniforms restricts students' freedom of expression and individuality."},
+      {"argument": "Uniforms do not address the root causes of bullying or social inequality."},
+      {"argument": "The cost of uniforms can be a financial burden for some families."},
+      {"argument": "Uniform policies can create unnecessary conflicts between students, parents, and school administrators."},
+      {"argument": "Uniforms do not necessarily improve academic performance or behavior."},
+      {"argument": "The time and resources spent on enforcing uniform policies could be better spent on educational improvements."},
+      {"argument": "Students may still find other ways to express themselves, leading to new forms of peer pressure."},
+      {"argument": "Uniforms can be uncomfortable, leading to complaints and distractions."},
+      {"argument": "School uniforms may not be suitable for all body types, leading to potential discomfort or body shaming."},
+      {"argument": "Uniform policies can be seen as authoritarian and may negatively affect the school environment."}
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 87,
+    "argument_categories": [
+      {"argument_category": "National Unity"},
+      {"argument_category": "Government Efficiency"},
+      {"argument_category": "Integration"},
+      {"argument_category": "Cultural Identity"},
+      {"argument_category": "Cost"},
+      {"argument_category": "Social Inclusion"},
+      {"argument_category": "Economic Contribution"},
+      {"argument_category": "Discrimination"},
+      {"argument_category": "Cultural Diversity"},
+      {"argument_category": "Access to Services"}
+    ]
+  }
+}

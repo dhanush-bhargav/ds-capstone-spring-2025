@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 75,
+    "argument_categories": [
+      {"argument_category": "Choice"},
+      {"argument_category": "Competition"},
+      {"argument_category": "Innovation"},
+      {"argument_category": "Equity"},
+      {"argument_category": "Funding"},
+      {"argument_category": "Accountability"},
+      {"argument_category": "Performance"},
+      {"argument_category": "Resources"},
+      {"argument_category": "Oversight"},
+      {"argument_category": "Segregation"}
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 100,
+    "arguments": [
+      {"argument": "A four-day workweek would improve work-life balance, giving employees more time for rest and personal activities."},
+      {"argument": "Studies have shown that a shorter workweek can lead to increased productivity and employee satisfaction."},
+      {"argument": "Reducing work hours could lead to a decrease in stress and burnout among employees, contributing to better mental health."},
+      {"argument": "A four-day workweek could help companies attract top talent by offering a more desirable work environment."},
+      {"argument": "A shorter workweek could reduce commuting time and costs, benefiting both employees and the environment."},
+      {"argument": "Implementing a four-day workweek would help employees spend more time with family and friends, improving overall well-being."},
+      {"argument": "A shorter workweek can contribute to better employee retention rates, as workers are more likely to stay with employers offering flexible work schedules."},
+      {"argument": "A four-day workweek has been shown to reduce absenteeism, as employees are healthier and more motivated."},
+      {"argument": "A shorter workweek could decrease traffic congestion and reduce carbon emissions, benefiting the environment."},
+      {"argument": "A four-day workweek could help reduce operational costs for companies, as they could lower utility and overhead expenses."},
+
+      {"argument": "A four-day workweek could lead to longer workdays, increasing stress and potentially reducing overall productivity."},
+      {"argument": "Some industries, like healthcare and retail, require continuous operations, making a four-day workweek difficult to implement."},
+      {"argument": "A shorter workweek could lead to a decrease in customer service quality and delay in delivering products or services."},
+      {"argument": "Not all employees have the option to work longer hours to compensate for a shorter workweek, leading to wage reductions."},
+      {"argument": "Some businesses may not be able to afford the costs associated with transitioning to a four-day workweek."},
+      {"argument": "A shorter workweek could limit the ability of businesses to meet tight deadlines or handle increased workloads."},
+      {"argument": "A four-day workweek may lead to challenges in maintaining collaboration and communication between teams, especially in remote settings."},
+      {"argument": "A four-day workweek may be unsuitable for workers who rely on overtime pay to meet financial needs."},
+      {"argument": "A shorter workweek could disrupt industries that rely on constant availability, such as emergency services and transportation."},
+      {"argument": "The benefits of a four-day workweek may not be evenly distributed, with some sectors or positions not reaping the same rewards."}
+    ]
+  }
+}

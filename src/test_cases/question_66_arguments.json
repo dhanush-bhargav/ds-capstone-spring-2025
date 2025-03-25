@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 66,
+    "arguments": [
+      {"argument": "Internet access is essential for modern life, just like water and electricity."},
+      {"argument": "Making it a public utility would ensure affordable access for all, reducing the digital divide."},
+      {"argument": "Reliable internet is necessary for education, healthcare, and job opportunities."},
+      {"argument": "Corporations currently control internet pricing and availability, leading to monopolies."},
+      {"argument": "Public oversight would prevent service providers from imposing unfair pricing or data caps."},
+      {"argument": "The internet is a fundamental tool for democracy, enabling political engagement and free speech."},
+      {"argument": "Government-regulated broadband could expand infrastructure to rural and underserved areas."},
+      {"argument": "A public utility model would prevent private companies from throttling speeds or prioritizing content."},
+      {"argument": "Other countries have successfully treated the internet as a public good with positive results."},
+      {"argument": "Public internet services could drive innovation by encouraging competition with private providers."},
+
+      {"argument": "Government control of the internet could lead to inefficiencies and bureaucracy."},
+      {"argument": "Privately owned ISPs have more incentives to invest in technological advancements."},
+      {"argument": "Classifying the internet as a utility could stifle competition and innovation."},
+      {"argument": "Public broadband projects have failed in some areas due to poor management and high costs."},
+      {"argument": "Internet access, unlike water or electricity, is not a life-sustaining necessity."},
+      {"argument": "A government-run internet could lead to concerns over surveillance and censorship."},
+      {"argument": "The private sector is already expanding broadband access without government intervention."},
+      {"argument": "There are better solutions, such as subsidies or incentives, to improve access rather than making it a utility."},
+      {"argument": "Regulating the internet as a utility could lead to increased taxes and higher costs for consumers."},
+      {"argument": "A utility model could discourage competition, leading to lower service quality over time."}
+    ]
+  }
+}

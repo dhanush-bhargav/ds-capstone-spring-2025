@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 81,
+    "argument_categories": [
+      {"argument_category": "Security"},
+      {"argument_category": "Effectiveness"},
+      {"argument_category": "Cost"},
+      {"argument_category": "Environmental Impact"},
+      {"argument_category": "Diplomacy"},
+      {"argument_category": "Immigration Reform"},
+      {"argument_category": "Human Rights"},
+      {"argument_category": "Symbolism"},
+      {"argument_category": "Long-term Impact"},
+      {"argument_category": "Public Safety"}
+    ]
+  }
+}

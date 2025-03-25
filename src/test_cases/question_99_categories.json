@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 99,
+    "argument_categories": [
+      {"argument_category": "Justice"},
+      {"argument_category": "Moral Responsibility"},
+      {"argument_category": "Financial Impact"},
+      {"argument_category": "Historical Accountability"},
+      {"argument_category": "Compensation"},
+      {"argument_category": "Legacy"},
+      {"argument_category": "Fairness"},
+      {"argument_category": "Division"},
+      {"argument_category": "Government Responsibility"},
+      {"argument_category": "Emotional Healing"}
+    ]
+  }
+}

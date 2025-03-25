@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 68,
+    "argument_categories": [
+      {"argument_category": "Privacy & Autonomy"},
+      {"argument_category": "Productivity & Performance"},
+      {"argument_category": "Security & Compliance"},
+      {"argument_category": "Employee Morale"},
+      {"argument_category": "Cost & Resources"},
+      {"argument_category": "Trust & Engagement"},
+      {"argument_category": "Workplace Culture"},
+      {"argument_category": "Legal & Ethical Issues"},
+      {"argument_category": "Management & Optimization"},
+      {"argument_category": "Work-Life Balance"}
+    ]
+  }
+}

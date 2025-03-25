@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 94,
+    "argument_categories": [
+      {"argument_category": "Health"},
+      {"argument_category": "Responsibility"},
+      {"argument_category": "Safety"},
+      {"argument_category": "Development"},
+      {"argument_category": "Risk"},
+      {"argument_category": "Social Impact"},
+      {"argument_category": "Regulation"},
+      {"argument_category": "Maturity"},
+      {"argument_category": "Addiction"},
+      {"argument_category": "Public Policy"}
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "request_body": {
+    "topic_id": 72,
+    "argument_categories": [
+      {"argument_category": "Access"},
+      {"argument_category": "Economy"},
+      {"argument_category": "Debt"},
+      {"argument_category": "Social Mobility"},
+      {"argument_category": "Enrollment"},
+      {"argument_category": "Public Good"},
+      {"argument_category": "Tax Burden"},
+      {"argument_category": "Quality"},
+      {"argument_category": "Fairness"},
+      {"argument_category": "Resources"}
+    ]
+  }
+}
