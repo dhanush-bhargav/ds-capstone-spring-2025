@@ -137,7 +137,7 @@ class DbManager:
     def create_argument(self, argument_data):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        cursor.executemany("INSERT INTO master_arguments (topic_id, yes_or_no, argument) VALUES (?, ?, ?)",
+        cursor.executemany("INSERT INTO master_arguments (topic_id, argument) VALUES (?, ?)",
                                         argument_data)
         connection.commit()
         rowcount = cursor.rowcount
@@ -188,12 +188,11 @@ class DbManager:
         arguments_data = []
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        result = cursor.execute(f"SELECT argument_id, yes_or_no, argument FROM master_arguments WHERE topic_id = {topic_id}")
+        result = cursor.execute(f"SELECT argument_id, argument FROM master_arguments WHERE topic_id = {topic_id}")
         for row in result:
-            argument_id, yes_or_no, argument = row
+            argument_id, argument = row
             arguments_data.append({
                 "argument_id": argument_id,
-                "yes_or_no": yes_or_no,
                 "argument": argument
             })
         connection.close()
@@ -223,12 +222,12 @@ class DbManager:
         unlinked_arguments_data = []
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        result = cursor.execute(f"""SELECT ma.argument_id, ma.yes_or_no, ma.argument
+        result = cursor.execute(f"""SELECT ma.argument_id, ma.argument
                                         FROM master_arguments ma
                                         WHERE ma.topic_id = {topic_id} AND
                                         ma.argument_id NOT IN (SELECT argument_id FROM link_argument_categories)""")
         for row in result:
-            argument_id, yes_or_no, argument = row
-            unlinked_arguments_data.append({"argument_id": argument_id, "yes_or_no": yes_or_no, "argument": argument})
+            argument_id, argument = row
+            unlinked_arguments_data.append({"argument_id": argument_id, "argument": argument})
         connection.close()
         return unlinked_arguments_data
