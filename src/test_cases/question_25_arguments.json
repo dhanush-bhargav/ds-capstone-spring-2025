@@ -1,0 +1,29 @@
+{
+    "request_body": {
+      "topic_id": 3,
+      "arguments": [
+        {"argument": "People have the right to end their suffering with dignity."},
+        {"argument": "It gives terminally ill patients control over their own death."},
+        {"argument": "Assisted suicide can reduce unnecessary prolonged suffering."},
+        {"argument": "It respects individual autonomy and freedom of choice."},
+        {"argument": "Legalization allows for safe, regulated procedures."},
+        {"argument": "It reduces emotional and financial strain on families."},
+        {"argument": "Palliative care may not always be sufficient."},
+        {"argument": "Safeguards can prevent misuse and protect vulnerable individuals."},
+        {"argument": "Many people support the right to die in terminal conditions."},
+        {"argument": "It aligns with compassionate end-of-life care."},
+  
+        {"argument": "Legalizing assisted suicide may pressure vulnerable patients."},
+        {"argument": "It can be seen as morally wrong or contrary to religious values."},
+        {"argument": "There’s potential for misuse or misdiagnosis."},
+        {"argument": "Patients may choose death due to lack of support, not pain."},
+        {"argument": "It risks normalizing suicide as a solution to suffering."},
+        {"argument": "Legal safeguards are difficult to enforce perfectly."},
+        {"argument": "It could undermine medical ethics and trust in doctors."},
+        {"argument": "There are better alternatives through hospice and palliative care."},
+        {"argument": "Not all suffering is physical; mental health issues complicate decisions."},
+        {"argument": "It could devalue the lives of disabled or chronically ill individuals."}
+      ]
+    }
+  }
+  

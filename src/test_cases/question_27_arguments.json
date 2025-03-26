@@ -1,0 +1,29 @@
+{
+    "request_body": {
+      "topic_id": 3,
+      "arguments": [
+        {"argument": "Harm reduction saves lives by preventing overdoses and disease transmission."},
+        {"argument": "These programs connect users to healthcare and addiction treatment."},
+        {"argument": "Government funding ensures access for underserved communities."},
+        {"argument": "It’s a cost-effective way to reduce long-term healthcare costs."},
+        {"argument": "Programs like needle exchanges reduce HIV and Hepatitis C rates."},
+        {"argument": "Harm reduction treats addiction as a public health issue, not a crime."},
+        {"argument": "It improves public safety by reducing drug use in public spaces."},
+        {"argument": "Funding helps destigmatize addiction and encourage recovery."},
+        {"argument": "Evidence shows harm reduction reduces the burden on emergency services."},
+        {"argument": "It creates safer environments for both users and the community."},
+  
+        {"argument": "Government funds should prioritize prevention and recovery, not drug use."},
+        {"argument": "Harm reduction may enable continued drug use."},
+        {"argument": "Taxpayer money shouldn't support controversial or misunderstood programs."},
+        {"argument": "It may send the wrong message that drug use is acceptable."},
+        {"argument": "Some communities may oppose such programs in their neighborhoods."},
+        {"argument": "Focus should be on rehabilitation, not maintenance of habits."},
+        {"argument": "Public resources are limited and should be spent more broadly."},
+        {"argument": "Effectiveness varies by region and may not justify national funding."},
+        {"argument": "Moral objections make harm reduction a divisive use of public funds."},
+        {"argument": "The government should enforce laws, not support illegal behavior."}
+      ]
+    }
+  }
+  
