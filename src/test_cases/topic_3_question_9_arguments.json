@@ -1,0 +1,29 @@
+{
+    "request_body": {
+      "topic_id": 3,
+      "arguments": [
+        {"argument": "An opt-out system increases available organs and saves lives."},
+        {"argument": "Most people support donation but forget to register."},
+        {"argument": "It respects autonomy by allowing people to opt out."},
+        {"argument": "Countries with opt-out policies have higher donation rates."},
+        {"argument": "It reduces waitlist times for critical transplants."},
+        {"argument": "The system can include clear education and consent processes."},
+        {"argument": "Presumed consent aligns with societal benefit and altruism."},
+        {"argument": "It ensures that more people’s wishes are honored after death."},
+        {"argument": "Organ scarcity is a public health issue that needs urgent solutions."},
+        {"argument": "It reflects a default position of helping others in need."},
+  
+        {"argument": "Presumed consent may violate individual and religious beliefs."},
+        {"argument": "Some may not be aware they are automatically enrolled."},
+        {"argument": "Families may object even if the law permits donation."},
+        {"argument": "It risks eroding public trust in the healthcare system."},
+        {"argument": "People should consciously choose to be organ donors."},
+        {"argument": "An opt-in model better respects bodily autonomy."},
+        {"argument": "Government should not assume control over personal decisions."},
+        {"argument": "There may be logistical and ethical issues in implementation."},
+        {"argument": "Opt-out systems could be seen as coercive by some groups."},
+        {"argument": "Education and outreach may be more effective than default enrollment."}
+      ]
+    }
+  }
+  

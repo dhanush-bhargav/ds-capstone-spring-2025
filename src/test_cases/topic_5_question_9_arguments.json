@@ -1,0 +1,28 @@
+{
+  "request_body": {
+    "topic_id": 5,
+    "arguments": [
+      {"argument": "Eliminating tipping ensures stable wages for workers."},
+      {"argument": "Tipping creates wage insecurity and relies on customer moods."},
+      {"argument": "It often leads to wage disparities and discrimination."},
+      {"argument": "Service staff shouldn’t depend on tips for basic income."},
+      {"argument": "Eliminating tipping encourages fair pay across the board."},
+      {"argument": "It simplifies billing and customer expectations."},
+      {"argument": "Workers would no longer tolerate harassment for tips."},
+      {"argument": "Many other countries thrive without tipping systems."},
+      {"argument": "Tipping creates confusion for tourists and newcomers."},
+      {"argument": "Ending tipping shifts responsibility from customers to employers."},
+
+      {"argument": "Tipping allows workers to earn more based on performance."},
+      {"argument": "Some servers prefer tips to flat wages."},
+      {"argument": "It keeps menu prices lower for customers."},
+      {"argument": "Tipping rewards exceptional service and motivates staff."},
+      {"argument": "Eliminating it may reduce take-home pay in busy establishments."},
+      {"argument": "Tipping gives customers direct feedback power."},
+      {"argument": "Adjusting to new wage models may hurt small restaurants."},
+      {"argument": "It risks homogenizing customer experience and service quality."},
+      {"argument": "Tipping is ingrained in American culture."},
+      {"argument": "Customers may resent mandatory service charges instead."}
+    ]
+  }
+}
