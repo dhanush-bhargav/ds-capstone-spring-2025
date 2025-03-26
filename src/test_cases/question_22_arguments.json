@@ -1,0 +1,29 @@
+{
+    "request_body": {
+      "topic_id": 3,
+      "arguments": [
+        {"argument": "Making birth control OTC increases accessibility for everyone."},
+        {"argument": "It empowers people to manage their reproductive health independently."},
+        {"argument": "Over-the-counter options reduce healthcare costs and barriers."},
+        {"argument": "It’s safe—birth control has been used for decades with few side effects."},
+        {"argument": "Removing the prescription requirement helps those without insurance."},
+        {"argument": "It reduces unintended pregnancies and related healthcare burdens."},
+        {"argument": "Women in rural or underserved areas gain easier access."},
+        {"argument": "It aligns with how other countries safely distribute birth control."},
+        {"argument": "Pharmacists can still guide consumers on usage and side effects."},
+        {"argument": "Convenience boosts consistency and adherence."},
+        
+        {"argument": "OTC birth control may lead to misuse without medical guidance."},
+        {"argument": "It could discourage regular doctor visits and screenings."},
+        {"argument": "Not all contraceptives are suitable for every person without evaluation."},
+        {"argument": "Insurance might stop covering birth control if it's sold OTC."},
+        {"argument": "It may be less effective if used improperly without consultation."},
+        {"argument": "Teens may access it without parental knowledge or education."},
+        {"argument": "It removes an opportunity for doctors to discuss long-term options."},
+        {"argument": "Potential side effects and risks might go unnoticed without supervision."},
+        {"argument": "It may normalize birth control use without addressing root issues."},
+        {"argument": "Lack of regulation in some states may lead to inconsistent access anyway."}
+      ]
+    }
+  }
+  

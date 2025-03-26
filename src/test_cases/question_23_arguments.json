@@ -1,0 +1,29 @@
+{
+    "request_body": {
+      "topic_id": 3,
+      "arguments": [
+        {"argument": "Minors are too young to make irreversible medical decisions."},
+        {"argument": "Gender-affirming treatments can have long-term physical effects."},
+        {"argument": "There may be pressure from peers or social media."},
+        {"argument": "Some minors may later regret their transition."},
+        {"argument": "Parents might feel pressured to consent prematurely."},
+        {"argument": "Medical ethics demand caution when treating developing bodies."},
+        {"argument": "Society should protect children from permanent changes until adulthood."},
+        {"argument": "There is not enough long-term research on impacts for youth."},
+        {"argument": "Banning prevents potential medical malpractice or misdiagnosis."},
+        {"argument": "Gender identity can continue evolving during adolescence."},
+  
+        {"argument": "Bans deny medically recommended care for transgender youth."},
+        {"argument": "Gender-affirming care reduces depression and suicide risk."},
+        {"argument": "Parents and doctors should make decisions, not lawmakers."},
+        {"argument": "Delaying treatment can increase psychological distress."},
+        {"argument": "Treatments are usually reversible in early stages like puberty blockers."},
+        {"argument": "Affirming care helps minors live authentically and confidently."},
+        {"argument": "Medical organizations support gender-affirming care for youth."},
+        {"argument": "Bans violate personal and family rights to make healthcare choices."},
+        {"argument": "Supportive care builds trust between families and healthcare systems."},
+        {"argument": "Access to care protects vulnerable communities from harm."}
+      ]
+    }
+  }
+  

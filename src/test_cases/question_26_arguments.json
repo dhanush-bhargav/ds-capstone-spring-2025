@@ -1,0 +1,29 @@
+{
+    "request_body": {
+      "topic_id": 3,
+      "arguments": [
+        {"argument": "Mandates protect public health and reduce virus transmission."},
+        {"argument": "Public workers serve communities and must ensure safety."},
+        {"argument": "Vaccines reduce severe illness and hospitalization rates."},
+        {"argument": "Mandates can help prevent future outbreaks."},
+        {"argument": "They ensure continuity of essential public services."},
+        {"argument": "Vaccination protects vulnerable populations like the elderly."},
+        {"argument": "It’s a reasonable requirement for high-risk environments."},
+        {"argument": "Widespread vaccination helps end the pandemic faster."},
+        {"argument": "Similar mandates exist for other vaccines in public roles."},
+        {"argument": "It boosts public confidence in institutions and health policies."},
+  
+        {"argument": "Mandates infringe on personal freedom and bodily autonomy."},
+        {"argument": "People should not lose jobs over private health decisions."},
+        {"argument": "Vaccine side effects, though rare, should be considered individually."},
+        {"argument": "Natural immunity from prior infection is often overlooked."},
+        {"argument": "Public trust declines when mandates feel coercive."},
+        {"argument": "One-size-fits-all policies ignore individual health needs."},
+        {"argument": "Mandates risk creating staffing shortages in critical sectors."},
+        {"argument": "The virus keeps evolving, making long-term mandates questionable."},
+        {"argument": "Education is more effective than force in boosting vaccination rates."},
+        {"argument": "Workers deserve medical privacy and informed consent."}
+      ]
+    }
+  }
+  

@@ -1,0 +1,29 @@
+{
+    "request_body": {
+      "topic_id": 3,
+      "arguments": [
+        {"argument": "Abortion is a fundamental reproductive right and should be protected at the federal level."},
+        {"argument": "Federal legalization ensures equal access across all states, regardless of local laws."},
+        {"argument": "Criminalizing abortion endangers women's health and lives."},
+        {"argument": "Banning abortion disproportionately affects low-income and marginalized communities."},
+        {"argument": "Federal protection provides legal clarity and consistency nationwide."},
+        {"argument": "Women should have autonomy over their own bodies."},
+        {"argument": "Legal abortions are safer than forcing people to seek unsafe alternatives."},
+        {"argument": "It reduces the stigma surrounding abortion and reproductive healthcare."},
+        {"argument": "Bans on abortion violate the separation of church and state."},
+        {"argument": "Public opinion increasingly supports the right to choose."},
+        
+        {"argument": "Abortion is morally wrong and should not be legalized federally."},
+        {"argument": "It undermines the value of human life and potential personhood."},
+        {"argument": "Federal legalization removes state rights to determine their own laws."},
+        {"argument": "There are alternatives such as adoption that don’t involve ending a pregnancy."},
+        {"argument": "Taxpayer money should not support a procedure many citizens morally oppose."},
+        {"argument": "It can be psychologically damaging for women."},
+        {"argument": "The Constitution does not explicitly guarantee the right to abortion."},
+        {"argument": "Legalizing abortion could reduce incentives for responsible sexual behavior."},
+        {"argument": "Religious beliefs should be respected in shaping public policy."},
+        {"argument": "Medical advances make early fetal viability increasingly possible."}
+      ]
+    }
+  }
+  

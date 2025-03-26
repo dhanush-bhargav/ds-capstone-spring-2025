@@ -1,0 +1,29 @@
+{
+    "request_body": {
+      "topic_id": 4,
+      "arguments": [
+        {"argument": "Subsidies make EVs more affordable for average consumers."},
+        {"argument": "They accelerate the transition to cleaner transportation."},
+        {"argument": "Electric vehicles help reduce air pollution and emissions."},
+        {"argument": "Subsidies support growth in the domestic EV industry."},
+        {"argument": "They create green jobs in manufacturing and tech."},
+        {"argument": "Incentives drive innovation in battery and charging tech."},
+        {"argument": "They help the U.S. compete with global EV leaders."},
+        {"argument": "Public investment reduces long-term healthcare costs from pollution."},
+        {"argument": "Subsidies encourage infrastructure development for EVs."},
+        {"argument": "They level the playing field against fossil fuel industry subsidies."},
+  
+        {"argument": "Subsidies distort market competition and consumer choice."},
+        {"argument": "Most benefits go to wealthier consumers who can afford EVs."},
+        {"argument": "Government funds should support broader public transportation."},
+        {"argument": "The EV industry should stand on its own without aid."},
+        {"argument": "Battery production has its own environmental concerns."},
+        {"argument": "Not all regions have the infrastructure to support EVs yet."},
+        {"argument": "Subsidy programs can be inefficient and poorly targeted."},
+        {"argument": "They may encourage overproduction before the grid is ready."},
+        {"argument": "It's unfair to force all taxpayers to fund private vehicle purchases."},
+        {"argument": "Used EV markets are not yet mature, limiting long-term value."}
+      ]
+    }
+  }
+  
