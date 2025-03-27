@@ -1,4 +1,5 @@
 from crewai import Task
+from .paraphrasing_agent_tool import argument_paraphrasing_guardrail
 
 
 class ParaphrasingTask(Task):
@@ -7,5 +8,6 @@ class ParaphrasingTask(Task):
             description=f"Paraphrase the arguments provided by the user for the topic: '{topic_name}' with topic_id: {topic_id} "
                         f"after they have been validated by the Argument Validation Agent and add them to the database.",
             expected_output="List of argument IDs.",
-            agent=agent
+            agent=agent,
+            guardrail=argument_paraphrasing_guardrail
         )

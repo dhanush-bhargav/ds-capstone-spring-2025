@@ -1,7 +1,7 @@
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 import json
-from typing import Type
+from typing import Type, Tuple, Any
 from db_manager import DbManager
 
 
@@ -26,3 +26,15 @@ class ArgumentWritingTool(BaseTool):
             write_data.append((topic_id, item["argument"]))
         result = db_manager.create_argument(write_data)
         return json.dumps(result)
+    
+
+def argument_paraphrasing_guardrail(result: str) -> Tuple[bool, Any]:
+    """Validate the output of argument paraphrasing agent to fit requirement"""
+    try:
+        result_dict = json.loads(result.raw)
+        if type(result_dict) is list :
+            return (True, result_dict)
+        else:
+            return (False, result_dict)
+    except Exception as e:
+        return (False, str(e))
