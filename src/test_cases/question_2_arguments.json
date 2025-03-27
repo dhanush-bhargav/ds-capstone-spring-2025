@@ -1,67 +1,28 @@
 {
     "request_body": {
-        "topic_id": "2",
+        "topic_id": 2,
         "arguments": [
-            {
-                "argument": "Term limits prevent career politicians from accumulating excessive power."
-            },
-            {
-                "argument": "They encourage fresh ideas and new perspectives in Congress."
-            },
-            {
-                "argument": "Term limits reduce the influence of lobbyists over long-term incumbents."
-            },
-            {
-                "argument": "They help eliminate political stagnation and corruption."
-            },
-            {
-                "argument": "Voter choice is often limited due to the advantage of incumbency."
-            },
-            {
-                "argument": "They can reduce partisan gridlock by ensuring turnover."
-            },
-            {
-                "argument": "Long-serving members may lose touch with their constituents."
-            },
-            {
-                "argument": "Congress should reflect the evolving views of society."
-            },
-            {
-                "argument": "Term limits can prevent dynastic politics in legislative bodies."
-            },
-            {
-                "argument": "Other branches have term limits, so Congress should too."
-            },
-            {
-                "argument": "Elections already serve as a natural term limit."
-            },
-            {
-                "argument": "Experienced lawmakers bring valuable knowledge and expertise."
-            },
-            {
-                "argument": "Term limits could empower unelected bureaucrats and lobbyists."
-            },
-            {
-                "argument": "Voters should decide how long a representative serves."
-            },
-            {
-                "argument": "Frequent turnover could lead to legislative inefficiency."
-            },
-            {
-                "argument": "New members would take time to learn legislative processes."
-            },
-            {
-                "argument": "Strong legislators may be forced out despite public support."
-            },
-            {
-                "argument": "Term limits could weaken Congress\u2019s ability to challenge the executive branch."
-            },
-            {
-                "argument": "Leadership positions in Congress require long-term experience."
-            },
-            {
-                "argument": "The real issue is campaign finance reform, not term limits."
-            }
+            {"argument": "Gerrymandering undermines democracy by allowing politicians to choose their voters rather than the other way around."},
+            {"argument": "It leads to uncompetitive elections, reducing voter choice and discouraging political participation."},
+            {"argument": "Banning gerrymandering would ensure fair representation and make elections more reflective of public opinion."},
+            {"argument": "Partisan redistricting allows politicians to stay in power despite losing popular support."},
+            {"argument": "It disproportionately impacts minority communities by diluting their voting power."},
+            {"argument": "Independent redistricting commissions have been shown to create fairer maps than partisan legislatures."},
+            {"argument": "Outlawing gerrymandering would help restore trust in the electoral process and government institutions."},
+            {"argument": "It would force politicians to be more accountable to a diverse electorate rather than catering to extremes."},
+            {"argument": "Gerrymandering distorts policy outcomes by giving undue influence to one party over another."},
+            {"argument": "Eliminating gerrymandering could lead to greater bipartisanship and less political polarization."},
+
+            {"argument": "Redistricting is inherently political, and banning gerrymandering could lead to legal battles over what constitutes a 'fair' map."},
+            {"argument": "State governments should have control over their own redistricting processes rather than federal intervention."},
+            {"argument": "Some argue that gerrymandering is a longstanding political practice used by both major parties."},
+            {"argument": "Outlawing gerrymandering could reduce minority representation in some cases by eliminating majority-minority districts."},
+            {"argument": "There is no clear, universally agreed-upon method for drawing 'perfectly fair' districts."},
+            {"argument": "Independent commissions may still have biases and could be influenced by special interests."},
+            {"argument": "Banning gerrymandering could shift power away from elected officials and towards unelected bureaucrats."},
+            {"argument": "Reforming gerrymandering may not address deeper issues of voter suppression and election integrity."},
+            {"argument": "Gerrymandering helps create ideological consistency within districts, allowing for clearer representation."},
+            {"argument": "A national ban on gerrymandering could violate states' rights and lead to unintended consequences in redistricting."}
         ]
     }
 }

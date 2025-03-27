@@ -1,66 +1,66 @@
 {
     "request_body": {
-        "topic_id": "7",
+        "topic_id": "6",
         "arguments": [
             {
-                "argument": "Political ads spread misinformation and manipulate public opinion."
+                "argument": "Lifetime appointments give justices too much unchecked power."
             },
             {
-                "argument": "Social media platforms lack transparency in political ad funding."
+                "argument": "Term limits would prevent any single justice from serving for decades."
             },
             {
-                "argument": "Foreign entities can exploit online ads to influence elections."
+                "argument": "They would ensure a more dynamic and modern judiciary."
             },
             {
-                "argument": "Banning political ads would reduce polarization and echo chambers."
+                "argument": "Regular turnover would make the court more representative of society."
             },
             {
-                "argument": "Political ads often use microtargeting to manipulate voters."
+                "argument": "It would reduce the politicization of Supreme Court appointments."
             },
             {
-                "argument": "Social media companies fail to effectively fact-check political ads."
+                "argument": "Justices serving too long may become out of touch with modern legal issues."
             },
             {
-                "argument": "It would level the playing field for candidates with fewer resources."
+                "argument": "Mandatory retirement ages exist in many other judicial systems."
             },
             {
-                "argument": "The spread of fake news is worsened by unregulated political ads."
+                "argument": "Term limits could prevent strategic retirements for political advantage."
             },
             {
-                "argument": "Users should not be bombarded with biased political propaganda."
+                "argument": "Presidents should not be able to shape the court\u2019s future for decades."
             },
             {
-                "argument": "Social media should prioritize unbiased information over paid influence."
+                "argument": "A structured system would ensure a predictable and fair appointment process."
             },
             {
-                "argument": "Political ads are a form of free speech protected under the First Amendment."
+                "argument": "Lifetime appointments ensure judicial independence from political pressure."
             },
             {
-                "argument": "Banning them would disproportionately harm lesser-known candidates."
+                "argument": "Term limits could lead to more frequent and contentious nominations."
             },
             {
-                "argument": "Social media is an essential tool for modern political campaigns."
+                "argument": "Experienced justices bring deep legal expertise to decisions."
             },
             {
-                "argument": "Voters have the right to access political messages from various sources."
+                "argument": "A stable Supreme Court prevents abrupt changes in legal interpretation."
             },
             {
-                "argument": "A ban would favor traditional media, which also runs political ads."
+                "argument": "The Founding Fathers designed lifetime appointments to avoid political influence."
             },
             {
-                "argument": "Regulation, not a ban, is a better solution to curb misinformation."
+                "argument": "Shorter terms could increase partisan influence over judicial appointments."
             },
             {
-                "argument": "Political engagement on social media increases voter participation."
+                "argument": "Frequent turnover could undermine consistency in constitutional interpretation."
             },
             {
-                "argument": "A ban would make it harder for grassroots movements to gain traction."
+                "argument": "The U.S. has historically operated well with lifetime judicial appointments."
             },
             {
-                "argument": "Transparency tools can ensure accountability in online political ads."
+                "argument": "Term limits might discourage highly qualified candidates from serving."
             },
             {
-                "argument": "Social media platforms should not control political discourse through bans."
+                "argument": "The Supreme Court is meant to be an institution above politics, not subject to term limits."
             }
         ]
     }

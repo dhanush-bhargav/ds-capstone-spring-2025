@@ -1,12 +1,12 @@
 {
     "request_body": {
-        "topic_id": "9",
+        "topic_id": "8",
         "argument_categories": [
             {
-                "argument_category": "Democratic Integrity"
+                "argument_category": "Democratic Representation"
             },
             {
-                "argument_category": "Education and Public Awareness"
+                "argument_category": "National Security"
             },
             {
                 "argument_category": "Political Fairness"
@@ -18,10 +18,10 @@
                 "argument_category": "Public Trust and Accountability"
             },
             {
-                "argument_category": "Curriculum Control"
+                "argument_category": "Historical and Founding Principles"
             },
             {
-                "argument_category": "Civic Engagement"
+                "argument_category": "Voter Choice"
             }
         ]
     }
