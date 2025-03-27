@@ -1,14 +1,28 @@
 {
-  "request_body": {
-    "topic_id": 3,
-    "argument_categories": [
-      {"argument_category": "Individual Autonomy and Choice"},
-      {"argument_category": "Medical Ethics"},
-      {"argument_category": "End-of-Life Care"},
-      {"argument_category": "Mental Health and Depression"},
-      {"argument_category": "Legal and Constitutional Rights"},
-      {"argument_category": "Religious and Cultural Values"},
-      {"argument_category": "Slippery Slope and Safeguards"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "25",
+        "argument_categories": [
+            {
+                "argument_category": "Individual Autonomy and Choice"
+            },
+            {
+                "argument_category": "Medical Ethics"
+            },
+            {
+                "argument_category": "End-of-Life Care"
+            },
+            {
+                "argument_category": "Mental Health and Depression"
+            },
+            {
+                "argument_category": "Legal and Constitutional Rights"
+            },
+            {
+                "argument_category": "Religious and Cultural Values"
+            },
+            {
+                "argument_category": "Slippery Slope and Safeguards"
+            }
+        ]
+    }
 }

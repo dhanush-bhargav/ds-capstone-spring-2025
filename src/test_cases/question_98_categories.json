@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 98,
-    "argument_categories": [
-      {"argument_category": "Security"},
-      {"argument_category": "Innovation"},
-      {"argument_category": "Regulation"},
-      {"argument_category": "Financial Systems"},
-      {"argument_category": "Environmental Impact"},
-      {"argument_category": "Freedom"},
-      {"argument_category": "Economic Stability"},
-      {"argument_category": "Consumer Protection"},
-      {"argument_category": "Global Impact"},
-      {"argument_category": "Financial Inclusion"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "98",
+        "argument_categories": [
+            {
+                "argument_category": "Security"
+            },
+            {
+                "argument_category": "Innovation"
+            },
+            {
+                "argument_category": "Regulation"
+            },
+            {
+                "argument_category": "Financial Systems"
+            },
+            {
+                "argument_category": "Environmental Impact"
+            },
+            {
+                "argument_category": "Freedom"
+            },
+            {
+                "argument_category": "Economic Stability"
+            },
+            {
+                "argument_category": "Consumer Protection"
+            },
+            {
+                "argument_category": "Global Impact"
+            },
+            {
+                "argument_category": "Financial Inclusion"
+            }
+        ]
+    }
 }

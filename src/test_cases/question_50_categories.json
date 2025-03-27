@@ -1,14 +1,28 @@
 {
-  "request_body": {
-    "topic_id": 5,
-    "argument_categories": [
-      {"argument_category": "Retirement Security and Stability"},
-      {"argument_category": "Market Risk and Investment Returns"},
-      {"argument_category": "Individual Responsibility and Choice"},
-      {"argument_category": "Program Solvency and Reform"},
-      {"argument_category": "Administrative Costs and Oversight"},
-      {"argument_category": "Social Safety Net and Equity"},
-      {"argument_category": "Generational Impact"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "50",
+        "argument_categories": [
+            {
+                "argument_category": "Retirement Security and Stability"
+            },
+            {
+                "argument_category": "Market Risk and Investment Returns"
+            },
+            {
+                "argument_category": "Individual Responsibility and Choice"
+            },
+            {
+                "argument_category": "Program Solvency and Reform"
+            },
+            {
+                "argument_category": "Administrative Costs and Oversight"
+            },
+            {
+                "argument_category": "Social Safety Net and Equity"
+            },
+            {
+                "argument_category": "Generational Impact"
+            }
+        ]
+    }
 }

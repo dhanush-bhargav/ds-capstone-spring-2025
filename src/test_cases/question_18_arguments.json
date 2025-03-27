@@ -1,29 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 2,
-    "arguments": [
-      {"argument": "Same-sex couples deserve the same legal rights as heterosexual couples."},
-      {"argument": "Marriage equality is a fundamental civil right."},
-      {"argument": "Denying same-sex marriage is a form of discrimination."},
-      {"argument": "Legal protections ensure that LGBTQ+ families are treated equally under the law."},
-      {"argument": "Most Americans support marriage equality, reflecting changing social values."},
-      {"argument": "Same-sex marriage bans have historically caused harm to LGBTQ+ individuals."},
-      {"argument": "Denying marriage equality goes against the principle of separation of church and state."},
-      {"argument": "Marriage provides legal benefits such as inheritance and healthcare rights."},
-      {"argument": "Federally protecting same-sex marriage prevents discrimination at the state level."},
-      {"argument": "Equality under the law strengthens democracy and social progress."},
-  
-      {"argument": "Marriage should be defined as between a man and a woman."},
-      {"argument": "Same-sex marriage contradicts religious beliefs held by many Americans."},
-      {"argument": "The government should not interfere in defining marriage."},
-      {"argument": "States should have the right to decide marriage laws individually."},
-      {"argument": "Legalizing same-sex marriage could lead to future changes in marriage laws."},
-      {"argument": "Religious organizations may be forced to recognize same-sex marriages."},
-      {"argument": "Traditional marriage has been a cornerstone of society for centuries."},
-      {"argument": "Marriage equality could conflict with parental rights in religious households."},
-      {"argument": "Some people believe same-sex marriage could weaken the institution of marriage."},
-      {"argument": "Protecting same-sex marriage at the federal level is unnecessary given existing laws."}
-  ]
-
-  }
+    "request_body": {
+        "topic_id": "18",
+        "arguments": [
+            {
+                "argument": "Same-sex couples deserve the same legal rights as heterosexual couples."
+            },
+            {
+                "argument": "Marriage equality is a fundamental civil right."
+            },
+            {
+                "argument": "Denying same-sex marriage is a form of discrimination."
+            },
+            {
+                "argument": "Legal protections ensure that LGBTQ+ families are treated equally under the law."
+            },
+            {
+                "argument": "Most Americans support marriage equality, reflecting changing social values."
+            },
+            {
+                "argument": "Same-sex marriage bans have historically caused harm to LGBTQ+ individuals."
+            },
+            {
+                "argument": "Denying marriage equality goes against the principle of separation of church and state."
+            },
+            {
+                "argument": "Marriage provides legal benefits such as inheritance and healthcare rights."
+            },
+            {
+                "argument": "Federally protecting same-sex marriage prevents discrimination at the state level."
+            },
+            {
+                "argument": "Equality under the law strengthens democracy and social progress."
+            },
+            {
+                "argument": "Marriage should be defined as between a man and a woman."
+            },
+            {
+                "argument": "Same-sex marriage contradicts religious beliefs held by many Americans."
+            },
+            {
+                "argument": "The government should not interfere in defining marriage."
+            },
+            {
+                "argument": "States should have the right to decide marriage laws individually."
+            },
+            {
+                "argument": "Legalizing same-sex marriage could lead to future changes in marriage laws."
+            },
+            {
+                "argument": "Religious organizations may be forced to recognize same-sex marriages."
+            },
+            {
+                "argument": "Traditional marriage has been a cornerstone of society for centuries."
+            },
+            {
+                "argument": "Marriage equality could conflict with parental rights in religious households."
+            },
+            {
+                "argument": "Some people believe same-sex marriage could weaken the institution of marriage."
+            },
+            {
+                "argument": "Protecting same-sex marriage at the federal level is unnecessary given existing laws."
+            }
+        ]
+    }
 }

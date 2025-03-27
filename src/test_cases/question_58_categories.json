@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 58,
-    "argument_categories": [
-      {"argument_category": "Economic Fairness"},
-      {"argument_category": "Racial Justice"},
-      {"argument_category": "Public Safety"},
-      {"argument_category": "Pretrial Detention"},
-      {"argument_category": "Legal Equality"},
-      {"argument_category": "Judicial Discretion"},
-      {"argument_category": "Crime Deterrence"},
-      {"argument_category": "System Alternatives"},
-      {"argument_category": "Government Costs"},
-      {"argument_category": "Victim Rights"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "58",
+        "argument_categories": [
+            {
+                "argument_category": "Economic Fairness"
+            },
+            {
+                "argument_category": "Racial Justice"
+            },
+            {
+                "argument_category": "Public Safety"
+            },
+            {
+                "argument_category": "Pretrial Detention"
+            },
+            {
+                "argument_category": "Legal Equality"
+            },
+            {
+                "argument_category": "Judicial Discretion"
+            },
+            {
+                "argument_category": "Crime Deterrence"
+            },
+            {
+                "argument_category": "System Alternatives"
+            },
+            {
+                "argument_category": "Government Costs"
+            },
+            {
+                "argument_category": "Victim Rights"
+            }
+        ]
+    }
 }

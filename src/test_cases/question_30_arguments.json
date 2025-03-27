@@ -1,29 +1,67 @@
 {
     "request_body": {
-      "topic_id": 3,
-      "arguments": [
-        {"argument": "Healthcare providers should not deny essential medical services."},
-        {"argument": "Patients’ rights should take priority over provider beliefs."},
-        {"argument": "It ensures access to abortion care regardless of location."},
-        {"argument": "Medical professionals have a duty to provide comprehensive care."},
-        {"argument": "Refusal can delay urgent treatment and endanger lives."},
-        {"argument": "Public healthcare providers are obligated to serve all patients equally."},
-        {"argument": "Abortion is a legal medical procedure in many regions."},
-        {"argument": "Denying care contributes to inequality in reproductive rights."},
-        {"argument": "Conscientious objection can lead to systemic discrimination."},
-        {"argument": "Patients deserve care without moral judgment."},
-  
-        {"argument": "Healthcare workers should not be forced to act against their conscience."},
-        {"argument": "Religious freedom and personal ethics must be respected."},
-        {"argument": "Mandating abortion services could reduce the number of medical professionals."},
-        {"argument": "Other providers can offer services if one opts out."},
-        {"argument": "It may create moral distress and burnout in providers."},
-        {"argument": "Consent in medicine applies to both patients and providers."},
-        {"argument": "There are alternative facilities and systems for abortion access."},
-        {"argument": "Forcing procedures can erode trust in the provider-patient relationship."},
-        {"argument": "Medical ethics require respect for personal moral boundaries."},
-        {"argument": "A pluralistic society must allow for conscientious objection in healthcare."}
-      ]
+        "topic_id": "30",
+        "arguments": [
+            {
+                "argument": "Healthcare providers should not deny essential medical services."
+            },
+            {
+                "argument": "Patients\u2019 rights should take priority over provider beliefs."
+            },
+            {
+                "argument": "It ensures access to abortion care regardless of location."
+            },
+            {
+                "argument": "Medical professionals have a duty to provide comprehensive care."
+            },
+            {
+                "argument": "Refusal can delay urgent treatment and endanger lives."
+            },
+            {
+                "argument": "Public healthcare providers are obligated to serve all patients equally."
+            },
+            {
+                "argument": "Abortion is a legal medical procedure in many regions."
+            },
+            {
+                "argument": "Denying care contributes to inequality in reproductive rights."
+            },
+            {
+                "argument": "Conscientious objection can lead to systemic discrimination."
+            },
+            {
+                "argument": "Patients deserve care without moral judgment."
+            },
+            {
+                "argument": "Healthcare workers should not be forced to act against their conscience."
+            },
+            {
+                "argument": "Religious freedom and personal ethics must be respected."
+            },
+            {
+                "argument": "Mandating abortion services could reduce the number of medical professionals."
+            },
+            {
+                "argument": "Other providers can offer services if one opts out."
+            },
+            {
+                "argument": "It may create moral distress and burnout in providers."
+            },
+            {
+                "argument": "Consent in medicine applies to both patients and providers."
+            },
+            {
+                "argument": "There are alternative facilities and systems for abortion access."
+            },
+            {
+                "argument": "Forcing procedures can erode trust in the provider-patient relationship."
+            },
+            {
+                "argument": "Medical ethics require respect for personal moral boundaries."
+            },
+            {
+                "argument": "A pluralistic society must allow for conscientious objection in healthcare."
+            }
+        ]
     }
-  }
-  
+}

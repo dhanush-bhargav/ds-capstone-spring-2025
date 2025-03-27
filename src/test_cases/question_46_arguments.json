@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 5,
-    "arguments": [
-      {"argument": "Paid family leave supports workers during life-changing events."},
-      {"argument": "It improves employee retention and job satisfaction."},
-      {"argument": "Parents should not have to choose between income and caregiving."},
-      {"argument": "Paid leave improves child health and parent mental well-being."},
-      {"argument": "It promotes gender equity in the workplace."},
-      {"argument": "Countries with paid leave have higher workforce participation."},
-      {"argument": "It strengthens families and long-term productivity."},
-      {"argument": "Leave policies reduce turnover and training costs."},
-      {"argument": "Paid leave shows employer commitment to work-life balance."},
-      {"argument": "It reduces the economic burden of caregiving on families."},
-
-      {"argument": "Mandating leave can burden small businesses financially."},
-      {"argument": "It may lead to discrimination against caregivers in hiring."},
-      {"argument": "Employers should have the flexibility to set their own policies."},
-      {"argument": "Not all industries can absorb the cost of paid leave."},
-      {"argument": "Government-funded programs may be a better solution."},
-      {"argument": "Paid leave could lead to increased taxes or prices."},
-      {"argument": "Some workers may abuse extended leave policies."},
-      {"argument": "Voluntary leave incentives allow for more employer creativity."},
-      {"argument": "Mandates could reduce competitiveness in tight-margin sectors."},
-      {"argument": "Not all workers prioritize paid family leave equally."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "46",
+        "arguments": [
+            {
+                "argument": "Paid family leave supports workers during life-changing events."
+            },
+            {
+                "argument": "It improves employee retention and job satisfaction."
+            },
+            {
+                "argument": "Parents should not have to choose between income and caregiving."
+            },
+            {
+                "argument": "Paid leave improves child health and parent mental well-being."
+            },
+            {
+                "argument": "It promotes gender equity in the workplace."
+            },
+            {
+                "argument": "Countries with paid leave have higher workforce participation."
+            },
+            {
+                "argument": "It strengthens families and long-term productivity."
+            },
+            {
+                "argument": "Leave policies reduce turnover and training costs."
+            },
+            {
+                "argument": "Paid leave shows employer commitment to work-life balance."
+            },
+            {
+                "argument": "It reduces the economic burden of caregiving on families."
+            },
+            {
+                "argument": "Mandating leave can burden small businesses financially."
+            },
+            {
+                "argument": "It may lead to discrimination against caregivers in hiring."
+            },
+            {
+                "argument": "Employers should have the flexibility to set their own policies."
+            },
+            {
+                "argument": "Not all industries can absorb the cost of paid leave."
+            },
+            {
+                "argument": "Government-funded programs may be a better solution."
+            },
+            {
+                "argument": "Paid leave could lead to increased taxes or prices."
+            },
+            {
+                "argument": "Some workers may abuse extended leave policies."
+            },
+            {
+                "argument": "Voluntary leave incentives allow for more employer creativity."
+            },
+            {
+                "argument": "Mandates could reduce competitiveness in tight-margin sectors."
+            },
+            {
+                "argument": "Not all workers prioritize paid family leave equally."
+            }
+        ]
+    }
 }

@@ -1,14 +1,28 @@
 {
-  "request_body": {
-    "topic_id": 4,
-    "argument_categories": [
-      {"argument_category": "Climate Change Mitigation"},
-      {"argument_category": "Market-Based Solutions"},
-      {"argument_category": "Economic Impact on Consumers"},
-      {"argument_category": "Government Revenue and Redistribution"},
-      {"argument_category": "Business and Industry Response"},
-      {"argument_category": "Equity and Social Justice"},
-      {"argument_category": "Effectiveness Compared to Other Policies"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "32",
+        "argument_categories": [
+            {
+                "argument_category": "Climate Change Mitigation"
+            },
+            {
+                "argument_category": "Market-Based Solutions"
+            },
+            {
+                "argument_category": "Economic Impact on Consumers"
+            },
+            {
+                "argument_category": "Government Revenue and Redistribution"
+            },
+            {
+                "argument_category": "Business and Industry Response"
+            },
+            {
+                "argument_category": "Equity and Social Justice"
+            },
+            {
+                "argument_category": "Effectiveness Compared to Other Policies"
+            }
+        ]
+    }
 }

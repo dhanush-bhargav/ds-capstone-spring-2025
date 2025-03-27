@@ -1,29 +1,67 @@
 {
     "request_body": {
-      "topic_id": 5,
-      "arguments": [
-        {"argument": "Student debt is crippling millions of Americans."},
-        {"argument": "Forgiveness boosts economic activity and homeownership."},
-        {"argument": "It addresses the rising cost of higher education."},
-        {"argument": "Debt relief reduces mental health stress."},
-        {"argument": "Many borrowers were misled about repayment terms."},
-        {"argument": "It promotes equal opportunity, especially for low-income students."},
-        {"argument": "Forgiveness can reduce the racial wealth gap."},
-        {"argument": "The government profits from federal student loans."},
-        {"argument": "College should not mean lifelong financial burden."},
-        {"argument": "It helps an entire generation build financial stability."},
-  
-        {"argument": "Loan forgiveness is unfair to those who paid off their debt."},
-        {"argument": "It could incentivize future overborrowing."},
-        {"argument": "The cost would burden taxpayers significantly."},
-        {"argument": "Forgiveness doesn’t solve the root cause of tuition inflation."},
-        {"argument": "It rewards personal financial irresponsibility."},
-        {"argument": "Targeted forgiveness is more equitable than blanket cancellation."},
-        {"argument": "Many high earners also carry student debt."},
-        {"argument": "It sets a precedent for forgiving other debts."},
-        {"argument": "Universities should be held accountable, not taxpayers."},
-        {"argument": "Other urgent issues like healthcare deserve funding first."}
-      ]
+        "topic_id": "42",
+        "arguments": [
+            {
+                "argument": "Student debt is crippling millions of Americans."
+            },
+            {
+                "argument": "Forgiveness boosts economic activity and homeownership."
+            },
+            {
+                "argument": "It addresses the rising cost of higher education."
+            },
+            {
+                "argument": "Debt relief reduces mental health stress."
+            },
+            {
+                "argument": "Many borrowers were misled about repayment terms."
+            },
+            {
+                "argument": "It promotes equal opportunity, especially for low-income students."
+            },
+            {
+                "argument": "Forgiveness can reduce the racial wealth gap."
+            },
+            {
+                "argument": "The government profits from federal student loans."
+            },
+            {
+                "argument": "College should not mean lifelong financial burden."
+            },
+            {
+                "argument": "It helps an entire generation build financial stability."
+            },
+            {
+                "argument": "Loan forgiveness is unfair to those who paid off their debt."
+            },
+            {
+                "argument": "It could incentivize future overborrowing."
+            },
+            {
+                "argument": "The cost would burden taxpayers significantly."
+            },
+            {
+                "argument": "Forgiveness doesn\u2019t solve the root cause of tuition inflation."
+            },
+            {
+                "argument": "It rewards personal financial irresponsibility."
+            },
+            {
+                "argument": "Targeted forgiveness is more equitable than blanket cancellation."
+            },
+            {
+                "argument": "Many high earners also carry student debt."
+            },
+            {
+                "argument": "It sets a precedent for forgiving other debts."
+            },
+            {
+                "argument": "Universities should be held accountable, not taxpayers."
+            },
+            {
+                "argument": "Other urgent issues like healthcare deserve funding first."
+            }
+        ]
     }
-  }
-  
+}

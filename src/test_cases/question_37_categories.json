@@ -1,14 +1,28 @@
 {
-  "request_body": {
-    "topic_id": 4,
-    "argument_categories": [
-      {"argument_category": "International Cooperation"},
-      {"argument_category": "Climate Change Commitments"},
-      {"argument_category": "Global Economic Competitiveness"},
-      {"argument_category": "Environmental Leadership"},
-      {"argument_category": "National Sovereignty and Autonomy"},
-      {"argument_category": "Accountability and Enforcement"},
-      {"argument_category": "Scientific Consensus and Urgency"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "37",
+        "argument_categories": [
+            {
+                "argument_category": "International Cooperation"
+            },
+            {
+                "argument_category": "Climate Change Commitments"
+            },
+            {
+                "argument_category": "Global Economic Competitiveness"
+            },
+            {
+                "argument_category": "Environmental Leadership"
+            },
+            {
+                "argument_category": "National Sovereignty and Autonomy"
+            },
+            {
+                "argument_category": "Accountability and Enforcement"
+            },
+            {
+                "argument_category": "Scientific Consensus and Urgency"
+            }
+        ]
+    }
 }

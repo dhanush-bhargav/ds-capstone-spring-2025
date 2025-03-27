@@ -1,14 +1,28 @@
 {
-  "request_body": {
-    "topic_id": 4,
-    "argument_categories": [
-      {"argument_category": "Clean Energy and Emissions"},
-      {"argument_category": "Public Health and Safety"},
-      {"argument_category": "Technological Innovation and Reliability"},
-      {"argument_category": "Nuclear Waste and Environmental Risks"},
-      {"argument_category": "Cost and Economic Feasibility"},
-      {"argument_category": "Energy Grid Stability"},
-      {"argument_category": "Renewables vs Nuclear Debate"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "33",
+        "argument_categories": [
+            {
+                "argument_category": "Clean Energy and Emissions"
+            },
+            {
+                "argument_category": "Public Health and Safety"
+            },
+            {
+                "argument_category": "Technological Innovation and Reliability"
+            },
+            {
+                "argument_category": "Nuclear Waste and Environmental Risks"
+            },
+            {
+                "argument_category": "Cost and Economic Feasibility"
+            },
+            {
+                "argument_category": "Energy Grid Stability"
+            },
+            {
+                "argument_category": "Renewables vs Nuclear Debate"
+            }
+        ]
+    }
 }

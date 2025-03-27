@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 60,
-    "arguments": [
-      {"argument": "Facial recognition has high error rates, especially for people of color, leading to wrongful arrests."},
-      {"argument": "The technology enables mass surveillance, threatening privacy and civil liberties."},
-      {"argument": "There is a lack of clear regulations on how law enforcement can use facial recognition."},
-      {"argument": "Data breaches could expose sensitive biometric information to hackers."},
-      {"argument": "Use of facial recognition can discourage free speech and protest participation due to surveillance fears."},
-      {"argument": "The technology is often used without public knowledge or consent, reducing transparency."},
-      {"argument": "Facial recognition disproportionately affects marginalized communities due to biased algorithms."},
-      {"argument": "There are alternative, less invasive methods for identifying suspects."},
-      {"argument": "Banning facial recognition can prevent abuse of power by law enforcement agencies."},
-      {"argument": "Other countries and cities have already restricted or banned its use due to ethical concerns."},
-
-      {"argument": "Facial recognition helps law enforcement identify criminals quickly and efficiently."},
-      {"argument": "It enhances public safety by identifying suspects in real-time and preventing crimes."},
-      {"argument": "Banning it would remove a valuable tool for solving serious crimes like human trafficking and terrorism."},
-      {"argument": "With proper regulations and oversight, the risks of misuse can be minimized."},
-      {"argument": "Technology is improving, reducing bias and increasing accuracy over time."},
-      {"argument": "Facial recognition can be used to locate missing persons and identify victims of crime."},
-      {"argument": "Completely banning it could limit innovation and technological advancements in law enforcement."},
-      {"argument": "Law enforcement already uses other forms of surveillance, so facial recognition is not uniquely intrusive."},
-      {"argument": "The public supports using advanced technology to improve policing and safety."},
-      {"argument": "Instead of banning it, stronger privacy protections and accountability measures should be implemented."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "60",
+        "arguments": [
+            {
+                "argument": "Facial recognition has high error rates, especially for people of color, leading to wrongful arrests."
+            },
+            {
+                "argument": "The technology enables mass surveillance, threatening privacy and civil liberties."
+            },
+            {
+                "argument": "There is a lack of clear regulations on how law enforcement can use facial recognition."
+            },
+            {
+                "argument": "Data breaches could expose sensitive biometric information to hackers."
+            },
+            {
+                "argument": "Use of facial recognition can discourage free speech and protest participation due to surveillance fears."
+            },
+            {
+                "argument": "The technology is often used without public knowledge or consent, reducing transparency."
+            },
+            {
+                "argument": "Facial recognition disproportionately affects marginalized communities due to biased algorithms."
+            },
+            {
+                "argument": "There are alternative, less invasive methods for identifying suspects."
+            },
+            {
+                "argument": "Banning facial recognition can prevent abuse of power by law enforcement agencies."
+            },
+            {
+                "argument": "Other countries and cities have already restricted or banned its use due to ethical concerns."
+            },
+            {
+                "argument": "Facial recognition helps law enforcement identify criminals quickly and efficiently."
+            },
+            {
+                "argument": "It enhances public safety by identifying suspects in real-time and preventing crimes."
+            },
+            {
+                "argument": "Banning it would remove a valuable tool for solving serious crimes like human trafficking and terrorism."
+            },
+            {
+                "argument": "With proper regulations and oversight, the risks of misuse can be minimized."
+            },
+            {
+                "argument": "Technology is improving, reducing bias and increasing accuracy over time."
+            },
+            {
+                "argument": "Facial recognition can be used to locate missing persons and identify victims of crime."
+            },
+            {
+                "argument": "Completely banning it could limit innovation and technological advancements in law enforcement."
+            },
+            {
+                "argument": "Law enforcement already uses other forms of surveillance, so facial recognition is not uniquely intrusive."
+            },
+            {
+                "argument": "The public supports using advanced technology to improve policing and safety."
+            },
+            {
+                "argument": "Instead of banning it, stronger privacy protections and accountability measures should be implemented."
+            }
+        ]
+    }
 }

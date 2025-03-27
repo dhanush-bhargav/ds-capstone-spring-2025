@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 86,
-    "argument_categories": [
-      {"argument_category": "Economy"},
-      {"argument_category": "Labor Market"},
-      {"argument_category": "Cultural Impact"},
-      {"argument_category": "Social Services"},
-      {"argument_category": "Security"},
-      {"argument_category": "Innovation"},
-      {"argument_category": "Demographics"},
-      {"argument_category": "Social Values"},
-      {"argument_category": "National Identity"},
-      {"argument_category": "Public Resources"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "86",
+        "argument_categories": [
+            {
+                "argument_category": "Economy"
+            },
+            {
+                "argument_category": "Labor Market"
+            },
+            {
+                "argument_category": "Cultural Impact"
+            },
+            {
+                "argument_category": "Social Services"
+            },
+            {
+                "argument_category": "Security"
+            },
+            {
+                "argument_category": "Innovation"
+            },
+            {
+                "argument_category": "Demographics"
+            },
+            {
+                "argument_category": "Social Values"
+            },
+            {
+                "argument_category": "National Identity"
+            },
+            {
+                "argument_category": "Public Resources"
+            }
+        ]
+    }
 }

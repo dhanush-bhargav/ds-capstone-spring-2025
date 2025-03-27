@@ -1,14 +1,28 @@
 {
-  "request_body": {
-    "topic_id": 3,
-    "argument_categories": [
-      {"argument_category": "Women's Rights and Bodily Autonomy"},
-      {"argument_category": "Public Health and Safety"},
-      {"argument_category": "Moral and Ethical Considerations"},
-      {"argument_category": "Legal and Constitutional Rights"},
-      {"argument_category": "Government Role in Healthcare"},
-      {"argument_category": "Religious and Cultural Beliefs"},
-      {"argument_category": "Socioeconomic Impact"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "21",
+        "argument_categories": [
+            {
+                "argument_category": "Women's Rights and Bodily Autonomy"
+            },
+            {
+                "argument_category": "Public Health and Safety"
+            },
+            {
+                "argument_category": "Moral and Ethical Considerations"
+            },
+            {
+                "argument_category": "Legal and Constitutional Rights"
+            },
+            {
+                "argument_category": "Government Role in Healthcare"
+            },
+            {
+                "argument_category": "Religious and Cultural Beliefs"
+            },
+            {
+                "argument_category": "Socioeconomic Impact"
+            }
+        ]
+    }
 }

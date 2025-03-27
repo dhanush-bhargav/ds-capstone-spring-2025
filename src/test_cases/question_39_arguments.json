@@ -1,29 +1,67 @@
 {
     "request_body": {
-      "topic_id": 4,
-      "arguments": [
-        {"argument": "Looser regulations reduce costs for businesses and industries."},
-        {"argument": "It boosts productivity and job creation in key sectors."},
-        {"argument": "Regulatory burdens can stifle innovation and investment."},
-        {"argument": "Simplifying rules attracts more manufacturing and energy projects."},
-        {"argument": "Economic growth can later fund better environmental solutions."},
-        {"argument": "Some rules are outdated and hinder progress."},
-        {"argument": "Relaxation during recessions can support recovery."},
-        {"argument": "Local governments can enforce their own standards."},
-        {"argument": "The private sector is adopting sustainability voluntarily."},
-        {"argument": "Excessive regulation slows infrastructure development."},
-  
-        {"argument": "Relaxing rules increases pollution and harms public health."},
-        {"argument": "Short-term growth shouldn't compromise long-term sustainability."},
-        {"argument": "Environmental damage costs more to fix later."},
-        {"argument": "Regulations drive innovation in cleaner technologies."},
-        {"argument": "Pollution disproportionately affects vulnerable communities."},
-        {"argument": "Climate change requires stronger—not weaker—policies."},
-        {"argument": "Public trust declines when environmental protections are weakened."},
-        {"argument": "Healthy ecosystems support agriculture, tourism, and fisheries."},
-        {"argument": "Relaxation signals deregulation of corporate accountability."},
-        {"argument": "Economic growth must align with climate resilience."}
-      ]
+        "topic_id": "39",
+        "arguments": [
+            {
+                "argument": "Looser regulations reduce costs for businesses and industries."
+            },
+            {
+                "argument": "It boosts productivity and job creation in key sectors."
+            },
+            {
+                "argument": "Regulatory burdens can stifle innovation and investment."
+            },
+            {
+                "argument": "Simplifying rules attracts more manufacturing and energy projects."
+            },
+            {
+                "argument": "Economic growth can later fund better environmental solutions."
+            },
+            {
+                "argument": "Some rules are outdated and hinder progress."
+            },
+            {
+                "argument": "Relaxation during recessions can support recovery."
+            },
+            {
+                "argument": "Local governments can enforce their own standards."
+            },
+            {
+                "argument": "The private sector is adopting sustainability voluntarily."
+            },
+            {
+                "argument": "Excessive regulation slows infrastructure development."
+            },
+            {
+                "argument": "Relaxing rules increases pollution and harms public health."
+            },
+            {
+                "argument": "Short-term growth shouldn't compromise long-term sustainability."
+            },
+            {
+                "argument": "Environmental damage costs more to fix later."
+            },
+            {
+                "argument": "Regulations drive innovation in cleaner technologies."
+            },
+            {
+                "argument": "Pollution disproportionately affects vulnerable communities."
+            },
+            {
+                "argument": "Climate change requires stronger\u2014not weaker\u2014policies."
+            },
+            {
+                "argument": "Public trust declines when environmental protections are weakened."
+            },
+            {
+                "argument": "Healthy ecosystems support agriculture, tourism, and fisheries."
+            },
+            {
+                "argument": "Relaxation signals deregulation of corporate accountability."
+            },
+            {
+                "argument": "Economic growth must align with climate resilience."
+            }
+        ]
     }
-  }
-  
+}

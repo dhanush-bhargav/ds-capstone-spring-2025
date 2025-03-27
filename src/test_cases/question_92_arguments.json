@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 92,
-    "arguments": [
-      {"argument": "Lowering the voting age to 16 would allow young people to have a say in policies that affect their future."},
-      {"argument": "16-year-olds are capable of making informed decisions and should be trusted with the responsibility of voting."},
-      {"argument": "Lowering the voting age would encourage greater political engagement among younger generations."},
-      {"argument": "It would increase voter turnout and allow for a broader representation of the population in elections."},
-      {"argument": "16-year-olds are already responsible for other adult-like decisions, such as working, paying taxes, and driving."},
-      {"argument": "Giving 16-year-olds the vote would help them develop a lifelong habit of civic participation."},
-      {"argument": "It would ensure that the voices of younger generations are included in important decisions about the country's future."},
-      {"argument": "16-year-olds are impacted by political decisions, including education policies and climate change, and should have a say in those matters."},
-      {"argument": "Allowing 16-year-olds to vote would foster a greater sense of political responsibility and citizenship."},
-      {"argument": "It could lead to a more informed and politically active youth, improving the overall quality of democracy."},
-
-      {"argument": "16-year-olds are not mature enough to fully understand the complexities of political issues and policies."},
-      {"argument": "Young people may be more easily influenced by outside forces, such as peers and social media, when casting their votes."},
-      {"argument": "The current voting age ensures that voters are more likely to have developed a sense of responsibility and understanding of government."},
-      {"argument": "Lowering the voting age to 16 would risk giving too much power to a group with limited life experience."},
-      {"argument": "Many 16-year-olds lack the knowledge and critical thinking skills necessary to make informed voting decisions."},
-      {"argument": "Allowing 16-year-olds to vote may politicize youth at too early an age, leading to an over-reliance on external influences."},
-      {"argument": "Young people are still in a phase of personal development and may not yet have a full understanding of their civic duties."},
-      {"argument": "16-year-olds may not be as invested in the long-term consequences of their votes, which could negatively impact the democratic process."},
-      {"argument": "The current voting age ensures that voters have had time to gain experience, education, and stability before participating in elections."},
-      {"argument": "Lowering the voting age would reduce the average maturity level of voters, potentially undermining the integrity of elections."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "92",
+        "arguments": [
+            {
+                "argument": "Lowering the voting age to 16 would allow young people to have a say in policies that affect their future."
+            },
+            {
+                "argument": "16-year-olds are capable of making informed decisions and should be trusted with the responsibility of voting."
+            },
+            {
+                "argument": "Lowering the voting age would encourage greater political engagement among younger generations."
+            },
+            {
+                "argument": "It would increase voter turnout and allow for a broader representation of the population in elections."
+            },
+            {
+                "argument": "16-year-olds are already responsible for other adult-like decisions, such as working, paying taxes, and driving."
+            },
+            {
+                "argument": "Giving 16-year-olds the vote would help them develop a lifelong habit of civic participation."
+            },
+            {
+                "argument": "It would ensure that the voices of younger generations are included in important decisions about the country's future."
+            },
+            {
+                "argument": "16-year-olds are impacted by political decisions, including education policies and climate change, and should have a say in those matters."
+            },
+            {
+                "argument": "Allowing 16-year-olds to vote would foster a greater sense of political responsibility and citizenship."
+            },
+            {
+                "argument": "It could lead to a more informed and politically active youth, improving the overall quality of democracy."
+            },
+            {
+                "argument": "16-year-olds are not mature enough to fully understand the complexities of political issues and policies."
+            },
+            {
+                "argument": "Young people may be more easily influenced by outside forces, such as peers and social media, when casting their votes."
+            },
+            {
+                "argument": "The current voting age ensures that voters are more likely to have developed a sense of responsibility and understanding of government."
+            },
+            {
+                "argument": "Lowering the voting age to 16 would risk giving too much power to a group with limited life experience."
+            },
+            {
+                "argument": "Many 16-year-olds lack the knowledge and critical thinking skills necessary to make informed voting decisions."
+            },
+            {
+                "argument": "Allowing 16-year-olds to vote may politicize youth at too early an age, leading to an over-reliance on external influences."
+            },
+            {
+                "argument": "Young people are still in a phase of personal development and may not yet have a full understanding of their civic duties."
+            },
+            {
+                "argument": "16-year-olds may not be as invested in the long-term consequences of their votes, which could negatively impact the democratic process."
+            },
+            {
+                "argument": "The current voting age ensures that voters have had time to gain experience, education, and stability before participating in elections."
+            },
+            {
+                "argument": "Lowering the voting age would reduce the average maturity level of voters, potentially undermining the integrity of elections."
+            }
+        ]
+    }
 }

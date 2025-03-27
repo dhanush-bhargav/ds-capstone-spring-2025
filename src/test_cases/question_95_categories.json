@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 95,
-    "argument_categories": [
-      {"argument_category": "Freedom"},
-      {"argument_category": "Civic Duty"},
-      {"argument_category": "Respect"},
-      {"argument_category": "Tradition"},
-      {"argument_category": "Inclusion"},
-      {"argument_category": "Beliefs"},
-      {"argument_category": "Rights"},
-      {"argument_category": "Understanding"},
-      {"argument_category": "Choice"},
-      {"argument_category": "Expression"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "95",
+        "argument_categories": [
+            {
+                "argument_category": "Freedom"
+            },
+            {
+                "argument_category": "Civic Duty"
+            },
+            {
+                "argument_category": "Respect"
+            },
+            {
+                "argument_category": "Tradition"
+            },
+            {
+                "argument_category": "Inclusion"
+            },
+            {
+                "argument_category": "Beliefs"
+            },
+            {
+                "argument_category": "Rights"
+            },
+            {
+                "argument_category": "Understanding"
+            },
+            {
+                "argument_category": "Choice"
+            },
+            {
+                "argument_category": "Expression"
+            }
+        ]
+    }
 }

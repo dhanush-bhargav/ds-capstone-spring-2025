@@ -1,14 +1,28 @@
 {
-  "request_body": {
-    "topic_id": 4,
-    "argument_categories": [
-      {"argument_category": "Environmental Protection"},
-      {"argument_category": "Energy Independence and Security"},
-      {"argument_category": "Economic Impact and Job Market"},
-      {"argument_category": "Public Land Use and Conservation"},
-      {"argument_category": "Climate Change and Emissions"},
-      {"argument_category": "Indigenous Rights and Local Communities"},
-      {"argument_category": "Sustainable Development Alternatives"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "31",
+        "argument_categories": [
+            {
+                "argument_category": "Environmental Protection"
+            },
+            {
+                "argument_category": "Energy Independence and Security"
+            },
+            {
+                "argument_category": "Economic Impact and Job Market"
+            },
+            {
+                "argument_category": "Public Land Use and Conservation"
+            },
+            {
+                "argument_category": "Climate Change and Emissions"
+            },
+            {
+                "argument_category": "Indigenous Rights and Local Communities"
+            },
+            {
+                "argument_category": "Sustainable Development Alternatives"
+            }
+        ]
+    }
 }

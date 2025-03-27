@@ -1,30 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 2,
-    "arguments": [
-      {"argument": "Transgender athletes should be able to compete in alignment with their gender identity for inclusivity."},
-      {"argument": "Banning transgender athletes from teams of their gender identity is discriminatory."},
-      {"argument": "Sports organizations can implement fair policies to ensure competition remains balanced."},
-      {"argument": "Scientific studies show that hormone therapy reduces biological differences over time."},
-      {"argument": "Excluding transgender athletes can harm their mental health and well-being."},
-      {"argument": "Many sports already have guidelines in place for transgender participation."},
-      {"argument": "Transgender people should not be forced to compete in categories that do not align with their identity."},
-      {"argument": "Equality in sports should be prioritized over outdated gender norms."},
-      {"argument": "Physical differences exist in all athletes, yet they are not used to exclude non-trans competitors."},
-      {"argument": "Denying transgender athletes their rights could set a dangerous precedent for discrimination in other areas."},
-      
-      {"argument": "Biological differences give transgender women an unfair advantage in women's sports."},
-      {"argument": "Transgender participation may undermine the integrity of sex-segregated sports."},
-      {"argument": "Allowing transgender athletes to compete could discourage cisgender women from participating."},
-      {"argument": "Performance differences between biological sexes remain even after hormone therapy."},
-      {"argument": "Fair competition requires physical categories based on biological sex, not gender identity."},
-      {"argument": "Creating additional categories for transgender athletes is a more balanced approach."},
-      {"argument": "Sports records and achievements could become unfairly skewed if biological differences are ignored."},
-      {"argument": "Not all sports organizations have clear policies on how to integrate transgender athletes fairly."},
-      {"argument": "Policies favoring inclusion over fairness could hurt female athletes' opportunities."},
-      {"argument": "Scientific research on the impact of transgender athletes in sports is still evolving, making policy decisions premature."}
-  
-      
-    ]
-  }
+    "request_body": {
+        "topic_id": "11",
+        "arguments": [
+            {
+                "argument": "Transgender athletes should be able to compete in alignment with their gender identity for inclusivity."
+            },
+            {
+                "argument": "Banning transgender athletes from teams of their gender identity is discriminatory."
+            },
+            {
+                "argument": "Sports organizations can implement fair policies to ensure competition remains balanced."
+            },
+            {
+                "argument": "Scientific studies show that hormone therapy reduces biological differences over time."
+            },
+            {
+                "argument": "Excluding transgender athletes can harm their mental health and well-being."
+            },
+            {
+                "argument": "Many sports already have guidelines in place for transgender participation."
+            },
+            {
+                "argument": "Transgender people should not be forced to compete in categories that do not align with their identity."
+            },
+            {
+                "argument": "Equality in sports should be prioritized over outdated gender norms."
+            },
+            {
+                "argument": "Physical differences exist in all athletes, yet they are not used to exclude non-trans competitors."
+            },
+            {
+                "argument": "Denying transgender athletes their rights could set a dangerous precedent for discrimination in other areas."
+            },
+            {
+                "argument": "Biological differences give transgender women an unfair advantage in women's sports."
+            },
+            {
+                "argument": "Transgender participation may undermine the integrity of sex-segregated sports."
+            },
+            {
+                "argument": "Allowing transgender athletes to compete could discourage cisgender women from participating."
+            },
+            {
+                "argument": "Performance differences between biological sexes remain even after hormone therapy."
+            },
+            {
+                "argument": "Fair competition requires physical categories based on biological sex, not gender identity."
+            },
+            {
+                "argument": "Creating additional categories for transgender athletes is a more balanced approach."
+            },
+            {
+                "argument": "Sports records and achievements could become unfairly skewed if biological differences are ignored."
+            },
+            {
+                "argument": "Not all sports organizations have clear policies on how to integrate transgender athletes fairly."
+            },
+            {
+                "argument": "Policies favoring inclusion over fairness could hurt female athletes' opportunities."
+            },
+            {
+                "argument": "Scientific research on the impact of transgender athletes in sports is still evolving, making policy decisions premature."
+            }
+        ]
+    }
 }

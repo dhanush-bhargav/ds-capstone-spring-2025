@@ -1,14 +1,28 @@
 {
-  "request_body": {
-    "topic_id": 2,
-    "argument_categories": [
-      {"argument_category": "Inclusion and Equality"},
-      {"argument_category": "Biological and Competitive Fairness"},
-      {"argument_category": "Legal and Constitutional Concerns"},
-      {"argument_category": "Mental Health and Well-being"},
-      {"argument_category": "Scientific Research on Gender Differences"},
-      {"argument_category": "Sports Regulations and Policies"},
-      {"argument_category": "Public Perception and Social Impact"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "11",
+        "argument_categories": [
+            {
+                "argument_category": "Inclusion and Equality"
+            },
+            {
+                "argument_category": "Biological and Competitive Fairness"
+            },
+            {
+                "argument_category": "Legal and Constitutional Concerns"
+            },
+            {
+                "argument_category": "Mental Health and Well-being"
+            },
+            {
+                "argument_category": "Scientific Research on Gender Differences"
+            },
+            {
+                "argument_category": "Sports Regulations and Policies"
+            },
+            {
+                "argument_category": "Public Perception and Social Impact"
+            }
+        ]
+    }
 }

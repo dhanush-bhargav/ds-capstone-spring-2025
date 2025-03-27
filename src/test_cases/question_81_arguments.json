@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 81,
-    "arguments": [
-      {"argument": "A border wall can help prevent illegal immigration and human trafficking."},
-      {"argument": "It will provide increased national security and control over who enters the country."},
-      {"argument": "A wall can reduce drug smuggling and organized crime across the border."},
-      {"argument": "A physical barrier may deter illegal border crossings and reduce strain on border enforcement."},
-      {"argument": "Building a wall could help maintain the rule of law and protect U.S. sovereignty."},
-      {"argument": "It can help reduce the burden on U.S. taxpayers by cutting down on public resources spent on illegal immigrants."},
-      {"argument": "A border wall would complement existing border security technology like drones and cameras."},
-      {"argument": "It could reduce the number of deaths and injuries caused by dangerous border crossings."},
-      {"argument": "A border wall might help combat the exploitation of migrants by human traffickers."},
-      {"argument": "It sends a strong message that the U.S. is committed to securing its borders."},
-
-      {"argument": "A border wall is an ineffective solution that ignores the root causes of immigration."},
-      {"argument": "It is an expensive project that would divert funds from other critical areas like education and healthcare."},
-      {"argument": "A wall will have a negative environmental impact, disrupting ecosystems and wildlife habitats."},
-      {"argument": "Border walls are easily bypassed or breached, making them ineffective in the long term."},
-      {"argument": "Building a wall can hurt diplomatic relations between the U.S. and Mexico, as well as other nations."},
-      {"argument": "The resources spent on a border wall could be better spent on improving immigration processes and addressing legal immigration issues."},
-      {"argument": "It can contribute to the separation of families and the criminalization of migrants seeking better opportunities."},
-      {"argument": "A physical barrier is not a humane solution and does not address the complexity of immigration policies."},
-      {"argument": "The wall could be a symbol of division and hostility rather than unity and cooperation."},
-      {"argument": "A border wall may not effectively stop the flow of drugs or criminals, as they will find alternative routes."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "81",
+        "arguments": [
+            {
+                "argument": "A border wall can help prevent illegal immigration and human trafficking."
+            },
+            {
+                "argument": "It will provide increased national security and control over who enters the country."
+            },
+            {
+                "argument": "A wall can reduce drug smuggling and organized crime across the border."
+            },
+            {
+                "argument": "A physical barrier may deter illegal border crossings and reduce strain on border enforcement."
+            },
+            {
+                "argument": "Building a wall could help maintain the rule of law and protect U.S. sovereignty."
+            },
+            {
+                "argument": "It can help reduce the burden on U.S. taxpayers by cutting down on public resources spent on illegal immigrants."
+            },
+            {
+                "argument": "A border wall would complement existing border security technology like drones and cameras."
+            },
+            {
+                "argument": "It could reduce the number of deaths and injuries caused by dangerous border crossings."
+            },
+            {
+                "argument": "A border wall might help combat the exploitation of migrants by human traffickers."
+            },
+            {
+                "argument": "It sends a strong message that the U.S. is committed to securing its borders."
+            },
+            {
+                "argument": "A border wall is an ineffective solution that ignores the root causes of immigration."
+            },
+            {
+                "argument": "It is an expensive project that would divert funds from other critical areas like education and healthcare."
+            },
+            {
+                "argument": "A wall will have a negative environmental impact, disrupting ecosystems and wildlife habitats."
+            },
+            {
+                "argument": "Border walls are easily bypassed or breached, making them ineffective in the long term."
+            },
+            {
+                "argument": "Building a wall can hurt diplomatic relations between the U.S. and Mexico, as well as other nations."
+            },
+            {
+                "argument": "The resources spent on a border wall could be better spent on improving immigration processes and addressing legal immigration issues."
+            },
+            {
+                "argument": "It can contribute to the separation of families and the criminalization of migrants seeking better opportunities."
+            },
+            {
+                "argument": "A physical barrier is not a humane solution and does not address the complexity of immigration policies."
+            },
+            {
+                "argument": "The wall could be a symbol of division and hostility rather than unity and cooperation."
+            },
+            {
+                "argument": "A border wall may not effectively stop the flow of drugs or criminals, as they will find alternative routes."
+            }
+        ]
+    }
 }

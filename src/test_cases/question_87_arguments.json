@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 87,
-    "arguments": [
-      {"argument": "Making English the official language would promote national unity by creating a common means of communication."},
-      {"argument": "It ensures that government services and legal documents are consistently accessible to all citizens."},
-      {"argument": "Designating English as the official language can improve integration and promote civic participation among immigrants."},
-      {"argument": "It encourages the mastery of English, which is crucial for success in the U.S. job market and society."},
-      {"argument": "An official language policy can reduce the need for government translation services and save taxpayer money."},
-      {"argument": "It provides a clear standard for government communications and educational materials, reducing confusion."},
-      {"argument": "It reflects the historical and cultural significance of English in the development of the U.S."},
-      {"argument": "Having an official language helps preserve linguistic cohesion and prevents fragmentation in public discourse."},
-      {"argument": "An official language policy can encourage non-English speakers to learn English and improve their opportunities."},
-      {"argument": "It would prevent the dilution of cultural identity by maintaining English as the primary language of communication."},
-
-      {"argument": "Making English the official language could marginalize non-English speakers and hinder their access to services."},
-      {"argument": "The U.S. is a diverse country with many languages, and no single language should be imposed on all citizens."},
-      {"argument": "Non-English speakers contribute significantly to the U.S. economy and society, and forcing them to conform to English could be exclusionary."},
-      {"argument": "An official language policy could undermine cultural diversity and discourage the celebration of other languages and cultures."},
-      {"argument": "Many U.S. citizens and residents are bilingual, and having an official language may ignore the reality of linguistic diversity."},
-      {"argument": "The cost of implementing an official language could be high, including requiring widespread language shifts in education and government."},
-      {"argument": "An official language policy could result in discrimination against non-English speakers, particularly immigrants and their children."},
-      {"argument": "It would make it more difficult for people to access government services if they don’t speak English fluently."},
-      {"argument": "The U.S. has always been a multilingual society, and imposing English as the official language could go against this long tradition."},
-      {"argument": "An official language policy could foster resentment and division among Americans from different linguistic backgrounds."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "87",
+        "arguments": [
+            {
+                "argument": "Making English the official language would promote national unity by creating a common means of communication."
+            },
+            {
+                "argument": "It ensures that government services and legal documents are consistently accessible to all citizens."
+            },
+            {
+                "argument": "Designating English as the official language can improve integration and promote civic participation among immigrants."
+            },
+            {
+                "argument": "It encourages the mastery of English, which is crucial for success in the U.S. job market and society."
+            },
+            {
+                "argument": "An official language policy can reduce the need for government translation services and save taxpayer money."
+            },
+            {
+                "argument": "It provides a clear standard for government communications and educational materials, reducing confusion."
+            },
+            {
+                "argument": "It reflects the historical and cultural significance of English in the development of the U.S."
+            },
+            {
+                "argument": "Having an official language helps preserve linguistic cohesion and prevents fragmentation in public discourse."
+            },
+            {
+                "argument": "An official language policy can encourage non-English speakers to learn English and improve their opportunities."
+            },
+            {
+                "argument": "It would prevent the dilution of cultural identity by maintaining English as the primary language of communication."
+            },
+            {
+                "argument": "Making English the official language could marginalize non-English speakers and hinder their access to services."
+            },
+            {
+                "argument": "The U.S. is a diverse country with many languages, and no single language should be imposed on all citizens."
+            },
+            {
+                "argument": "Non-English speakers contribute significantly to the U.S. economy and society, and forcing them to conform to English could be exclusionary."
+            },
+            {
+                "argument": "An official language policy could undermine cultural diversity and discourage the celebration of other languages and cultures."
+            },
+            {
+                "argument": "Many U.S. citizens and residents are bilingual, and having an official language may ignore the reality of linguistic diversity."
+            },
+            {
+                "argument": "The cost of implementing an official language could be high, including requiring widespread language shifts in education and government."
+            },
+            {
+                "argument": "An official language policy could result in discrimination against non-English speakers, particularly immigrants and their children."
+            },
+            {
+                "argument": "It would make it more difficult for people to access government services if they don\u2019t speak English fluently."
+            },
+            {
+                "argument": "The U.S. has always been a multilingual society, and imposing English as the official language could go against this long tradition."
+            },
+            {
+                "argument": "An official language policy could foster resentment and division among Americans from different linguistic backgrounds."
+            }
+        ]
+    }
 }

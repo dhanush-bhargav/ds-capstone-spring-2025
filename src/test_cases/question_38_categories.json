@@ -1,14 +1,28 @@
 {
-  "request_body": {
-    "topic_id": 4,
-    "argument_categories": [
-      {"argument_category": "Clean Transportation and Emissions"},
-      {"argument_category": "Economic Incentives and Consumer Access"},
-      {"argument_category": "Auto Industry and Innovation"},
-      {"argument_category": "Equity and Accessibility"},
-      {"argument_category": "Infrastructure and Grid Readiness"},
-      {"argument_category": "Fossil Fuel Reduction"},
-      {"argument_category": "Government Spending and Priorities"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "38",
+        "argument_categories": [
+            {
+                "argument_category": "Clean Transportation and Emissions"
+            },
+            {
+                "argument_category": "Economic Incentives and Consumer Access"
+            },
+            {
+                "argument_category": "Auto Industry and Innovation"
+            },
+            {
+                "argument_category": "Equity and Accessibility"
+            },
+            {
+                "argument_category": "Infrastructure and Grid Readiness"
+            },
+            {
+                "argument_category": "Fossil Fuel Reduction"
+            },
+            {
+                "argument_category": "Government Spending and Priorities"
+            }
+        ]
+    }
 }

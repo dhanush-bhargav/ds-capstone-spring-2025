@@ -1,31 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 2,
-    "arguments": [
-      {"argument": "Some books contain inappropriate content for children and should be restricted."},
-      {"argument": "Parents should have a say in what their children are exposed to at school."},
-      {"argument": "Books that promote hate speech or violence should not be easily accessible to minors."},
-      {"argument": "Certain topics, such as explicit content, should be age-appropriate in schools."},
-      {"argument": "Schools have a responsibility to provide materials that align with community values."},
-      {"argument": "Some books contain misinformation that can be harmful to young readers."},
-      {"argument": "Book bans help maintain a safe and respectful learning environment."},
-      {"argument": "Children should not be exposed to controversial social issues at a young age."},
-      {"argument": "Not all literature is suitable for classroom discussion."},
-      {"argument": "Libraries should ensure books align with educational and moral standards."},
-      
-      {"argument": "Banning books is a violation of free speech and intellectual freedom."},
-      {"argument": "Students should have access to diverse perspectives and ideas."},
-      {"argument": "Book bans often target marginalized voices and restrict representation."},
-      {"argument": "Censorship in education sets a dangerous precedent for controlling information."},
-      {"argument": "Age-appropriate discussions about controversial topics foster critical thinking."},
-      {"argument": "Parents can choose what their own children read, but not dictate for others."},
-      {"argument": "Historically, book bans have been used to suppress important social issues."},
-      {"argument": "Exposure to different ideas helps students develop independent thought."},
-      {"argument": "Teachers and librarians are qualified to curate educational materials."},
-      {"argument": "Banning books limits academic freedom and creativity in learning."}
-  ]
-  
-      
-    
-  }
+    "request_body": {
+        "topic_id": "15",
+        "arguments": [
+            {
+                "argument": "Some books contain inappropriate content for children and should be restricted."
+            },
+            {
+                "argument": "Parents should have a say in what their children are exposed to at school."
+            },
+            {
+                "argument": "Books that promote hate speech or violence should not be easily accessible to minors."
+            },
+            {
+                "argument": "Certain topics, such as explicit content, should be age-appropriate in schools."
+            },
+            {
+                "argument": "Schools have a responsibility to provide materials that align with community values."
+            },
+            {
+                "argument": "Some books contain misinformation that can be harmful to young readers."
+            },
+            {
+                "argument": "Book bans help maintain a safe and respectful learning environment."
+            },
+            {
+                "argument": "Children should not be exposed to controversial social issues at a young age."
+            },
+            {
+                "argument": "Not all literature is suitable for classroom discussion."
+            },
+            {
+                "argument": "Libraries should ensure books align with educational and moral standards."
+            },
+            {
+                "argument": "Banning books is a violation of free speech and intellectual freedom."
+            },
+            {
+                "argument": "Students should have access to diverse perspectives and ideas."
+            },
+            {
+                "argument": "Book bans often target marginalized voices and restrict representation."
+            },
+            {
+                "argument": "Censorship in education sets a dangerous precedent for controlling information."
+            },
+            {
+                "argument": "Age-appropriate discussions about controversial topics foster critical thinking."
+            },
+            {
+                "argument": "Parents can choose what their own children read, but not dictate for others."
+            },
+            {
+                "argument": "Historically, book bans have been used to suppress important social issues."
+            },
+            {
+                "argument": "Exposure to different ideas helps students develop independent thought."
+            },
+            {
+                "argument": "Teachers and librarians are qualified to curate educational materials."
+            },
+            {
+                "argument": "Banning books limits academic freedom and creativity in learning."
+            }
+        ]
+    }
 }

@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 56,
-    "arguments": [
-      {"argument": "Voting is a fundamental right that should not be revoked, even for incarcerated individuals."},
-      {"argument": "Denying voting rights disproportionately impacts marginalized communities due to racial disparities in incarceration."},
-      {"argument": "Civic engagement, including voting, can help rehabilitate prisoners and encourage reintegration into society."},
-      {"argument": "Prisoners are still affected by laws and policies, so they should have a say in governance."},
-      {"argument": "Many democracies worldwide allow incarcerated individuals to vote, setting a precedent for the U.S."},
-      {"argument": "Felony disenfranchisement laws have historically been used as tools of voter suppression."},
-      {"argument": "Allowing prisoners to vote encourages politicians to address prison reform and criminal justice issues."},
-      {"argument": "A blanket ban on voting for felons is arbitrary and does not consider the nature of their crimes."},
-      {"argument": "Reinstating voting rights could reduce recidivism by reinforcing a sense of belonging to society."},
-      {"argument": "The right to vote should not be tied to punishment, as it is a cornerstone of democracy."},
-
-      {"argument": "Felons have broken the law and should temporarily lose certain rights, including voting."},
-      {"argument": "Incarcerated individuals are not fully participating members of society and should not influence its laws."},
-      {"argument": "Allowing felons to vote could undermine public trust in the electoral system."},
-      {"argument": "Voting rights should be restored after release, not while serving a sentence for a serious crime."},
-      {"argument": "Prison populations could be manipulated for political gain by those in power."},
-      {"argument": "Most Americans oppose voting rights for incarcerated felons, reflecting democratic consensus."},
-      {"argument": "The focus should be on rehabilitation and reintegration, with voting rights restored upon release."},
-      {"argument": "Prisoners may lack access to complete, unbiased political information while incarcerated."},
-      {"argument": "States should have the right to decide their own policies on voting rights for felons."},
-      {"argument": "Victims and their families may see allowing felons to vote as an injustice or lack of accountability."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "56",
+        "arguments": [
+            {
+                "argument": "Voting is a fundamental right that should not be revoked, even for incarcerated individuals."
+            },
+            {
+                "argument": "Denying voting rights disproportionately impacts marginalized communities due to racial disparities in incarceration."
+            },
+            {
+                "argument": "Civic engagement, including voting, can help rehabilitate prisoners and encourage reintegration into society."
+            },
+            {
+                "argument": "Prisoners are still affected by laws and policies, so they should have a say in governance."
+            },
+            {
+                "argument": "Many democracies worldwide allow incarcerated individuals to vote, setting a precedent for the U.S."
+            },
+            {
+                "argument": "Felony disenfranchisement laws have historically been used as tools of voter suppression."
+            },
+            {
+                "argument": "Allowing prisoners to vote encourages politicians to address prison reform and criminal justice issues."
+            },
+            {
+                "argument": "A blanket ban on voting for felons is arbitrary and does not consider the nature of their crimes."
+            },
+            {
+                "argument": "Reinstating voting rights could reduce recidivism by reinforcing a sense of belonging to society."
+            },
+            {
+                "argument": "The right to vote should not be tied to punishment, as it is a cornerstone of democracy."
+            },
+            {
+                "argument": "Felons have broken the law and should temporarily lose certain rights, including voting."
+            },
+            {
+                "argument": "Incarcerated individuals are not fully participating members of society and should not influence its laws."
+            },
+            {
+                "argument": "Allowing felons to vote could undermine public trust in the electoral system."
+            },
+            {
+                "argument": "Voting rights should be restored after release, not while serving a sentence for a serious crime."
+            },
+            {
+                "argument": "Prison populations could be manipulated for political gain by those in power."
+            },
+            {
+                "argument": "Most Americans oppose voting rights for incarcerated felons, reflecting democratic consensus."
+            },
+            {
+                "argument": "The focus should be on rehabilitation and reintegration, with voting rights restored upon release."
+            },
+            {
+                "argument": "Prisoners may lack access to complete, unbiased political information while incarcerated."
+            },
+            {
+                "argument": "States should have the right to decide their own policies on voting rights for felons."
+            },
+            {
+                "argument": "Victims and their families may see allowing felons to vote as an injustice or lack of accountability."
+            }
+        ]
+    }
 }
