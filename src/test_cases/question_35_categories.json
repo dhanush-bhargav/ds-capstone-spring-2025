@@ -1,15 +1,14 @@
 {
-    "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
-    }
+  "request_body": {
+    "topic_id": 4,
+    "argument_categories": [
+      {"argument_category": "Marine and Coastal Ecosystems"},
+      {"argument_category": "Energy Security and Independence"},
+      {"argument_category": "Oil Spills and Disaster Risk"},
+      {"argument_category": "Economic Dependence on Fossil Fuels"},
+      {"argument_category": "Tourism and Fishing Industries"},
+      {"argument_category": "Regulation and Oversight"},
+      {"argument_category": "Climate Change Policy"}
+    ]
   }
-  
+}

@@ -1,15 +1,14 @@
 {
-    "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
-    }
+  "request_body": {
+    "topic_id": 4,
+    "argument_categories": [
+      {"argument_category": "Water Contamination and Public Health"},
+      {"argument_category": "Earthquakes and Environmental Risks"},
+      {"argument_category": "Energy Production and Jobs"},
+      {"argument_category": "Greenhouse Gas Emissions"},
+      {"argument_category": "Economic Dependency on Fracking"},
+      {"argument_category": "Transition to Renewable Energy"},
+      {"argument_category": "Community Impact and Local Resistance"}
+    ]
   }
-  
+}

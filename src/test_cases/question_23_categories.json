@@ -1,15 +1,14 @@
 {
-    "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category": ""},
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
-    }
+  "request_body": {
+    "topic_id": 3,
+    "argument_categories": [
+      {"argument_category": "Youth Rights and Autonomy"},
+      {"argument_category": "Parental Rights and Responsibility"},
+      {"argument_category": "Medical and Psychological Evidence"},
+      {"argument_category": "Ethics of Medical Intervention"},
+      {"argument_category": "Government Regulation of Healthcare"},
+      {"argument_category": "Social Inclusion and Stigma"},
+      {"argument_category": "Long-term Health Outcomes"}
+    ]
   }
-  
+}

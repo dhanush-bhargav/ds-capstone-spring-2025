@@ -1,15 +1,14 @@
 {
-    "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
-    }
+  "request_body": {
+    "topic_id": 4,
+    "argument_categories": [
+      {"argument_category": "Greenhouse Gas Emissions"},
+      {"argument_category": "Public Health and Diet"},
+      {"argument_category": "Behavioral Change and Consumer Incentives"},
+      {"argument_category": "Food Industry Economics"},
+      {"argument_category": "Equity and Affordability"},
+      {"argument_category": "Farming and Agricultural Practices"},
+      {"argument_category": "Climate Policy and Taxation"}
+    ]
   }
-  
+}

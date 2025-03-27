@@ -1,9 +1,28 @@
 {
-    "request_body": {
-      "topic_id": 5,
-      "arguments": [
-        
-      ]
-    }
+  "request_body": {
+    "topic_id": 5,
+    "arguments": [
+      {"argument": "Rent control protects tenants from sudden price hikes."},
+      {"argument": "It helps low-income residents stay in their communities."},
+      {"argument": "Stable housing contributes to mental and financial stability."},
+      {"argument": "It can reduce homelessness and housing insecurity."},
+      {"argument": "Rent control encourages long-term community investment."},
+      {"argument": "It slows displacement due to gentrification."},
+      {"argument": "Nationwide laws ensure consistent tenant protections."},
+      {"argument": "It gives tenants more negotiating power."},
+      {"argument": "Rent control helps curb speculative real estate practices."},
+      {"argument": "Housing should be treated as a right, not just a commodity."},
+
+      {"argument": "Rent control discourages new housing development."},
+      {"argument": "It can lead to housing shortages and poor maintenance."},
+      {"argument": "Landlords may convert units to short-term rentals."},
+      {"argument": "It may reduce the overall quality of rental housing."},
+      {"argument": "Developers will invest less in rent-controlled areas."},
+      {"argument": "Rent control can be unfair to small property owners."},
+      {"argument": "Market-based rent encourages better allocation of housing."},
+      {"argument": "Local markets vary—national laws may be too rigid."},
+      {"argument": "Other policies like housing vouchers may be more effective."},
+      {"argument": "It reduces landlord income without reducing their costs."}
+    ]
   }
-  
+}

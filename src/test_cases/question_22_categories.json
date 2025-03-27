@@ -1,15 +1,14 @@
 {
-    "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
-    }
+  "request_body": {
+    "topic_id": 3,
+    "argument_categories": [
+      {"argument_category": "Access to Healthcare"},
+      {"argument_category": "Public Health and Safety"},
+      {"argument_category": "Women's Rights and Autonomy"},
+      {"argument_category": "Regulatory Oversight and Safety"},
+      {"argument_category": "Socioeconomic Equity"},
+      {"argument_category": "Youth and Parental Control"},
+      {"argument_category": "Pharmaceutical Policy"}
+    ]
   }
-  
+}

@@ -1,9 +1,28 @@
 {
-    "request_body": {
-      "topic_id": 5,
-      "arguments": [
-        
-      ]
-    }
+  "request_body": {
+    "topic_id": 5,
+    "arguments": [
+      {"argument": "Unions protect workers' rights and ensure fair treatment."},
+      {"argument": "They improve workplace safety and job security."},
+      {"argument": "Unionized industries often have better pay and benefits."},
+      {"argument": "Mandatory unions can reduce income inequality."},
+      {"argument": "They give workers a collective voice in negotiations."},
+      {"argument": "Unions help prevent exploitation in critical sectors."},
+      {"argument": "They support fair dispute resolution between workers and employers."},
+      {"argument": "Mandatory unions in key industries protect the public interest."},
+      {"argument": "Unions ensure compliance with labor laws and standards."},
+      {"argument": "They stabilize employment conditions and reduce turnover."},
+
+      {"argument": "Mandatory unionization infringes on workers' freedom of choice."},
+      {"argument": "Unions may demand unrealistic benefits, hurting employers."},
+      {"argument": "They can lead to higher costs for consumers."},
+      {"argument": "Mandatory unions may stifle flexibility and innovation."},
+      {"argument": "Not all workers agree with union leadership or policies."},
+      {"argument": "Union dues reduce take-home pay for some employees."},
+      {"argument": "Corruption and inefficiency have plagued some unions."},
+      {"argument": "Unions may prioritize seniority over merit."},
+      {"argument": "Strikes in essential industries can disrupt public services."},
+      {"argument": "Voluntary membership encourages more democratic workplaces."}
+    ]
   }
-  
+}

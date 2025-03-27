@@ -1,15 +1,14 @@
 {
-    "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
-    }
+  "request_body": {
+    "topic_id": 3,
+    "argument_categories": [
+      {"argument_category": "Organ Shortage and Demand"},
+      {"argument_category": "Autonomy and Consent"},
+      {"argument_category": "Ethical and Cultural Concerns"},
+      {"argument_category": "Public Awareness and Education"},
+      {"argument_category": "System Efficiency"},
+      {"argument_category": "Comparative Global Practices"},
+      {"argument_category": "Trust in Healthcare Systems"}
+    ]
   }
-  
+}

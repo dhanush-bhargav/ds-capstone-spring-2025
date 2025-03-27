@@ -1,15 +1,14 @@
 {
-    "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
-    }
+  "request_body": {
+    "topic_id": 4,
+    "argument_categories": [
+      {"argument_category": "Environmental Protection"},
+      {"argument_category": "Business and Economic Growth"},
+      {"argument_category": "Job Creation vs Sustainability"},
+      {"argument_category": "Short-Term vs Long-Term Impact"},
+      {"argument_category": "Public Health and Safety"},
+      {"argument_category": "Regulatory Burden and Compliance Costs"},
+      {"argument_category": "Global Competitiveness"}
+    ]
   }
-  
+}

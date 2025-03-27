@@ -1,15 +1,14 @@
 {
-    "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
-    }
+  "request_body": {
+    "topic_id": 5,
+    "argument_categories": [
+      {"argument_category": "Worker Income and Wage Stability"},
+      {"argument_category": "Customer Experience and Pricing"},
+      {"argument_category": "Equity and Discrimination"},
+      {"argument_category": "Hospitality Industry Standards"},
+      {"argument_category": "Business Cost and Compensation Models"},
+      {"argument_category": "Service Quality and Motivation"},
+      {"argument_category": "Cultural Norms and Social Expectations"}
+    ]
   }
-  
+}

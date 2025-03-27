@@ -1,15 +1,14 @@
 {
-    "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
-    }
+  "request_body": {
+    "topic_id": 5,
+    "argument_categories": [
+      {"argument_category": "Income Security and Poverty Reduction"},
+      {"argument_category": "Work Incentives and Labor Participation"},
+      {"argument_category": "Automation and Future of Work"},
+      {"argument_category": "Government Spending and Taxes"},
+      {"argument_category": "Social Safety Net Reform"},
+      {"argument_category": "Economic Stimulus and Consumption"},
+      {"argument_category": "Implementation and Feasibility"}
+    ]
   }
-  
+}
