@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 88,
-    "argument_categories": [
-      {"argument_category": "Resource Allocation"},
-      {"argument_category": "Legal Status"},
-      {"argument_category": "Economic Contribution"},
-      {"argument_category": "Human Rights"},
-      {"argument_category": "Public Health"},
-      {"argument_category": "Social Integration"},
-      {"argument_category": "Taxpayer Fairness"},
-      {"argument_category": "Immigration System Integrity"},
-      {"argument_category": "Public Safety"},
-      {"argument_category": "Social Cohesion"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "88",
+        "argument_categories": [
+            {
+                "argument_category": "Resource Allocation"
+            },
+            {
+                "argument_category": "Legal Status"
+            },
+            {
+                "argument_category": "Economic Contribution"
+            },
+            {
+                "argument_category": "Human Rights"
+            },
+            {
+                "argument_category": "Public Health"
+            },
+            {
+                "argument_category": "Social Integration"
+            },
+            {
+                "argument_category": "Taxpayer Fairness"
+            },
+            {
+                "argument_category": "Immigration System Integrity"
+            },
+            {
+                "argument_category": "Public Safety"
+            },
+            {
+                "argument_category": "Social Cohesion"
+            }
+        ]
+    }
 }

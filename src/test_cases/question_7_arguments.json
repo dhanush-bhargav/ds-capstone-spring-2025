@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 1,
-    "arguments": [
-      {"argument": "Political ads spread misinformation and manipulate public opinion."},
-      {"argument": "Social media platforms lack transparency in political ad funding."},
-      {"argument": "Foreign entities can exploit online ads to influence elections."},
-      {"argument": "Banning political ads would reduce polarization and echo chambers."},
-      {"argument": "Political ads often use microtargeting to manipulate voters."},
-      {"argument": "Social media companies fail to effectively fact-check political ads."},
-      {"argument": "It would level the playing field for candidates with fewer resources."},
-      {"argument": "The spread of fake news is worsened by unregulated political ads."},
-      {"argument": "Users should not be bombarded with biased political propaganda."},
-      {"argument": "Social media should prioritize unbiased information over paid influence."},
-  
-      {"argument": "Political ads are a form of free speech protected under the First Amendment."},
-      {"argument": "Banning them would disproportionately harm lesser-known candidates."},
-      {"argument": "Social media is an essential tool for modern political campaigns."},
-      {"argument": "Voters have the right to access political messages from various sources."},
-      {"argument": "A ban would favor traditional media, which also runs political ads."},
-      {"argument": "Regulation, not a ban, is a better solution to curb misinformation."},
-      {"argument": "Political engagement on social media increases voter participation."},
-      {"argument": "A ban would make it harder for grassroots movements to gain traction."},
-      {"argument": "Transparency tools can ensure accountability in online political ads."},
-      {"argument": "Social media platforms should not control political discourse through bans."}
-  ]
-  }
+    "request_body": {
+        "topic_id": "7",
+        "arguments": [
+            {
+                "argument": "Political ads spread misinformation and manipulate public opinion."
+            },
+            {
+                "argument": "Social media platforms lack transparency in political ad funding."
+            },
+            {
+                "argument": "Foreign entities can exploit online ads to influence elections."
+            },
+            {
+                "argument": "Banning political ads would reduce polarization and echo chambers."
+            },
+            {
+                "argument": "Political ads often use microtargeting to manipulate voters."
+            },
+            {
+                "argument": "Social media companies fail to effectively fact-check political ads."
+            },
+            {
+                "argument": "It would level the playing field for candidates with fewer resources."
+            },
+            {
+                "argument": "The spread of fake news is worsened by unregulated political ads."
+            },
+            {
+                "argument": "Users should not be bombarded with biased political propaganda."
+            },
+            {
+                "argument": "Social media should prioritize unbiased information over paid influence."
+            },
+            {
+                "argument": "Political ads are a form of free speech protected under the First Amendment."
+            },
+            {
+                "argument": "Banning them would disproportionately harm lesser-known candidates."
+            },
+            {
+                "argument": "Social media is an essential tool for modern political campaigns."
+            },
+            {
+                "argument": "Voters have the right to access political messages from various sources."
+            },
+            {
+                "argument": "A ban would favor traditional media, which also runs political ads."
+            },
+            {
+                "argument": "Regulation, not a ban, is a better solution to curb misinformation."
+            },
+            {
+                "argument": "Political engagement on social media increases voter participation."
+            },
+            {
+                "argument": "A ban would make it harder for grassroots movements to gain traction."
+            },
+            {
+                "argument": "Transparency tools can ensure accountability in online political ads."
+            },
+            {
+                "argument": "Social media platforms should not control political discourse through bans."
+            }
+        ]
+    }
 }

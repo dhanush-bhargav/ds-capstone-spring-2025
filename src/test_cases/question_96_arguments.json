@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 96,
-    "arguments": [
-      {"argument": "Standing during the national anthem shows respect for the country and the sacrifices made by military personnel."},
-      {"argument": "It demonstrates unity and national pride, promoting a sense of collective identity among citizens."},
-      {"argument": "Professional athletes, as public figures, should set an example of patriotism and respect for national symbols."},
-      {"argument": "The national anthem is a moment to honor the nation and its values, and standing is a basic way of showing respect."},
-      {"argument": "Requiring athletes to stand reinforces a standard of respect for national traditions and unifies the audience and players."},
-      {"argument": "The act of standing during the anthem should be seen as a minimal display of respect for the country, regardless of political views."},
-      {"argument": "Standing during the anthem is a non-controversial way to show patriotism and support for the country."},
-      {"argument": "By standing, athletes honor the values of freedom and democracy that the national anthem represents."},
-      {"argument": "It creates a positive public image for the athletes and the league they represent, fostering a sense of community."},
-      {"argument": "Athletes are role models, and standing during the anthem sets a good example for their fans, particularly younger generations."},
-
-      {"argument": "Requiring athletes to stand during the anthem infringes on their right to free speech and expression."},
-      {"argument": "The national anthem is a symbolic moment, and individuals should have the freedom to decide how they wish to express their patriotism."},
-      {"argument": "Athletes may use their platform to raise awareness for social and political issues, and sitting or kneeling during the anthem is part of that."},
-      {"argument": "Forced participation in a national anthem ritual diminishes the freedom of expression that the anthem itself symbolizes."},
-      {"argument": "Requiring athletes to stand may suppress protests or forms of peaceful activism, undermining efforts to address important societal issues."},
-      {"argument": "Mandating athletes to stand could be seen as an attempt to stifle dissent and discourage conversations about inequality and justice."},
-      {"argument": "The national anthem should not be weaponized to force conformity; everyone should have the freedom to express themselves during that moment."},
-      {"argument": "Athletes should be able to use their visibility to highlight issues they care about, even if it means sitting or kneeling during the anthem."},
-      {"argument": "Requiring athletes to stand for the anthem risks creating a false sense of patriotism, rather than fostering genuine support for the nation’s values."},
-      {"argument": "The focus should be on the message athletes are trying to convey rather than forcing them to conform to a specific behavior during the anthem."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "96",
+        "arguments": [
+            {
+                "argument": "Standing during the national anthem shows respect for the country and the sacrifices made by military personnel."
+            },
+            {
+                "argument": "It demonstrates unity and national pride, promoting a sense of collective identity among citizens."
+            },
+            {
+                "argument": "Professional athletes, as public figures, should set an example of patriotism and respect for national symbols."
+            },
+            {
+                "argument": "The national anthem is a moment to honor the nation and its values, and standing is a basic way of showing respect."
+            },
+            {
+                "argument": "Requiring athletes to stand reinforces a standard of respect for national traditions and unifies the audience and players."
+            },
+            {
+                "argument": "The act of standing during the anthem should be seen as a minimal display of respect for the country, regardless of political views."
+            },
+            {
+                "argument": "Standing during the anthem is a non-controversial way to show patriotism and support for the country."
+            },
+            {
+                "argument": "By standing, athletes honor the values of freedom and democracy that the national anthem represents."
+            },
+            {
+                "argument": "It creates a positive public image for the athletes and the league they represent, fostering a sense of community."
+            },
+            {
+                "argument": "Athletes are role models, and standing during the anthem sets a good example for their fans, particularly younger generations."
+            },
+            {
+                "argument": "Requiring athletes to stand during the anthem infringes on their right to free speech and expression."
+            },
+            {
+                "argument": "The national anthem is a symbolic moment, and individuals should have the freedom to decide how they wish to express their patriotism."
+            },
+            {
+                "argument": "Athletes may use their platform to raise awareness for social and political issues, and sitting or kneeling during the anthem is part of that."
+            },
+            {
+                "argument": "Forced participation in a national anthem ritual diminishes the freedom of expression that the anthem itself symbolizes."
+            },
+            {
+                "argument": "Requiring athletes to stand may suppress protests or forms of peaceful activism, undermining efforts to address important societal issues."
+            },
+            {
+                "argument": "Mandating athletes to stand could be seen as an attempt to stifle dissent and discourage conversations about inequality and justice."
+            },
+            {
+                "argument": "The national anthem should not be weaponized to force conformity; everyone should have the freedom to express themselves during that moment."
+            },
+            {
+                "argument": "Athletes should be able to use their visibility to highlight issues they care about, even if it means sitting or kneeling during the anthem."
+            },
+            {
+                "argument": "Requiring athletes to stand for the anthem risks creating a false sense of patriotism, rather than fostering genuine support for the nation\u2019s values."
+            },
+            {
+                "argument": "The focus should be on the message athletes are trying to convey rather than forcing them to conform to a specific behavior during the anthem."
+            }
+        ]
+    }
 }

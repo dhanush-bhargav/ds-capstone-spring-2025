@@ -1,14 +1,28 @@
 {
-  "request_body": {
-    "topic_id": 1,
-    "argument_categories": [
-      {"argument_category": "Parental Rights and Autonomy"},
-      {"argument_category": "Education and Public Awareness"},
-      {"argument_category": "Legal and Constitutional Concerns"},
-      {"argument_category": "Public Trust and Accountability"},
-      {"argument_category": "Political Fairness"},
-      {"argument_category": "Curriculum Control"},
-      {"argument_category": "Government Overreach"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "10",
+        "argument_categories": [
+            {
+                "argument_category": "Parental Rights and Autonomy"
+            },
+            {
+                "argument_category": "Education and Public Awareness"
+            },
+            {
+                "argument_category": "Legal and Constitutional Concerns"
+            },
+            {
+                "argument_category": "Public Trust and Accountability"
+            },
+            {
+                "argument_category": "Political Fairness"
+            },
+            {
+                "argument_category": "Curriculum Control"
+            },
+            {
+                "argument_category": "Government Overreach"
+            }
+        ]
+    }
 }

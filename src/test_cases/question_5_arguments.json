@@ -1,31 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 1,
-    "arguments": [
-      {"argument": "Large donations give wealthy individuals undue political influence."},
-      {"argument": "Money in politics creates corruption and special interest control."},
-      {"argument": "Stricter limits would level the playing field for all candidates."},
-      {"argument": "It would reduce the influence of corporate donations in elections."},
-      {"argument": "Public funding of elections could be more effective than private donations."},
-      {"argument": "Limiting donations would force candidates to engage more with voters."},
-      {"argument": "The current system favors incumbents with large donor networks."},
-      {"argument": "Campaign finance reform is necessary to restore public trust."},
-      {"argument": "It would prevent billionaires from single-handedly funding campaigns."},
-      {"argument": "Strict limits would reduce negative campaigning and excessive political ads."},
-  
-      {"argument": "Campaign donations are a form of free speech protected by the First Amendment."},
-      {"argument": "Stricter limits would disadvantage underfunded candidates."},
-      {"argument": "Political campaigns require significant funding to reach voters."},
-      {"argument": "Donors should have the right to support candidates they believe in."},
-      {"argument": "Regulating donations could lead to legal loopholes and dark money sources."},
-      {"argument": "Public financing of campaigns could increase taxpayer burden."},
-      {"argument": "Donations enable grassroots candidates to compete with established politicians."},
-      {"argument": "Enforcing stricter limits would be difficult and costly."},
-      {"argument": "Candidates might turn to less transparent fundraising methods."},
-      {"argument": "Transparency in donations is more important than strict limits."}
-  ]
-  
-      
-    
-  }
+    "request_body": {
+        "topic_id": "5",
+        "arguments": [
+            {
+                "argument": "Large donations give wealthy individuals undue political influence."
+            },
+            {
+                "argument": "Money in politics creates corruption and special interest control."
+            },
+            {
+                "argument": "Stricter limits would level the playing field for all candidates."
+            },
+            {
+                "argument": "It would reduce the influence of corporate donations in elections."
+            },
+            {
+                "argument": "Public funding of elections could be more effective than private donations."
+            },
+            {
+                "argument": "Limiting donations would force candidates to engage more with voters."
+            },
+            {
+                "argument": "The current system favors incumbents with large donor networks."
+            },
+            {
+                "argument": "Campaign finance reform is necessary to restore public trust."
+            },
+            {
+                "argument": "It would prevent billionaires from single-handedly funding campaigns."
+            },
+            {
+                "argument": "Strict limits would reduce negative campaigning and excessive political ads."
+            },
+            {
+                "argument": "Campaign donations are a form of free speech protected by the First Amendment."
+            },
+            {
+                "argument": "Stricter limits would disadvantage underfunded candidates."
+            },
+            {
+                "argument": "Political campaigns require significant funding to reach voters."
+            },
+            {
+                "argument": "Donors should have the right to support candidates they believe in."
+            },
+            {
+                "argument": "Regulating donations could lead to legal loopholes and dark money sources."
+            },
+            {
+                "argument": "Public financing of campaigns could increase taxpayer burden."
+            },
+            {
+                "argument": "Donations enable grassroots candidates to compete with established politicians."
+            },
+            {
+                "argument": "Enforcing stricter limits would be difficult and costly."
+            },
+            {
+                "argument": "Candidates might turn to less transparent fundraising methods."
+            },
+            {
+                "argument": "Transparency in donations is more important than strict limits."
+            }
+        ]
+    }
 }

@@ -1,14 +1,28 @@
 {
-  "request_body": {
-    "topic_id": 1,
-    "argument_categpries": [
-      {"argument_category": "Fairness"},
-      {"argument_category": "State Power"},
-      {"argument_category": "Practicality"},
-      {"argument_category": "Campaigns"},
-      {"argument_category": "History"},
-      {"argument_category": "Representation"},
-      {"argument_category": "Risks"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "1",
+        "argument_categpries": [
+            {
+                "argument_category": "Fairness"
+            },
+            {
+                "argument_category": "State Power"
+            },
+            {
+                "argument_category": "Practicality"
+            },
+            {
+                "argument_category": "Campaigns"
+            },
+            {
+                "argument_category": "History"
+            },
+            {
+                "argument_category": "Representation"
+            },
+            {
+                "argument_category": "Risks"
+            }
+        ]
+    }
 }

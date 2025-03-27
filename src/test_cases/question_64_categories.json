@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 64,
-    "argument_categories": [
-      {"argument_category": "Transparency"},
-      {"argument_category": "Misinformation"},
-      {"argument_category": "User Awareness"},
-      {"argument_category": "Ethics"},
-      {"argument_category": "Regulation"},
-      {"argument_category": "Creativity"},
-      {"argument_category": "Enforcement"},
-      {"argument_category": "Trust"},
-      {"argument_category": "Innovation"},
-      {"argument_category": "AI Integration"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "64",
+        "argument_categories": [
+            {
+                "argument_category": "Transparency"
+            },
+            {
+                "argument_category": "Misinformation"
+            },
+            {
+                "argument_category": "User Awareness"
+            },
+            {
+                "argument_category": "Ethics"
+            },
+            {
+                "argument_category": "Regulation"
+            },
+            {
+                "argument_category": "Creativity"
+            },
+            {
+                "argument_category": "Enforcement"
+            },
+            {
+                "argument_category": "Trust"
+            },
+            {
+                "argument_category": "Innovation"
+            },
+            {
+                "argument_category": "AI Integration"
+            }
+        ]
+    }
 }

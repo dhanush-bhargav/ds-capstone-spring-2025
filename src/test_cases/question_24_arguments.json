@@ -1,29 +1,67 @@
 {
     "request_body": {
-      "topic_id": 3,
-      "arguments": [
-        {"argument": "Universal healthcare ensures access for everyone, regardless of income."},
-        {"argument": "It eliminates financial barriers to critical medical care."},
-        {"argument": "Countries with universal systems have better health outcomes overall."},
-        {"argument": "It reduces administrative costs tied to private insurers."},
-        {"argument": "People won’t lose coverage if they change or lose jobs."},
-        {"argument": "A centralized system can negotiate lower prices for services and drugs."},
-        {"argument": "It simplifies the system for patients and providers."},
-        {"argument": "Healthcare is a human right, not a privilege."},
-        {"argument": "Universal coverage helps prevent medical bankruptcies."},
-        {"argument": "It promotes equality in healthcare access."},
-  
-        {"argument": "Replacing private insurance limits patient choice and control."},
-        {"argument": "Government systems may lead to longer wait times for care."},
-        {"argument": "Taxpayers would bear the massive financial burden."},
-        {"argument": "Innovation may suffer without market competition."},
-        {"argument": "People should have the right to choose their coverage plans."},
-        {"argument": "Universal systems risk inefficiency and bureaucracy."},
-        {"argument": "Transitioning could disrupt current healthcare services."},
-        {"argument": "Private insurance allows more tailored and premium services."},
-        {"argument": "It could reduce incentives for doctors and specialists."},
-        {"argument": "Not all government-run programs have proven effective."}
-      ]
+        "topic_id": "24",
+        "arguments": [
+            {
+                "argument": "Universal healthcare ensures access for everyone, regardless of income."
+            },
+            {
+                "argument": "It eliminates financial barriers to critical medical care."
+            },
+            {
+                "argument": "Countries with universal systems have better health outcomes overall."
+            },
+            {
+                "argument": "It reduces administrative costs tied to private insurers."
+            },
+            {
+                "argument": "People won\u2019t lose coverage if they change or lose jobs."
+            },
+            {
+                "argument": "A centralized system can negotiate lower prices for services and drugs."
+            },
+            {
+                "argument": "It simplifies the system for patients and providers."
+            },
+            {
+                "argument": "Healthcare is a human right, not a privilege."
+            },
+            {
+                "argument": "Universal coverage helps prevent medical bankruptcies."
+            },
+            {
+                "argument": "It promotes equality in healthcare access."
+            },
+            {
+                "argument": "Replacing private insurance limits patient choice and control."
+            },
+            {
+                "argument": "Government systems may lead to longer wait times for care."
+            },
+            {
+                "argument": "Taxpayers would bear the massive financial burden."
+            },
+            {
+                "argument": "Innovation may suffer without market competition."
+            },
+            {
+                "argument": "People should have the right to choose their coverage plans."
+            },
+            {
+                "argument": "Universal systems risk inefficiency and bureaucracy."
+            },
+            {
+                "argument": "Transitioning could disrupt current healthcare services."
+            },
+            {
+                "argument": "Private insurance allows more tailored and premium services."
+            },
+            {
+                "argument": "It could reduce incentives for doctors and specialists."
+            },
+            {
+                "argument": "Not all government-run programs have proven effective."
+            }
+        ]
     }
-  }
-  
+}

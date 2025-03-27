@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 2,
-    "arguments": [
-      {"argument": "Stronger hate speech laws would protect marginalized communities from harm."},
-      {"argument": "Freedom of speech should not include incitement of violence or discrimination."},
-      {"argument": "Other democratic countries have effective hate speech laws."},
-      {"argument": "Online hate speech has led to real-world violence and must be regulated."},
-      {"argument": "Expanding hate speech laws would create a more inclusive society."},
-      {"argument": "Hate speech can cause psychological harm to targeted individuals."},
-      {"argument": "Stronger laws would hold individuals accountable for spreading hate."},
-      {"argument": "Hate speech laws ensure a balance between free speech and public safety."},
-      {"argument": "Words have consequences, and legal measures can help prevent harm."},
-      {"argument": "Social media companies should be legally required to remove hate speech."},
-      
-      {"argument": "Expanding hate speech laws could limit free speech rights."},
-      {"argument": "Defining hate speech is subjective and open to abuse."},
-      {"argument": "Current laws against incitement and threats are already sufficient."},
-      {"argument": "Restricting speech could lead to government overreach and censorship."},
-      {"argument": "People should be free to express controversial opinions without fear of punishment."},
-      {"argument": "Banning hate speech does not eliminate hateful beliefs."},
-      {"argument": "Some people may misuse hate speech laws to silence political opponents."},
-      {"argument": "The First Amendment protects even unpopular and offensive speech."},
-      {"argument": "Enforcing hate speech laws could be expensive and difficult."},
-      {"argument": "Encouraging counter-speech is a better solution than legal restrictions."}
-  ]
-  }
+    "request_body": {
+        "topic_id": "16",
+        "arguments": [
+            {
+                "argument": "Stronger hate speech laws would protect marginalized communities from harm."
+            },
+            {
+                "argument": "Freedom of speech should not include incitement of violence or discrimination."
+            },
+            {
+                "argument": "Other democratic countries have effective hate speech laws."
+            },
+            {
+                "argument": "Online hate speech has led to real-world violence and must be regulated."
+            },
+            {
+                "argument": "Expanding hate speech laws would create a more inclusive society."
+            },
+            {
+                "argument": "Hate speech can cause psychological harm to targeted individuals."
+            },
+            {
+                "argument": "Stronger laws would hold individuals accountable for spreading hate."
+            },
+            {
+                "argument": "Hate speech laws ensure a balance between free speech and public safety."
+            },
+            {
+                "argument": "Words have consequences, and legal measures can help prevent harm."
+            },
+            {
+                "argument": "Social media companies should be legally required to remove hate speech."
+            },
+            {
+                "argument": "Expanding hate speech laws could limit free speech rights."
+            },
+            {
+                "argument": "Defining hate speech is subjective and open to abuse."
+            },
+            {
+                "argument": "Current laws against incitement and threats are already sufficient."
+            },
+            {
+                "argument": "Restricting speech could lead to government overreach and censorship."
+            },
+            {
+                "argument": "People should be free to express controversial opinions without fear of punishment."
+            },
+            {
+                "argument": "Banning hate speech does not eliminate hateful beliefs."
+            },
+            {
+                "argument": "Some people may misuse hate speech laws to silence political opponents."
+            },
+            {
+                "argument": "The First Amendment protects even unpopular and offensive speech."
+            },
+            {
+                "argument": "Enforcing hate speech laws could be expensive and difficult."
+            },
+            {
+                "argument": "Encouraging counter-speech is a better solution than legal restrictions."
+            }
+        ]
+    }
 }

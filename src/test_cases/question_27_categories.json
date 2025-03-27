@@ -1,15 +1,28 @@
 {
     "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
+        "topic_id": "27",
+        "argument_categories": [
+            {
+                "argument_category": "Public Health and Safety"
+            },
+            {
+                "argument_category": "Addiction Treatment and Recovery"
+            },
+            {
+                "argument_category": "Criminal Justice and Drug Policy"
+            },
+            {
+                "argument_category": "Cost-Effectiveness and Healthcare Spending"
+            },
+            {
+                "argument_category": "Moral and Ethical Responsibility"
+            },
+            {
+                "argument_category": "Government Role in Public Health"
+            },
+            {
+                "argument_category": "Community Safety and Support"
+            }
+        ]
     }
-  }
-  
+}

@@ -1,15 +1,28 @@
 {
     "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
+        "topic_id": "26",
+        "argument_categories": [
+            {
+                "argument_category": "Public Health and Safety"
+            },
+            {
+                "argument_category": "Individual Freedom and Bodily Autonomy"
+            },
+            {
+                "argument_category": "Employer and Government Responsibility"
+            },
+            {
+                "argument_category": "Legal and Constitutional Issues"
+            },
+            {
+                "argument_category": "Science and Vaccine Efficacy"
+            },
+            {
+                "argument_category": "Social Trust and Misinformation"
+            },
+            {
+                "argument_category": "Workforce and Operational Concerns"
+            }
+        ]
     }
-  }
-  
+}

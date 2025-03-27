@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 70,
-    "argument_categories": [
-      {"argument_category": "Safety & Reliability"},
-      {"argument_category": "Economic Impact"},
-      {"argument_category": "Innovation & Technology"},
-      {"argument_category": "Traffic & Efficiency"},
-      {"argument_category": "Job Impact"},
-      {"argument_category": "Trust & Public Perception"},
-      {"argument_category": "Legal & Liability"},
-      {"argument_category": "Infrastructure & Costs"},
-      {"argument_category": "Environmental Impact"},
-      {"argument_category": "Ethical Concerns"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "70",
+        "argument_categories": [
+            {
+                "argument_category": "Safety & Reliability"
+            },
+            {
+                "argument_category": "Economic Impact"
+            },
+            {
+                "argument_category": "Innovation & Technology"
+            },
+            {
+                "argument_category": "Traffic & Efficiency"
+            },
+            {
+                "argument_category": "Job Impact"
+            },
+            {
+                "argument_category": "Trust & Public Perception"
+            },
+            {
+                "argument_category": "Legal & Liability"
+            },
+            {
+                "argument_category": "Infrastructure & Costs"
+            },
+            {
+                "argument_category": "Environmental Impact"
+            },
+            {
+                "argument_category": "Ethical Concerns"
+            }
+        ]
+    }
 }

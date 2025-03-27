@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 85,
-    "arguments": [
-      {"argument": "Climate change is a global crisis, and prioritizing these refugees demonstrates global solidarity."},
-      {"argument": "Climate refugees often face displacement without support, so providing asylum ensures their basic rights and protection."},
-      {"argument": "Prioritizing climate refugees helps alleviate suffering caused by natural disasters and environmental degradation."},
-      {"argument": "It reflects the responsibility of wealthy nations to assist those disproportionately affected by climate change."},
-      {"argument": "Refugees from climate-affected regions often have no home to return to, making asylum their only viable option."},
-      {"argument": "Prioritizing climate refugees can be part of a broader strategy for addressing global migration issues caused by environmental factors."},
-      {"argument": "It acknowledges that climate change contributes to conflict, displacement, and human rights abuses."},
-      {"argument": "Providing asylum can help vulnerable populations build better lives in countries that can support their recovery and integration."},
-      {"argument": "Asylum for climate refugees is a proactive step in helping prevent future crises and potential conflict caused by climate change."},
-      {"argument": "These refugees are often unable to seek help from their governments, as many lack the resources to address environmental crises."},
-
-      {"argument": "Prioritizing climate refugees could strain existing asylum systems and resources in host countries."},
-      {"argument": "There is no clear international legal framework for climate refugees, making it difficult to prioritize them fairly."},
-      {"argument": "Climate change impacts are often gradual, and people may adapt or relocate within their own country without needing asylum."},
-      {"argument": "Focusing on climate refugees may undermine the legitimacy of refugees fleeing direct persecution or conflict."},
-      {"argument": "Asylum should be based on immediate threats to life and liberty, not gradual environmental changes."},
-      {"argument": "Prioritizing climate refugees could create an influx of people with varying needs that may overwhelm countries' immigration systems."},
-      {"argument": "Countries that are already facing economic challenges may be unable to handle the additional burden of climate refugees."},
-      {"argument": "Climate change is a complex global issue that requires global solutions, rather than forcing individual countries to take on more responsibility."},
-      {"argument": "Some nations might feel they are unfairly burdened by taking in climate refugees while others contribute less to climate change."},
-      {"argument": "There are other, more effective ways to address the causes of climate displacement, such as international climate action."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "85",
+        "arguments": [
+            {
+                "argument": "Climate change is a global crisis, and prioritizing these refugees demonstrates global solidarity."
+            },
+            {
+                "argument": "Climate refugees often face displacement without support, so providing asylum ensures their basic rights and protection."
+            },
+            {
+                "argument": "Prioritizing climate refugees helps alleviate suffering caused by natural disasters and environmental degradation."
+            },
+            {
+                "argument": "It reflects the responsibility of wealthy nations to assist those disproportionately affected by climate change."
+            },
+            {
+                "argument": "Refugees from climate-affected regions often have no home to return to, making asylum their only viable option."
+            },
+            {
+                "argument": "Prioritizing climate refugees can be part of a broader strategy for addressing global migration issues caused by environmental factors."
+            },
+            {
+                "argument": "It acknowledges that climate change contributes to conflict, displacement, and human rights abuses."
+            },
+            {
+                "argument": "Providing asylum can help vulnerable populations build better lives in countries that can support their recovery and integration."
+            },
+            {
+                "argument": "Asylum for climate refugees is a proactive step in helping prevent future crises and potential conflict caused by climate change."
+            },
+            {
+                "argument": "These refugees are often unable to seek help from their governments, as many lack the resources to address environmental crises."
+            },
+            {
+                "argument": "Prioritizing climate refugees could strain existing asylum systems and resources in host countries."
+            },
+            {
+                "argument": "There is no clear international legal framework for climate refugees, making it difficult to prioritize them fairly."
+            },
+            {
+                "argument": "Climate change impacts are often gradual, and people may adapt or relocate within their own country without needing asylum."
+            },
+            {
+                "argument": "Focusing on climate refugees may undermine the legitimacy of refugees fleeing direct persecution or conflict."
+            },
+            {
+                "argument": "Asylum should be based on immediate threats to life and liberty, not gradual environmental changes."
+            },
+            {
+                "argument": "Prioritizing climate refugees could create an influx of people with varying needs that may overwhelm countries' immigration systems."
+            },
+            {
+                "argument": "Countries that are already facing economic challenges may be unable to handle the additional burden of climate refugees."
+            },
+            {
+                "argument": "Climate change is a complex global issue that requires global solutions, rather than forcing individual countries to take on more responsibility."
+            },
+            {
+                "argument": "Some nations might feel they are unfairly burdened by taking in climate refugees while others contribute less to climate change."
+            },
+            {
+                "argument": "There are other, more effective ways to address the causes of climate displacement, such as international climate action."
+            }
+        ]
+    }
 }

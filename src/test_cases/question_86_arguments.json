@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 86,
-    "arguments": [
-      {"argument": "Reducing legal immigration can help address concerns about overpopulation and resource strain in the U.S."},
-      {"argument": "It could help reduce competition for jobs, especially for low-skilled workers in the domestic labor market."},
-      {"argument": "Reducing the number of legal immigrants can ensure that U.S. infrastructure, such as housing and transportation, can better support citizens."},
-      {"argument": "It allows for more effective integration of current immigrants into American society before adding more."},
-      {"argument": "Fewer immigrants may reduce the strain on public services like healthcare, education, and welfare systems."},
-      {"argument": "A reduction in legal immigration might help address concerns about cultural assimilation and national identity."},
-      {"argument": "It could provide greater opportunities for American workers, particularly in sectors that face labor market saturation."},
-      {"argument": "Lower immigration numbers could lead to improved wages for domestic workers by reducing labor supply."},
-      {"argument": "Reducing immigration may help alleviate national security concerns related to border control and illegal immigration."},
-      {"argument": "It may allow for more focused immigration policies that prioritize skills and education over family reunification."},
-
-      {"argument": "Immigrants contribute significantly to the U.S. economy by filling critical labor gaps and creating jobs."},
-      {"argument": "Reducing legal immigration could hurt U.S. innovation, as immigrants are often a source of new ideas and technological advancements."},
-      {"argument": "Lower immigration numbers could decrease the diversity and richness of American culture, which has historically thrived on immigration."},
-      {"argument": "Immigrants play an important role in paying into Social Security and other entitlement programs, supporting the aging population."},
-      {"argument": "Reducing immigration may lead to labor shortages in key industries like agriculture, healthcare, and technology."},
-      {"argument": "Legal immigrants help sustain economic growth, contributing to taxes, consumption, and investment."},
-      {"argument": "Immigrants bring essential skills and education that benefit the U.S. economy and improve competitiveness globally."},
-      {"argument": "A reduction in legal immigration can negatively impact the U.S. labor market by reducing the supply of workers in certain sectors."},
-      {"argument": "Reducing immigration goes against American values of diversity and opportunity for those seeking a better life."},
-      {"argument": "Immigration has been essential to the U.S. growth as a nation, and reducing it could hinder future progress and prosperity."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "86",
+        "arguments": [
+            {
+                "argument": "Reducing legal immigration can help address concerns about overpopulation and resource strain in the U.S."
+            },
+            {
+                "argument": "It could help reduce competition for jobs, especially for low-skilled workers in the domestic labor market."
+            },
+            {
+                "argument": "Reducing the number of legal immigrants can ensure that U.S. infrastructure, such as housing and transportation, can better support citizens."
+            },
+            {
+                "argument": "It allows for more effective integration of current immigrants into American society before adding more."
+            },
+            {
+                "argument": "Fewer immigrants may reduce the strain on public services like healthcare, education, and welfare systems."
+            },
+            {
+                "argument": "A reduction in legal immigration might help address concerns about cultural assimilation and national identity."
+            },
+            {
+                "argument": "It could provide greater opportunities for American workers, particularly in sectors that face labor market saturation."
+            },
+            {
+                "argument": "Lower immigration numbers could lead to improved wages for domestic workers by reducing labor supply."
+            },
+            {
+                "argument": "Reducing immigration may help alleviate national security concerns related to border control and illegal immigration."
+            },
+            {
+                "argument": "It may allow for more focused immigration policies that prioritize skills and education over family reunification."
+            },
+            {
+                "argument": "Immigrants contribute significantly to the U.S. economy by filling critical labor gaps and creating jobs."
+            },
+            {
+                "argument": "Reducing legal immigration could hurt U.S. innovation, as immigrants are often a source of new ideas and technological advancements."
+            },
+            {
+                "argument": "Lower immigration numbers could decrease the diversity and richness of American culture, which has historically thrived on immigration."
+            },
+            {
+                "argument": "Immigrants play an important role in paying into Social Security and other entitlement programs, supporting the aging population."
+            },
+            {
+                "argument": "Reducing immigration may lead to labor shortages in key industries like agriculture, healthcare, and technology."
+            },
+            {
+                "argument": "Legal immigrants help sustain economic growth, contributing to taxes, consumption, and investment."
+            },
+            {
+                "argument": "Immigrants bring essential skills and education that benefit the U.S. economy and improve competitiveness globally."
+            },
+            {
+                "argument": "A reduction in legal immigration can negatively impact the U.S. labor market by reducing the supply of workers in certain sectors."
+            },
+            {
+                "argument": "Reducing immigration goes against American values of diversity and opportunity for those seeking a better life."
+            },
+            {
+                "argument": "Immigration has been essential to the U.S. growth as a nation, and reducing it could hinder future progress and prosperity."
+            }
+        ]
+    }
 }
