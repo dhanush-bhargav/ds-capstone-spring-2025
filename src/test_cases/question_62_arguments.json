@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 62,
-    "arguments": [
-      {"argument": "Outlawing anonymity would reduce cyberbullying and harassment by making users accountable."},
-      {"argument": "It would help combat misinformation and fake news by ensuring only verified individuals post content."},
-      {"argument": "Criminal activities like fraud, hacking, and identity theft thrive under online anonymity."},
-      {"argument": "Online anonymity enables illegal activities on the dark web, such as human trafficking and drug sales."},
-      {"argument": "Terrorist organizations and extremist groups use anonymity to spread propaganda and recruit members."},
-      {"argument": "Governments and law enforcement would have an easier time tracking down cybercriminals."},
-      {"argument": "Troll farms and bot accounts manipulate public opinion using anonymous accounts."},
-      {"argument": "Online predators often use anonymity to target minors and vulnerable individuals."},
-      {"argument": "Requiring real identities online would promote more respectful and civil discussions."},
-      {"argument": "Businesses and customers would benefit from a more trustworthy and accountable online environment."},
-
-      {"argument": "Anonymity is essential for free speech, especially for political dissidents and whistleblowers."},
-      {"argument": "It protects marginalized communities who may face real-world threats for their online opinions."},
-      {"argument": "Outlawing anonymity would increase government surveillance and erode privacy rights."},
-      {"argument": "Repressive regimes could use identity requirements to silence opposition and control dissent."},
-      {"argument": "Victims of domestic abuse and stalking rely on anonymity for safety."},
-      {"argument": "Forcing identity verification would expose users to greater risks of hacking and identity theft."},
-      {"argument": "Some users may be unable to verify their identity due to lack of proper documentation."},
-      {"argument": "Banning anonymity would not stop bad actors, as they could still use stolen or fake identities."},
-      {"argument": "Anonymity fosters creativity and open discussion by allowing people to express ideas without fear."},
-      {"argument": "Instead of banning anonymity, platforms should focus on better moderation and anti-abuse measures."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "62",
+        "arguments": [
+            {
+                "argument": "Outlawing anonymity would reduce cyberbullying and harassment by making users accountable."
+            },
+            {
+                "argument": "It would help combat misinformation and fake news by ensuring only verified individuals post content."
+            },
+            {
+                "argument": "Criminal activities like fraud, hacking, and identity theft thrive under online anonymity."
+            },
+            {
+                "argument": "Online anonymity enables illegal activities on the dark web, such as human trafficking and drug sales."
+            },
+            {
+                "argument": "Terrorist organizations and extremist groups use anonymity to spread propaganda and recruit members."
+            },
+            {
+                "argument": "Governments and law enforcement would have an easier time tracking down cybercriminals."
+            },
+            {
+                "argument": "Troll farms and bot accounts manipulate public opinion using anonymous accounts."
+            },
+            {
+                "argument": "Online predators often use anonymity to target minors and vulnerable individuals."
+            },
+            {
+                "argument": "Requiring real identities online would promote more respectful and civil discussions."
+            },
+            {
+                "argument": "Businesses and customers would benefit from a more trustworthy and accountable online environment."
+            },
+            {
+                "argument": "Anonymity is essential for free speech, especially for political dissidents and whistleblowers."
+            },
+            {
+                "argument": "It protects marginalized communities who may face real-world threats for their online opinions."
+            },
+            {
+                "argument": "Outlawing anonymity would increase government surveillance and erode privacy rights."
+            },
+            {
+                "argument": "Repressive regimes could use identity requirements to silence opposition and control dissent."
+            },
+            {
+                "argument": "Victims of domestic abuse and stalking rely on anonymity for safety."
+            },
+            {
+                "argument": "Forcing identity verification would expose users to greater risks of hacking and identity theft."
+            },
+            {
+                "argument": "Some users may be unable to verify their identity due to lack of proper documentation."
+            },
+            {
+                "argument": "Banning anonymity would not stop bad actors, as they could still use stolen or fake identities."
+            },
+            {
+                "argument": "Anonymity fosters creativity and open discussion by allowing people to express ideas without fear."
+            },
+            {
+                "argument": "Instead of banning anonymity, platforms should focus on better moderation and anti-abuse measures."
+            }
+        ]
+    }
 }

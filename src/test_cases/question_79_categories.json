@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 79,
-    "argument_categories": [
-      {"argument_category": "Cognition"},
-      {"argument_category": "Career"},
-      {"argument_category": "Culture"},
-      {"argument_category": "Education"},
-      {"argument_category": "Communication"},
-      {"argument_category": "Health"},
-      {"argument_category": "Freedom"},
-      {"argument_category": "Resources"},
-      {"argument_category": "Practicality"},
-      {"argument_category": "Motivation"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "79",
+        "argument_categories": [
+            {
+                "argument_category": "Cognition"
+            },
+            {
+                "argument_category": "Career"
+            },
+            {
+                "argument_category": "Culture"
+            },
+            {
+                "argument_category": "Education"
+            },
+            {
+                "argument_category": "Communication"
+            },
+            {
+                "argument_category": "Health"
+            },
+            {
+                "argument_category": "Freedom"
+            },
+            {
+                "argument_category": "Resources"
+            },
+            {
+                "argument_category": "Practicality"
+            },
+            {
+                "argument_category": "Motivation"
+            }
+        ]
+    }
 }

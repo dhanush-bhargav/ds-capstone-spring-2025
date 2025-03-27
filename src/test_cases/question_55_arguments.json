@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 55,
-    "arguments": [
-      {"argument": "Expanding hate crime laws ensures protection for vulnerable groups facing rising discrimination."},
-      {"argument": "Stronger legal protections can deter hate-motivated violence and harassment."},
-      {"argument": "More inclusive hate crime laws promote equality and social justice."},
-      {"argument": "Recognizing new protected categories acknowledges the evolving nature of discrimination."},
-      {"argument": "Expanded laws can improve law enforcement tracking and response to hate crimes."},
-      {"argument": "Marginalized communities may feel safer and more supported with stronger legal protections."},
-      {"argument": "Broadening hate crime definitions aligns with international human rights standards."},
-      {"argument": "Better legal recognition can help combat online hate speech and digital harassment."},
-      {"argument": "Expanding hate crime laws can drive cultural change by signaling societal rejection of bigotry."},
-      {"argument": "Hate crimes have a greater societal impact than ordinary crimes, warranting stronger penalties."},
-
-      {"argument": "Expanding hate crime laws could limit free speech and lead to overcriminalization."},
-      {"argument": "Determining what constitutes a hate crime can be subjective and legally ambiguous."},
-      {"argument": "Existing laws already provide sufficient protections against violence and discrimination."},
-      {"argument": "Hate crime legislation may be applied inconsistently, leading to unequal enforcement."},
-      {"argument": "Criminal intent should be the focus, rather than the victim’s identity or perceived category."},
-      {"argument": "Expanding hate crime laws could create unnecessary legal complexity and bureaucracy."},
-      {"argument": "Stronger penalties for hate crimes do not necessarily deter offenders."},
-      {"argument": "Adding more categories could lead to political or ideological bias in legal enforcement."},
-      {"argument": "Resources would be better spent on community programs and education rather than harsher laws."},
-      {"argument": "All crimes should be punished equally, regardless of the motive behind them."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "55",
+        "arguments": [
+            {
+                "argument": "Expanding hate crime laws ensures protection for vulnerable groups facing rising discrimination."
+            },
+            {
+                "argument": "Stronger legal protections can deter hate-motivated violence and harassment."
+            },
+            {
+                "argument": "More inclusive hate crime laws promote equality and social justice."
+            },
+            {
+                "argument": "Recognizing new protected categories acknowledges the evolving nature of discrimination."
+            },
+            {
+                "argument": "Expanded laws can improve law enforcement tracking and response to hate crimes."
+            },
+            {
+                "argument": "Marginalized communities may feel safer and more supported with stronger legal protections."
+            },
+            {
+                "argument": "Broadening hate crime definitions aligns with international human rights standards."
+            },
+            {
+                "argument": "Better legal recognition can help combat online hate speech and digital harassment."
+            },
+            {
+                "argument": "Expanding hate crime laws can drive cultural change by signaling societal rejection of bigotry."
+            },
+            {
+                "argument": "Hate crimes have a greater societal impact than ordinary crimes, warranting stronger penalties."
+            },
+            {
+                "argument": "Expanding hate crime laws could limit free speech and lead to overcriminalization."
+            },
+            {
+                "argument": "Determining what constitutes a hate crime can be subjective and legally ambiguous."
+            },
+            {
+                "argument": "Existing laws already provide sufficient protections against violence and discrimination."
+            },
+            {
+                "argument": "Hate crime legislation may be applied inconsistently, leading to unequal enforcement."
+            },
+            {
+                "argument": "Criminal intent should be the focus, rather than the victim\u2019s identity or perceived category."
+            },
+            {
+                "argument": "Expanding hate crime laws could create unnecessary legal complexity and bureaucracy."
+            },
+            {
+                "argument": "Stronger penalties for hate crimes do not necessarily deter offenders."
+            },
+            {
+                "argument": "Adding more categories could lead to political or ideological bias in legal enforcement."
+            },
+            {
+                "argument": "Resources would be better spent on community programs and education rather than harsher laws."
+            },
+            {
+                "argument": "All crimes should be punished equally, regardless of the motive behind them."
+            }
+        ]
+    }
 }

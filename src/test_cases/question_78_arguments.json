@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 78,
-    "arguments": [
-      {"argument": "Comprehensive sex education reduces rates of teen pregnancy and STDs."},
-      {"argument": "It provides students with medically accurate information about sexual health."},
-      {"argument": "Sex education helps students make informed decisions about their bodies and relationships."},
-      {"argument": "It promotes consent education, reducing sexual violence and harassment."},
-      {"argument": "Mandatory sex education ensures all students receive equal access to critical health knowledge."},
-      {"argument": "Studies show that sex education does not encourage early sexual activity but promotes safer choices."},
-      {"argument": "It helps debunk myths and misinformation about sex and reproduction."},
-      {"argument": "Sex education can improve communication between students and trusted adults about personal health matters."},
-      {"argument": "It supports LGBTQ+ students by providing inclusive and relevant information."},
-      {"argument": "Education about reproductive health prepares students for adulthood and responsible decision-making."},
-
-      {"argument": "Sex education should be a parental responsibility, not a school requirement."},
-      {"argument": "Mandating sex education may violate religious and cultural beliefs."},
-      {"argument": "Some parents may prefer abstinence-only education over comprehensive programs."},
-      {"argument": "Sex education may expose children to information that is not age-appropriate."},
-      {"argument": "It takes time away from core subjects like math, science, and reading."},
-      {"argument": "Not all sex education programs provide balanced or neutral perspectives."},
-      {"argument": "Local communities should have the right to decide on their own educational curriculum."},
-      {"argument": "Students can access sex education resources outside of school if needed."},
-      {"argument": "Teaching sex education in schools may encourage early sexual experimentation."},
-      {"argument": "Public schools should not be responsible for teaching personal moral values."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "78",
+        "arguments": [
+            {
+                "argument": "Comprehensive sex education reduces rates of teen pregnancy and STDs."
+            },
+            {
+                "argument": "It provides students with medically accurate information about sexual health."
+            },
+            {
+                "argument": "Sex education helps students make informed decisions about their bodies and relationships."
+            },
+            {
+                "argument": "It promotes consent education, reducing sexual violence and harassment."
+            },
+            {
+                "argument": "Mandatory sex education ensures all students receive equal access to critical health knowledge."
+            },
+            {
+                "argument": "Studies show that sex education does not encourage early sexual activity but promotes safer choices."
+            },
+            {
+                "argument": "It helps debunk myths and misinformation about sex and reproduction."
+            },
+            {
+                "argument": "Sex education can improve communication between students and trusted adults about personal health matters."
+            },
+            {
+                "argument": "It supports LGBTQ+ students by providing inclusive and relevant information."
+            },
+            {
+                "argument": "Education about reproductive health prepares students for adulthood and responsible decision-making."
+            },
+            {
+                "argument": "Sex education should be a parental responsibility, not a school requirement."
+            },
+            {
+                "argument": "Mandating sex education may violate religious and cultural beliefs."
+            },
+            {
+                "argument": "Some parents may prefer abstinence-only education over comprehensive programs."
+            },
+            {
+                "argument": "Sex education may expose children to information that is not age-appropriate."
+            },
+            {
+                "argument": "It takes time away from core subjects like math, science, and reading."
+            },
+            {
+                "argument": "Not all sex education programs provide balanced or neutral perspectives."
+            },
+            {
+                "argument": "Local communities should have the right to decide on their own educational curriculum."
+            },
+            {
+                "argument": "Students can access sex education resources outside of school if needed."
+            },
+            {
+                "argument": "Teaching sex education in schools may encourage early sexual experimentation."
+            },
+            {
+                "argument": "Public schools should not be responsible for teaching personal moral values."
+            }
+        ]
+    }
 }

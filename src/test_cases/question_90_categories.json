@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 90,
-    "argument_categories": [
-      {"argument_category": "Constitutional Rights"},
-      {"argument_category": "Immigrant Integration"},
-      {"argument_category": "Equality"},
-      {"argument_category": "Immigration Control"},
-      {"argument_category": "Legal Clarity"},
-      {"argument_category": "Public Benefits"},
-      {"argument_category": "Economic Impact"},
-      {"argument_category": "Human Rights"},
-      {"argument_category": "Social Impact"},
-      {"argument_category": "Policy Integrity"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "90",
+        "argument_categories": [
+            {
+                "argument_category": "Constitutional Rights"
+            },
+            {
+                "argument_category": "Immigrant Integration"
+            },
+            {
+                "argument_category": "Equality"
+            },
+            {
+                "argument_category": "Immigration Control"
+            },
+            {
+                "argument_category": "Legal Clarity"
+            },
+            {
+                "argument_category": "Public Benefits"
+            },
+            {
+                "argument_category": "Economic Impact"
+            },
+            {
+                "argument_category": "Human Rights"
+            },
+            {
+                "argument_category": "Social Impact"
+            },
+            {
+                "argument_category": "Policy Integrity"
+            }
+        ]
+    }
 }

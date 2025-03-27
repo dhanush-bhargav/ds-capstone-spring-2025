@@ -1,15 +1,28 @@
 {
     "request_body": {
-      "topic_id": 2,
-      "argument_categories": [
-        {"argument_category": "Freedom of Speech and Censorship"},
-        {"argument_category": "Parental Rights and Curriculum Control"},
-        {"argument_category": "Protection of Minors"},
-        {"argument_category": "Public Trust and Accountability"},
-        {"argument_category": "Literary and Educational Value"},
-        {"argument_category": "Impact on Marginalized Voices"},
-        {"argument_category": "Historical Precedents of Book Banning"}
-      ]
+        "topic_id": "15",
+        "argument_categories": [
+            {
+                "argument_category": "Freedom of Speech and Censorship"
+            },
+            {
+                "argument_category": "Parental Rights and Curriculum Control"
+            },
+            {
+                "argument_category": "Protection of Minors"
+            },
+            {
+                "argument_category": "Public Trust and Accountability"
+            },
+            {
+                "argument_category": "Literary and Educational Value"
+            },
+            {
+                "argument_category": "Impact on Marginalized Voices"
+            },
+            {
+                "argument_category": "Historical Precedents of Book Banning"
+            }
+        ]
     }
-  }
-  
+}

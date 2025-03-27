@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 53,
-    "argument_categories": [
-      {"argument_category": "Criminal Justice"},
-      {"argument_category": "Economic Impact"},
-      {"argument_category": "Health & Safety"},
-      {"argument_category": "Regulation & Control"},
-      {"argument_category": "Social Equity"},
-      {"argument_category": "Public Policy"},
-      {"argument_category": "Addiction & Substance Abuse"},
-      {"argument_category": "Traffic & Workplace Safety"},
-      {"argument_category": "Youth Impact"},
-      {"argument_category": "Corporate Influence"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "53",
+        "argument_categories": [
+            {
+                "argument_category": "Criminal Justice"
+            },
+            {
+                "argument_category": "Economic Impact"
+            },
+            {
+                "argument_category": "Health & Safety"
+            },
+            {
+                "argument_category": "Regulation & Control"
+            },
+            {
+                "argument_category": "Social Equity"
+            },
+            {
+                "argument_category": "Public Policy"
+            },
+            {
+                "argument_category": "Addiction & Substance Abuse"
+            },
+            {
+                "argument_category": "Traffic & Workplace Safety"
+            },
+            {
+                "argument_category": "Youth Impact"
+            },
+            {
+                "argument_category": "Corporate Influence"
+            }
+        ]
+    }
 }

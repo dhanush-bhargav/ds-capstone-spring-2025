@@ -1,15 +1,28 @@
 {
     "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
+        "topic_id": "28",
+        "argument_categories": [
+            {
+                "argument_category": "Medical Innovation and Research"
+            },
+            {
+                "argument_category": "Moral and Ethical Considerations"
+            },
+            {
+                "argument_category": "Regulation and Oversight"
+            },
+            {
+                "argument_category": "Disease Treatment Potential"
+            },
+            {
+                "argument_category": "Use of Embryonic Material"
+            },
+            {
+                "argument_category": "Religious and Cultural Perspectives"
+            },
+            {
+                "argument_category": "Global Scientific Competitiveness"
+            }
+        ]
     }
-  }
-  
+}

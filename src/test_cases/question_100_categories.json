@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 100,
-    "argument_categories": [
-      {"argument_category": "Work-Life Balance"},
-      {"argument_category": "Productivity"},
-      {"argument_category": "Health & Well-being"},
-      {"argument_category": "Attracting Talent"},
-      {"argument_category": "Environment"},
-      {"argument_category": "Employee Retention"},
-      {"argument_category": "Operational Costs"},
-      {"argument_category": "Industry-specific Concerns"},
-      {"argument_category": "Customer Service"},
-      {"argument_category": "Financial Impact"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "100",
+        "argument_categories": [
+            {
+                "argument_category": "Work-Life Balance"
+            },
+            {
+                "argument_category": "Productivity"
+            },
+            {
+                "argument_category": "Health & Well-being"
+            },
+            {
+                "argument_category": "Attracting Talent"
+            },
+            {
+                "argument_category": "Environment"
+            },
+            {
+                "argument_category": "Employee Retention"
+            },
+            {
+                "argument_category": "Operational Costs"
+            },
+            {
+                "argument_category": "Industry-specific Concerns"
+            },
+            {
+                "argument_category": "Customer Service"
+            },
+            {
+                "argument_category": "Financial Impact"
+            }
+        ]
+    }
 }

@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 73,
-    "arguments": [
-      {"argument": "Armed teachers can provide a first line of defense in the event of a school shooting."},
-      {"argument": "It can deter potential attackers who know that staff may be armed."},
-      {"argument": "Police response times may be too slow in an active shooter situation."},
-      {"argument": "Teachers with proper training can handle firearms responsibly."},
-      {"argument": "Gun-free zones make schools easy targets for criminals."},
-      {"argument": "It reduces reliance on resource officers, which some schools cannot afford."},
-      {"argument": "Allowing armed teachers can reassure parents and students about safety."},
-      {"argument": "Other staff members, such as administrators, could also be trained to respond to threats."},
-      {"argument": "A well-armed school staff could prevent mass casualties before law enforcement arrives."},
-      {"argument": "The presence of firearms could increase overall school security and preparedness."},
-
-      {"argument": "More guns in schools increase the risk of accidental shootings."},
-      {"argument": "Teachers are not law enforcement and should not be expected to engage in combat."},
-      {"argument": "The presence of firearms can create fear and anxiety among students and staff."},
-      {"argument": "Guns in classrooms could be misused or fall into the wrong hands."},
-      {"argument": "Training teachers to handle firearms effectively requires time and funding."},
-      {"argument": "It may lead to racial disparities in responses, where armed teachers disproportionately target certain students."},
-      {"argument": "Schools should focus on mental health support and conflict resolution instead of arming teachers."},
-      {"argument": "Law enforcement officers may mistake an armed teacher for an active shooter in a crisis."},
-      {"argument": "Arming teachers could escalate situations rather than de-escalating them."},
-      {"argument": "The presence of firearms does not necessarily prevent mass shootings and could create new dangers."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "73",
+        "arguments": [
+            {
+                "argument": "Armed teachers can provide a first line of defense in the event of a school shooting."
+            },
+            {
+                "argument": "It can deter potential attackers who know that staff may be armed."
+            },
+            {
+                "argument": "Police response times may be too slow in an active shooter situation."
+            },
+            {
+                "argument": "Teachers with proper training can handle firearms responsibly."
+            },
+            {
+                "argument": "Gun-free zones make schools easy targets for criminals."
+            },
+            {
+                "argument": "It reduces reliance on resource officers, which some schools cannot afford."
+            },
+            {
+                "argument": "Allowing armed teachers can reassure parents and students about safety."
+            },
+            {
+                "argument": "Other staff members, such as administrators, could also be trained to respond to threats."
+            },
+            {
+                "argument": "A well-armed school staff could prevent mass casualties before law enforcement arrives."
+            },
+            {
+                "argument": "The presence of firearms could increase overall school security and preparedness."
+            },
+            {
+                "argument": "More guns in schools increase the risk of accidental shootings."
+            },
+            {
+                "argument": "Teachers are not law enforcement and should not be expected to engage in combat."
+            },
+            {
+                "argument": "The presence of firearms can create fear and anxiety among students and staff."
+            },
+            {
+                "argument": "Guns in classrooms could be misused or fall into the wrong hands."
+            },
+            {
+                "argument": "Training teachers to handle firearms effectively requires time and funding."
+            },
+            {
+                "argument": "It may lead to racial disparities in responses, where armed teachers disproportionately target certain students."
+            },
+            {
+                "argument": "Schools should focus on mental health support and conflict resolution instead of arming teachers."
+            },
+            {
+                "argument": "Law enforcement officers may mistake an armed teacher for an active shooter in a crisis."
+            },
+            {
+                "argument": "Arming teachers could escalate situations rather than de-escalating them."
+            },
+            {
+                "argument": "The presence of firearms does not necessarily prevent mass shootings and could create new dangers."
+            }
+        ]
+    }
 }

@@ -1,15 +1,28 @@
 {
     "request_body": {
-      "topic_id": 3,
-      "argument_categories": [
-        {"argument_category":"" },
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""},
-        {"argument_category": ""}
-      ]
+        "topic_id": "42",
+        "argument_categories": [
+            {
+                "argument_category": "Economic Relief and Equity"
+            },
+            {
+                "argument_category": "Higher Education Reform"
+            },
+            {
+                "argument_category": "Government Spending and Budget"
+            },
+            {
+                "argument_category": "Moral Hazard and Responsibility"
+            },
+            {
+                "argument_category": "Youth Financial Stability"
+            },
+            {
+                "argument_category": "Social Mobility"
+            },
+            {
+                "argument_category": "Impact on Future Borrowers"
+            }
+        ]
     }
-  }
-  
+}

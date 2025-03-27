@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 5,
-    "arguments": [
-      {"argument": "UBI provides a financial safety net for all citizens."},
-      {"argument": "It reduces poverty and income inequality."},
-      {"argument": "UBI encourages entrepreneurship and creativity."},
-      {"argument": "It simplifies and streamlines social welfare systems."},
-      {"argument": "People can pursue education or caregiving without financial hardship."},
-      {"argument": "UBI supports workers displaced by automation."},
-      {"argument": "It empowers individuals to leave exploitative jobs."},
-      {"argument": "Direct payments are efficient and reduce bureaucracy."},
-      {"argument": "Pilot programs have shown promising results on well-being."},
-      {"argument": "UBI strengthens economic resilience in crises."},
-
-      {"argument": "UBI is expensive and may require higher taxes."},
-      {"argument": "It could discourage people from working."},
-      {"argument": "Resources could be better targeted to those in need."},
-      {"argument": "UBI may fuel inflation and raise living costs."},
-      {"argument": "It could reduce incentives for productivity and skill-building."},
-      {"argument": "Universal payments may go to those who don’t need them."},
-      {"argument": "Other programs may be cut to fund UBI."},
-      {"argument": "Some argue it's a band-aid, not a structural solution."},
-      {"argument": "UBI could shift power away from employers."},
-      {"argument": "Cultural values tied to work may erode."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "48",
+        "arguments": [
+            {
+                "argument": "UBI provides a financial safety net for all citizens."
+            },
+            {
+                "argument": "It reduces poverty and income inequality."
+            },
+            {
+                "argument": "UBI encourages entrepreneurship and creativity."
+            },
+            {
+                "argument": "It simplifies and streamlines social welfare systems."
+            },
+            {
+                "argument": "People can pursue education or caregiving without financial hardship."
+            },
+            {
+                "argument": "UBI supports workers displaced by automation."
+            },
+            {
+                "argument": "It empowers individuals to leave exploitative jobs."
+            },
+            {
+                "argument": "Direct payments are efficient and reduce bureaucracy."
+            },
+            {
+                "argument": "Pilot programs have shown promising results on well-being."
+            },
+            {
+                "argument": "UBI strengthens economic resilience in crises."
+            },
+            {
+                "argument": "UBI is expensive and may require higher taxes."
+            },
+            {
+                "argument": "It could discourage people from working."
+            },
+            {
+                "argument": "Resources could be better targeted to those in need."
+            },
+            {
+                "argument": "UBI may fuel inflation and raise living costs."
+            },
+            {
+                "argument": "It could reduce incentives for productivity and skill-building."
+            },
+            {
+                "argument": "Universal payments may go to those who don\u2019t need them."
+            },
+            {
+                "argument": "Other programs may be cut to fund UBI."
+            },
+            {
+                "argument": "Some argue it's a band-aid, not a structural solution."
+            },
+            {
+                "argument": "UBI could shift power away from employers."
+            },
+            {
+                "argument": "Cultural values tied to work may erode."
+            }
+        ]
+    }
 }

@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 85,
-    "argument_categories": [
-      {"argument_category": "Humanitarian"},
-      {"argument_category": "Global Responsibility"},
-      {"argument_category": "Legal Framework"},
-      {"argument_category": "Resource Strain"},
-      {"argument_category": "Integration Challenges"},
-      {"argument_category": "Climate Action"},
-      {"argument_category": "Asylum Process"},
-      {"argument_category": "Economic Impact"},
-      {"argument_category": "Security"},
-      {"argument_category": "Global Solutions"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "85",
+        "argument_categories": [
+            {
+                "argument_category": "Humanitarian"
+            },
+            {
+                "argument_category": "Global Responsibility"
+            },
+            {
+                "argument_category": "Legal Framework"
+            },
+            {
+                "argument_category": "Resource Strain"
+            },
+            {
+                "argument_category": "Integration Challenges"
+            },
+            {
+                "argument_category": "Climate Action"
+            },
+            {
+                "argument_category": "Asylum Process"
+            },
+            {
+                "argument_category": "Economic Impact"
+            },
+            {
+                "argument_category": "Security"
+            },
+            {
+                "argument_category": "Global Solutions"
+            }
+        ]
+    }
 }

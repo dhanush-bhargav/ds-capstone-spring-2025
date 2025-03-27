@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 62,
-    "argument_categories": [
-      {"argument_category": "Free Speech"},
-      {"argument_category": "Privacy"},
-      {"argument_category": "Cybercrime"},
-      {"argument_category": "Government Surveillance"},
-      {"argument_category": "Harassment & Abuse"},
-      {"argument_category": "Political Dissent"},
-      {"argument_category": "Online Safety"},
-      {"argument_category": "Content Moderation"},
-      {"argument_category": "Technology & Feasibility"},
-      {"argument_category": "Public Trust"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "62",
+        "argument_categories": [
+            {
+                "argument_category": "Free Speech"
+            },
+            {
+                "argument_category": "Privacy"
+            },
+            {
+                "argument_category": "Cybercrime"
+            },
+            {
+                "argument_category": "Government Surveillance"
+            },
+            {
+                "argument_category": "Harassment & Abuse"
+            },
+            {
+                "argument_category": "Political Dissent"
+            },
+            {
+                "argument_category": "Online Safety"
+            },
+            {
+                "argument_category": "Content Moderation"
+            },
+            {
+                "argument_category": "Technology & Feasibility"
+            },
+            {
+                "argument_category": "Public Trust"
+            }
+        ]
+    }
 }

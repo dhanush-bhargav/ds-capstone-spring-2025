@@ -1,28 +1,67 @@
 {
-  "request_body": {
-    "topic_id": 77,
-    "arguments": [
-      {"argument": "Stronger regulations ensure homeschooled children receive a quality education."},
-      {"argument": "They prevent educational neglect and ensure children meet basic learning standards."},
-      {"argument": "Standardized oversight can help track student progress and identify gaps."},
-      {"argument": "It protects children from being isolated or deprived of socialization opportunities."},
-      {"argument": "More regulations can prevent cases of abuse that may go unnoticed in homeschooling environments."},
-      {"argument": "Requiring credentials for homeschooling parents ensures qualified instruction."},
-      {"argument": "Stricter oversight can help prevent extremist or unscientific curricula from being taught."},
-      {"argument": "Increased accountability ensures homeschooled students can transition into higher education or the workforce."},
-      {"argument": "Regular assessments can ensure homeschooled students are not falling behind their peers."},
-      {"argument": "More structured homeschooling laws create fairness across different education systems."},
-
-      {"argument": "Homeschooling allows for individualized learning that may not align with standardized regulations."},
-      {"argument": "Parents should have the right to choose how to educate their children without government interference."},
-      {"argument": "Current regulations are sufficient, and additional oversight is unnecessary."},
-      {"argument": "Stricter rules could burden families who successfully homeschool their children."},
-      {"argument": "Public education has its own flaws, and forcing its standards onto homeschooling may not be beneficial."},
-      {"argument": "Increased regulations could limit diversity in educational approaches."},
-      {"argument": "Many homeschooled students outperform their traditionally schooled peers, proving additional oversight is not needed."},
-      {"argument": "Homeschooling parents invest significant time and effort; extra regulations may discourage them."},
-      {"argument": "Regulations could disproportionately affect lower-income or minority families who homeschool."},
-      {"argument": "Overregulation could infringe on religious or philosophical beliefs that guide homeschooling choices."}
-    ]
-  }
+    "request_body": {
+        "topic_id": "77",
+        "arguments": [
+            {
+                "argument": "Stronger regulations ensure homeschooled children receive a quality education."
+            },
+            {
+                "argument": "They prevent educational neglect and ensure children meet basic learning standards."
+            },
+            {
+                "argument": "Standardized oversight can help track student progress and identify gaps."
+            },
+            {
+                "argument": "It protects children from being isolated or deprived of socialization opportunities."
+            },
+            {
+                "argument": "More regulations can prevent cases of abuse that may go unnoticed in homeschooling environments."
+            },
+            {
+                "argument": "Requiring credentials for homeschooling parents ensures qualified instruction."
+            },
+            {
+                "argument": "Stricter oversight can help prevent extremist or unscientific curricula from being taught."
+            },
+            {
+                "argument": "Increased accountability ensures homeschooled students can transition into higher education or the workforce."
+            },
+            {
+                "argument": "Regular assessments can ensure homeschooled students are not falling behind their peers."
+            },
+            {
+                "argument": "More structured homeschooling laws create fairness across different education systems."
+            },
+            {
+                "argument": "Homeschooling allows for individualized learning that may not align with standardized regulations."
+            },
+            {
+                "argument": "Parents should have the right to choose how to educate their children without government interference."
+            },
+            {
+                "argument": "Current regulations are sufficient, and additional oversight is unnecessary."
+            },
+            {
+                "argument": "Stricter rules could burden families who successfully homeschool their children."
+            },
+            {
+                "argument": "Public education has its own flaws, and forcing its standards onto homeschooling may not be beneficial."
+            },
+            {
+                "argument": "Increased regulations could limit diversity in educational approaches."
+            },
+            {
+                "argument": "Many homeschooled students outperform their traditionally schooled peers, proving additional oversight is not needed."
+            },
+            {
+                "argument": "Homeschooling parents invest significant time and effort; extra regulations may discourage them."
+            },
+            {
+                "argument": "Regulations could disproportionately affect lower-income or minority families who homeschool."
+            },
+            {
+                "argument": "Overregulation could infringe on religious or philosophical beliefs that guide homeschooling choices."
+            }
+        ]
+    }
 }

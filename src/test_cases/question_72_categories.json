@@ -1,17 +1,37 @@
 {
-  "request_body": {
-    "topic_id": 72,
-    "argument_categories": [
-      {"argument_category": "Choice"},
-      {"argument_category": "Quality"},
-      {"argument_category": "Equity"},
-      {"argument_category": "Public Funding"},
-      {"argument_category": "Accountability"},
-      {"argument_category": "Innovation"},
-      {"argument_category": "Access"},
-      {"argument_category": "Religious Concerns"},
-      {"argument_category": "Segregation"},
-      {"argument_category": "Resources"}
-    ]
-  }
+    "request_body": {
+        "topic_id": "72",
+        "argument_categories": [
+            {
+                "argument_category": "Choice"
+            },
+            {
+                "argument_category": "Quality"
+            },
+            {
+                "argument_category": "Equity"
+            },
+            {
+                "argument_category": "Public Funding"
+            },
+            {
+                "argument_category": "Accountability"
+            },
+            {
+                "argument_category": "Innovation"
+            },
+            {
+                "argument_category": "Access"
+            },
+            {
+                "argument_category": "Religious Concerns"
+            },
+            {
+                "argument_category": "Segregation"
+            },
+            {
+                "argument_category": "Resources"
+            }
+        ]
+    }
 }
