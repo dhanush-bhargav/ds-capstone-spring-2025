@@ -9,7 +9,7 @@ class ArgumentWritingToolInput(BaseModel):
     topic_id: int = Field(..., description="id of the topic for which to write the new arguments")
     arguments_data: str = Field(..., description="list of arguments to be written into the "
                                                                   "database, each list item is a dictionary of the "
-                                                                  "form {argument: str}")
+                                                                  "form {yes_or_no: str, argument: str}")
 
 class ArgumentWritingTool(BaseTool):
     name: str = "Argument writing tool"

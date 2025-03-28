@@ -25,8 +25,10 @@ def validation_agent_guardrail(result: str) -> Tuple[bool, Any]:
     try:
         result_dict = json.loads(result.raw)
         for item in result_dict:
-            if "argument" not in item.keys():
-                return (False, result_dict)
+            if item['yes_or_no'].lower() == 'true':
+                item['yes_or_no'] = 'YES'
+            elif item['yes_or_no'].lower() == 'false':
+                item['yes_or_no'] = 'NO'
         return (True, result_dict)
     except Exception as e:
         return (False, str(e))
