@@ -1,6 +1,6 @@
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
-from typing import Type, Tuple, Any
+from typing import Type, Tuple, Any, List, Dict
 import json
 from db_manager import DbManager
 
@@ -96,13 +96,19 @@ def category_validation_guardrail(result: str) -> Tuple[bool, Any]:
         return (False, str(e))
 
 
+def link_argument_to_category(category_argument_list: List[Dict]):
+    db_manager = DbManager()
+    write_data = []
+    for item in category_argument_list:
+        write_data.append((item["argument_id"], item["category_id"]))
+    result = db_manager.link_argument_category(write_data)
+    return result
+
 def category_argument_matching_guardrail(result: str) -> Tuple[bool, Any]:
     """Validate the output of category matching agent to fit requirement"""
     try:
         result_dict = json.loads(result.raw)
-        if type(result_dict) is list :
-            return (True, result_dict)
-        else:
-            return (False, result_dict)
+        result = link_argument_to_category(result_dict)
+        return True, json.dumps(result)
     except Exception as e:
-        return (False, str(e))
+        return False, str(e)
