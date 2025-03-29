@@ -23,7 +23,7 @@ class ArgumentWritingTool(BaseTool):
         arguments = json.loads(arguments_data)
         write_data = []
         for item in arguments:
-            write_data.append((topic_id, item["argument"]))
+            write_data.append((topic_id, item['yes_or_no'], item["argument"]))
         result = db_manager.create_argument(write_data)
         return json.dumps(result)
     

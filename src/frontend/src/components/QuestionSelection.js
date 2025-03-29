@@ -21,8 +21,9 @@ const QuestionSelection = (props) => {
   }, [topicId]);
 
   const pickQuestion = async () => {
-    await setQuestion(props.questions[Math.floor(Math.random() * props.questions.length)]);
-    await setQuestionId(question.id);
+    let tempQuestion = props.questions[Math.floor(Math.random() * props.questions.length)]
+    await setQuestion(tempQuestion);
+    await setQuestionId(tempQuestion.id);
     props.updateQuestion(questionId);
     setQuestionReady(true);
   }
@@ -43,7 +44,7 @@ const QuestionSelection = (props) => {
       const response = await axios.post(
         "http://localhost:5000/create_conversation",
         {
-          topic_id: topicId,
+          topic_id: questionId,
           user_id: props.user.id,
           stance: stance,
           stance_rating: strength,
