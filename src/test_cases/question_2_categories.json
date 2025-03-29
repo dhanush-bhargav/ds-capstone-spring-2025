@@ -1,28 +1,17 @@
 {
     "request_body": {
-        "topic_id": "2",
+        "topic_id": 2,
         "argument_categories": [
-            {
-                "argument_category": "Democratic Representation"
-            },
-            {
-                "argument_category": "Government Efficiency"
-            },
-            {
-                "argument_category": "Political Fairness"
-            },
-            {
-                "argument_category": "Public Trust and Accountability"
-            },
-            {
-                "argument_category": "Legislative Effectiveness"
-            },
-            {
-                "argument_category": "Corruption and Influence"
-            },
-            {
-                "argument_category": "Electoral Integrity"
-            }
+            {"argument_category": "Democracy"},
+            {"argument_category": "Voter Representation"},
+            {"argument_category": "Political Power"},
+            {"argument_category": "Minority Rights"},
+            {"argument_category": "Election Fairness"},
+            {"argument_category": "State vs. Federal Control"},
+            {"argument_category": "Partisan Interests"},
+            {"argument_category": "Legal Challenges"},
+            {"argument_category": "Polarization"},
+            {"argument_category": "Independent Commissions"}
         ]
     }
 }

@@ -1,12 +1,12 @@
 {
     "request_body": {
-        "topic_id": "8",
+        "topic_id": "7",
         "argument_categories": [
             {
-                "argument_category": "Democratic Representation"
+                "argument_category": "Democratic Integrity"
             },
             {
-                "argument_category": "National Security"
+                "argument_category": "Misinformation and Public Manipulation"
             },
             {
                 "argument_category": "Political Fairness"
@@ -18,10 +18,10 @@
                 "argument_category": "Public Trust and Accountability"
             },
             {
-                "argument_category": "Historical and Founding Principles"
+                "argument_category": "Free Speech and Expression"
             },
             {
-                "argument_category": "Voter Choice"
+                "argument_category": "Impact on Elections"
             }
         ]
     }

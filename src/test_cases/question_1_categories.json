@@ -1,7 +1,7 @@
 {
     "request_body": {
         "topic_id": "1",
-        "argument_categpries": [
+        "argument_categories": [
             {
                 "argument_category": "Fairness"
             },

@@ -17,7 +17,7 @@ class CategoryMatchingTask(Task):
     def __init__(self, topic_id, topic_name, agent):
         super().__init__(
             description=(f"Fetch unlinked arguments from the database for the topic: {topic_name} with topic_id: {topic_id} "
-                         f"and match each argument with the most appropriate category. Once done, link them in the database."),
+                         f"and match each argument with the most appropriate category. Once done, return the pairs of argument and category ids."),
             expected_output="List of matched arguments and categories. It should be a list where each item is a dictionary of the form {argument_id, category_id}.",
             agent=agent,
             guardrail=category_argument_matching_guardrail

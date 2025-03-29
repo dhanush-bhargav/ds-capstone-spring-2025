@@ -49,6 +49,9 @@ def get_arguments_by_category():
 def read_implications():
     return application.read_implications(request.json)
 
+@app.route("/add_user", methods=['POST'])
+def add_user():
+    return application.add_user(request.json)
 
 if __name__ == '__main__':
     app.run(debug=True)

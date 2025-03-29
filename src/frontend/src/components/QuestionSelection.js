@@ -7,16 +7,26 @@ const QuestionSelection = (props) => {
   const [strength, setStrength] = useState(props.strength || 5);
   const [questionId, setQuestionId] = useState(props.questionId || "");
   const [topicId, setTopicId] = useState(props.topicId || "");
+  const [questionReady, setQuestionReady] = useState(false);
+  const [question, setQuestion] = useState({})
 
   useEffect(() => {
-    setStance("")
-    setStrength(5)
+    setStance("");
+    setStrength(5);
+    setQuestionReady(false);
     props.updateTopic(topicId);
-    props.updateQuestion(questionId);
     props.updateStance("");
     props.updateStrength("");
     props.updateConversationId("");
-  }, [topicId, questionId]);
+  }, [topicId]);
+
+  const pickQuestion = async () => {
+    let tempQuestion = props.questions[Math.floor(Math.random() * props.questions.length)]
+    await setQuestion(tempQuestion);
+    await setQuestionId(tempQuestion.id);
+    props.updateQuestion(questionId);
+    setQuestionReady(true);
+  }
 
   const handleProceed = async () => {
     if (!topicId || !questionId || !stance || !strength) {
@@ -34,7 +44,7 @@ const QuestionSelection = (props) => {
       const response = await axios.post(
         "http://localhost:5000/create_conversation",
         {
-          topic_id: topicId,
+          topic_id: questionId,
           user_id: props.user.id,
           stance: stance,
           stance_rating: strength,
@@ -81,21 +91,9 @@ const QuestionSelection = (props) => {
       </div>
       {props.topic && (
         <div className="section">
-          <label className="label">Choose a Question:</label>
-          <select
-            value={questionId || ""}
-            onChange={(e) => {
-              setQuestionId(e.target.value);
-            }}
-            className="select-box"
-          >
-            <option value="">-- Select a Question --</option>
-            {props.questions.map((q) => (
-              <option key={q.id} value={q.id}>
-                {q.text}
-              </option>
-            ))}
-          </select>
+          <label className="label">Question</label>
+          {!questionReady ? <button className="button" onClick={pickQuestion}>Get Random Question</button> :
+          <label>{question.text}</label>}
         </div>
       )}
       <div className="section">

@@ -1,6 +1,7 @@
 from config_reader import ConfigData
 from db_manager import DbManager
 from crews import DataIngestionCrew
+import random
 
 
 class App:
@@ -130,3 +131,16 @@ class App:
             }
         return result
 
+    def add_user(self, request_data):
+        user_data = (request_data['user_id'], request_data['user_name'], request_data['password'])
+        try:
+            user_data = self.db_manager.add_user(user_data)
+            return {
+                "success": True,
+                "user_id": user_data[0]
+            }
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+            }

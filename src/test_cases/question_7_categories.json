@@ -1,12 +1,12 @@
 {
     "request_body": {
-        "topic_id": "7",
+        "topic_id": "6",
         "argument_categories": [
             {
-                "argument_category": "Democratic Integrity"
+                "argument_category": "Judicial Independence"
             },
             {
-                "argument_category": "Misinformation and Public Manipulation"
+                "argument_category": "Government Efficiency"
             },
             {
                 "argument_category": "Political Fairness"
@@ -18,10 +18,10 @@
                 "argument_category": "Public Trust and Accountability"
             },
             {
-                "argument_category": "Free Speech and Expression"
+                "argument_category": "Institutional Stability"
             },
             {
-                "argument_category": "Impact on Elections"
+                "argument_category": "Modernization of the Judiciary"
             }
         ]
     }
