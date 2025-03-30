@@ -53,5 +53,13 @@ def read_implications():
 def add_user():
     return application.add_user(request.json)
 
+@app.route("/get_assessment_questions", methods=['GET'])
+def get_assessment_questions():
+    return application.get_assessment_questions(request.json)
+
+@app.route("/record_post_intervention_assessments", methods=['POST'])
+def record_post_intervention_assessments():
+    return application.record_post_intervention_assessments(request.json)
+
 if __name__ == '__main__':
     app.run(debug=True)

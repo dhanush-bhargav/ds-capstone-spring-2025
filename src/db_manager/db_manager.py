@@ -37,7 +37,6 @@ class DbManager:
         connection.close()
         return topics_data
 
-
     def get_topic_by_id(self, topic_id):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
@@ -48,7 +47,13 @@ class DbManager:
             "topic_name": result[1]
         }
 
-
+    def add_user(self, user_data):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        cursor.execute("""INSERT INTO users (user_name, user_id, password) VALUES (?, ?, ?)""", user_data)
+        connection.commit()
+        connection.close()
+        return user_data
 
     def login(self, user_id, password):
         connection = sqlite3.connect(self.db_path)
@@ -162,7 +167,7 @@ class DbManager:
     def create_implication(self, implication_data):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        cursor.executemany("INSERT INTO implications (conversation_id, category_id, argument_id, implication) VALUES (?, ?, ?, ?)",
+        cursor.executemany("INSERT INTO implications (conversation_id, category_id, argument_id, implication_type, implication) VALUES (?, ?, ?, ?)",
                                     implication_data)
         connection.commit()
         rowcount = cursor.rowcount
@@ -232,3 +237,28 @@ class DbManager:
             unlinked_arguments_data.append({"argument_id": argument_id, "yes_or_no": yes_or_no, "argument": argument})
         connection.close()
         return unlinked_arguments_data
+
+
+    def get_assessment_questions(self, survey_type):
+        survey_questions_data = []
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        result = cursor.execute(f"""SELECT assessment_question_id, assessment_question, answer_type 
+                                        FROM assessment_questions WHERE survey_type = {survey_type}""").fetchall()
+        for row in result:
+            assessment_question_id, assessment_question, answer_type = row
+            survey_questions_data.append({"assessment_question_id": assessment_question_id,
+                                          "assessment_question": assessment_question,
+                                          "answer_type": answer_type})
+        return survey_questions_data
+
+
+    def insert_assessment_responses(self, assessment_response_data):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        cursor.executemany("""INSERT INTO assessment_responses (assessment_question_id, conversation_id, answer, collected_at)
+                                VALUES (?, ?, ?, ?)""", assessment_response_data)
+        connection.commit()
+        rowcount = cursor.rowcount
+        connection.close()
+        return rowcount

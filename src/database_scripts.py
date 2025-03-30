@@ -14,75 +14,92 @@ cursor = connection.cursor()
 
 #Create users table
 cursor.execute("""CREATE TABLE users (
-                      user_id VARCHAR(255) NOT NULL,
-                      user_name VARCHAR(255) NOT NULL,
-                      password VARCHAR(255) NOT NULL
+                        user_id VARCHAR(255) NOT NULL,
+                        user_name VARCHAR(255) NOT NULL,
+                        password VARCHAR(255) NOT NULL
+                    )""")
+
+#Create assessment_questions table
+cursor.execute("""CREATE TABLE assessment_questions (
+                        assessment_question_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        assessment_type VARCHAR(255) NOT NULL,
+                        assessment_question TEXT NOT NULL,
+                        answer_type VARCHAR(255) NOT NULL
                     )""")
 
 # Create topic_groups table
 cursor.execute("""CREATE TABLE topic_groups (
-                      group_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                      group_name TEXT NOT NULL
+                        group_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        group_name TEXT NOT NULL
+                    )""")
+
+#Create assessment_responses table
+cursor.execute("""CREATE TABLE assessment_responses (
+                        assessment_question_id INTEGER NOT NULL,
+                        conversation_id INTEGER NOT NULL,
+                        answer TEXT NOT NULL,
+                        collected_at VARCHAR(255) NOT NULL,
                     )""")
 
 # Create master_topics table
 cursor.execute("""CREATE TABLE master_topics (
-                      group_id INTEGER NOT NULL,
-                      topic_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                      topic_description TEXT NOT NULL
+                        group_id INTEGER NOT NULL,
+                        topic_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        topic_description TEXT NOT NULL
                     )""")
 
 # Create link_conversation_user_topic table
 cursor.execute("""CREATE TABLE link_conversations_user_topic (
-                      conversation_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                      topic_id INTEGER NOT NULL,
-                      user_id INTEGER NOT NULL
+                        conversation_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        topic_id INTEGER NOT NULL,
+                        user_id INTEGER NOT NULL
                     )""")
 
 # Create instructions table
 cursor.execute("""CREATE TABLE instructions (
-                    order_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    instruction TEXT NOT NULL,
-                    intended_for VARCHAR(50) NOT NULL)""")
+                        order_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        instruction TEXT NOT NULL,
+                        intended_for VARCHAR(50) NOT NULL
+                    )""")
 
 # Create table to store argument categories
 cursor.execute("""CREATE TABLE master_argument_categories (
-                      category_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                      topic_id INTEGER NOT NULL,
-                      argument_category TEXT NOT NULL
+                        category_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        topic_id INTEGER NOT NULL,
+                        argument_category TEXT NOT NULL
                     )""")
 
 # Create table to store arguments
 cursor.execute("""CREATE TABLE master_arguments (
-                      argument_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                      topic_id INTEGER NOT NULL,
-                      yes_or_no VARCHAR(5) NOT NULL,
-                      argument TEXT NOT NULL
+                        argument_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        topic_id INTEGER NOT NULL,
+                        yes_or_no VARCHAR(5) NOT NULL,
+                        argument TEXT NOT NULL
                     )""")
 
 # Create table to link arguments and categories
 cursor.execute("""CREATE TABLE link_argument_categories (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    category_id INTEGER NOT NULL,
-                    argument_id INTEGER NOT NULL
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        category_id INTEGER NOT NULL,
+                        argument_id INTEGER NOT NULL
                     )""")
 
 #Create table to store users' stances
 cursor.execute("""CREATE TABLE stances (
-                      stance_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                      conversation_id INTEGER NOT NULL,
-                      stance TEXT NOT NULL,
-                      stance_rating INTEGER NOT NULL CHECK(stance_rating BETWEEN 1 AND 10),
-                      collected_at VARCHAR(25) NOT NULL
+                        stance_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        conversation_id INTEGER NOT NULL,
+                        stance TEXT NOT NULL,
+                        stance_rating INTEGER NOT NULL CHECK(stance_rating BETWEEN 1 AND 10),
+                        collected_at VARCHAR(25) NOT NULL
                     )""")
 
 # Create table to store implications rating by users
 cursor.execute("""CREATE TABLE implications (
-                      implication_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                      conversation_id INTEGER NOT NULL,
-                      category_id INTEGER NOT NULL,
-                      argument_id INTEGER NOT NULL,
-                      implication VARCHAR(255) NOT NULL
+                        implication_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        conversation_id INTEGER NOT NULL,
+                        category_id INTEGER NOT NULL,
+                        argument_id INTEGER NOT NULL,
+                        implication VARCHAR(255) NOT NULL
                     )""")
 
 # Populate users table with default users
@@ -213,8 +230,38 @@ topics = [
     (10, 'Should reparations be paid to Holocaust survivors\' families in the U.S.?'),
     (10, 'Should the U.S. adopt a four-day workweek?')
 ]
-
 cursor.executemany("INSERT INTO master_topics (group_id, topic_description) VALUES (?, ?)", topics)
+connection.commit()
+
+intellectual_humility_assessment_questions = [
+    ('INTELLECTUAL_HUMILITY', 'I am willing to admit it if I don''t know something.', '5_POINT_SCALE'),
+    ('INTELLECTUAL_HUMILITY', 'I can accept that my beliefs and attitudes may be wrong.', '5_POINT_SCALE'),
+    ('INTELLECTUAL_HUMILITY', 'I am willing to change my mind once it''s made up about something.', '5_POINT_SCALE'),
+    ('INTELLECTUAL_HUMILITY', 'I am open to revising my beliefs in the face of conflicting evidence.', '5_POINT_SCALE'),
+    ('INTELLECTUAL_HUMILITY', 'I like finding out new information that differs from what I already think is true.', '5_POINT_SCALE'),
+    ('INTELLECTUAL_HUMILITY', 'I acknowledge that I don''t always have all the answers.', '5_POINT_SCALE'),
+    ('INTELLECTUAL_HUMILITY', 'I can be willing to admit that I have biases.', '5_POINT_SCALE'),
+    ('INTELLECTUAL_HUMILITY', 'I am willing to hear others out, even if I disagree with them.', '5_POINT_SCALE')
+]
+cursor.executemany("INSERT INTO assessment_questions (assessment_type, assessment_question, answer_type) VALUES (?, ?, ?)",
+                   intellectual_humility_assessment_questions)
+connection.commit()
+
+social_desirability_assessment_questions = [
+    ('SOCIAL_DESIRABILITY', 'It is sometimes hard for me to go on with my work if I am not encouraged.', 'YES_OR_NO'),
+    ('SOCIAL_DESIRABILITY', 'I sometimes feel resentful when I don''t get my way.', 'YES_OR_NO'),
+    ('SOCIAL_DESIRABILITY', 'No matter who I''m talking to, I''m always a good listener.', 'YES_OR_NO'),
+    ('SOCIAL_DESIRABILITY', 'There have been occasions when I took advantage of someone.', 'YES_OR_NO'),
+    ('SOCIAL_DESIRABILITY', 'I am always willing to admit it when I make a mistake.', 'YES_OR_NO'),
+    ('SOCIAL_DESIRABILITY', 'I sometimes try to get even rather than forgive and forget.', 'YES_OR_NO'),
+    ('SOCIAL_DESIRABILITY', 'I am always courteous, even to people who are disagreeable.', 'YES_OR_NO'),
+    ('SOCIAL_DESIRABILITY', 'I have never been irked when people expressed ideas very different from my own.', 'YES_OR_NO'),
+    ('SOCIAL_DESIRABILITY', 'There have times when I was quite jealous of the good fortune of others.', 'YES_OR_NO'),
+    ('SOCIAL_DESIRABILITY', 'I am sometimes irritated by people who ask favors of me.', 'YES_OR_NO'),
+    ('SOCIAL_DESIRABILITY', 'I have never deliberately said something that hurt someone''s feelings.', 'YES_OR_NO')
+]
+cursor.executemany("INSERT INTO assessment_questions (assessment_type, assessment_question, answer_type) VALUES (?, ?, ?)",
+                   social_desirability_assessment_questions)
 connection.commit()
 
 connection.close()

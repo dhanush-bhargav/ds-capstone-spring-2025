@@ -16,6 +16,14 @@ class App:
         try:
            conversation_id = self.db_manager.create_new_conversation(request_data['topic_id'], request_data['user_id'])
            stance_id = self.db_manager.create_stance(conversation_id, request_data['stance'], request_data['stance_rating'], request_data['collected_at'])
+           intellectual_humility_assessment_data = []
+           for item in request_data['intellectual_humility_responses']:
+               intellectual_humility_assessment_data.append((item['assessment_question_id'], conversation_id, item['answer'], request_data['collected_at']))
+           self.db_manager.insert_assessment_responses(intellectual_humility_assessment_data)
+           social_desirability_assessment_data = []
+           for item in request_data['social_desirability_responses']:
+               social_desirability_assessment_data.append((item['question_id'], conversation_id, item['answer'], request_data['collected_at']))
+           self.db_manager.insert_assessment_responses(social_desirability_assessment_data)
            result = {
                "success": True,
                "conversation_id": conversation_id,
@@ -116,7 +124,8 @@ class App:
     def read_implications(self, request_data):
         implications_data = []
         for item in request_data['implications']:
-            implications_data.append((request_data['conversation_id'], item['category_id'], item['argument_id'], item['implication']))
+            implications_data.append((request_data['conversation_id'], item['category_id'], item['argument_id'],
+                                      item['implication_type'], item['implication']))
 
         try:
             implication_id = self.db_manager.create_implication(implications_data)
@@ -138,6 +147,80 @@ class App:
             return {
                 "success": True,
                 "user_id": user_data[0]
+            }
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+            }
+
+    def get_assessment_questions(self, request_data):
+        try:
+            result = self.db_manager.get_assessment_questions(request_data['assessment_type'])
+            if result:
+                return {
+                    "assessment_questions": result,
+                    "success": True
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": str(result),
+                }
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+            }
+
+    def record_post_intervention_assessments(self, request_data):
+        try:
+            stance_id = self.db_manager.create_stance(request_data["conversation_id"], request_data['stance'],
+                                                      request_data['stance_rating'], request_data['collected_at'])
+            intellectual_humility_assessment_data = []
+            for item in request_data['intellectual_humility_responses']:
+                intellectual_humility_assessment_data.append(
+                    (item['assessment_question_id'], request_data["conversation_id"], item['answer'], request_data['collected_at']))
+            self.db_manager.insert_assessment_responses(intellectual_humility_assessment_data)
+            social_desirability_assessment_data = []
+            for item in request_data['social_desirability_responses']:
+                social_desirability_assessment_data.append(
+                    (item['question_id'], request_data["conversation_id"], item['answer'], request_data['collected_at']))
+            self.db_manager.insert_assessment_responses(social_desirability_assessment_data)
+            return {
+                "success": True,
+                "stance_id": stance_id,
+            }
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+            }
+
+    def get_argument_for_categorization(self, request_data):
+        try:
+            categories_data = self.db_manager.get_argument_categories(request_data['topic_id'])
+            result = []
+            for category in categories_data:
+                arguments = self.db_manager.get_arguments_by_category_id(request_data['topic_id'], category['category_id'])
+                result.append(
+                    {
+                        "category_id": category['category_id'],
+                        "argument_category": category['category_name'],
+                        "arguments": arguments,
+                    }
+                )
+            unlinked_arguments = self.db_manager.get_unlinked_arguments(request_data['topic_id'])
+            result.append(
+                {
+                    "category_id": 0,
+                    "argument_category": "Uncategorized",
+                    "arguments": unlinked_arguments,
+                }
+            )
+            return {
+                "success": True,
+                "arguments_by_category": result
             }
         except Exception as e:
             return {
