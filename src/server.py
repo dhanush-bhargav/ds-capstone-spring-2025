@@ -38,12 +38,20 @@ def get_arguments():
     return application.get_arguments(request.args)
 
 @app.route("/get_argument_categories", methods=['GET'])
-def get_arguments_categories():
+def get_argument_categories():
     return application.get_argument_categories(request.args)
+
+@app.route("/get_arguments_for_categorization", methods=['GET'])
+def get_arguments_for_categorization():
+    return application.get_arguments_for_categorization(request.args)
 
 @app.route("/get_arguments_by_category", methods=['GET'])
 def get_arguments_by_category():
     return application.get_arguments_by_category(request.args)
+
+@app.route("/get_implication_questions", methods=['POST'])
+def get_implication_questions():
+    return application.get_implication_questions(request.json)
 
 @app.route("/read_implications", methods=['POST'])
 def read_implications():
@@ -55,7 +63,7 @@ def add_user():
 
 @app.route("/get_assessment_questions", methods=['GET'])
 def get_assessment_questions():
-    return application.get_assessment_questions(request.json)
+    return application.get_assessment_questions(request.args)
 
 @app.route("/record_post_intervention_assessments", methods=['POST'])
 def record_post_intervention_assessments():

@@ -38,7 +38,7 @@ cursor.execute("""CREATE TABLE assessment_responses (
                         assessment_question_id INTEGER NOT NULL,
                         conversation_id INTEGER NOT NULL,
                         answer TEXT NOT NULL,
-                        collected_at VARCHAR(255) NOT NULL,
+                        collected_at VARCHAR(255) NOT NULL
                     )""")
 
 # Create master_topics table
@@ -97,9 +97,17 @@ cursor.execute("""CREATE TABLE stances (
 cursor.execute("""CREATE TABLE implications (
                         implication_id INTEGER PRIMARY KEY AUTOINCREMENT,
                         conversation_id INTEGER NOT NULL,
+                        implication_question_id INTEGER NOT NULL,
+                        implication VARCHAR(255) NOT NULL
+                    )""")
+
+#Create table to store implication questions
+cursor.execute("""CREATE TABLE implication_questions (
+                        implication_question_id INTEGER PRIMARY KEY AUTOINCREMENT,
                         category_id INTEGER NOT NULL,
                         argument_id INTEGER NOT NULL,
-                        implication VARCHAR(255) NOT NULL
+                        implication_type VARCHAR(50) NOT NULL,
+                        implication_question TEXT NOT NULL
                     )""")
 
 # Populate users table with default users

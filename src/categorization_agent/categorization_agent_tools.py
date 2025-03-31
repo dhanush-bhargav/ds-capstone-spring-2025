@@ -77,6 +77,7 @@ class UnlinkedArgumentReadingTool(BaseTool):
 
 def category_validation_guardrail(result: str) -> Tuple[bool, Any]:
     """Validate category validation task output to meet requirement"""
+    db_manager = DbManager()
     try:
         result_dict = json.loads(result.raw)
         guardrail_result = (True, result_dict)
@@ -90,7 +91,12 @@ def category_validation_guardrail(result: str) -> Tuple[bool, Any]:
                         guardrail_result = (False, "keys missing from dictionary")
                         break
         else:
-            guardrail_result = (False, "list is empty")
+            if "topic_id" not in result_dict:
+                guardrail_result = (False, "If you're not adding new categories, pass topic_id as a dictionary.")
+            else:
+                argument_categories = db_manager.get_argument_categories(result_dict["topic_id"])
+                guardrail_result = (True, argument_categories)
+
         return guardrail_result
     except Exception as e:
         return (False, str(e))

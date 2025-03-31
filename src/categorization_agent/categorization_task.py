@@ -1,5 +1,5 @@
 from crewai import Task
-from .categorization_agent_tools import category_argument_matching_guardrail
+from .categorization_agent_tools import category_argument_matching_guardrail, category_validation_guardrail
 
 class CategoryValidationTask(Task):
 
@@ -8,7 +8,8 @@ class CategoryValidationTask(Task):
             description=f"Validate the new argument categories provided by the user for the topic: {topic_name} with topic_id: {topic_id}\n"
                         f"argument_categories: {{argument_categories}}\nand write them to the database only if they are not already present.\n",
             expected_output="List of matched arguments and categories. It should be a list where each item is a dictionary of the form {argument_id, category_id}.",
-            agent=agent
+            agent=agent,
+            guardrail=category_validation_guardrail
         )
 
 
