@@ -146,7 +146,7 @@ const ArgumentManager = (props) => {
             if (response?.data?.success === true) {
                 props.updateArgumentIds(response.data.argument_ids);
                 props.updateLoading(true);
-                props.updateStep(4);
+                props.updateStep(props.step+1);
             } else {
                 props.updateError(
                     response.data.message || "Failed to submit arguments."

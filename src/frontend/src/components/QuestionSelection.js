@@ -37,7 +37,7 @@ const QuestionSelection = (props) => {
     props.updateQuestion(questionId);
     props.updateStance(stance);
     props.updateStrength(strength);
-    props.updateStep(2);
+    props.updateStep(props.step+1);
     props.updateLoading(true);
     props.updateError(null);
     try {
@@ -49,6 +49,8 @@ const QuestionSelection = (props) => {
           stance: stance,
           stance_rating: strength,
           collected_at: "START",
+          intellectual_humility_responses: props.intellectualHumility,
+          social_desirability_responses: props.socialDesirability,
         },
         {
           headers: { Authorization: `Bearer ${props.token}` },
@@ -65,7 +67,7 @@ const QuestionSelection = (props) => {
       props.updateQuestion(questionId);
       props.updateStance(stance);
       props.updateStrength(strength);
-      props.updateStep(2);
+      props.updateStep(props.step+1);
     }
   };
 

@@ -18,13 +18,23 @@ import {
 import ArgumentManager from "./components/ArgumentManager";
 import Categorization from "./components/Categorization";
 import ImplicationRating from "./components/ImplicationRating";
-import FinalEvaluation from "./components/FinalEvaluation";
 import { Box } from "@mui/material";
+import IntellectualHumility from "./components/IntellectualHumility";
+import SocialDesirabilty from "./components/SocialDesirabilty";
+import PostIntellectualHumility from "./components/PostIntellectualHumility";
+import EvaluationSummary from "./components/EvaluationSummary";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Intellectual Humility & Social Desirability Assessment
+
+  const [intellectualHumility, setIntellectualHumility] = useState("");
+  const [socialDesirability, setSocialDesirability] = useState("");
+  const [intellectualHumilityId, setIntellectualHumilityId] = useState("");
+  const [socialDesirabilityId, setSocialDesirabilityId] = useState("");
 
   // Topics
   const [topics, setTopics] = useState([]);
@@ -183,6 +193,13 @@ const App = () => {
     });
   };
 
+  const updateIntellectualHumility = (intellectualHumilityProp) => {
+    setIntellectualHumility(intellectualHumilityProp);
+  };
+  const updateSocialDesirability = (socialDesirabilityProp) => {
+    setSocialDesirability(socialDesirabilityProp);
+  };
+
   const updateTopic = (topicIdProp) => {
     setTopicId(topicIdProp);
     const topicIdNum = parseInt(topicIdProp, 10);
@@ -300,6 +317,27 @@ const App = () => {
               {isLoading && <p>Loading...</p>}
               {error && <p style={{ color: "red" }}>{error}</p>}
               {step === 1 && (
+                <IntellectualHumility
+                  updateStep={updateStep}
+                  updateLoading={updateLoading}
+                  updateError={updateError}
+                  updateIntellectualHumility={updateIntellectualHumility}
+
+                  intellectualHumility={intellectualHumility}
+                  intellectualHumilityId={intellectualHumilityId}
+                  step={step}
+                />
+              )}
+              {step === 2 && (
+                <SocialDesirabilty
+                  updateStep={updateStep}
+                  updateLoading={updateLoading}
+                  updateError={updateError}
+                  updateSocialDesirability={updateSocialDesirability}
+                  step={step}
+                />
+              )}
+              {step === 3 && (
                 <QuestionSelection
                   updateTopic={updateTopic}
                   updateError={updateError}
@@ -309,6 +347,9 @@ const App = () => {
                   updateStep={updateStep}
                   updateConversationId={updateConversationId}
                   updateLoading={updateLoading}
+
+                  intellectualHumility={intellectualHumility}
+                  socialDesirability={socialDesirability}
                   token={token}
                   user={user}
                   stance={stance}
@@ -319,15 +360,17 @@ const App = () => {
                   questions={questions}
                   question={question}
                   questionId={questionId}
+                  step={step}
                 />
               )}
-              {step === 2 && (
+              {step === 4 && (
                 <Instructions
                   updateStep={updateStep}
                   updateLoading={updateLoading}
+                  step={step}
                 />
               )}
-              {step === 3 && (
+              {step === 5 && (
                 <ArgumentManager
                   updateStep={updateStep}
                   updateLoading={updateLoading}
@@ -343,9 +386,10 @@ const App = () => {
                   error={error}
                   question={question}
                   token={token}
+                  step={step}
                 />
               )}
-              {step === 4 && (
+              {step === 6 && (
                 <Categorization
                   updateStep={updateStep}
                   updateLoading={updateLoading}
@@ -360,9 +404,10 @@ const App = () => {
                   error={error}
                   categories={categories}
                   token={token}
+                  step={step}
                 />
               )}
-              {step === 5 && (
+              {step === 7 && (
                 <ImplicationRating
                   updateStep={updateStep}
                   updateLoading={updateLoading}
@@ -381,28 +426,73 @@ const App = () => {
                   error={error}
                   isLoading={isLoading}
                   token={token}
+                  step={step}
                 />
               )}
-              {step === 6 && (
-                <FinalEvaluation
-                  updateFinalStance={updateFinalStance}
-                  updateFinalStrength={updateFinalStrength}
+              {step === 8 && (
+                <PostIntellectualHumility
                   updateStep={updateStep}
                   updateLoading={updateLoading}
                   updateError={updateError}
+
+                  user={user}
+                  userId={user.id}
                   updateStance={updateStance}
+                  topic={topic}
+                  topicId={topicId}
+                  question={question}
+                  questionId={questionId}
+                  conversationId={conversationId}
+                  intellectualHumility={intellectualHumility}
+                  socialDesirability={socialDesirability}
+                  intellectualHumilityId={intellectualHumilityId}
+
+                  updateFinalStance={updateFinalStance}
+                  updateFinalStrength={updateFinalStrength}
                   updateStrength={updateStrength}
                   isLoading={isLoading}
                   error={error}
 
-                  question={question}
                   stance={stance}
                   strength={strength}
                   
                   finalStance={finalStance}
                   finalStrength={finalStrength}
                   token={token}
+                  step={step}
+                />
+              )}
+              {step === 9 && (
+                <EvaluationSummary
+                  updateStep={updateStep}
+                  updateLoading={updateLoading}
+                  updateError={updateError}
+
+                  user={user}
+                  userId={user.id}
+                  updateStance={updateStance}
+                  topic={topic}
+                  topicId={topicId}
+                  question={question}
+                  questionId={questionId}
                   conversationId={conversationId}
+                  intellectualHumility={intellectualHumility}
+                  socialDesirability={socialDesirability}
+                  intellectualHumilityId={intellectualHumilityId}
+
+                  updateFinalStance={updateFinalStance}
+                  updateFinalStrength={updateFinalStrength}
+                  updateStrength={updateStrength}
+                  isLoading={isLoading}
+                  error={error}
+
+                  stance={stance}
+                  strength={strength}
+                  
+                  finalStance={finalStance}
+                  finalStrength={finalStrength}
+                  token={token}
+                  step={step}
                 />
               )}
 
