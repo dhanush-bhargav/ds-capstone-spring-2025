@@ -33,6 +33,47 @@ const scaleLabels = {
   5: "Strongly Agree"
 };
 
+/**
+ * Transforms an object of intellectual humility responses, converting numeric
+ * scores (1-5) to their corresponding string descriptors.
+ *
+ * @param {object} ihResponses - The object containing question IDs as keys and numeric answers (1-5) as values.
+ * @returns {object | null} A new object with the same keys but string descriptor values, or null if input is invalid.
+ */
+function transformHumilityResponses(ihResponses) {
+  // Basic input validation
+  if (typeof ihResponses !== 'object' || ihResponses === null) {
+    console.error("Invalid input for transformHumilityResponses: Expected an object, received:", ihResponses);
+    return null; // Or return {}, or throw Error
+  }
+
+  // Define the mapping for intellectual humility scores
+  const humilityMapping = {
+    1: "STRONGLY_DISAGREE",
+    2: "DISAGREE",
+    3: "NEITHER",
+    4: "AGREE",
+    5: "STRONGLY_AGREE",
+  };
+
+  const transformedResponses = {};
+
+  // Iterate over the keys of the input object
+  for (const questionId in ihResponses) {
+    // Ensure the property belongs to the object itself
+    if (Object.hasOwnProperty.call(ihResponses, questionId)) {
+      const numericValue = ihResponses[questionId];
+      // Map the numeric value, provide a fallback/warning for unexpected values
+      transformedResponses[questionId] = humilityMapping[numericValue] || `UNKNOWN_VALUE_${numericValue}`;
+      if (!humilityMapping[numericValue]) {
+          console.warn(`Unmapped intellectual humility value: ${numericValue} for question ID ${questionId}`);
+      }
+    }
+  }
+
+  return transformedResponses;
+}
+
 const PostIntellectualHumility = (props) => {
   // State for IH Assessment Part
   const [questions, setQuestions] = useState([]);

@@ -278,6 +278,82 @@ const App = () => {
     }
   }, [token]);
 
+  /**
+   * Transforms an object of intellectual humility responses, converting numeric
+   * scores (1-5) to their corresponding string descriptors.
+   *
+   * @param {object} ihResponses - The object containing question IDs as keys and numeric answers (1-5) as values.
+   * @returns {object | null} A new object with the same keys but string descriptor values, or null if input is invalid.
+   */
+  function transformHumilityResponses(ihResponses) {
+    // Basic input validation
+    if (typeof ihResponses !== 'object' || ihResponses === null) {
+      console.error("Invalid input for transformHumilityResponses: Expected an object, received:", ihResponses);
+      return null; // Or return {}, or throw Error
+    }
+  
+    // Define the mapping for intellectual humility scores
+    const humilityMapping = {
+      1: "STRONGLY_DISAGREE",
+      2: "DISAGREE",
+      3: "NEITHER",
+      4: "AGREE",
+      5: "STRONGLY_AGREE",
+    };
+  
+    const transformedResponses = {};
+  
+    // Iterate over the keys of the input object
+    for (const questionId in ihResponses) {
+      // Ensure the property belongs to the object itself
+      if (Object.hasOwnProperty.call(ihResponses, questionId)) {
+        const numericValue = ihResponses[questionId];
+        // Map the numeric value, provide a fallback/warning for unexpected values
+        transformedResponses[questionId] = humilityMapping[numericValue] || `UNKNOWN_VALUE_${numericValue}`;
+        if (!humilityMapping[numericValue]) {
+            console.warn(`Unmapped intellectual humility value: ${numericValue} for question ID ${questionId}`);
+        }
+      }
+    }
+  
+    return transformedResponses;
+  }
+
+  /**
+   * Transforms an object of social desirability responses, converting boolean
+   * values (true/false) to their corresponding string representations ("YES"/"NO").
+   *
+   * @param {object} sdResponses - The object containing question IDs as keys and boolean answers as values.
+   * @returns {object | null} A new object with the same keys but "YES"/"NO" string values, or null if input is invalid.
+   */
+  function transformDesirabilityResponses(sdResponses) {
+    // Basic input validation
+    if (typeof sdResponses !== 'object' || sdResponses === null) {
+      console.error("Invalid input for transformDesirabilityResponses: Expected an object, received:", sdResponses);
+      return null; // Or return {}, or throw Error
+    }
+  
+    const transformedResponses = {};
+  
+    // Iterate over the keys of the input object
+    for (const questionId in sdResponses) {
+      // Ensure the property belongs to the object itself
+      if (Object.hasOwnProperty.call(sdResponses, questionId)) {
+        const booleanValue = sdResponses[questionId];
+        // Map boolean true to "YES" and false to "NO"
+        // Provide a fallback/warning for non-boolean values
+        if (typeof booleanValue === 'boolean') {
+          transformedResponses[questionId] = booleanValue ? "YES" : "NO";
+        } else {
+          transformedResponses[questionId] = `INVALID_VALUE_${booleanValue}`;
+          console.warn(`Non-boolean social desirability value encountered: ${booleanValue} for question ID ${questionId}`);
+        }
+      }
+    }
+  
+    return transformedResponses;
+  }
+
   return (
     <Router>
       <>
@@ -348,8 +424,8 @@ const App = () => {
                   updateConversationId={updateConversationId}
                   updateLoading={updateLoading}
 
-                  intellectualHumility={intellectualHumility}
-                  socialDesirability={socialDesirability}
+                  intellectualHumility={transformHumilityResponses(intellectualHumility)}
+                  socialDesirability={transformDesirabilityResponses(socialDesirability)}
                   token={token}
                   user={user}
                   stance={stance}

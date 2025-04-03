@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 
 const SocialDesirability = (props) => {
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState(props.questions || []);
   const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
