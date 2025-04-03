@@ -16,19 +16,22 @@ import {
 } from '@mui/material';
 
 const SocialDesirability = (props) => {
-  const [questions, setQuestions] = useState(props.questions || []);
-  const [answers, setAnswers] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [questions, setQuestions] = useState([]); // Initialize empty
+  const [answers, setAnswers] = useState(props.socialDesirability || {}); // Initialize with props answers
+  const [isLoading, setIsLoading] = useState(false); // Renamed for consistency
+  const [isSubmitting, setIsSubmitting] = useState(false); // For submission process
   const [error, setError] = useState(null);
+  const [isSubmitted, setIsSubmitted] = useState(props.submissionStatus.desirability || false); // <<< Tracks submission status
 
   // API endpoint URL for Social Desirability
   const apiUrl = 'http://localhost:5000/get_assessment_questions?assessment_type=SOCIAL_DESIRABILITY';
 
-  // useEffect hook for fetching data - logic remains the same
+  // useEffect hook for fetching data
   useEffect(() => {
     const fetchQuestions = async () => {
-      setLoading(true);
+      setIsLoading(true); // Use consistent state name
       setError(null);
+      setQuestions([]);
       try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
@@ -37,23 +40,25 @@ const SocialDesirability = (props) => {
         const data = await response.json();
         if (data.success && Array.isArray(data.assessment_questions)) {
           setQuestions(data.assessment_questions);
-          setAnswers({}); // Reset answers on load/reload
         } else {
-          throw new Error('Failed to fetch questions or invalid data format.');
+          throw new Error(data.message || 'Failed to fetch questions or invalid data format.');
         }
       } catch (err) {
         console.error("Failed to fetch assessment questions:", err);
-        setError(err.message);
+        setError(err.message || "An unknown error occurred while fetching questions.");
       } finally {
-        setLoading(false);
+        setIsLoading(false); // Use consistent state name
       }
     };
 
     fetchQuestions();
-  }, [apiUrl]);
+  }, [apiUrl]); // Dependency array includes apiUrl
 
-  // handleAnswerChange remains the same: converts string "true"/"false" to boolean
+  // handleAnswerChange: converts string "true"/"false" to boolean
   const handleAnswerChange = (questionId, value) => {
+    // Prevent changes if already submitted
+    if (isSubmitted) return;
+
     const booleanValue = value === 'true';
     setAnswers(prevAnswers => ({
       ...prevAnswers,
@@ -61,29 +66,65 @@ const SocialDesirability = (props) => {
     }));
   };
 
-  // handleSubmit remains the same: prevents default, logs state, shows alert
+  // Calculate the number of YES_OR_NO questions that are displayed
+  const applicableQuestions = questions.filter(q => q.answer_type === 'YES_OR_NO');
+  const applicableQuestionsCount = applicableQuestions.length;
+
+  // Check if all applicable questions have been answered
+  const allQuestionsAnswered = applicableQuestionsCount > 0 && Object.keys(answers).length === applicableQuestionsCount;
+
+
+  // handleSubmit: prevents default, logs state, handles submission process
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (Object.keys(answers).length !== questions.length) {
-        alert("Please answer all questions before submitting.");
+    if (isSubmitted || isSubmitting) {
+      props.updateStep(props.step + 1);
+      return;
+    }
+
+    // Use the calculated count for validation
+    if (!allQuestionsAnswered) {
+        setError("Please answer all questions before submitting."); // Use state for error
         return;
     }
-    // console.log("Submitted Answers (Social Desirability):", answers);
-    // alert('Social Desirability assessment submitted! Check the console for answers.');
-    // Add API call to submit answers here if needed
-    props.updateLoading(true);
-    props.updateError(null);
-    props.updateSocialDesirability(answers);
-    props.updateStep(props.step+1);
+
+    setIsSubmitting(true); // Indicate submission start
+    setError(null); // Clear previous errors
+    props.updateError(null); // Clear parent error state
+
+    console.log("Submitting Answers:", answers);
+
+    // Simulate async submission or call parent update functions
+    try {
+        // Update parent state
+        props.updateSocialDesirability(answers);
+        props.updateStep(props.step + 1);
+        props.updateSubmissionStatus({
+          ...props.submissionStatus,
+          desirability: true // Update submission status in parent
+        });
+
+        // *** Set submitted state to true on success ***
+        setIsSubmitted(true);
+        console.log("Assessment submitted successfully.");
+
+    } catch (submitError) {
+        console.error("Error during submission process:", submitError);
+        const message = submitError.message || "An error occurred during submission.";
+        setError(message); // Show error locally
+        props.updateError(message); // Show error in parent if needed
+    } finally {
+        setIsSubmitting(false); // Submission attempt finished
+        props.updateSubmissionStatus({
+          ...props.submissionStatus,
+          desirability: true // Update submission status in parent
+        });
+    }
   };
 
-  // allQuestionsAnswered logic remains the same
-  const allQuestionsAnswered = questions.length > 0 && Object.keys(answers).length === questions.length;
 
   return (
-    // Use MUI Container for layout
     <Container maxWidth="md" sx={{ my: 4 }}>
-      {/* Use MUI Typography for headings and paragraphs */}
       <Typography variant="h4" component="h1" gutterBottom>
         Social Desirability
       </Typography>
@@ -93,81 +134,83 @@ const SocialDesirability = (props) => {
       <Typography variant="body1" paragraph>
         Please answer the following questions honestly (Yes or No). Your responses help in understanding potential biases. (Required for all questions)
       </Typography>
-      {/* Use MUI Divider */}
       <Divider sx={{ my: 3 }} />
 
-      {/* Loading State using CircularProgress */}
-      {loading && (
+      {/* Loading Indicator */}
+      {isLoading && (
         <Box sx={{ display: 'flex', justifyContent: 'center', my: 5 }}>
           <CircularProgress />
         </Box>
       )}
 
-      {/* Error State using Alert */}
-      {error && (
+      {/* Fetching/Validation Error Display */}
+      {error && !isSubmitting && ( // Show fetch/validation errors when not submitting
         <Alert severity="error" sx={{ my: 2 }}>
-          Error loading questions: {error}
+          {error}
         </Alert>
       )}
 
-      {/* Questions Form using MUI components */}
-      {!loading && !error && questions.length > 0 && (
+      {/* Submission Success Message */}
+      {isSubmitted && (
+        <Alert severity="success" sx={{ my: 2 }}>
+            Assessment submitted successfully. You cannot change your answers now.
+        </Alert>
+      )}
+
+      {/* Questions Form */}
+      {/* Render only if not loading, no fetch error, and there are applicable questions */}
+      {!isLoading && applicableQuestionsCount > 0 && (
         <form onSubmit={handleSubmit}>
-          {questions.map((question) => (
-            // Render only if the question type is YES_OR_NO
-            question.answer_type === 'YES_OR_NO' && (
+          {/* Use the filtered list for rendering */}
+          {applicableQuestions.map((question) => (
               <FormControl
                 key={question.assessment_question_id}
-                component="fieldset" // Important for grouping
+                component="fieldset"
                 variant="standard"
-                required // Mark the group as required
+                required
                 fullWidth
-                sx={{ my: 3, border: '1px solid #eee', p: 2, borderRadius: 1 }} // Styling
+                sx={{ my: 3, border: '1px solid #eee', p: 2, borderRadius: 1, opacity: isSubmitted ? 0.7 : 1 }} // Visual cue
+                disabled={isSubmitted || isSubmitting} // <<< Disable if submitted or submitting
               >
-                {/* Question Text using FormLabel */}
                 <FormLabel component="legend" sx={{ mb: 1.5, fontWeight: 'bold', fontSize: '1.1rem', color: 'text.primary' }}>
                   {question.assessment_question}
                 </FormLabel>
-                {/* RadioGroup for Yes/No options */}
                 <RadioGroup
-                  row // Display Yes/No side-by-side
+                  row
                   name={`question_${question.assessment_question_id}`}
-                  // Bind value: Convert boolean state (true/false) to string ("true"/"false")
                   value={answers[question.assessment_question_id]?.toString() || ''}
-                  // Update state via handleAnswerChange, passing string value "true" or "false"
                   onChange={(event) => handleAnswerChange(question.assessment_question_id, event.target.value)}
-                  sx={{ justifyContent: 'flex-start', gap: 4, pl: 1 }} // Align left with some space
+                  sx={{ justifyContent: 'flex-start', gap: 4, pl: 1 }}
                 >
-                  {/* Yes Option */}
                   <FormControlLabel
-                    value="true" // The string value for this option
-                    control={<Radio required />} // The radio button itself, marked required
-                    label="Yes" // The visible label
+                    value="true"
+                    control={<Radio required disabled={isSubmitted || isSubmitting}/>} // Explicitly disable radio
+                    label="Yes"
+                    disabled={isSubmitted || isSubmitting} // Disable label interaction
                   />
-                  {/* No Option */}
                   <FormControlLabel
-                    value="false" // The string value for this option
-                    control={<Radio required />} // Radio button (required needed on at least one)
-                    label="No" // The visible label
+                    value="false"
+                    control={<Radio required disabled={isSubmitted || isSubmitting}/>} // Explicitly disable radio
+                    label="No"
+                    disabled={isSubmitted || isSubmitting} // Disable label interaction
                   />
                 </RadioGroup>
               </FormControl>
-            )
           ))}
 
           {/* Submit Button Area */}
           <Box sx={{ textAlign: 'center', mt: 4 }}>
-            {/* MUI Button */}
             <Button
               type="submit"
               variant="contained"
-              disabled={!allQuestionsAnswered} // Use state to control disabled status
+              // <<< Disable if not all answered OR already submitted OR currently submitting
+              disabled={!allQuestionsAnswered}
               size="large"
             >
-              Submit Assessment
+              {isSubmitting ? "Submitting..." : (isSubmitted ? "Next" : "Submit Assessment")} {/* Button text changes */}
             </Button>
             {/* Helper text */}
-            {!allQuestionsAnswered && questions.length > 0 && (
+            {!isSubmitted && !allQuestionsAnswered && applicableQuestionsCount > 0 && (
               <Typography variant="caption" display="block" sx={{ mt: 1, color: 'text.secondary' }}>
                 Please answer all questions to enable submission.
               </Typography>
@@ -176,10 +219,11 @@ const SocialDesirability = (props) => {
         </form>
       )}
 
-      {/* No Questions Loaded Message using Alert */}
-      {!loading && !error && questions.length === 0 && (
+      {/* No Questions Available Message */}
+      {/* Show if not loading, no error, and no *applicable* questions found */}
+      {!isLoading && !error && applicableQuestionsCount === 0 && (
          <Alert severity="info" sx={{ my: 2 }}>
-             No assessment questions available at this time.
+             No assessment questions available at this time or suitable questions found.
          </Alert>
       )}
     </Container>

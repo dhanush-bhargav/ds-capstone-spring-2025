@@ -1,17 +1,6 @@
 import React from "react";
-import { Fab } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { Stepper, Step, StepLabel, Box } from "@mui/material";
-
-const steps = [
-  "Select Question, Stance & Strength",
-  "Instructions",
-  "Generate & Review Arguments",
-  "Categorization",
-  "Rate Implications",
-  "Final Evaluation",
-];
+import { Button, Box } from '@mui/material';
 
 export const Instructions = (props) => {
   props.updateLoading(false);
@@ -76,59 +65,26 @@ export const Instructions = (props) => {
     </div>
   );
 };
-export const FloatingNavButtons = ({
-  onBack,
-  onNext,
-  disableBack,
-  disableNext,
+export const BackButton = ({
+  onBack,        
+  disableBack,   
+  sx,           
 }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        position: "fixed",
-        bottom: "20px",
-        left: "50%",
-        transform: "translateX(-50%)",
-        width: "90%",
-        maxWidth: "600px",
-      }}
-    >
-      <Fab
-        color="secondary"
+    <Box sx={{ mb: 2,textAlign: 'left', ...sx }}>
+      
+      <Button
+        variant="outlined" 
+        color="secondary"    
         onClick={onBack}
         disabled={disableBack}
-        size="medium"
+        startIcon={<ArrowBackIcon />} 
       >
-        <ArrowBackIcon />
-      </Fab>
-      <Fab
-        color="primary"
-        onClick={onNext}
-        disabled={disableNext}
-        size="medium"
-      >
-        <ArrowForwardIcon />
-      </Fab>
-    </div>
-  );
-};
-
-export const StepperComponent = ({ step }) => {
-  return (
-    <Box sx={{ width: "100%", marginBottom: 4 }}>
-      <Stepper activeStep={step - 1} alternativeLabel>
-        {steps.map((label, index) => (
-          <Step key={index}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+        Back 
+      </Button>
     </Box>
   );
 };
-
 export const StanceSelection = ({ setStance, setStep }) => {
   return (
     <div>

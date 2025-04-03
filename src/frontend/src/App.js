@@ -12,8 +12,7 @@ import LoginPage from "./components/LoginPage";
 import QuestionSelection from "./components/QuestionSelection";
 import {
   Instructions,
-  FloatingNavButtons,
-  StepperComponent,
+  BackButton,
 } from "./components/Small Components";
 import ArgumentManager from "./components/ArgumentManager";
 import Categorization from "./components/Categorization";
@@ -24,10 +23,22 @@ import SocialDesirabilty from "./components/SocialDesirabilty";
 import PostIntellectualHumility from "./components/PostIntellectualHumility";
 import EvaluationSummary from "./components/EvaluationSummary";
 
+const initialSubmissionStatus = {
+  humility: false,
+  desirability: false,
+  questions: false,
+  instructions: false,
+  arguments: false,
+  categories: false,
+  implications: false,
+  postHumility: false,
+  evaluation: false,
+};
+
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Intellectual Humility & Social Desirability Assessment
 
@@ -72,6 +83,10 @@ const App = () => {
   const [finalStrength, setFinalStrength] = useState(5);
   const [conversationId, setConversationId] = useState(null);
 
+  const [submissionStatus, setSubmissionStatus] = useState(
+    initialSubmissionStatus
+  );
+
   const handleLogin = async (username, password) => {
     setIsLoading(true);
     setError(null);
@@ -88,7 +103,7 @@ const App = () => {
         setUser({ id: user_id, name: user_name });
         setIsAuthenticated(true);
         fetchQuestions();
-        fetchTopics();
+        // fetchTopics();
         //DO NOT NAVIGATE HERE
       } else {
         setError(message || "Login failed. Please check your credentials.");
@@ -131,59 +146,28 @@ const App = () => {
       setIsLoading(false);
     }
   };
-  const fetchTopics = async () => {
-    //... fetch topics
-    setIsLoading(true);
-    try {
-      const response = await axios.get("http://localhost:5000/get_topics");
-      const transformedTopics = response.data.map((topic) => ({
-        id: topic.id,
-        name: topic.name,
-        preMadeQuestions: topic.preMadeQuestions.map((q) => ({
-          // Include preMadeQuestions
-          id: q.id,
-          text: q.topic,
-          topicId: topic.id,
-        })),
-      }));
-      setTopics(transformedTopics);
-    } catch (error) {
-      setError(error.response?.data?.message || "Failed to load topics.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  const handleNext = () => {
-    console.log(`Before handleNext - Current Step: ${step}`);
-
-    setStep((prevStep) => {
-      let nextStep;
-      switch (prevStep) {
-        case 1:
-          nextStep = 2;
-          break;
-        case 2:
-          nextStep = 3;
-          break;
-        case 3:
-          argumentIds.length > 0 ? (nextStep = 4) : (nextStep = 3);
-          break;
-        case 4:
-          nextStep = 5;
-          break;
-        case 5:
-          nextStep = 6;
-          break;
-        case 6:
-          nextStep = 7;
-          break;
-        default:
-          nextStep = prevStep; // Stay on the same step if no match
-      }
-      console.log(`After handleNext - Next Step: ${nextStep}`);
-      return nextStep;
-    });
-  };
+  // const fetchTopics = async () => {
+  //   //... fetch topics
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await axios.get("http://localhost:5000/get_topics");
+  //     const transformedTopics = response.data.map((topic) => ({
+  //       id: topic.id,
+  //       name: topic.name,
+  //       preMadeQuestions: topic.preMadeQuestions.map((q) => ({
+  //         // Include preMadeQuestions
+  //         id: q.id,
+  //         text: q.topic,
+  //         topicId: topic.id,
+  //       })),
+  //     }));
+  //     setTopics(transformedTopics);
+  //   } catch (error) {
+  //     setError(error.response?.data?.message || "Failed to load topics.");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   const handleBack = () => {
     console.log(`Before handleBack - Current Step: ${step}`);
     setStep((prev) => {
@@ -211,12 +195,7 @@ const App = () => {
       setQuestions(selectedTopic.preMadeQuestions);
     }
   };
-  const updateQuestion = (questionIdProp) => {
-    setQuestionId(questionIdProp);
-    const questionIdNum = parseInt(questionIdProp, 10);
-    const question = questions.find((q) => {
-      return q.id === questionIdNum;
-    })?.text;
+  const updateQuestion = (question) => {
     setQuestion(question);
   };
   const updateStance = (stance) => {
@@ -270,11 +249,17 @@ const App = () => {
   const updateLoading = (Loading) => {
     setIsLoading(Loading);
   };
+  const updateSubmissionStatus = (status) => {
+    setSubmissionStatus((prevStatus) => ({
+      ...prevStatus,
+      ...status,
+    }));
+  };
 
   useEffect(() => {
     if (token) {
       fetchQuestions();
-      fetchTopics();
+      // fetchTopics();
     }
   }, [token]);
 
@@ -287,11 +272,14 @@ const App = () => {
    */
   function transformHumilityResponses(ihResponses) {
     // Basic input validation
-    if (typeof ihResponses !== 'object' || ihResponses === null) {
-      console.error("Invalid input for transformHumilityResponses: Expected an object, received:", ihResponses);
+    if (typeof ihResponses !== "object" || ihResponses === null) {
+      console.error(
+        "Invalid input for transformHumilityResponses: Expected an object, received:",
+        ihResponses
+      );
       return null; // Or return {}, or throw Error
     }
-  
+
     // Define the mapping for intellectual humility scores
     const humilityMapping = {
       1: "STRONGLY_DISAGREE",
@@ -300,22 +288,25 @@ const App = () => {
       4: "AGREE",
       5: "STRONGLY_AGREE",
     };
-  
+
     const transformedResponses = {};
-  
+
     // Iterate over the keys of the input object
     for (const questionId in ihResponses) {
       // Ensure the property belongs to the object itself
       if (Object.hasOwnProperty.call(ihResponses, questionId)) {
         const numericValue = ihResponses[questionId];
         // Map the numeric value, provide a fallback/warning for unexpected values
-        transformedResponses[questionId] = humilityMapping[numericValue] || `UNKNOWN_VALUE_${numericValue}`;
+        transformedResponses[questionId] =
+          humilityMapping[numericValue] || `UNKNOWN_VALUE_${numericValue}`;
         if (!humilityMapping[numericValue]) {
-            console.warn(`Unmapped intellectual humility value: ${numericValue} for question ID ${questionId}`);
+          console.warn(
+            `Unmapped intellectual humility value: ${numericValue} for question ID ${questionId}`
+          );
         }
       }
     }
-  
+
     return transformedResponses;
   }
 
@@ -328,13 +319,16 @@ const App = () => {
    */
   function transformDesirabilityResponses(sdResponses) {
     // Basic input validation
-    if (typeof sdResponses !== 'object' || sdResponses === null) {
-      console.error("Invalid input for transformDesirabilityResponses: Expected an object, received:", sdResponses);
+    if (typeof sdResponses !== "object" || sdResponses === null) {
+      console.error(
+        "Invalid input for transformDesirabilityResponses: Expected an object, received:",
+        sdResponses
+      );
       return null; // Or return {}, or throw Error
     }
-  
+
     const transformedResponses = {};
-  
+
     // Iterate over the keys of the input object
     for (const questionId in sdResponses) {
       // Ensure the property belongs to the object itself
@@ -342,15 +336,17 @@ const App = () => {
         const booleanValue = sdResponses[questionId];
         // Map boolean true to "YES" and false to "NO"
         // Provide a fallback/warning for non-boolean values
-        if (typeof booleanValue === 'boolean') {
+        if (typeof booleanValue === "boolean") {
           transformedResponses[questionId] = booleanValue ? "YES" : "NO";
         } else {
           transformedResponses[questionId] = `INVALID_VALUE_${booleanValue}`;
-          console.warn(`Non-boolean social desirability value encountered: ${booleanValue} for question ID ${questionId}`);
+          console.warn(
+            `Non-boolean social desirability value encountered: ${booleanValue} for question ID ${questionId}`
+          );
         }
       }
     }
-  
+
     return transformedResponses;
   }
 
@@ -364,17 +360,6 @@ const App = () => {
           </Routes>
         ) : (
           <Box
-            sx={{
-              width: "100vw",
-              height: "100vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#f5f5f5",
-              transition: "height 0.5s ease-in-out",
-            }}
-          >
-            <Box
               sx={{
                 width: "800px",
                 maxHeight: "auto",
@@ -384,24 +369,22 @@ const App = () => {
                 display: "flex",
                 flexDirection: "column",
                 border: "1px solid #ccc",
-                alignItems: "center",
-                justifyContent: "center",
                 transition: "height 0.5s ease-in-out",
               }}
             >
-              {/* <StepperComponent step={step} /> */}
-              {isLoading && <p>Loading...</p>}
-              {error && <p style={{ color: "red" }}>{error}</p>}
               {step === 1 && (
                 <IntellectualHumility
                   updateStep={updateStep}
                   updateLoading={updateLoading}
                   updateError={updateError}
                   updateIntellectualHumility={updateIntellectualHumility}
-
                   intellectualHumility={intellectualHumility}
                   intellectualHumilityId={intellectualHumilityId}
+                  isLoading={isLoading}
+                  error={error}
                   step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
               {step === 2 && (
@@ -410,7 +393,12 @@ const App = () => {
                   updateLoading={updateLoading}
                   updateError={updateError}
                   updateSocialDesirability={updateSocialDesirability}
+                  isLoading={isLoading}
+                  error={error}
                   step={step}
+                  socialDesirability={socialDesirability}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
               {step === 3 && (
@@ -423,9 +411,12 @@ const App = () => {
                   updateStep={updateStep}
                   updateConversationId={updateConversationId}
                   updateLoading={updateLoading}
-
-                  intellectualHumility={transformHumilityResponses(intellectualHumility)}
-                  socialDesirability={transformDesirabilityResponses(socialDesirability)}
+                  intellectualHumility={transformHumilityResponses(
+                    intellectualHumility
+                  )}
+                  socialDesirability={transformDesirabilityResponses(
+                    socialDesirability
+                  )}
                   token={token}
                   user={user}
                   stance={stance}
@@ -436,14 +427,22 @@ const App = () => {
                   questions={questions}
                   question={question}
                   questionId={questionId}
+                  isLoading={isLoading}
+                  error={error}
                   step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
               {step === 4 && (
                 <Instructions
                   updateStep={updateStep}
                   updateLoading={updateLoading}
+                  isLoading={isLoading}
+                  error={error}
                   step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
               {step === 5 && (
@@ -463,6 +462,8 @@ const App = () => {
                   question={question}
                   token={token}
                   step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
               {step === 6 && (
@@ -475,12 +476,14 @@ const App = () => {
                   yesArguments={yesArguments}
                   noArguments={noArguments}
                   topic={topic}
-                  topicId={questionId}
+                  topicId={topicId}
                   isLoading={isLoading}
                   error={error}
                   categories={categories}
                   token={token}
                   step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
               {step === 7 && (
@@ -497,12 +500,14 @@ const App = () => {
                   categoriesId={categoriesId}
                   question={question}
                   topic={topic}
-                  topicId={questionId}
+                  topicId={topicId}
                   conversationId={conversationId}
                   error={error}
                   isLoading={isLoading}
                   token={token}
                   step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
               {step === 8 && (
@@ -510,7 +515,6 @@ const App = () => {
                   updateStep={updateStep}
                   updateLoading={updateLoading}
                   updateError={updateError}
-
                   user={user}
                   userId={user.id}
                   updateStance={updateStance}
@@ -522,20 +526,19 @@ const App = () => {
                   intellectualHumility={intellectualHumility}
                   socialDesirability={socialDesirability}
                   intellectualHumilityId={intellectualHumilityId}
-
                   updateFinalStance={updateFinalStance}
                   updateFinalStrength={updateFinalStrength}
                   updateStrength={updateStrength}
                   isLoading={isLoading}
                   error={error}
-
                   stance={stance}
                   strength={strength}
-                  
                   finalStance={finalStance}
                   finalStrength={finalStrength}
                   token={token}
                   step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
               {step === 9 && (
@@ -543,7 +546,6 @@ const App = () => {
                   updateStep={updateStep}
                   updateLoading={updateLoading}
                   updateError={updateError}
-
                   user={user}
                   userId={user.id}
                   updateStance={updateStance}
@@ -555,32 +557,26 @@ const App = () => {
                   intellectualHumility={intellectualHumility}
                   socialDesirability={socialDesirability}
                   intellectualHumilityId={intellectualHumilityId}
-
                   updateFinalStance={updateFinalStance}
                   updateFinalStrength={updateFinalStrength}
                   updateStrength={updateStrength}
                   isLoading={isLoading}
                   error={error}
-
                   stance={stance}
                   strength={strength}
-                  
                   finalStance={finalStance}
                   finalStrength={finalStrength}
                   token={token}
                   step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
-
-              {/* Floating Navigation Buttons */}
-              <FloatingNavButtons
+              <BackButton
                 onBack={handleBack}
-                onNext={handleNext}
-                disableBack={step === 1}
-                disableNext={step === 7}
+                disableBack={step === 1 || isLoading}
               />
             </Box>
-          </Box>
         )}
       </>
     </Router>
