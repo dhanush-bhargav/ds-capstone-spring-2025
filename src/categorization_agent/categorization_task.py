@@ -6,8 +6,9 @@ class CategoryValidationTask(Task):
     def __init__(self, topic_id, topic_name, agent):
         super().__init__(
             description=f"Validate the new argument categories provided by the user for the topic: {topic_name} with topic_id: {topic_id}\n"
-                        f"argument_categories: {{argument_categories}}\nand write them to the database only if they are not already present.\n",
-            expected_output="List of matched arguments and categories. It should be a list where each item is a dictionary of the form {argument_id, category_id}.",
+                        f"argument_categories: {{argument_categories}}\nand write them to the database only if they are not already present.\n"
+                        f"If the provided list of new argument_categories is empty, or no arguments need to be added, pass the topic_id as your answer.",
+            expected_output="List of argument categories. It should be a list where each item is a dictionary of the form {category_id, argument_category}.",
             agent=agent,
             guardrail=category_validation_guardrail
         )

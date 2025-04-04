@@ -58,7 +58,7 @@ const App = () => {
   // Question and Question ID
   const [questions, setQuestions] = useState([]);
   const [question, setQuestion] = useState("");
-  const [questionId, setQuestionId] = useState("");
+  const [questionId, setQuestionId] = useState(0);
 
   // Arguments
   const [yesArguments, setYesArguments] = useState([]);
@@ -173,7 +173,11 @@ const App = () => {
       setQuestions(selectedTopic.preMadeQuestions);
     }
   };
-  const updateQuestion = (question) => {
+  const updateQuestion = (questionIdProp) => {
+    setQuestionId(questionIdProp);
+    const question = questions.find((q) => {
+      return q.id === questionIdProp;
+    })?.text;
     setQuestion(question);
   };
   const updateStance = (stance) => {
@@ -418,6 +422,8 @@ const App = () => {
                   noArguments={noArguments}
                   topic={topic}
                   topicId={topicId}
+                  question={question}
+                  questionId={questionId}
                   isLoading={isLoading}
                   error={error}
                   categories={categories}
@@ -440,6 +446,7 @@ const App = () => {
                   categories={categories}
                   categoriesId={categoriesId}
                   question={question}
+                  questionId={questionId}
                   topic={topic}
                   topicId={topicId}
                   conversationId={conversationId}

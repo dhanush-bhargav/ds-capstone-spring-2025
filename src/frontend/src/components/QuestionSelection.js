@@ -1,43 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./QuestionSelection.css";
 import axios from "axios";
-
-function getRandomQuestion(arr) {
-  if (!Array.isArray(arr) || arr.length === 0) {
-    console.warn("getRandomItemFromArray: Input must be a non-empty array.");
-    return undefined;
-  }
-  const randomIndex = Math.floor(Math.random() * arr.length);
-  return arr[randomIndex];
-}
 
 const QuestionSelection = (props) => {
   const [stance, setStance] = useState(props.stance || "");
   const [strength, setStrength] = useState(props.strength || 5);
+  const [questionId, setQuestionId] = useState(props.questionId || "");
   const [topicId, setTopicId] = useState(props.topicId || "");
-  const [question, setQuestion] = useState(props.question || "");
+  const [questionReady, setQuestionReady] = useState(false);
+  const [question, setQuestion] = useState({})
 
-  console.log("QuestionSelection Props", props);
+  useEffect(() => {
+    setStance("");
+    setStrength(5);
+    setQuestionReady(false);
+    props.updateTopic(topicId);
+    props.updateStance("");
+    props.updateStrength("");
+    props.updateConversationId("");
+  }, [topicId]);
+
+  const pickQuestion = async () => {
+    let tempQuestion = props.questions[Math.floor(Math.random() * props.questions.length)]
+    await setQuestion(tempQuestion);
+    await setQuestionId(tempQuestion.id);
+    props.updateQuestion(questionId);
+    setQuestionReady(true);
+  }
 
   const handleProceed = async () => {
-    if (!topicId || !stance || !strength) {
+    if (!topicId || !questionId || !stance || !strength) {
       alert("Please complete all selections before proceeding.");
       return;
     }
     console.log("intellectualHumility", props.intellectualHumility);
     console.log("socialDesirability", props.socialDesirability);
     props.updateTopic(topicId);
-    props.updateQuestion(question);
+    props.updateQuestion(questionId);
     props.updateStance(stance);
     props.updateStrength(strength);
-    props.updateStep(props.step + 1);
+    props.updateStep(props.step+1);
     props.updateLoading(true);
     props.updateError(null);
     try {
       const response = await axios.post(
         "http://localhost:5000/create_conversation",
         {
-          topic_id: parseInt(topicId),
+          topic_id: questionId,
           user_id: props.user.id,
           stance: stance,
           stance_rating: strength,
@@ -57,10 +66,10 @@ const QuestionSelection = (props) => {
     } finally {
       props.updateLoading(true);
       props.updateTopic(topicId);
-      props.updateQuestion(question);
+      props.updateQuestion(questionId);
       props.updateStance(stance);
       props.updateStrength(strength);
-      props.updateStep(props.step + 1);
+      props.updateStep(props.step+1);
     }
   };
 
@@ -73,10 +82,6 @@ const QuestionSelection = (props) => {
           value={topicId || ""}
           onChange={(e) => {
             setTopicId(e.target.value);
-            setQuestion(
-              getRandomQuestion(props.topics[e.target.value]?.preMadeQuestions)
-                ?.text
-            );
           }}
           className="select-box"
         >
@@ -88,12 +93,13 @@ const QuestionSelection = (props) => {
           ))}
         </select>
       </div>
-
-      <div className="section">
-        <label className="label">{question?"Question":"Select topic"}</label>
-        <label>{question}</label>
-      </div>
-
+      {props.topic && (
+        <div className="section">
+          <label className="label">Question</label>
+          {!questionReady ? <button className="button" onClick={pickQuestion}>Get Random Question</button> :
+          <label>{question.text}</label>}
+        </div>
+      )}
       <div className="section">
         <label className="label">Stance:</label>
         <div className="radio-group" style={{ justifyContent: "left" }}>
@@ -137,6 +143,7 @@ const QuestionSelection = (props) => {
         </div>
       </div>
 
+      {/* Proceed Button */}
       <button className="button" onClick={handleProceed}>
         Proceed
       </button>

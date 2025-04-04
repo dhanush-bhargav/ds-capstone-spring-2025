@@ -55,9 +55,11 @@ class App:
     def read_user_argument_categories(self, request_data):
         try:
             crew_result = self.data_ingestion_crew.ingest_argument_categories(request_data['topic_id'], request_data['argument_categories'])
+            argument_categories = self.get_argument_categories(request_data)
             result = {
                 "success": True,
-                "argument_ids": crew_result.raw,
+                "link_ids": crew_result.raw,
+                "category_ids": [cat["category_id"] for cat in argument_categories["argument_categories"]],
             }
         except Exception as e:
             result = {

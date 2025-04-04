@@ -166,7 +166,7 @@ const PostIntellectualHumility = (props) => {
         });
 
         const payload = {
-            topic_id: topicId,
+            topic_id: props.questionId,
             conversation_id: conversationId,
             user_id: userId,
             stance: userFinalStance, // Use FINAL stance from state

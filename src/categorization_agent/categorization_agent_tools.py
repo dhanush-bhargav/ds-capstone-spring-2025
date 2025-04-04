@@ -41,24 +41,24 @@ class CategoryWritingTool(BaseTool):
         return json.dumps(result)
 
 
-class LinkArgumentToCategoryInput(BaseModel):
-    category_argument_list: str = Field(..., description='list of dictionary items, each item is of the form '
-                                                         '{category_id: int, argument_id: int}')
-
-class LinkArgumentToCategoryTool(BaseTool):
-    name: str = "Argument category linking tool"
-    description: str = "This tool is used to create a link between an argument and an argument category in the database."
-    args_schema: Type[BaseModel] = LinkArgumentToCategoryInput
-    result_as_answer: bool = True
-
-    def _run(self, category_argument_list: str) -> str:
-        db_manager = DbManager()
-        write_data = []
-        category_argument = json.loads(category_argument_list)
-        for item in category_argument:
-            write_data.append((item["argument_id"], item["category_id"]))
-        result = db_manager.link_argument_category(write_data)
-        return json.dumps(result)
+# class LinkArgumentToCategoryInput(BaseModel):
+#     category_argument_list: str = Field(..., description='list of dictionary items, each item is of the form '
+#                                                          '{category_id: int, argument_id: int}')
+#
+# class LinkArgumentToCategoryTool(BaseTool):
+#     name: str = "Argument category linking tool"
+#     description: str = "This tool is used to create a link between an argument and an argument category in the database."
+#     args_schema: Type[BaseModel] = LinkArgumentToCategoryInput
+#     result_as_answer: bool = True
+#
+#     def _run(self, category_argument_list: str) -> str:
+#         db_manager = DbManager()
+#         write_data = []
+#         category_argument = json.loads(category_argument_list)
+#         for item in category_argument:
+#             write_data.append((item["argument_id"], item["category_id"]))
+#         result = db_manager.link_argument_category(write_data)
+#         return json.dumps(result)
 
 
 class UnlinkedArgumentReadingToolInput(BaseModel):
