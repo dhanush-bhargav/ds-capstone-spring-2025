@@ -127,6 +127,7 @@ const Categorization = (props) => {
                 argument_category: c.argument_category,
             })),
         };
+        console.log("Payload for submission:", categoriesPayload);
 
         try {
             if (localCategory.length > 0) { // Or adjust logic if submission always needed

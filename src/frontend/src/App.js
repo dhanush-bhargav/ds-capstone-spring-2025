@@ -397,7 +397,7 @@ const App = () => {
                   yesArguments={yesArguments}
                   noArguments={noArguments}
                   topic={topic}
-                  topicId={questionId}
+                  topicId={topicId}
                   isLoading={isLoading}
                   error={error}
                   question={question}

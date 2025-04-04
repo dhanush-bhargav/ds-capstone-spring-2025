@@ -14,7 +14,7 @@ function getRandomQuestion(arr) {
 const QuestionSelection = (props) => {
   const [stance, setStance] = useState(props.stance || "");
   const [strength, setStrength] = useState(props.strength || 5);
-  const [topicId, setTopicId] = useState(props.topicId || "");
+  const [topicId, setTopicId] = useState(props.topicId || 0);
   const [question, setQuestion] = useState(props.question || "");
 
   console.log("QuestionSelection Props", props);
@@ -70,9 +70,9 @@ const QuestionSelection = (props) => {
       <div className="section">
         <label className="label">Choose a Topic:</label>
         <select
-          value={topicId || ""}
+          value={topicId || 0}
           onChange={(e) => {
-            setTopicId(e.target.value);
+            setTopicId(parseInt(e.target.value, 0));
             setQuestion(
               getRandomQuestion(props.topics[e.target.value]?.preMadeQuestions)
                 ?.text
@@ -101,9 +101,9 @@ const QuestionSelection = (props) => {
             <input
               type="radio"
               name="stance"
-              value="Yes"
-              checked={stance === "Yes"}
-              onChange={() => setStance("Yes")}
+              value="YES"
+              checked={stance === "YES"}
+              onChange={() => setStance("YES")}
             />
             Yes
           </label>
@@ -111,9 +111,9 @@ const QuestionSelection = (props) => {
             <input
               type="radio"
               name="stance"
-              value="No"
-              checked={stance === "No"}
-              onChange={() => setStance("No")}
+              value="NO"
+              checked={stance === "NO"}
+              onChange={() => setStance("NO")}
             />
             No
           </label>
