@@ -37,7 +37,7 @@ const QuestionSelection = (props) => {
       const response = await axios.post(
         "http://localhost:5000/create_conversation",
         {
-          topic_id: topicId,
+          topic_id: parseInt(topicId),
           user_id: props.user.id,
           stance: stance,
           stance_rating: strength,
