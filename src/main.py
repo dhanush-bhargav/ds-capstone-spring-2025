@@ -18,14 +18,15 @@ class App:
         try:
            conversation_id = self.db_manager.create_new_conversation(request_data['topic_id'], request_data['user_id'])
            stance_id = self.db_manager.create_stance(conversation_id, request_data['stance'], request_data['stance_rating'], request_data['collected_at'])
-           intellectual_humility_assessment_data = []
-           for item in request_data['intellectual_humility_responses']:
-               intellectual_humility_assessment_data.append((item['assessment_question_id'], conversation_id, item['answer'], request_data['collected_at']))
-           self.db_manager.insert_assessment_responses(intellectual_humility_assessment_data)
-           social_desirability_assessment_data = []
-           for item in request_data['social_desirability_responses']:
-               social_desirability_assessment_data.append((item['assessment_question_id'], conversation_id, item['answer'], request_data['collected_at']))
-           self.db_manager.insert_assessment_responses(social_desirability_assessment_data)
+           if request_data['sequence_number'] == 0:
+               intellectual_humility_assessment_data = []
+               for item in request_data['intellectual_humility_responses']:
+                   intellectual_humility_assessment_data.append((item['assessment_question_id'], conversation_id, item['answer'], request_data['collected_at']))
+               self.db_manager.insert_assessment_responses(intellectual_humility_assessment_data)
+               social_desirability_assessment_data = []
+               for item in request_data['social_desirability_responses']:
+                   social_desirability_assessment_data.append((item['assessment_question_id'], conversation_id, item['answer'], request_data['collected_at']))
+               self.db_manager.insert_assessment_responses(social_desirability_assessment_data)
            result = {
                "success": True,
                "conversation_id": conversation_id,
@@ -179,11 +180,13 @@ class App:
         try:
             stance_id = self.db_manager.create_stance(request_data["conversation_id"], request_data['stance'],
                                                       request_data['stance_rating'], request_data['collected_at'])
-            intellectual_humility_assessment_data = []
-            for item in request_data['intellectual_humility_responses']:
-                intellectual_humility_assessment_data.append(
-                    (item['assessment_question_id'], request_data["conversation_id"], item['answer'], request_data['collected_at']))
-            self.db_manager.insert_assessment_responses(intellectual_humility_assessment_data)
+            conversation_id = self.db_manager.end_conversation(request_data['conversation_id'])
+            if request_data['sequence_number'] == 2:
+                intellectual_humility_assessment_data = []
+                for item in request_data['intellectual_humility_responses']:
+                    intellectual_humility_assessment_data.append(
+                        (item['assessment_question_id'], request_data["conversation_id"], item['answer'], request_data['collected_at']))
+                self.db_manager.insert_assessment_responses(intellectual_humility_assessment_data)
             return {
                 "success": True,
                 "stance_id": stance_id,
@@ -250,6 +253,22 @@ class App:
             return {
                 "success": True,
                 "implication_questions_data": implication_questions_data
+            }
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+            }
+
+
+    def get_next_question_for_user(self, request_data):
+        try:
+            question_order_ids = self.db_manager.get_user_question_order(request_data['user_id'])
+            next_question_id = int(question_order_ids['question_id_order'].split(',')[int(request_data['sequence_number'])])
+            question = self.db_manager.get_topic_by_id(next_question_id)
+            return {
+                "topic": question,
+                "success": True
             }
         except Exception as e:
             return {

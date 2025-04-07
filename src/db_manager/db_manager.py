@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 from config_reader import ConfigData
 
 
@@ -55,6 +56,27 @@ class DbManager:
         connection.close()
         return user_data
 
+    def add_user_question_order(self, user_id, topic_ids):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        cursor.execute("""INSERT INTO link_users_question_orders (user_id, question_id_order) VALUES (?, ?)""",
+                       (user_id, topic_ids))
+        connection.commit()
+        connection.close()
+        return user_id
+
+    def get_user_question_order(self, user_id):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        result = cursor.execute(f"""SELECT user_id, question_id_order FROM link_users_question_orders
+                                        WHERE user_id = '{user_id}'""").fetchone()
+        connection.close()
+        return {
+            "user_id": result[0],
+            "question_id_order": result[1]
+        }
+
+
     def login(self, user_id, password):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
@@ -107,9 +129,18 @@ class DbManager:
     def create_new_conversation(self, topic_id, user_id):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO link_conversations_user_topic (topic_id, user_id) VALUES (?, ?)", (topic_id, user_id))
+        cursor.execute("INSERT INTO link_conversations_user_topic (topic_id, user_id, start_datetime) VALUES (?, ?, ?)", (topic_id, user_id, datetime.datetime.now()))
         connection.commit()
         conversation_id = cursor.lastrowid
+        connection.close()
+        return conversation_id
+
+
+    def end_conversation(self, conversation_id):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        cursor.execute(f"UPDATE link_conversations_user_topic SET end_datetime = '{datetime.datetime.now()}' WHERE conversation_id = {conversation_id}")
+        connection.commit()
         connection.close()
         return conversation_id
 

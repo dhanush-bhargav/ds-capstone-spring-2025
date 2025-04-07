@@ -69,5 +69,9 @@ def get_assessment_questions():
 def record_post_intervention_assessments():
     return application.record_post_intervention_assessments(request.json)
 
+@app.route("/get_next_question", methods=['GET'])
+def get_next_question():
+    return application.get_next_question_for_user(request.args)
+
 if __name__ == '__main__':
     app.run(debug=True)

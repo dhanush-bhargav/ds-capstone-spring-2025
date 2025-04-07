@@ -19,6 +19,12 @@ cursor.execute("""CREATE TABLE users (
                         password VARCHAR(255) NOT NULL
                     )""")
 
+#Create table to store question_id orders
+cursor.execute("""CREATE TABLE link_users_question_orders (
+                        user_id VARCHAR(255) NOT NULL,
+                        question_id_order VARCHAR(255) NOT NULL
+                    )""")
+
 #Create assessment_questions table
 cursor.execute("""CREATE TABLE assessment_questions (
                         assessment_question_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -52,7 +58,9 @@ cursor.execute("""CREATE TABLE master_topics (
 cursor.execute("""CREATE TABLE link_conversations_user_topic (
                         conversation_id INTEGER PRIMARY KEY AUTOINCREMENT,
                         topic_id INTEGER NOT NULL,
-                        user_id INTEGER NOT NULL
+                        user_id INTEGER NOT NULL,
+                        start_datetime DATETIME NOT NULL,
+                        end_datetime DATETIME
                     )""")
 
 # Create instructions table
@@ -117,6 +125,14 @@ users_data = [
 ]
 
 cursor.executemany("INSERT INTO users VALUES (?, ?, ?)", users_data)
+connection.commit()
+
+# Populate link_users_question_order table for default users
+data = [
+    ('dhanush', '48,33,73'),
+    ('guruksha', '48,33,73'),
+]
+cursor.executemany("INSERT INTO link_users_question_orders VALUES (?, ?)", data)
 connection.commit()
 
 # Populate topic_groups table with default topic groups
