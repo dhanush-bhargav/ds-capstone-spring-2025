@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./QuestionSelection.css";
 import axios from "axios";
+import {baseUrl} from "../config";
 
 const QuestionSelection = (props) => {
   const [stance, setStance] = useState(props.stance || "");
@@ -19,7 +20,7 @@ const QuestionSelection = (props) => {
   }, [topic]);
 
   useEffect(() => {
-    const url = `http://localhost:5000/get_next_question?user_id=${user}&sequence_number=${questionNumber}`;
+    const url = `${baseUrl}/get_next_question?user_id=${user}&sequence_number=${questionNumber}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -44,7 +45,7 @@ const QuestionSelection = (props) => {
     props.updateError(null);
     try {
       const response = await axios.post(
-        "http://localhost:5000/create_conversation",
+        `${baseUrl}/create_conversation`,
         {
           topic_id: topic?.topic_id,
           user_id: props.user.id,

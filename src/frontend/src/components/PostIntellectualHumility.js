@@ -14,6 +14,7 @@ import {
     Button,
     Paper // Keep Paper if desired for sections
 } from '@mui/material';
+import {baseUrl} from "../config";
 
 // Mapping from numeric answers (1-5) to required string format
 const answerMapping = {
@@ -89,7 +90,7 @@ const PostIntellectualHumility = (props) => {
   const [isSubmitting, setIsSubmitting] = useState(false); // Single submitting flag
 
   // API endpoint for fetching questions
-  const apiUrl = 'http://localhost:5000/get_assessment_questions?assessment_type=INTELLECTUAL_HUMILITY';
+  const apiUrl = `${baseUrl}/get_assessment_questions?assessment_type=INTELLECTUAL_HUMILITY`;
 
   // Effect for fetching IH questions
   useEffect(() => {
@@ -176,7 +177,7 @@ const PostIntellectualHumility = (props) => {
             intellectual_humility_responses: intellectual_humility_responses,
         };
 
-        const submitApiUrl = 'http://localhost:5000/record_post_intervention_assessments';
+        const submitApiUrl = `${baseUrl}/record_post_intervention_assessments`;
 
         console.log(`Performing POST to ${submitApiUrl}`);
         console.log("Payload:", JSON.stringify(payload, null, 2));

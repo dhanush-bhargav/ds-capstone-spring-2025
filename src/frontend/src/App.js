@@ -23,6 +23,7 @@ import IntellectualHumility from "./components/IntellectualHumility";
 import SocialDesirabilty from "./components/SocialDesirabilty";
 import PostIntellectualHumility from "./components/PostIntellectualHumility";
 import EvaluationSummary from "./components/EvaluationSummary";
+import {baseUrl} from "./config";
 
 const initialSubmissionStatus = {
   humility: false,
@@ -87,7 +88,7 @@ const App = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post(`${baseUrl}/login`, {
         user_id: username,
         password,
       });

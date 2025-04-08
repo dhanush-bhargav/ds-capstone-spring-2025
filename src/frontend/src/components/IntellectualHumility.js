@@ -13,6 +13,7 @@ import {
   Radio, // Radio button input
   Button, // Submit button
 } from "@mui/material";
+import {baseUrl} from "../config";
 
 // Define labels for the 5-point scale (can be outside the component)
 const scaleLabels = {
@@ -35,7 +36,7 @@ const IntellectualHumility = (props) => {
   console.log("Intellectual Humility Props", props);
 
   const apiUrl =
-    "http://localhost:5000/get_assessment_questions?assessment_type=INTELLECTUAL_HUMILITY";
+    `${baseUrl}/get_assessment_questions?assessment_type=INTELLECTUAL_HUMILITY`;
 
   useEffect(() => {
     const fetchQuestions = async () => {

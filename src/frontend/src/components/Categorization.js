@@ -17,6 +17,7 @@ import {
     Alert,
     Divider,
 } from "@mui/material";
+import {baseUrl} from "../config";
 
 const Categorization = (props) => {
     // State for UI control
@@ -42,7 +43,7 @@ const Categorization = (props) => {
             setUncategorizedArguments([]); // Reset state on new fetch
 
             try {
-                const response = await axios.get(`http://localhost:5000/get_arguments_for_categorization?topic_id=${props.topic?.topic_id}`);
+                const response = await axios.get(`${baseUrl}/get_arguments_for_categorization?topic_id=${props.topic?.topic_id}`);
 
                 if (response.data.success && response.data.arguments_by_category) {
                     const fetchedCategories = [];
@@ -131,7 +132,7 @@ const Categorization = (props) => {
         try {
             if (localCategory.length > 0) { // Or adjust logic if submission always needed
                 const response = await axios.post(
-                    "http://localhost:5000/read_user_argument_categories",
+                    `${baseUrl}/read_user_argument_categories`,
                     categoriesPayload
                 );
                 if (response?.data?.success === true) {

@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import axios from "axios";
+import {baseUrl} from "../config";
 
 // Define constants for rating values for clarity and consistency
 const RATING_VALUES = {
@@ -51,7 +52,7 @@ const ImplicationRating = (props) => {
       // Step 1: Fetch Category IDs and Names
       console.log("Fetching categories for topic:", props.topic?.topic_id);
       const categoryResponse = await axios.get(
-        `http://localhost:5000/get_arguments_for_categorization?topic_id=${props.topic?.topic_id}`
+        `${baseUrl}/get_arguments_for_categorization?topic_id=${props.topic?.topic_id}`
       );
 
       console.log("Category API Response:", categoryResponse.data);
@@ -81,7 +82,7 @@ const ImplicationRating = (props) => {
       // Step 2: Fetch Implication Questions using the obtained Category IDs
       console.log("Fetching implication questions for category IDs:", categoryIds);
       const questionsResponse = await axios.post(
-        `http://localhost:5000/get_implication_questions`,
+        `${baseUrl}/get_implication_questions`,
         {
           topic_id: props.topic?.topic_id,
           category_ids: categoryIds,
@@ -214,7 +215,7 @@ const ImplicationRating = (props) => {
 
       // Make the API call to submit ratings
       const response = await axios.post(
-        "http://localhost:5000/read_implications",
+        `${baseUrl}/read_implications`,
         {
           conversation_id: props.conversationId, // Pass conversationId
           implications: payload, // The new payload structure

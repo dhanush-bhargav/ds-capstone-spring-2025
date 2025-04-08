@@ -13,6 +13,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import {baseUrl} from "../config";
 
 const ArgumentManager = (props) => {
     props.updateLoading(false);
@@ -133,7 +134,7 @@ const ArgumentManager = (props) => {
             ];
 
             const response = await axios.post(
-                "http://localhost:5000/read_user_arguments",
+                `${baseUrl}/read_user_arguments`,
                 {
                     topic_id: props.topic?.topic_id,
                     arguments: argumentsPayload,

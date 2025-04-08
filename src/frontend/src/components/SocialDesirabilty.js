@@ -14,6 +14,7 @@ import {
     Radio,
     Button
 } from '@mui/material';
+import {baseUrl} from "../config";
 
 const SocialDesirability = (props) => {
   const [questions, setQuestions] = useState([]); // Initialize empty
@@ -24,7 +25,7 @@ const SocialDesirability = (props) => {
   const [isSubmitted, setIsSubmitted] = useState(props.submissionStatus.desirability || false); // <<< Tracks submission status
 
   // API endpoint URL for Social Desirability
-  const apiUrl = 'http://localhost:5000/get_assessment_questions?assessment_type=SOCIAL_DESIRABILITY';
+  const apiUrl = `${baseUrl}/get_assessment_questions?assessment_type=SOCIAL_DESIRABILITY`;
 
   // useEffect hook for fetching data
   useEffect(() => {
