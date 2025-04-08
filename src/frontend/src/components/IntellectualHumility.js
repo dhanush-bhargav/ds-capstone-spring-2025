@@ -136,14 +136,9 @@ const IntellectualHumility = (props) => {
   return (
     <Container maxWidth="md" sx={{ my: 4 }}>
       <Typography variant="h4" component="h1" gutterBottom>
-        Intellectual Humility Assessment
+        Initial Assessment - Section 1
       </Typography>
       {/* Intro text */}
-      <Typography variant="body1" paragraph>
-        Intellectual humility is the recognition that one's beliefs and opinions
-        may be wrong or incomplete. It involves being open to new ideas, willing
-        to change one's mind, and acknowledging the limits of one's knowledge.
-      </Typography>
       <Typography variant="body1" paragraph>
         Please rate your agreement with the following statements. (Required for
         all questions)

@@ -126,13 +126,10 @@ const SocialDesirability = (props) => {
   return (
     <Container maxWidth="md" sx={{ my: 4 }}>
       <Typography variant="h4" component="h1" gutterBottom>
-        Social Desirability
+        Initial Assessment - Section 2
       </Typography>
       <Typography variant="body1" paragraph>
-        Social desirability is a bias that occurs when respondents provide answers that they believe are more socially acceptable or favorable, rather than their true feelings or beliefs. This can lead to inaccurate data and misinterpretation of results.
-      </Typography>
-      <Typography variant="body1" paragraph>
-        Please answer the following questions honestly (Yes or No). Your responses help in understanding potential biases. (Required for all questions)
+        Please respond Yes or No to the following questions. (Required for all questions)
       </Typography>
       <Divider sx={{ my: 3 }} />
 

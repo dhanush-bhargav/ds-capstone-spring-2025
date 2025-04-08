@@ -32,7 +32,7 @@ const Categorization = (props) => {
     // Effect Hook to fetch initial categories and arguments
     useEffect(() => {
         const fetchArgumentsAndCategories = async () => {
-            if (!props.questionId) {
+            if (!props.topic) {
                 setFetchError("Topic ID is missing.");
                 return; // Exit if no questionId
             }
@@ -42,7 +42,7 @@ const Categorization = (props) => {
             setUncategorizedArguments([]); // Reset state on new fetch
 
             try {
-                const response = await axios.get(`http://localhost:5000/get_arguments_for_categorization?topic_id=${props.questionId}`);
+                const response = await axios.get(`http://localhost:5000/get_arguments_for_categorization?topic_id=${props.topic?.topic_id}`);
 
                 if (response.data.success && response.data.arguments_by_category) {
                     const fetchedCategories = [];
@@ -80,7 +80,7 @@ const Categorization = (props) => {
         };
         fetchArgumentsAndCategories();
 
-    }, [props.questionId]);
+    }, [props.topic]);
 
     // Handler to add a new category locally
     const handleAddCategory = () => {
@@ -122,7 +122,7 @@ const Categorization = (props) => {
         console.log("Proceeding with categories:", localCategory);
 
         const categoriesPayload = {
-            topic_id: props.questionId,
+            topic_id: props.topic?.topic_id,
             argument_categories: localCategory.map((c) => ({
                 argument_category: c.argument_category,
             })),

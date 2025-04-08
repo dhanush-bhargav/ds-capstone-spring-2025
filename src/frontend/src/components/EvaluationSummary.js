@@ -15,10 +15,18 @@ const EvaluationSummary = (props) => {
         strength,
         finalStance,
         finalStrength,
-        question, 
-        onComplete,   
-        onCompleteButtonText = "Finish" 
+        topic
     } = props;
+
+    const handleProceed = async () => {
+        if (props.questionNumber < 2) {
+            props.updateStep(3);
+            props.updateQuestionNumber(props.questionNumber+1)
+        } else {
+            props.updateStep(props.step+1);
+        }
+        
+      };
 
     return (
         // Use a Container for consistent max-width and centering
@@ -29,13 +37,13 @@ const EvaluationSummary = (props) => {
                 </Typography>
 
                 {/* Optionally display the topic question */}
-                {question && (
+                {topic && (
                     <>
                         <Typography variant="h6" fontWeight="bold" sx={{ mt: 3 }}>
                             Topic Evaluated:
                         </Typography>
                         <Typography paragraph sx={{ mb: 3, fontStyle: 'italic', color: 'text.secondary' }}>
-                            {question}
+                            {topic?.topic_name}
                         </Typography>
                         <Divider />
                     </>
@@ -70,19 +78,9 @@ const EvaluationSummary = (props) => {
                     </Typography>
                 </Box>
 
-                {/* Optional Completion Button */}
-                {onComplete && (
-                    <Box sx={{ mt: 4, textAlign: 'center' }}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={onComplete}
-                            size="large"
-                        >
-                            {onCompleteButtonText}
-                        </Button>
-                    </Box>
-                )}
+                <button className="button" onClick={handleProceed}>
+                    Proceed
+                </button>
 
             </Paper>
         </Container>

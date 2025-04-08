@@ -13,6 +13,7 @@ import QuestionSelection from "./components/QuestionSelection";
 import {
   Instructions,
   BackButton,
+  Feedback,
 } from "./components/Small Components";
 import ArgumentManager from "./components/ArgumentManager";
 import Categorization from "./components/Categorization";
@@ -48,17 +49,10 @@ const App = () => {
   const [socialDesirabilityId, setSocialDesirabilityId] = useState("");
 
   // Topics
-  const [topics, setTopics] = useState([]);
-  const [topicId, setTopicId] = useState(null);
-  const [topic, setTopic] = useState("");
+  const [topic, setTopic] = useState({});
 
   //Instructions
   const [instructions, setInstructions] = useState("");
-
-  // Question and Question ID
-  const [questions, setQuestions] = useState([]);
-  const [question, setQuestion] = useState("");
-  const [questionId, setQuestionId] = useState(0);
 
   // Arguments
   const [yesArguments, setYesArguments] = useState([]);
@@ -87,6 +81,8 @@ const App = () => {
     initialSubmissionStatus
   );
 
+  const [questionNumber, setQuestionNumber] = useState(0);
+
   const handleLogin = async (username, password) => {
     setIsLoading(true);
     setError(null);
@@ -102,8 +98,6 @@ const App = () => {
         setToken(user_id);
         setUser({ id: user_id, name: user_name });
         setIsAuthenticated(true);
-        fetchQuestions();
-        // fetchTopics();
         //DO NOT NAVIGATE HERE
       } else {
         setError(message || "Login failed. Please check your credentials.");
@@ -117,35 +111,7 @@ const App = () => {
       setIsLoading(false);
     }
   };
-  const fetchQuestions = async () => {
-    //... fetch questions
-    setIsLoading(true);
-    try {
-      const response = await axios.get("http://localhost:5000/get_topics");
-      // Transform the API response to match the expected structure
-      const transformedTopics = response.data.map((topic) => ({
-        id: topic.id,
-        name: topic.name,
-        preMadeQuestions: topic.preMadeQuestions.map((q) => ({
-          id: q.id,
-          text: q.topic, // Use 'topic' field as question text
-          topicId: topic.id,
-        })),
-      }));
 
-      setTopics(transformedTopics);
-      // Flatten the questions array
-      let allQuestions = [];
-      transformedTopics.forEach((topic) => {
-        allQuestions = allQuestions.concat(topic.preMadeQuestions);
-      });
-      setQuestions(allQuestions);
-    } catch (error) {
-      setError(error.response?.data?.message || "Failed to load questions.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
   const handleBack = () => {
     console.log(`Before handleBack - Current Step: ${step}`);
     setStep((prev) => {
@@ -162,23 +128,8 @@ const App = () => {
     setSocialDesirability(socialDesirabilityProp);
   };
 
-  const updateTopic = (topicIdProp) => {
-    setTopicId(topicIdProp);
-    const topicIdNum = parseInt(topicIdProp, 10);
-    const selectedTopic = topics.find((t) => {
-      return t.id === topicIdNum;
-    });
-    setTopic(selectedTopic);
-    if (selectedTopic) {
-      setQuestions(selectedTopic.preMadeQuestions);
-    }
-  };
-  const updateQuestion = (questionIdProp) => {
-    setQuestionId(questionIdProp);
-    const question = questions.find((q) => {
-      return q.id === questionIdProp;
-    })?.text;
-    setQuestion(question);
+  const updateTopic = (topicProp) => {
+    setTopic(topicProp);
   };
   const updateStance = (stance) => {
     setStance(stance);
@@ -224,7 +175,12 @@ const App = () => {
     setError(error);
   };
   const updateStep = (step) => {
+    if (step === 1) {
+      updateYesArguments([]);
+      updateNoArguments([]);
+    }
     setStep(step);
+    
     console.log("ArgId = ", argumentIds);
     console.log("CatId = ", categoriesId);
   };
@@ -238,12 +194,9 @@ const App = () => {
     }));
   };
 
-  useEffect(() => {
-    if (token) {
-      fetchQuestions();
-      // fetchTopics();
-    }
-  }, [token]);
+  const updateQuestionNumber = () => {
+    setQuestionNumber(questionNumber+1);
+  };
 
   function transformHumilityResponses(ihResponses) {
     const humilityMapping = {
@@ -350,7 +303,6 @@ const App = () => {
                 <QuestionSelection
                   updateTopic={updateTopic}
                   updateError={updateError}
-                  updateQuestion={updateQuestion}
                   updateStance={updateStance}
                   updateStrength={updateStrength}
                   updateStep={updateStep}
@@ -362,16 +314,12 @@ const App = () => {
                   socialDesirability={transformDesirabilityResponses(
                     socialDesirability
                   )}
+                  questionNumber={questionNumber}
                   token={token}
                   user={user}
                   stance={stance}
                   topic={topic}
-                  topicId={topicId}
-                  topics={topics}
                   strength={strength}
-                  questions={questions}
-                  question={question}
-                  questionId={questionId}
                   isLoading={isLoading}
                   error={error}
                   step={step}
@@ -401,10 +349,8 @@ const App = () => {
                   yesArguments={yesArguments}
                   noArguments={noArguments}
                   topic={topic}
-                  topicId={questionId}
                   isLoading={isLoading}
                   error={error}
-                  question={question}
                   token={token}
                   step={step}
                   submissionStatus={submissionStatus}
@@ -421,9 +367,6 @@ const App = () => {
                   yesArguments={yesArguments}
                   noArguments={noArguments}
                   topic={topic}
-                  topicId={topicId}
-                  question={question}
-                  questionId={questionId}
                   isLoading={isLoading}
                   error={error}
                   categories={categories}
@@ -445,10 +388,7 @@ const App = () => {
                   implication={implication}
                   categories={categories}
                   categoriesId={categoriesId}
-                  question={question}
-                  questionId={questionId}
                   topic={topic}
-                  topicId={topicId}
                   conversationId={conversationId}
                   error={error}
                   isLoading={isLoading}
@@ -467,9 +407,7 @@ const App = () => {
                   userId={user.id}
                   updateStance={updateStance}
                   topic={topic}
-                  topicId={topicId}
-                  question={question}
-                  questionId={questionId}
+                  questionNumber={questionNumber}
                   conversationId={conversationId}
                   intellectualHumility={intellectualHumility}
                   socialDesirability={socialDesirability}
@@ -498,9 +436,6 @@ const App = () => {
                   userId={user.id}
                   updateStance={updateStance}
                   topic={topic}
-                  topicId={topicId}
-                  question={question}
-                  questionId={questionId}
                   conversationId={conversationId}
                   intellectualHumility={intellectualHumility}
                   socialDesirability={socialDesirability}
@@ -517,9 +452,16 @@ const App = () => {
                   token={token}
                   step={step}
                   submissionStatus={submissionStatus}
+                  questionNumber={questionNumber}
                   updateSubmissionStatus={updateSubmissionStatus}
+                  updateQuestionNumber={updateQuestionNumber}
                 />
               )}
+              {step === 10 && (
+                <Feedback />
+              )}
+              
+              
               <BackButton
                 onBack={handleBack}
                 disableBack={step === 1 || isLoading}

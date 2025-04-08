@@ -131,7 +131,7 @@ const PostIntellectualHumility = (props) => {
     props.updateFinalStrength(userFinalStrength);
 
     // Combined Validation
-    const allIHAnswered = questions.length > 0 && Object.keys(answers).length === questions.length;
+    const allIHAnswered = props.questionNumber === 2 ? (questions.length > 0 && Object.keys(answers).length === questions.length) : true;
     if (!allIHAnswered || !userFinalStance || !userFinalStrength) {
         alert("Please answer all Intellectual Humility questions AND select your final stance and strength before submitting.");
         return;
@@ -140,10 +140,10 @@ const PostIntellectualHumility = (props) => {
     console.log("Attempting Combined Submission:", { answers, userFinalStance, userFinalStrength });
 
     // Check for required props
-    const { topicId, conversationId, userId, token, step, updateStep, updateLoading, updateError, updateSubmissionResponse } = props;
-    if (typeof topicId === 'undefined' || typeof conversationId === 'undefined' || !userId) {
+    const { topic, conversationId, userId, token, step, updateStep, updateLoading, updateError, updateSubmissionResponse } = props;
+    if (typeof topic === 'undefined' || typeof conversationId === 'undefined' || !userId) {
         const errorMsg = "Missing required information (topic, conversation, user details) to submit.";
-        console.error(errorMsg, { topicId, conversationId, userId });
+        console.error(errorMsg, { topic, conversationId, userId });
         if (updateError) updateError(errorMsg);
         else alert(errorMsg);
         return;
@@ -166,12 +166,13 @@ const PostIntellectualHumility = (props) => {
         });
 
         const payload = {
-            topic_id: props.questionId,
+            topic_id: props.topic?.topic_id,
             conversation_id: conversationId,
             user_id: userId,
             stance: userFinalStance, // Use FINAL stance from state
             stance_rating: parseInt(userFinalStrength, 10), // Use FINAL strength from state
             collected_at: "END",
+            sequence_number: props.questionNumber,
             intellectual_humility_responses: intellectual_humility_responses,
         };
 
@@ -215,7 +216,7 @@ const PostIntellectualHumility = (props) => {
   };
 
   // Combined check for enabling submit button
-  const canSubmit = !loadingIH && questions.length > 0 && Object.keys(answers).length === questions.length && !!userFinalStance && !!userFinalStrength;
+  const canSubmit = props.questionNumber === 2 ? (!loadingIH && questions.length > 0 && Object.keys(answers).length === questions.length && !!userFinalStance && !!userFinalStrength) : (!!userFinalStance && !!userFinalStrength);
 
   // --- JSX Rendering (Combined View) ---
   return (
@@ -238,48 +239,49 @@ const PostIntellectualHumility = (props) => {
         <form onSubmit={handleSubmit}>
 
             {/* --- Section 1: Intellectual Humility --- */}
-            <Paper elevation={2} sx={{ p: 3, mb: 4 }}>
-                <Typography variant="h5" component="h2" gutterBottom>
-                    Intellectual Humility
-                </Typography>
-                <Typography variant="body1" paragraph>
-                    Please rate your agreement with the following statements.
-                </Typography>
-                <Divider sx={{ my: 2 }} />
-                {questions.map((question) => (
-                    <FormControl
-                    key={question.assessment_question_id} component="fieldset" variant="standard" required fullWidth
-                    sx={{ my: 3, border: '1px solid #eee', p: 2, borderRadius: 1 }}
-                    >
-                    <FormLabel component="legend" sx={{ mb: 1.5, fontWeight: 'bold', fontSize: '1.1rem', color: 'text.primary' }}>
-                        {question.assessment_question}
-                    </FormLabel>
-                    <RadioGroup row
-                        aria-labelledby={`question-label-${question.assessment_question_id}`}
-                        name={`question_${question.assessment_question_id}`}
-                        value={answers[question.assessment_question_id]?.toString() || ''}
-                        onChange={(event) => handleAnswerChange(question.assessment_question_id, event.target.value)}
-                        sx={{ justifyContent: 'space-around', flexWrap: 'wrap' }}
-                    >
-                        {[1, 2, 3, 4, 5].map((value) => (
-                        <FormControlLabel
-                            key={value} value={value.toString()}
-                            control={<Radio required />} label={scaleLabels[value]} labelPlacement="bottom"
-                            sx={{ minWidth: '80px', textAlign: 'center', mx: 0.5 }}
-                        />
-                        ))}
-                    </RadioGroup>
-                    </FormControl>
-                ))}
-            </Paper>
-
+            {props.questionNumber === 2 && (
+                <Paper elevation={2} sx={{ p: 3, mb: 4 }}>
+                    <Typography variant="h5" component="h2" gutterBottom>
+                        Intellectual Humility
+                    </Typography>
+                    <Typography variant="body1" paragraph>
+                        Please rate your agreement with the following statements.
+                    </Typography>
+                    <Divider sx={{ my: 2 }} />
+                    {questions.map((question) => (
+                        <FormControl
+                        key={question.assessment_question_id} component="fieldset" variant="standard" required fullWidth
+                        sx={{ my: 3, border: '1px solid #eee', p: 2, borderRadius: 1 }}
+                        >
+                        <FormLabel component="legend" sx={{ mb: 1.5, fontWeight: 'bold', fontSize: '1.1rem', color: 'text.primary' }}>
+                            {question.assessment_question}
+                        </FormLabel>
+                        <RadioGroup row
+                            aria-labelledby={`question-label-${question.assessment_question_id}`}
+                            name={`question_${question.assessment_question_id}`}
+                            value={answers[question.assessment_question_id]?.toString() || ''}
+                            onChange={(event) => handleAnswerChange(question.assessment_question_id, event.target.value)}
+                            sx={{ justifyContent: 'space-around', flexWrap: 'wrap' }}
+                        >
+                            {[1, 2, 3, 4, 5].map((value) => (
+                            <FormControlLabel
+                                key={value} value={value.toString()}
+                                control={<Radio required />} label={scaleLabels[value]} labelPlacement="bottom"
+                                sx={{ minWidth: '80px', textAlign: 'center', mx: 0.5 }}
+                            />
+                            ))}
+                        </RadioGroup>
+                        </FormControl>
+                    ))}
+                </Paper>
+            )}
             {/* --- Section 2: Final Evaluation --- */}
             <Paper elevation={2} sx={{ p: 3, mb: 4 }}>
                 <Typography variant="h5" component="h2" gutterBottom>
                     Final Evaluation
                 </Typography>
                 <Typography variant="body1" paragraph>
-                     Considering the topic: <strong>{props.question || 'N/A'}</strong>
+                     Considering the topic: <strong>{props.topic?.topic_name || 'N/A'}</strong>
                 </Typography>
                 <Divider sx={{ my: 2 }} />
 

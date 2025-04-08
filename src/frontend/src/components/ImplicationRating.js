@@ -37,7 +37,7 @@ const ImplicationRating = (props) => {
 
   // Use useCallback to memoize the fetch function
   const fetchImplicationData = useCallback(async () => {
-    if (!props.questionId) {
+    if (!props.topic) {
       setError("Topic ID is missing.");
       setIsLoading(false);
       return;
@@ -49,9 +49,9 @@ const ImplicationRating = (props) => {
 
     try {
       // Step 1: Fetch Category IDs and Names
-      console.log("Fetching categories for topic:", props.questionId);
+      console.log("Fetching categories for topic:", props.topic?.topic_id);
       const categoryResponse = await axios.get(
-        `http://localhost:5000/get_arguments_for_categorization?topic_id=${props.questionId}`
+        `http://localhost:5000/get_arguments_for_categorization?topic_id=${props.topic?.topic_id}`
       );
 
       console.log("Category API Response:", categoryResponse.data);
@@ -83,7 +83,7 @@ const ImplicationRating = (props) => {
       const questionsResponse = await axios.post(
         `http://localhost:5000/get_implication_questions`,
         {
-          topic_id: props.questionId,
+          topic_id: props.topic?.topic_id,
           category_ids: categoryIds,
         }
       );

@@ -135,7 +135,7 @@ const ArgumentManager = (props) => {
             const response = await axios.post(
                 "http://localhost:5000/read_user_arguments",
                 {
-                    topic_id: props.topicId,
+                    topic_id: props.topic?.topic_id,
                     arguments: argumentsPayload,
                 },
                 {
@@ -169,7 +169,7 @@ const ArgumentManager = (props) => {
                 Argument Generation & Review
             </Typography>
             <Typography variant="h6" fontWeight="bold" sx={{ mt: 2 }}>
-                Question: {props.question}
+                Question: {props.topic?.topic_name}
             </Typography>
 
             {/* --- Argument Generation Section --- */}

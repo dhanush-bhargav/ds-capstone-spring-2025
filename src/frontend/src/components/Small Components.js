@@ -1,6 +1,11 @@
 import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button, Box } from '@mui/material';
+import { Container,
+  Box,
+  Typography,
+  Divider,
+  Paper,
+  Button } from '@mui/material';
 
 export const Instructions = (props) => {
   props.updateLoading(false);
@@ -108,5 +113,21 @@ export const StanceSelection = ({ setStance, setStep }) => {
         No
       </button>
     </div>
+  );
+};
+export const Feedback = () => {
+  return (
+    <Container maxWidth="sm" sx={{ my: 4 }}> {/* sm is suitable for summary views */}
+            <Paper elevation={3} sx={{ padding: { xs: 2, sm: 4 } }}> {/* Use Paper for visual grouping */}
+                <Typography variant="h4" component="h1" gutterBottom textAlign="center">
+                    Feedback
+                </Typography>
+
+                <div>
+                  Leave your Feedback here: Google Form link
+                </div>
+
+            </Paper>
+        </Container>
   );
 };
