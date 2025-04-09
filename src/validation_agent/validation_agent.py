@@ -16,8 +16,7 @@ class ValidationAgent(Agent):
                   "2. If the argument is not relevant to the central topic, do not pass it.\n"
                   "Once you validate these arguments, prepare a list of arguments that have passed validation and write them to the database. "
                   "You have been provided with a tool to fetch arguments from the database."),
-            llm=LLM(model=config_data.get_value('ValidationAgent', 'model_name'),
-                    base_url=config_data.get_value('ValidationAgent', 'model_url')),
+            llm=LLM(model=config_data.get_value('LLMConfig', 'model_name')),
             backstory="You are an expert in validating arguments for relevance, duplication, and factual correctness using tools to read data from the database.",
             allow_delegation=False,
             verbose=True,

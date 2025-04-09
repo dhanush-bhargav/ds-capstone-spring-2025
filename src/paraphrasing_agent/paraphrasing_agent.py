@@ -14,8 +14,7 @@ class ParaphrasingAgent(Agent):
                  "are grammatically correct, coherent, and to the point. "
                  "While paraphrasing, make sure you retain the meaning and essence of the argument. "
                  "Once done, you need to write the arguments to the database, you have been provided with a tool for this.",
-            llm=LLM(model=config_data.get_value('ParaphrasingAgent', 'model_name'),
-                    base_url=config_data.get_value('ParaphrasingAgent', 'model_url')),
+            llm=LLM(model=config_data.get_value('LLMConfig', 'model_name')),
             backstory="You are an expert in paraphrasing arguments to be grammatically correct, coherent, and concise and using tools to write data to the database.",
             allow_delegation=False,
             verbose=True,
