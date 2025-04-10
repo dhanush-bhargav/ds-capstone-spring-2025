@@ -1,4 +1,5 @@
-from crewai import Agent, LLM
+from patched_llm import PatchedBedrockLLM
+from crewai import Agent
 from config_reader import ConfigData
 
 
@@ -15,7 +16,7 @@ class ImplicationQuestionGeneratingAgent(Agent):
                  "Call this 'IMPACT_QUESTION'.\n"
                  "The second question should ask how the central topic impacts the likelihood of the argument as an "
                  "outcome. Call this 'LIKELIHOOD_QUESTION'.",
-            llm=LLM(model=config_data.get_value('LLMConfig', 'model_name')),
+            llm=PatchedBedrockLLM(model=config_data.get_value('LLMConfig', 'model_name'), temperature=0.2),
             backstory="You are an expert in framing questions given an argument and a central topic.",
             allow_delegation=False,
             verbose=True

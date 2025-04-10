@@ -6,8 +6,6 @@ def implication_question_generation_guardrail(result: str) -> Tuple[bool, Any]:
     """Validate generated implication questions to match expected output format"""
     try:
         result_dict = json.loads(result.raw)
-        print(result_dict)
-        print(type(result_dict))
         if isinstance(result_dict, list):
             if len(result_dict) > 0:
                 for item in result_dict:
