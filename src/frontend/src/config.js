@@ -1,2 +1,2 @@
-export const baseUrl = "htttp://localhost:5000"
+export const baseUrl = "http://18.208.159.114"
 export const feedbackForm = ""
