@@ -138,7 +138,7 @@ const PostIntellectualHumility = (props) => {
         return;
     }
 
-    console.log("Attempting Combined Submission:", { answers, userFinalStance, userFinalStrength });
+    // console.log("Attempting Combined Submission:", { answers, userFinalStance, userFinalStrength });
 
     // Check for required props
     const { topic, conversationId, userId, token, step, updateStep, updateLoading, updateError, updateSubmissionResponse } = props;
@@ -179,8 +179,8 @@ const PostIntellectualHumility = (props) => {
 
         const submitApiUrl = `${baseUrl}/record_post_intervention_assessments`;
 
-        console.log(`Performing POST to ${submitApiUrl}`);
-        console.log("Payload:", JSON.stringify(payload, null, 2));
+        // console.log(`Performing POST to ${submitApiUrl}`);
+        // console.log("Payload:", JSON.stringify(payload, null, 2));
 
         const postResponse = await fetch(submitApiUrl, {
             method: 'POST',
@@ -199,7 +199,7 @@ const PostIntellectualHumility = (props) => {
         }
 
         const postResult = await postResponse.json();
-        console.log("POST request successful:", postResult);
+        // console.log("POST request successful:", postResult);
 
         // Handle Success
         if (updateSubmissionResponse) {

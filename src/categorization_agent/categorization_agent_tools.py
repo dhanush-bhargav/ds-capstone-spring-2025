@@ -81,7 +81,7 @@ def category_validation_guardrail(result: str) -> Tuple[bool, Any]:
     try:
         result_dict = json.loads(result.raw)
         guardrail_result = (True, result_dict)
-        if len(result_dict) > 0:
+        if isinstance(result_dict, list):
             for item in result_dict:
                 if len(item.keys()) != 2:
                     guardrail_result = (False, "keys missing from dictionary")

@@ -88,7 +88,7 @@ const App = () => {
     setIsLoading(true);
     setError(null);
     try {
-      console.log(`${baseUrl}/login`)
+      // console.log(`${baseUrl}/login`)
       const response = await axios.post(`${baseUrl}/login`, {
         user_id: username,
         password,
@@ -115,10 +115,10 @@ const App = () => {
   };
 
   const handleBack = () => {
-    console.log(`Before handleBack - Current Step: ${step}`);
+    // console.log(`Before handleBack - Current Step: ${step}`);
     setStep((prev) => {
       const newStep = Math.max(prev - 1, 1);
-      console.log(`After handleBack - Next Step: ${newStep}`);
+      // console.log(`After handleBack - Next Step: ${newStep}`);
       return newStep;
     });
   };

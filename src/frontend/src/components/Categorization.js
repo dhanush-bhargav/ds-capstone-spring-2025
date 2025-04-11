@@ -120,7 +120,7 @@ const Categorization = (props) => {
         props.updateLoading(true);
         props.updateError(null);
         props.updateCategories(localCategory);
-        console.log("Proceeding with categories:", localCategory);
+        // console.log("Proceeding with categories:", localCategory);
 
         const categoriesPayload = {
             topic_id: props.topic?.topic_id,
@@ -143,7 +143,7 @@ const Categorization = (props) => {
                     props.updateLoading(false); // Stop loading on failure
                 }
             } else {
-                 console.log("No categories defined, proceeding to next step.");
+                 // console.log("No categories defined, proceeding to next step.");
                  props.updateStep(props.step + 1); // Proceed even if no categories?
                  props.updateLoading(false); // Ensure loading stops
             }

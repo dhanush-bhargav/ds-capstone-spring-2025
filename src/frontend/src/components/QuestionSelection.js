@@ -39,8 +39,8 @@ const QuestionSelection = (props) => {
       alert("Please complete all selections before proceeding.");
       return;
     }
-    console.log("intellectualHumility", props.intellectualHumility);
-    console.log("socialDesirability", props.socialDesirability);
+    // console.log("intellectualHumility", props.intellectualHumility);
+    // console.log("socialDesirability", props.socialDesirability);
     props.updateLoading(true);
     props.updateError(null);
     try {

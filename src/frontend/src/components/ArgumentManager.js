@@ -114,6 +114,10 @@ const ArgumentManager = (props) => {
 
     const handleProceed = async () => {
         if (isSubmitting) return;
+        if ((localYesArguments.length < 1) || (localNoArguments.length < 1)){
+            alert("Please enter at least one argument for each stance.");
+            return;
+        }
         setIsSubmitting(true);
 
         props.updateLoading(true);

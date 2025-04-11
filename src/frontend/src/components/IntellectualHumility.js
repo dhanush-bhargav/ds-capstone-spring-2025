@@ -33,7 +33,7 @@ const IntellectualHumility = (props) => {
   const [isSubmitted, setIsSubmitted] = useState(
     props.submissionStatus.humility || false
   );
-  console.log("Intellectual Humility Props", props);
+  // // console.log("Intellectual Humility Props", props);
 
   const apiUrl =
     `${baseUrl}/get_assessment_questions?assessment_type=INTELLECTUAL_HUMILITY`;
@@ -100,11 +100,11 @@ const IntellectualHumility = (props) => {
     setError(null); // Clear previous errors
     props.updateError(null); // Clear parent error state
 
-    console.log("Submitting Answers:", answers);
+    // console.log("Submitting Answers:", answers);
 
     // Simulate async submission or call parent update functions
     try {
-      console.log("props Submission Status", props.submissionStatus);
+      // console.log("props Submission Status", props.submissionStatus);
       props.updateIntellectualHumility(answers);
       props.updateStep(props.step + 1);
       props.updateSubmissionStatus({
@@ -114,7 +114,7 @@ const IntellectualHumility = (props) => {
 
       // *** Set submitted state to true on success ***
       setIsSubmitted(true);
-      console.log("Assessment submitted successfully.");
+      // console.log("Assessment submitted successfully.");
     } catch (submitError) {
       console.error("Error during submission process:", submitError);
       const message =

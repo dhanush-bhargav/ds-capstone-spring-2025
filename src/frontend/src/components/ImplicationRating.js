@@ -50,12 +50,12 @@ const ImplicationRating = (props) => {
 
     try {
       // Step 1: Fetch Category IDs and Names
-      console.log("Fetching categories for topic:", props.topic?.topic_id);
+      // console.log("Fetching categories for topic:", props.topic?.topic_id);
       const categoryResponse = await axios.get(
         `${baseUrl}/get_arguments_for_categorization?topic_id=${props.topic?.topic_id}`
       );
 
-      console.log("Category API Response:", categoryResponse.data);
+      // console.log("Category API Response:", categoryResponse.data);
 
       if (!categoryResponse.data.success || !categoryResponse.data.arguments_by_category) {
         throw new Error(
@@ -73,14 +73,14 @@ const ImplicationRating = (props) => {
       const categoryIds = categories.map((cat) => cat.category_id);
 
       if (categoryIds.length === 0) {
-        console.log("No valid category IDs found.");
+        // console.log("No valid category IDs found.");
         setCategoryQuestionData([]); // Set empty if no categories
         setIsLoading(false);
         return; // Stop if no categories to fetch questions for
       }
 
       // Step 2: Fetch Implication Questions using the obtained Category IDs
-      console.log("Fetching implication questions for category IDs:", categoryIds);
+      // console.log("Fetching implication questions for category IDs:", categoryIds);
       const questionsResponse = await axios.post(
         `${baseUrl}/get_implication_questions`,
         {
@@ -89,7 +89,7 @@ const ImplicationRating = (props) => {
         }
       );
 
-      console.log("Implication Questions API Response:", questionsResponse.data);
+      // console.log("Implication Questions API Response:", questionsResponse.data);
 
       if (!questionsResponse.data.success || !questionsResponse.data.implication_questions_data) {
         throw new Error(
@@ -121,7 +121,7 @@ const ImplicationRating = (props) => {
         };
       });
 
-      console.log("Final Merged Data:", mergedData);
+      // console.log("Final Merged Data:", mergedData);
       setCategoryQuestionData(mergedData);
 
     } catch (err) {
@@ -207,7 +207,7 @@ const ImplicationRating = (props) => {
         });
       });
 
-      console.log("Payload to be sent:", JSON.stringify(payload, null, 2));
+      // console.log("Payload to be sent:", JSON.stringify(payload, null, 2));
 
       if (payload.length === 0) {
         throw new Error("Please rate at least one implication question before submitting.");
@@ -225,7 +225,7 @@ const ImplicationRating = (props) => {
         }
       );
 
-      console.log("Submission Response:", response);
+      // console.log("Submission Response:", response);
 
       if (response?.data?.success === true) {
          // Assuming the API might still return some IDs, pass them up if available

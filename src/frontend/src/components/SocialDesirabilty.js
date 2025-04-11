@@ -93,7 +93,7 @@ const SocialDesirability = (props) => {
     setError(null); // Clear previous errors
     props.updateError(null); // Clear parent error state
 
-    console.log("Submitting Answers:", answers);
+    // console.log("Submitting Answers:", answers);
 
     // Simulate async submission or call parent update functions
     try {
@@ -107,7 +107,7 @@ const SocialDesirability = (props) => {
 
         // *** Set submitted state to true on success ***
         setIsSubmitted(true);
-        console.log("Assessment submitted successfully.");
+        // console.log("Assessment submitted successfully.");
 
     } catch (submitError) {
         console.error("Error during submission process:", submitError);
