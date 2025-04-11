@@ -91,18 +91,24 @@ const ImplicationRating = (props) => {
         );
 
         // Process questions: add the 'rating' field to each implication
-        const processedQuestions = categoryQuestions?.implication_questions?.map((argGroup) => ({
+        const processedQuestions = categoryQuestions.implication_questions?.map((argGroup) => ({
           ...argGroup,
           implications: argGroup.implications.map((imp) => ({
             ...imp,
             rating: "", // Initialize rating state for each question
           })),
         })) || []; // Default to empty array if no questions found for the category
-
-        return {
-          ...category, // category_id, argument_category
-          questionsData: processedQuestions, // Array of argument_id groups, each with implications array
-        };
+        if (processedQuestions.length > 0) {
+          return {
+            ...category, // category_id, argument_category
+            questionsData: processedQuestions, // Array of argument_id groups, each with implications array
+          };
+        }
+        else {
+          return {
+            ...category
+          }
+        }
       });
 
       // console.log("Final Merged Data:", mergedData);
@@ -275,7 +281,7 @@ const ImplicationRating = (props) => {
                   </AccordionSummary>
                   <AccordionDetails sx={{ display: "flex", flexDirection: "column", gap: 3 }}> {/* Increased gap */}
                     {/* Check if questionsData exists and has content */}
-                    {category.questionsData && category.questionsData.length > 0 ? (
+                    {category.questionsData && category.questionsData.length > 0 && (
                       category.questionsData.map((argGroup) => (
                         // Optional: Add a small header or divider if grouping by argument_id visually matters
                         // <Box key={argGroup.argument_id}>
@@ -339,10 +345,6 @@ const ImplicationRating = (props) => {
                           )}
                         </React.Fragment> // </Box> if using visual group
                       ))
-                    ) : (
-                      <Typography sx={{ color: "text.secondary" }}>
-                        No implication questions found for this category.
-                      </Typography>
                     )}
                   </AccordionDetails>
                 </Accordion>

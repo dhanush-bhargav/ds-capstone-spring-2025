@@ -6,6 +6,7 @@ import { Container,
   Divider,
   Paper,
   Button } from '@mui/material';
+import {feedbackForm} from "../config";
 
 export const Instructions = (props) => {
   props.updateLoading(false);
@@ -124,7 +125,7 @@ export const Feedback = () => {
                 </Typography>
 
                 <div>
-                  Leave your Feedback here: Google Form link
+                  Leave your Feedback here: {feedbackForm}
                 </div>
 
             </Paper>
