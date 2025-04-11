@@ -201,15 +201,6 @@ class App:
         try:
             categories_data = self.db_manager.get_argument_categories(request_data['topic_id'])
             result = []
-            for category in categories_data:
-                arguments = self.db_manager.get_arguments_by_category_id(request_data['topic_id'], category['category_id'])
-                result.append(
-                    {
-                        "category_id": category['category_id'],
-                        "argument_category": category['argument_category'],
-                        "arguments": arguments,
-                    }
-                )
             unlinked_arguments = self.db_manager.get_unlinked_arguments(request_data['topic_id'])
             result.append(
                 {
@@ -218,6 +209,27 @@ class App:
                     "arguments": unlinked_arguments,
                 }
             )
+            arguments_to_fill = int(self.config_data.get_value('Constants', 'argument_limit')) - len(unlinked_arguments)
+            if arguments_to_fill > 0:
+                sampled_categories_data = random.sample(categories_data, int(self.config_data.get_value('Constants', 'categories_limit')))
+                max_arguments_per_category = arguments_to_fill // len(sampled_categories_data)
+                for category in sampled_categories_data:
+                    if arguments_to_fill <= 0:
+                        break
+                    arguments = self.db_manager.get_arguments_by_category_id(request_data['topic_id'], category['category_id'])
+                    if len(arguments) > max_arguments_per_category:
+                        sampled_arguments = random.sample(arguments, max_arguments_per_category)
+                    else:
+                        sampled_arguments = arguments
+                    result.append(
+                        {
+                            "category_id": category['category_id'],
+                            "argument_category": category['argument_category'],
+                            "arguments": sampled_arguments,
+                        }
+                    )
+                    arguments_to_fill -= len(sampled_arguments)
+
             return {
                 "success": True,
                 "arguments_by_category": result
@@ -239,13 +251,15 @@ class App:
     def get_implication_questions(self, request_data):
         try:
             implication_questions_data = []
-            for category_id in request_data['category_ids']:
-                arguments_without_implication_questions = self.db_manager.get_arguments_without_implication_questions(category_id)
+            categories = self.db_manager.get_argument_categories(request_data['topic_id'])
+            category_ids = [cat['category_id'] for cat in categories]
+            for category_id in category_ids:
+                arguments_without_implication_questions = self.db_manager.get_arguments_without_implication_questions(category_id, tuple(request_data['argument_ids']))
                 if len(arguments_without_implication_questions) > 0:
                     question_preparation_result = self.question_preparation_crew.prepare_questions(request_data['topic_id'],
                                                                                                    arguments_without_implication_questions)
                     self.write_implication_questions(category_id, json.loads(question_preparation_result.raw))
-                implication_questions = self.db_manager.get_implication_questions(category_id)
+                implication_questions = self.db_manager.get_implication_questions(category_id, tuple(request_data['argument_ids']))
                 implication_questions_data.append({
                     "category_id": category_id,
                     "implication_questions": implication_questions

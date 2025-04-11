@@ -19,5 +19,5 @@ class ImplicationQuestionGeneratingAgent(Agent):
             llm=PatchedBedrockLLM(model=config_data.get_value('LLMConfig', 'model_name'), temperature=0.2),
             backstory="You are an expert in framing questions given an argument and a central topic.",
             allow_delegation=False,
-            verbose=True
+            verbose=False
         )

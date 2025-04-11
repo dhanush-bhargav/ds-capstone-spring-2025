@@ -21,6 +21,6 @@ class ValidationAgent(Agent):
             llm=PatchedBedrockLLM(model=config_data.get_value('LLMConfig', 'model_name')),
             backstory="You are an expert in validating arguments for relevance, duplication, and factual correctness using tools to read data from the database.",
             allow_delegation=False,
-            verbose=True,
+            verbose=False,
             tools=[argument_fetching_tool]
         )

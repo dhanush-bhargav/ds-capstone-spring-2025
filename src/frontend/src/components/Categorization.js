@@ -48,13 +48,16 @@ const Categorization = (props) => {
                 if (response.data.success && response.data.arguments_by_category) {
                     const fetchedCategories = [];
                     const fetchedUncategorizedArgs = [];
+                    const fetchedArgumentIds = [];
 
                     response.data.arguments_by_category.forEach(cat => {
                         const formattedArguments = cat.arguments.map(arg => ({
                             text: arg.argument,
                             id: arg.argument_id,
                         }));
-
+                        cat.arguments.forEach(arg => {
+                            fetchedArgumentIds.push(arg.argument_id);
+                        })
                         if (cat.category_id === 0) {
                             fetchedUncategorizedArgs.push(...formattedArguments);
                         } else {
@@ -68,6 +71,7 @@ const Categorization = (props) => {
 
                     setLocalCategory(fetchedCategories);
                     setUncategorizedArguments(fetchedUncategorizedArgs);
+                    props.updateArgumentIdsForImplications(fetchedArgumentIds);
 
                 } else {
                      setFetchError(response.data.message || "Failed to fetch data: API request not successful.");

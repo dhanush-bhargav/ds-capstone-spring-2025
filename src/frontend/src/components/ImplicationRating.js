@@ -52,32 +52,16 @@ const ImplicationRating = (props) => {
       // Step 1: Fetch Category IDs and Names
       // console.log("Fetching categories for topic:", props.topic?.topic_id);
       const categoryResponse = await axios.get(
-        `${baseUrl}/get_arguments_for_categorization?topic_id=${props.topic?.topic_id}`
+        `${baseUrl}/get_argument_categories?topic_id=${props.topic?.topic_id}`
       );
 
-      // console.log("Category API Response:", categoryResponse.data);
-
-      if (!categoryResponse.data.success || !categoryResponse.data.arguments_by_category) {
-        throw new Error(
-          categoryResponse.data.message || "Failed to fetch category data."
-        );
-      }
-
-      const categories = categoryResponse.data.arguments_by_category
+      const categories = categoryResponse.data.argument_categories
         .filter((cat) => cat.category_id !== 0) // Filter out category 0 if necessary
         .map((cat) => ({
           category_id: cat.category_id,
           argument_category: cat.argument_category,
         }));
 
-      const categoryIds = categories.map((cat) => cat.category_id);
-
-      if (categoryIds.length === 0) {
-        // console.log("No valid category IDs found.");
-        setCategoryQuestionData([]); // Set empty if no categories
-        setIsLoading(false);
-        return; // Stop if no categories to fetch questions for
-      }
 
       // Step 2: Fetch Implication Questions using the obtained Category IDs
       // console.log("Fetching implication questions for category IDs:", categoryIds);
@@ -85,7 +69,7 @@ const ImplicationRating = (props) => {
         `${baseUrl}/get_implication_questions`,
         {
           topic_id: props.topic?.topic_id,
-          category_ids: categoryIds,
+          argument_ids: props.argumentIdsForImplication,
         }
       );
 

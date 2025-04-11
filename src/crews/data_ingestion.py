@@ -21,7 +21,7 @@ class DataIngestionCrew:
         argument_ingest_crew = Crew(
             agents=[self.validation_agent, self.paraphrasing_agent],
             tasks=[validation_task, paraphrasing_task],
-            verbose=True
+            verbose=False
         )
         result = argument_ingest_crew.kickoff(inputs={'arguments': json.dumps(arguments)})
         return result
@@ -33,7 +33,7 @@ class DataIngestionCrew:
         category_ingest_crew = Crew(
             agents=[self.category_validation_agent, self.category_matching_agent],
             tasks=[category_validation_task, category_matching_task],
-            verbose=True
+            verbose=False
         )
         result = category_ingest_crew.kickoff(inputs={'argument_categories': json.dumps(argument_categories)})
         return result

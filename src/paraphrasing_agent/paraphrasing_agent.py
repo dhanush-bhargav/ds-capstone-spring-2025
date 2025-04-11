@@ -18,6 +18,6 @@ class ParaphrasingAgent(Agent):
             llm=PatchedBedrockLLM(model=config_data.get_value('LLMConfig', 'model_name')),
             backstory="You are an expert in paraphrasing arguments to be grammatically correct, coherent, and concise and using tools to write data to the database.",
             allow_delegation=False,
-            verbose=True,
+            verbose=False,
             tools=[argument_writing_tool]
         )

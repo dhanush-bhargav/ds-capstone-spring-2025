@@ -78,6 +78,8 @@ const App = () => {
   const [finalStrength, setFinalStrength] = useState(5);
   const [conversationId, setConversationId] = useState(null);
 
+  const [argumentIdsForImplication, setArgumentIdsForImplication] = useState([]);
+
   const [submissionStatus, setSubmissionStatus] = useState(
     initialSubmissionStatus
   );
@@ -192,6 +194,9 @@ const App = () => {
       ...status,
     }));
   };
+  const updateArgumentIdsForImplications = (argIds) => {
+    setArgumentIdsForImplication(argIds);
+  }
 
   const updateQuestionNumber = () => {
     setQuestionNumber(questionNumber+1);
@@ -373,6 +378,7 @@ const App = () => {
                   step={step}
                   submissionStatus={submissionStatus}
                   updateSubmissionStatus={updateSubmissionStatus}
+                  updateArgumentIdsForImplications={updateArgumentIdsForImplications}
                 />
               )}
               {step === 7 && (
@@ -388,6 +394,7 @@ const App = () => {
                   categories={categories}
                   categoriesId={categoriesId}
                   topic={topic}
+                  argumentIdsForImplication={argumentIdsForImplication}
                   conversationId={conversationId}
                   error={error}
                   isLoading={isLoading}

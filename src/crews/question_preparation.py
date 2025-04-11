@@ -16,7 +16,7 @@ class QuestionPreparationCrew:
         implication_question_generating_crew = Crew(
             agents=[self.implication_question_generating_agent],
             tasks=[implication_question_generating_task],
-            verbose=True
+            verbose=False
         )
         result = implication_question_generating_crew.kickoff({'arguments_list': json.dumps(arguments_list)})
         return result

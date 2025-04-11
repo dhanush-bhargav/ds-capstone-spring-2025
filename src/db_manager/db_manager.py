@@ -307,13 +307,14 @@ class DbManager:
         return rowcount
 
 
-    def get_implication_questions(self, category_id):
+    def get_implication_questions(self, category_id, argument_ids):
         implication_questions_data = []
         implication_questions_by_argument = {}
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
         result = cursor.execute(f"""SELECT implication_question_id, argument_id, implication_type, implication_question
-                                        FROM implication_questions WHERE category_id = {category_id} ORDER BY argument_id""").fetchall()
+                                        FROM implication_questions WHERE argument_id IN {argument_ids} 
+                                        AND category_id = {category_id} ORDER BY argument_id""").fetchall()
         connection.close()
 
         for row in result:
@@ -340,13 +341,14 @@ class DbManager:
         return implication_questions_data
 
 
-    def get_arguments_without_implication_questions(self, category_id):
+    def get_arguments_without_implication_questions(self, category_id, argument_ids):
         arguments = []
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
         result = cursor.execute(f"""SELECT ma.argument_id, ma.argument FROM master_arguments ma INNER JOIN link_argument_categories lac
                                     ON ma.argument_id = lac.argument_id AND lac.category_id = {category_id}
-                                    WHERE ma.argument_id NOT IN (SELECT argument_id FROM implication_questions)""").fetchall()
+                                    WHERE ma.argument_id NOT IN (SELECT argument_id FROM implication_questions)
+                                    AND ma.argument_id IN {argument_ids}""").fetchall()
         for row in result:
             argument_id, argument = row
             arguments.append({

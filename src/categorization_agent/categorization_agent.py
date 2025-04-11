@@ -19,7 +19,7 @@ class CategoryValidationAgent(Agent):
             llm=PatchedBedrockLLM(model=config_data.get_value('LLMConfig', 'model_name')),
             backstory="You are an expert in validating argument categories for redundancy using tools to read and write data in the database.",
             allow_delegation=False,
-            verbose=True,
+            verbose=False,
             tools=[category_reading_tool, category_writing_tool]
         )
 
@@ -40,6 +40,6 @@ class CategoryMatchingAgent(Agent):
             llm=PatchedBedrockLLM(model=config_data.get_value('LLMConfig', 'model_name')),
             backstory="You are an expert in matching arguments to argument categories for a given topic, using tools to read and write data in the database.",
             allow_delegation=False,
-            verbose=True,
+            verbose=False,
             tools=[unlinked_argument_reading_tool]
         )
