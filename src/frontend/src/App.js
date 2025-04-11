@@ -88,6 +88,7 @@ const App = () => {
     setIsLoading(true);
     setError(null);
     try {
+      console.log(`${baseUrl}/login`)
       const response = await axios.post(`${baseUrl}/login`, {
         user_id: username,
         password,
@@ -176,14 +177,11 @@ const App = () => {
     setError(error);
   };
   const updateStep = (step) => {
-    if (step === 1) {
+    if (step === 3) {
       updateYesArguments([]);
       updateNoArguments([]);
     }
     setStep(step);
-    
-    console.log("ArgId = ", argumentIds);
-    console.log("CatId = ", categoriesId);
   };
   const updateLoading = (Loading) => {
     setIsLoading(Loading);
