@@ -128,7 +128,7 @@ const Categorization = (props) => {
 
         const categoriesPayload = {
             topic_id: props.topic?.topic_id,
-            argument_categories: localCategory.map((c) => ({
+            argument_categories: localCategory.filter(cat => cat?.arguments?.length===0).map((c) => ({
                 argument_category: c.argument_category,
             })),
         };

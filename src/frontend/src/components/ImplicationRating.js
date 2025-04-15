@@ -183,7 +183,7 @@ const ImplicationRating = (props) => {
 
       // Build the payload from the current state
       const payload = [];
-      categoryQuestionData.forEach((category) => {
+      categoryQuestionData.filter(c => c?.questionsData && c?.questionsData?.length > 0).forEach((category) => {
         category.questionsData.forEach((argGroup) => {
           argGroup.implications.forEach((imp) => {
             // Only include questions that have been rated
@@ -267,7 +267,7 @@ const ImplicationRating = (props) => {
               No implication questions found for this topic's categories.
             </Typography>
           ) : (
-            categoryQuestionData.map((category) => {
+            categoryQuestionData.filter(c => c?.questionsData && c?.questionsData?.length > 0).map((category) => {
               // Basic validation for category structure
               if (!category || typeof category.category_id === "undefined") {
                 console.error("Invalid category structure:", category);
