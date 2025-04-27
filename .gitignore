@@ -1,6 +1,9 @@
 .idea
-database
 **/_pycache_/
 **/__pycache__/
 .venv
 **/node_modules/
+/collected_data
+/src/.env
+/src/data_analysis.ipynb
+/test_files

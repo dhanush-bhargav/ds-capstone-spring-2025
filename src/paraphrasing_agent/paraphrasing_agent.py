@@ -1,4 +1,5 @@
-from crewai import Agent, LLM
+from patched_llm import PatchedBedrockLLM
+from crewai import Agent
 from config_reader import ConfigData
 from .paraphrasing_agent_tool import ArgumentWritingTool
 
@@ -14,10 +15,9 @@ class ParaphrasingAgent(Agent):
                  "are grammatically correct, coherent, and to the point. "
                  "While paraphrasing, make sure you retain the meaning and essence of the argument. "
                  "Once done, you need to write the arguments to the database, you have been provided with a tool for this.",
-            llm=LLM(model=config_data.get_value('ParaphrasingAgent', 'model_name'),
-                    base_url=config_data.get_value('ParaphrasingAgent', 'model_url')),
+            llm=PatchedBedrockLLM(model=config_data.get_value('LLMConfig', 'model_name')),
             backstory="You are an expert in paraphrasing arguments to be grammatically correct, coherent, and concise and using tools to write data to the database.",
             allow_delegation=False,
-            verbose=True,
+            verbose=False,
             tools=[argument_writing_tool]
         )

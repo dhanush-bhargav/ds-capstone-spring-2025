@@ -1,71 +1,78 @@
 import React, { useState, useEffect } from "react";
 import "./QuestionSelection.css";
 import axios from "axios";
+import {baseUrl} from "../config";
 
 const QuestionSelection = (props) => {
   const [stance, setStance] = useState(props.stance || "");
-  const [strength, setStrength] = useState(props.strength || 5);
-  const [questionId, setQuestionId] = useState(props.questionId || "");
-  const [topicId, setTopicId] = useState(props.topicId || "");
-  const [questionReady, setQuestionReady] = useState(false);
-  const [question, setQuestion] = useState({})
+  const [strength, setStrength] = useState(props.strength || 0);
+  const [topic, setTopic] = useState(props.topicId || {});
+  const [user, setUser] = useState(props.user.id || "Not Logged In");
+  const [questionNumber, setQuestionNumber] = useState(props.questionNumber || 0);
 
   useEffect(() => {
     setStance("");
-    setStrength(5);
-    setQuestionReady(false);
-    props.updateTopic(topicId);
+    setStrength(0);
+    props.updateTopic(topic);
     props.updateStance("");
-    props.updateStrength("");
-    props.updateConversationId("");
-  }, [topicId]);
+    props.updateStrength(0);
+    props.updateConversationId(0);
+  }, [topic]);
 
-  const pickQuestion = async () => {
-    let tempQuestion = props.questions[Math.floor(Math.random() * props.questions.length)]
-    await setQuestion(tempQuestion);
-    await setQuestionId(tempQuestion.id);
-    props.updateQuestion(questionId);
-    setQuestionReady(true);
-  }
+  useEffect(() => {
+    const url = `${baseUrl}/get_next_question?user_id=${user}&sequence_number=${questionNumber}`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setTopic(data?.topic);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching question:', error);
+      });
+  }, [user, questionNumber]);
 
   const handleProceed = async () => {
-    if (!topicId || !questionId || !stance || !strength) {
+    if (!topic.topic_id || !stance || !strength) {
       alert("Please complete all selections before proceeding.");
       return;
     }
-    props.updateTopic(topicId);
-    props.updateQuestion(questionId);
-    props.updateStance(stance);
-    props.updateStrength(strength);
-    props.updateStep(2);
+    // console.log("intellectualHumility", props.intellectualHumility);
+    // console.log("socialDesirability", props.socialDesirability);
     props.updateLoading(true);
     props.updateError(null);
     try {
       const response = await axios.post(
-        "http://localhost:5000/create_conversation",
+        `${baseUrl}/create_conversation`,
         {
-          topic_id: questionId,
+          topic_id: topic?.topic_id,
           user_id: props.user.id,
           stance: stance,
           stance_rating: strength,
           collected_at: "START",
+          sequence_number: props.questionNumber,
+          intellectual_humility_responses: props.intellectualHumility,
+          social_desirability_responses: props.socialDesirability,
         },
         {
           headers: { Authorization: `Bearer ${props.token}` },
         }
       );
-      props.updateConversationId(response.data.conversation_id);
+      if (response.data?.conversation_id) {
+        props.updateConversationId(response.data.conversation_id);
+        props.updateTopic(topic);
+        props.updateStance(stance);
+        props.updateStrength(strength);
+        props.updateStep(props.step+1);
+      }
     } catch (error) {
       props.updateError(
         error.response?.data?.message || "Failed to create conversation."
       );
     } finally {
-      props.updateLoading(true);
-      props.updateTopic(topicId);
-      props.updateQuestion(questionId);
-      props.updateStance(stance);
-      props.updateStrength(strength);
-      props.updateStep(2);
+      props.updateLoading(false);
     }
   };
 
@@ -73,29 +80,10 @@ const QuestionSelection = (props) => {
     <div className="container">
       <h2>Select Topic, Question, Stance & Strength</h2>
       <div className="section">
-        <label className="label">Choose a Topic:</label>
-        <select
-          value={topicId || ""}
-          onChange={(e) => {
-            setTopicId(e.target.value);
-          }}
-          className="select-box"
-        >
-          <option value="">-- Select a Topic --</option>
-          {props.topics.map((t) => (
-            <option key={t.id} value={t.id}>
-              {t.name}
-            </option>
-          ))}
-        </select>
+        <label className="label">{topic ? "Question":"Unable to load the question."}</label>
+        <label>{topic?.topic_name}</label>
       </div>
-      {props.topic && (
-        <div className="section">
-          <label className="label">Question</label>
-          {!questionReady ? <button className="button" onClick={pickQuestion}>Get Random Question</button> :
-          <label>{question.text}</label>}
-        </div>
-      )}
+
       <div className="section">
         <label className="label">Stance:</label>
         <div className="radio-group" style={{ justifyContent: "left" }}>
@@ -103,9 +91,9 @@ const QuestionSelection = (props) => {
             <input
               type="radio"
               name="stance"
-              value="Yes"
-              checked={stance === "Yes"}
-              onChange={() => setStance("Yes")}
+              value="YES"
+              checked={stance === "YES"}
+              onChange={() => setStance("YES")}
             />
             Yes
           </label>
@@ -113,9 +101,9 @@ const QuestionSelection = (props) => {
             <input
               type="radio"
               name="stance"
-              value="No"
-              checked={stance === "No"}
-              onChange={() => setStance("No")}
+              value="NO"
+              checked={stance === "NO"}
+              onChange={() => setStance("NO")}
             />
             No
           </label>
@@ -139,7 +127,6 @@ const QuestionSelection = (props) => {
         </div>
       </div>
 
-      {/* Proceed Button */}
       <button className="button" onClick={handleProceed}>
         Proceed
       </button>

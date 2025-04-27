@@ -13,6 +13,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import {baseUrl} from "../config";
 
 const ArgumentManager = (props) => {
     props.updateLoading(false);
@@ -113,6 +114,10 @@ const ArgumentManager = (props) => {
 
     const handleProceed = async () => {
         if (isSubmitting) return;
+        if ((localYesArguments.length < 1) || (localNoArguments.length < 1)){
+            alert("Please enter at least one argument for each stance.");
+            return;
+        }
         setIsSubmitting(true);
 
         props.updateLoading(true);
@@ -133,9 +138,9 @@ const ArgumentManager = (props) => {
             ];
 
             const response = await axios.post(
-                "http://localhost:5000/read_user_arguments",
+                `${baseUrl}/read_user_arguments`,
                 {
-                    topic_id: props.topicId,
+                    topic_id: props.topic?.topic_id,
                     arguments: argumentsPayload,
                 },
                 {
@@ -146,7 +151,7 @@ const ArgumentManager = (props) => {
             if (response?.data?.success === true) {
                 props.updateArgumentIds(response.data.argument_ids);
                 props.updateLoading(true);
-                props.updateStep(4);
+                props.updateStep(props.step+1);
             } else {
                 props.updateError(
                     response.data.message || "Failed to submit arguments."
@@ -169,7 +174,7 @@ const ArgumentManager = (props) => {
                 Argument Generation & Review
             </Typography>
             <Typography variant="h6" fontWeight="bold" sx={{ mt: 2 }}>
-                Question: {props.question}
+                Question: {props.topic?.topic_name}
             </Typography>
 
             {/* --- Argument Generation Section --- */}

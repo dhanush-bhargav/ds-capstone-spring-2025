@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 from config_reader import ConfigData
 
 
@@ -37,7 +38,6 @@ class DbManager:
         connection.close()
         return topics_data
 
-
     def get_topic_by_id(self, topic_id):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
@@ -48,6 +48,33 @@ class DbManager:
             "topic_name": result[1]
         }
 
+    def add_user(self, user_data):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        cursor.execute("""INSERT INTO users (user_name, user_id, password) VALUES (?, ?, ?)""", user_data)
+        connection.commit()
+        connection.close()
+        return user_data
+
+    def add_user_question_order(self, user_id, topic_ids):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        cursor.execute("""INSERT INTO link_users_question_orders (user_id, question_id_order) VALUES (?, ?)""",
+                       (user_id, topic_ids))
+        connection.commit()
+        connection.close()
+        return user_id
+
+    def get_user_question_order(self, user_id):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        result = cursor.execute(f"""SELECT user_id, question_id_order FROM link_users_question_orders
+                                        WHERE user_id = '{user_id}'""").fetchone()
+        connection.close()
+        return {
+            "user_id": result[0],
+            "question_id_order": result[1]
+        }
 
 
     def login(self, user_id, password):
@@ -102,9 +129,18 @@ class DbManager:
     def create_new_conversation(self, topic_id, user_id):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO link_conversations_user_topic (topic_id, user_id) VALUES (?, ?)", (topic_id, user_id))
+        cursor.execute("INSERT INTO link_conversations_user_topic (topic_id, user_id, start_datetime) VALUES (?, ?, ?)", (topic_id, user_id, datetime.datetime.now()))
         connection.commit()
         conversation_id = cursor.lastrowid
+        connection.close()
+        return conversation_id
+
+
+    def end_conversation(self, conversation_id):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        cursor.execute(f"UPDATE link_conversations_user_topic SET end_datetime = '{datetime.datetime.now()}' WHERE conversation_id = {conversation_id}")
+        connection.commit()
         connection.close()
         return conversation_id
 
@@ -162,7 +198,7 @@ class DbManager:
     def create_implication(self, implication_data):
         connection = sqlite3.connect(self.db_path)
         cursor = connection.cursor()
-        cursor.executemany("INSERT INTO implications (conversation_id, category_id, argument_id, implication) VALUES (?, ?, ?, ?)",
+        cursor.executemany("INSERT INTO implications (conversation_id, implication_question_id, implication) VALUES (?, ?, ?)",
                                     implication_data)
         connection.commit()
         rowcount = cursor.rowcount
@@ -232,3 +268,91 @@ class DbManager:
             unlinked_arguments_data.append({"argument_id": argument_id, "yes_or_no": yes_or_no, "argument": argument})
         connection.close()
         return unlinked_arguments_data
+
+
+    def get_assessment_questions(self, survey_type):
+        survey_questions_data = []
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        result = cursor.execute(f"""SELECT assessment_question_id, assessment_question, answer_type 
+                                        FROM assessment_questions WHERE assessment_type = '{survey_type}'""").fetchall()
+        for row in result:
+            assessment_question_id, assessment_question, answer_type = row
+            survey_questions_data.append({"assessment_question_id": assessment_question_id,
+                                          "assessment_question": assessment_question,
+                                          "answer_type": answer_type})
+        return survey_questions_data
+
+
+    def insert_assessment_responses(self, assessment_response_data):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        cursor.executemany("""INSERT INTO assessment_responses (assessment_question_id, conversation_id, answer, collected_at)
+                                VALUES (?, ?, ?, ?)""", assessment_response_data)
+        connection.commit()
+        rowcount = cursor.rowcount
+        connection.close()
+        return rowcount
+
+
+    def insert_implication_questions(self, implication_question_data):
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        cursor.executemany("""INSERT INTO implication_questions (category_id, argument_id, implication_type, implication_question)
+                                    VALUES (?, ?, ?, ?)""",
+                           implication_question_data)
+        connection.commit()
+        rowcount = cursor.rowcount
+        connection.close()
+        return rowcount
+
+
+    def get_implication_questions(self, category_id, argument_ids):
+        implication_questions_data = []
+        implication_questions_by_argument = {}
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        result = cursor.execute(f"""SELECT implication_question_id, argument_id, implication_type, implication_question
+                                        FROM implication_questions WHERE argument_id IN {argument_ids} 
+                                        AND category_id = {category_id} ORDER BY argument_id""").fetchall()
+        connection.close()
+
+        for row in result:
+            implication_question_id, argument_id, implication_type, implication_question = row
+            if argument_id in implication_questions_by_argument:
+                implication_questions_by_argument[argument_id].append({
+                    "implication_question_id": implication_question_id,
+                    "implication_type": implication_type,
+                    "implication_question": implication_question
+                })
+            else:
+                implication_questions_by_argument[argument_id] = [{
+                    "implication_question_id": implication_question_id,
+                    "implication_type": implication_type,
+                    "implication_question": implication_question
+                }]
+
+        for key, value in implication_questions_by_argument.items():
+            implication_questions_data.append({
+                "argument_id": key,
+                "implications": value
+            })
+
+        return implication_questions_data
+
+
+    def get_arguments_without_implication_questions(self, category_id, argument_ids):
+        arguments = []
+        connection = sqlite3.connect(self.db_path)
+        cursor = connection.cursor()
+        result = cursor.execute(f"""SELECT ma.argument_id, ma.argument FROM master_arguments ma INNER JOIN link_argument_categories lac
+                                    ON ma.argument_id = lac.argument_id AND lac.category_id = {category_id}
+                                    WHERE ma.argument_id NOT IN (SELECT argument_id FROM implication_questions)
+                                    AND ma.argument_id IN {argument_ids}""").fetchall()
+        for row in result:
+            argument_id, argument = row
+            arguments.append({
+                "argument_id": argument_id,
+                "argument": argument
+            })
+        return arguments

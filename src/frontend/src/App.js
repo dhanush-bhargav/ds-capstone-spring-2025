@@ -12,32 +12,48 @@ import LoginPage from "./components/LoginPage";
 import QuestionSelection from "./components/QuestionSelection";
 import {
   Instructions,
-  FloatingNavButtons,
-  StepperComponent,
+  BackButton,
+  Feedback,
 } from "./components/Small Components";
 import ArgumentManager from "./components/ArgumentManager";
 import Categorization from "./components/Categorization";
 import ImplicationRating from "./components/ImplicationRating";
-import FinalEvaluation from "./components/FinalEvaluation";
 import { Box } from "@mui/material";
+import IntellectualHumility from "./components/IntellectualHumility";
+import SocialDesirabilty from "./components/SocialDesirabilty";
+import PostIntellectualHumility from "./components/PostIntellectualHumility";
+import EvaluationSummary from "./components/EvaluationSummary";
+import {baseUrl} from "./config";
+
+const initialSubmissionStatus = {
+  humility: false,
+  desirability: false,
+  questions: false,
+  instructions: false,
+  arguments: false,
+  categories: false,
+  implications: false,
+  postHumility: false,
+  evaluation: false,
+};
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Intellectual Humility & Social Desirability Assessment
+
+  const [intellectualHumility, setIntellectualHumility] = useState("");
+  const [socialDesirability, setSocialDesirability] = useState("");
+  const [intellectualHumilityId, setIntellectualHumilityId] = useState("");
+  const [socialDesirabilityId, setSocialDesirabilityId] = useState("");
 
   // Topics
-  const [topics, setTopics] = useState([]);
-  const [topicId, setTopicId] = useState(null);
-  const [topic, setTopic] = useState("");
+  const [topic, setTopic] = useState({});
 
   //Instructions
   const [instructions, setInstructions] = useState("");
-
-  // Question and Question ID
-  const [questions, setQuestions] = useState([]);
-  const [question, setQuestion] = useState("");
-  const [questionId, setQuestionId] = useState("");
 
   // Arguments
   const [yesArguments, setYesArguments] = useState([]);
@@ -62,11 +78,20 @@ const App = () => {
   const [finalStrength, setFinalStrength] = useState(5);
   const [conversationId, setConversationId] = useState(null);
 
+  const [argumentIdsForImplication, setArgumentIdsForImplication] = useState([]);
+
+  const [submissionStatus, setSubmissionStatus] = useState(
+    initialSubmissionStatus
+  );
+
+  const [questionNumber, setQuestionNumber] = useState(0);
+
   const handleLogin = async (username, password) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      // console.log(`${baseUrl}/login`)
+      const response = await axios.post(`${baseUrl}/login`, {
         user_id: username,
         password,
       });
@@ -77,8 +102,6 @@ const App = () => {
         setToken(user_id);
         setUser({ id: user_id, name: user_name });
         setIsAuthenticated(true);
-        fetchQuestions();
-        fetchTopics();
         //DO NOT NAVIGATE HERE
       } else {
         setError(message || "Login failed. Please check your credentials.");
@@ -92,115 +115,25 @@ const App = () => {
       setIsLoading(false);
     }
   };
-  const fetchQuestions = async () => {
-    //... fetch questions
-    setIsLoading(true);
-    try {
-      const response = await axios.get("http://localhost:5000/get_topics");
-      // Transform the API response to match the expected structure
-      const transformedTopics = response.data.map((topic) => ({
-        id: topic.id,
-        name: topic.name,
-        preMadeQuestions: topic.preMadeQuestions.map((q) => ({
-          id: q.id,
-          text: q.topic, // Use 'topic' field as question text
-          topicId: topic.id,
-        })),
-      }));
 
-      setTopics(transformedTopics);
-      // Flatten the questions array
-      let allQuestions = [];
-      transformedTopics.forEach((topic) => {
-        allQuestions = allQuestions.concat(topic.preMadeQuestions);
-      });
-      setQuestions(allQuestions);
-    } catch (error) {
-      setError(error.response?.data?.message || "Failed to load questions.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  const fetchTopics = async () => {
-    //... fetch topics
-    setIsLoading(true);
-    try {
-      const response = await axios.get("http://localhost:5000/get_topics");
-      const transformedTopics = response.data.map((topic) => ({
-        id: topic.id,
-        name: topic.name,
-        preMadeQuestions: topic.preMadeQuestions.map((q) => ({
-          // Include preMadeQuestions
-          id: q.id,
-          text: q.topic,
-          topicId: topic.id,
-        })),
-      }));
-      setTopics(transformedTopics);
-    } catch (error) {
-      setError(error.response?.data?.message || "Failed to load topics.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  const handleNext = () => {
-    console.log(`Before handleNext - Current Step: ${step}`);
-
-    setStep((prevStep) => {
-      let nextStep;
-      switch (prevStep) {
-        case 1:
-          nextStep = 2;
-          break;
-        case 2:
-          nextStep = 3;
-          break;
-        case 3:
-          argumentIds.length > 0 ? (nextStep = 4) : (nextStep = 3);
-          break;
-        case 4:
-          nextStep = 5;
-          break;
-        case 5:
-          nextStep = 6;
-          break;
-        case 6:
-          nextStep = 7;
-          break;
-        default:
-          nextStep = prevStep; // Stay on the same step if no match
-      }
-      console.log(`After handleNext - Next Step: ${nextStep}`);
-      return nextStep;
-    });
-  };
   const handleBack = () => {
-    console.log(`Before handleBack - Current Step: ${step}`);
+    // console.log(`Before handleBack - Current Step: ${step}`);
     setStep((prev) => {
       const newStep = Math.max(prev - 1, 1);
-      console.log(`After handleBack - Next Step: ${newStep}`);
+      // console.log(`After handleBack - Next Step: ${newStep}`);
       return newStep;
     });
   };
 
-  const updateTopic = (topicIdProp) => {
-    setTopicId(topicIdProp);
-    const topicIdNum = parseInt(topicIdProp, 10);
-    const selectedTopic = topics.find((t) => {
-      return t.id === topicIdNum;
-    });
-    setTopic(selectedTopic);
-    if (selectedTopic) {
-      setQuestions(selectedTopic.preMadeQuestions);
-    }
+  const updateIntellectualHumility = (intellectualHumilityProp) => {
+    setIntellectualHumility(intellectualHumilityProp);
   };
-  const updateQuestion = (questionIdProp) => {
-    setQuestionId(questionIdProp);
-    const questionIdNum = parseInt(questionIdProp, 10);
-    const question = questions.find((q) => {
-      return q.id === questionIdNum;
-    })?.text;
-    setQuestion(question);
+  const updateSocialDesirability = (socialDesirabilityProp) => {
+    setSocialDesirability(socialDesirabilityProp);
+  };
+
+  const updateTopic = (topicProp) => {
+    setTopic(topicProp);
   };
   const updateStance = (stance) => {
     setStance(stance);
@@ -246,20 +179,78 @@ const App = () => {
     setError(error);
   };
   const updateStep = (step) => {
+    if (step === 3) {
+      updateYesArguments([]);
+      updateNoArguments([]);
+    }
     setStep(step);
-    console.log("ArgId = ", argumentIds);
-    console.log("CatId = ", categoriesId);
   };
   const updateLoading = (Loading) => {
     setIsLoading(Loading);
   };
+  const updateSubmissionStatus = (status) => {
+    setSubmissionStatus((prevStatus) => ({
+      ...prevStatus,
+      ...status,
+    }));
+  };
+  const updateArgumentIdsForImplications = (argIds) => {
+    setArgumentIdsForImplication(argIds);
+  }
 
-  useEffect(() => {
-    if (token) {
-      fetchQuestions();
-      fetchTopics();
+  const updateQuestionNumber = () => {
+    setQuestionNumber(questionNumber+1);
+  };
+
+  function transformHumilityResponses(ihResponses) {
+    const humilityMapping = {
+      1: "STRONGLY_DISAGREE",
+      2: "DISAGREE",
+      3: "NEITHER",
+      4: "AGREE",
+      5: "STRONGLY_AGREE",
+    };
+  
+    if (typeof ihResponses !== "object" || ihResponses === null) {
+      console.error(
+        "Invalid input for transformHumilityResponsesToArray: Expected an object, received:",
+        ihResponses
+      );
+      return [];
     }
-  }, [token]);
+  
+    return Object.entries(ihResponses).map(([questionId, numericValue]) => ({
+      assessment_question_id: parseInt(questionId, 10),
+      answer: humilityMapping[numericValue] || `UNKNOWN_VALUE_${numericValue}`,
+    }));
+  }
+  
+
+  function transformDesirabilityResponses(sdResponses) {
+    if (typeof sdResponses !== "object" || sdResponses === null) {
+      console.error(
+        "Invalid input for transformDesirabilityResponsesToArray: Expected an object, received:",
+        sdResponses
+      );
+      return [];
+    }
+  
+    return Object.entries(sdResponses).map(([questionId, value]) => {
+      let answer;
+      if (typeof value === "boolean") {
+        answer = value ? "YES" : "NO";
+      } else {
+        console.warn(`Non-boolean value for question ${questionId}:`, value);
+        answer = `INVALID_VALUE_${value}`;
+      }
+  
+      return {
+        assessment_question_id: parseInt(questionId, 10),
+        answer,
+      };
+    });
+  }
+  
 
   return (
     <Router>
@@ -271,17 +262,6 @@ const App = () => {
           </Routes>
         ) : (
           <Box
-            sx={{
-              width: "100vw",
-              height: "100vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#f5f5f5",
-              transition: "height 0.5s ease-in-out",
-            }}
-          >
-            <Box
               sx={{
                 width: "800px",
                 maxHeight: "auto",
@@ -291,43 +271,78 @@ const App = () => {
                 display: "flex",
                 flexDirection: "column",
                 border: "1px solid #ccc",
-                alignItems: "center",
-                justifyContent: "center",
                 transition: "height 0.5s ease-in-out",
               }}
             >
-              {/* <StepperComponent step={step} /> */}
-              {isLoading && <p>Loading...</p>}
-              {error && <p style={{ color: "red" }}>{error}</p>}
               {step === 1 && (
+                <IntellectualHumility
+                  updateStep={updateStep}
+                  updateLoading={updateLoading}
+                  updateError={updateError}
+                  updateIntellectualHumility={updateIntellectualHumility}
+                  intellectualHumility={intellectualHumility}
+                  intellectualHumilityId={intellectualHumilityId}
+                  isLoading={isLoading}
+                  error={error}
+                  step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
+                />
+              )}
+              {step === 2 && (
+                <SocialDesirabilty
+                  updateStep={updateStep}
+                  updateLoading={updateLoading}
+                  updateError={updateError}
+                  updateSocialDesirability={updateSocialDesirability}
+                  isLoading={isLoading}
+                  error={error}
+                  step={step}
+                  socialDesirability={socialDesirability}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
+                />
+              )}
+              {step === 3 && (
                 <QuestionSelection
                   updateTopic={updateTopic}
                   updateError={updateError}
-                  updateQuestion={updateQuestion}
                   updateStance={updateStance}
                   updateStrength={updateStrength}
                   updateStep={updateStep}
                   updateConversationId={updateConversationId}
                   updateLoading={updateLoading}
+                  intellectualHumility={transformHumilityResponses(
+                    intellectualHumility
+                  )}
+                  socialDesirability={transformDesirabilityResponses(
+                    socialDesirability
+                  )}
+                  questionNumber={questionNumber}
                   token={token}
                   user={user}
                   stance={stance}
                   topic={topic}
-                  topicId={topicId}
-                  topics={topics}
                   strength={strength}
-                  questions={questions}
-                  question={question}
-                  questionId={questionId}
+                  isLoading={isLoading}
+                  error={error}
+                  step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
-              {step === 2 && (
+              {step === 4 && (
                 <Instructions
                   updateStep={updateStep}
                   updateLoading={updateLoading}
+                  isLoading={isLoading}
+                  error={error}
+                  step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
-              {step === 3 && (
+              {step === 5 && (
                 <ArgumentManager
                   updateStep={updateStep}
                   updateLoading={updateLoading}
@@ -338,14 +353,15 @@ const App = () => {
                   yesArguments={yesArguments}
                   noArguments={noArguments}
                   topic={topic}
-                  topicId={questionId}
                   isLoading={isLoading}
                   error={error}
-                  question={question}
                   token={token}
+                  step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
-              {step === 4 && (
+              {step === 6 && (
                 <Categorization
                   updateStep={updateStep}
                   updateLoading={updateLoading}
@@ -355,14 +371,17 @@ const App = () => {
                   yesArguments={yesArguments}
                   noArguments={noArguments}
                   topic={topic}
-                  topicId={questionId}
                   isLoading={isLoading}
                   error={error}
                   categories={categories}
                   token={token}
+                  step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
+                  updateArgumentIdsForImplications={updateArgumentIdsForImplications}
                 />
               )}
-              {step === 5 && (
+              {step === 7 && (
                 <ImplicationRating
                   updateStep={updateStep}
                   updateLoading={updateLoading}
@@ -374,47 +393,86 @@ const App = () => {
                   implication={implication}
                   categories={categories}
                   categoriesId={categoriesId}
-                  question={question}
                   topic={topic}
-                  topicId={questionId}
+                  argumentIdsForImplication={argumentIdsForImplication}
                   conversationId={conversationId}
                   error={error}
                   isLoading={isLoading}
                   token={token}
+                  step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
-              {step === 6 && (
-                <FinalEvaluation
-                  updateFinalStance={updateFinalStance}
-                  updateFinalStrength={updateFinalStrength}
+              {step === 8 && (
+                <PostIntellectualHumility
                   updateStep={updateStep}
                   updateLoading={updateLoading}
                   updateError={updateError}
+                  user={user}
+                  userId={user.id}
                   updateStance={updateStance}
+                  topic={topic}
+                  questionNumber={questionNumber}
+                  conversationId={conversationId}
+                  intellectualHumility={intellectualHumility}
+                  socialDesirability={socialDesirability}
+                  intellectualHumilityId={intellectualHumilityId}
+                  updateFinalStance={updateFinalStance}
+                  updateFinalStrength={updateFinalStrength}
                   updateStrength={updateStrength}
                   isLoading={isLoading}
                   error={error}
-
-                  question={question}
                   stance={stance}
                   strength={strength}
-                  
                   finalStance={finalStance}
                   finalStrength={finalStrength}
                   token={token}
-                  conversationId={conversationId}
+                  step={step}
+                  submissionStatus={submissionStatus}
+                  updateSubmissionStatus={updateSubmissionStatus}
                 />
               )}
-
-              {/* Floating Navigation Buttons */}
-              <FloatingNavButtons
+              {step === 9 && (
+                <EvaluationSummary
+                  updateStep={updateStep}
+                  updateLoading={updateLoading}
+                  updateError={updateError}
+                  user={user}
+                  userId={user.id}
+                  updateStance={updateStance}
+                  topic={topic}
+                  conversationId={conversationId}
+                  intellectualHumility={intellectualHumility}
+                  socialDesirability={socialDesirability}
+                  intellectualHumilityId={intellectualHumilityId}
+                  updateFinalStance={updateFinalStance}
+                  updateFinalStrength={updateFinalStrength}
+                  updateStrength={updateStrength}
+                  isLoading={isLoading}
+                  error={error}
+                  stance={stance}
+                  strength={strength}
+                  finalStance={finalStance}
+                  finalStrength={finalStrength}
+                  token={token}
+                  step={step}
+                  submissionStatus={submissionStatus}
+                  questionNumber={questionNumber}
+                  updateSubmissionStatus={updateSubmissionStatus}
+                  updateQuestionNumber={updateQuestionNumber}
+                />
+              )}
+              {step === 10 && (
+                <Feedback />
+              )}
+              
+              
+              <BackButton
                 onBack={handleBack}
-                onNext={handleNext}
-                disableBack={step === 1}
-                disableNext={step === 7}
+                disableBack={step === 1 || isLoading}
               />
             </Box>
-          </Box>
         )}
       </>
     </Router>

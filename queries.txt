@@ -1,0 +1,236 @@
+##### Extract students who have completed all three questions #####
+
+CREATE TEMPORARY TABLE conversations_48 (
+    user_id TEXT,
+    conversation_id INT
+);
+CREATE TEMPORARY TABLE conversations_33 (
+    user_id TEXT,
+    conversation_id INT
+);
+CREATE TEMPORARY TABLE conversations_73 (
+    user_id TEXT,
+    conversation_id INT
+);
+
+INSERT INTO conversations_48
+SELECT user_id, conversation_id FROM link_conversations_user_topic WHERE topic_id=48 AND user_id <> 'dhanush' AND end_datetime IS NOT NULL;
+
+INSERT INTO conversations_33
+SELECT user_id, conversation_id FROM link_conversations_user_topic WHERE topic_id=33 AND user_id <> 'dhanush' AND end_datetime IS NOT NULL;
+
+INSERT INTO conversations_73
+SELECT user_id, conversation_id FROM link_conversations_user_topic WHERE topic_id=73 AND user_id <> 'dhanush' AND end_datetime IS NOT NULL;
+
+SELECT c73.user_id AS user_id, min(c33.conversation_id, c48.conversation_id, c73.conversation_id) AS start_conversation_id, max(c33.conversation_id, c48.conversation_id, c73.conversation_id) AS end_conversation_id
+FROM conversations_48 c48 INNER JOIN conversations_33 c33 ON c33.user_id=c48.user_id INNER JOIN conversations_73 c73 ON c73.user_id=c33.user_id
+ORDER BY user_id;
+
+DROP TABLE conversations_48;
+DROP TABLE conversations_33;
+DROP TABLE conversations_73;
+
+#### Extract IH Responses #####
+SELECT
+    lcut.conversation_id,
+    lcut.user_id,
+    aq.assessment_question_id,
+    aq.assessment_question,
+    aq.assessment_type,
+    aq.answer_type,
+    ar.answer,
+    ar.collected_at
+FROM
+    link_conversations_user_topic lcut INNER JOIN assessment_responses ar ON lcut.conversation_id=ar.conversation_id
+    INNER JOIN assessment_questions aq ON ar.assessment_question_id=aq.assessment_question_id
+WHERE
+    lcut.end_datetime IS NOT NULL AND
+    lcut.user_id <> 'dhanush' AND
+    aq.assessment_type='INTELLECTUAL_HUMILITY';
+
+
+##### Extract Social Desirability Responses #####
+SELECT
+    lcut.conversation_id,
+    lcut.user_id,
+    aq.assessment_question_id,
+    aq.assessment_question,
+    aq.assessment_type,
+    aq.answer_type,
+    ar.answer,
+    ar.collected_at
+FROM
+    link_conversations_user_topic lcut INNER JOIN assessment_responses ar ON lcut.conversation_id=ar.conversation_id
+    INNER JOIN assessment_questions aq ON ar.assessment_question_id=aq.assessment_question_id
+WHERE
+    lcut.end_datetime IS NOT NULL AND
+    lcut.user_id <> 'dhanush' AND
+    aq.assessment_type='SOCIAL_DESIRABILITY';
+
+
+###### Extract stance changes by topic (change topic_id in WHERE clause) ######
+CREATE TEMPORARY TABLE initial_stance (
+    conversation_id INT,
+    topic_id INT,
+    stance_id INT,
+    stance TEXT,
+    stance_rating INT,
+    collected_at TEXT
+);
+
+CREATE TEMPORARY TABLE final_stance (
+    conversation_id INT,
+    topic_id INT,
+    stance_id INT,
+    stance TEXT,
+    stance_rating INT,
+    collected_at TEXT
+);
+
+INSERT INTO initial_stance
+SELECT lcut.conversation_id as conversation_id,
+       lcut.topic_id as topic_id,
+       st.stance_id as stance_id,
+       st.stance as stance,
+       st.stance_rating as stance_rating,
+       st.collected_at as collected_at
+FROM
+    link_conversations_user_topic lcut INNER JOIN stances st
+    ON lcut.conversation_id=st.conversation_id
+WHERE
+    lcut.user_id<>'dhanush' AND
+    lcut.conversation_id<>23 AND
+    lcut.end_datetime IS NOT NULL AND
+    lcut.topic_id=73 AND
+    st.collected_at = 'START';
+
+INSERT INTO final_stance
+SELECT lcut.conversation_id as conversation_id,
+       lcut.topic_id as topic_id,
+       st.stance_id as stance_id,
+       st.stance as stance,
+       st.stance_rating as stance_rating,
+       st.collected_at as collected_at
+FROM
+    link_conversations_user_topic lcut INNER JOIN stances st
+    ON lcut.conversation_id=st.conversation_id
+WHERE
+    lcut.user_id<>'dhanush' AND
+    lcut.conversation_id<>23 AND
+    lcut.end_datetime IS NOT NULL AND
+    lcut.topic_id=73 AND
+    st.collected_at = 'END';
+
+
+SELECT ist.conversation_id as conversation_id,
+       ist.topic_id as topic_id,
+       ist.stance_id as initial_stance_id,
+       ls.stance_id as final_stance_id,
+       ist.stance as initial_stance,
+       ist.stance_rating as initial_stance_rating,
+       ls.stance as final_stance,
+       ls.stance_rating as final_stance_rating
+
+FROM initial_stance ist INNER JOIN final_stance ls
+    ON ist.conversation_id=ls.conversation_id;
+
+DROP TABLE initial_stance;
+DROP TABLE final_stance;
+
+######## Gather changes to IH responses for each user #######
+CREATE TEMPORARY TABLE conversations_48 (
+    user_id TEXT,
+    conversation_id INT
+);
+CREATE TEMPORARY TABLE conversations_33 (
+    user_id TEXT,
+    conversation_id INT
+);
+CREATE TEMPORARY TABLE conversations_73 (
+    user_id TEXT,
+    conversation_id INT
+);
+
+INSERT INTO conversations_48
+SELECT user_id, conversation_id FROM link_conversations_user_topic WHERE conversation_id<>23 AND topic_id=48 AND user_id <> 'dhanush' AND end_datetime IS NOT NULL;
+
+INSERT INTO conversations_33
+SELECT user_id, conversation_id FROM link_conversations_user_topic WHERE conversation_id<>23 AND topic_id=33 AND user_id <> 'dhanush' AND end_datetime IS NOT NULL;
+
+INSERT INTO conversations_73
+SELECT user_id, conversation_id FROM link_conversations_user_topic WHERE conversation_id<>23 AND topic_id=73 AND user_id <> 'dhanush' AND end_datetime IS NOT NULL;
+
+CREATE TEMPORARY TABLE completed_users (
+    user_id TEXT,
+    start_conversation_id INT,
+    end_conversation_id INT
+);
+INSERT INTO completed_users
+SELECT c73.user_id AS user_id, min(c33.conversation_id, c48.conversation_id, c73.conversation_id) AS start_conversation_id, max(c33.conversation_id, c48.conversation_id, c73.conversation_id) AS end_conversation_id
+FROM conversations_48 c48 INNER JOIN conversations_33 c33 ON c33.user_id=c48.user_id INNER JOIN conversations_73 c73 ON c73.user_id=c33.user_id
+ORDER BY user_id;
+
+CREATE TEMPORARY TABLE initial_ih_responses (
+    user_id TEXT,
+    assessment_question_id INT,
+    answer TEXT,
+    collected_at TEXT
+);
+
+CREATE TEMPORARY TABLE final_ih_responses (
+    user_id TEXT,
+    assessment_question_id INT,
+    answer TEXT,
+    collected_at TEXT
+);
+
+INSERT INTO initial_ih_responses
+SELECT DISTINCT
+    cu.user_id,
+    ar.assessment_question_id,
+    ar.answer,
+    ar.collected_at
+FROM
+    completed_users cu INNER JOIN assessment_responses ar ON ar.conversation_id=cu.start_conversation_id
+    INNER JOIN assessment_questions aq ON ar.assessment_question_id=aq.assessment_question_id
+WHERE
+    aq.assessment_type='INTELLECTUAL_HUMILITY' AND ar.collected_at='START';
+SELECT * FROM initial_ih_responses;
+
+INSERT INTO final_ih_responses
+SELECT DISTINCT
+    cu.user_id,
+    ar.assessment_question_id,
+    ar.answer,
+    ar.collected_at
+FROM
+    completed_users cu INNER JOIN assessment_responses ar ON ar.conversation_id=cu.end_conversation_id
+    INNER JOIN assessment_questions aq ON ar.assessment_question_id=aq.assessment_question_id
+WHERE
+    aq.assessment_type='INTELLECTUAL_HUMILITY' AND ar.collected_at='END';
+SELECT * FROM final_ih_responses;
+SELECT
+    iir.user_id as user_id,
+    aq.assessment_question as assessment_question,
+    iir.answer as initial_answer,
+    fir.answer as final_answer
+FROM
+    initial_ih_responses iir LEFT JOIN final_ih_responses fir
+        ON iir.user_id=fir.user_id AND iir.assessment_question_id=fir.assessment_question_id
+    INNER JOIN assessment_questions aq on fir.assessment_question_id = aq.assessment_question_id
+ORDER BY user_id;
+
+
+DROP TABLE conversations_48;
+DROP TABLE conversations_33;
+DROP TABLE conversations_73;
+DROP TABLE completed_users;
+DROP TABLE initial_ih_responses;
+DROP TABLE final_ih_responses;
+
+################### Fetch implication questions by topic_id ##################
+SELECT ma.argument_id, ma.argument, ma.yes_or_no, iq.implication_question_id, iq.implication_type, iq.implication_question
+FROM master_arguments ma INNER JOIN implication_questions iq ON ma.argument_id = iq.argument_id
+WHERE ma.topic_id=73;
+
+####################
