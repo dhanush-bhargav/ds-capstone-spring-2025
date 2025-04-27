@@ -119,18 +119,18 @@ cursor.execute("""CREATE TABLE implication_questions (
                     )""")
 
 # Populate users table with default users
+# Edit the data in this list to add users to the database
 users_data = [
-    ("dhanush", "Dhanush Bhargav", "abc@123"),
-    ("guruksha", "Guruksha Gurnani", "abc@123"),
+    ("admin", "Admin", "abc@123"),
 ]
 
 cursor.executemany("INSERT INTO users VALUES (?, ?, ?)", users_data)
 connection.commit()
 
 # Populate link_users_question_order table for default users
+# Edit this list to assign question orders to the users
 data = [
-    ('dhanush', '48,33,73'),
-    ('guruksha', '48,33,73'),
+    ('admin', '48,33,73')
 ]
 cursor.executemany("INSERT INTO link_users_question_orders VALUES (?, ?)", data)
 connection.commit()
