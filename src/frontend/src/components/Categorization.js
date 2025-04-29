@@ -74,13 +74,13 @@ const Categorization = (props) => {
                     props.updateArgumentIdsForImplications(fetchedArgumentIds);
 
                 } else {
-                     setFetchError(response.data.message || "Failed to fetch data: API request not successful.");
+                    setFetchError(response.data.message || "Failed to fetch data: API request not successful.");
                 }
             } catch (error) {
                 console.error("Error fetching arguments and categories:", error);
-                 setFetchError(error.response?.data?.message || error.message || "An error occurred while fetching data.");
+                setFetchError(error.response?.data?.message || error.message || "An error occurred while fetching data.");
             } finally {
-                 setIsFetching(false);
+                setIsFetching(false);
             }
         };
         fetchArgumentsAndCategories();
@@ -114,7 +114,7 @@ const Categorization = (props) => {
     // Handler to delete a category locally
     const handleDeleteCategory = (categoryId) => {
         if (window.confirm("Are you sure you want to delete this category?")) {
-             setLocalCategory(localCategory.filter((c) => c.id !== categoryId));
+            setLocalCategory(localCategory.filter((c) => c.id !== categoryId));
         }
     };
 
@@ -147,9 +147,9 @@ const Categorization = (props) => {
                     props.updateLoading(false); // Stop loading on failure
                 }
             } else {
-                 // console.log("No categories defined, proceeding to next step.");
-                 props.updateStep(props.step + 1); // Proceed even if no categories?
-                 props.updateLoading(false); // Ensure loading stops
+                // console.log("No categories defined, proceeding to next step.");
+                props.updateStep(props.step + 1); // Proceed even if no categories?
+                props.updateLoading(false); // Ensure loading stops
             }
         } catch (error) {
             console.error("Error proceeding:", error)
@@ -172,7 +172,7 @@ const Categorization = (props) => {
             <Typography variant="h6" sx={{ mt: 3, mb: 1 }}>Your Categories</Typography>
             {isFetching ? (
                 // Show loading indicator while fetching categories
-                 <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}><CircularProgress /></Box>
+                <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}><CircularProgress /></Box>
             ) : localCategory.length === 0 && !fetchError ? (
                 // Show message if no categories exist (and not due to error)
                 <Typography variant="body2" sx={{mb: 2, color: 'text.secondary'}}>No categories defined yet.</Typography>
@@ -222,10 +222,10 @@ const Categorization = (props) => {
                     </Paper>
                 ))
             )}
-             {/* Display fetch error specific to categories/arguments loading */}
-             {fetchError && (
-                 <Alert severity="error" sx={{ mt: 2 }}>{fetchError}</Alert>
-             )}
+            {/* Display fetch error specific to categories/arguments loading */}
+            {fetchError && (
+                <Alert severity="error" sx={{ mt: 2 }}>{fetchError}</Alert>
+            )}
 
             {/* --- SECTION: Prompting Message (Added) --- */}
             <Typography variant="body2" sx={{ mt: 4, mb: 2, fontStyle: 'italic', color: 'text.secondary', textAlign: 'center' }}>
@@ -243,7 +243,7 @@ const Categorization = (props) => {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleAddCategory()}
                     fullWidth
-                    />
+                />
                 <Button
                     variant="contained"
                     color="primary"
@@ -258,15 +258,15 @@ const Categorization = (props) => {
             {/* --- SECTION: Uncategorized Arguments (Moved to Bottom) --- */}
             <Typography variant="h6" sx={{ mt: 4, mb: 1 }}>Arguments to Categorize</Typography>
             <Paper sx={{ padding: 2, mb: 3, flex: 1, border: '1px dashed grey' /* Visual cue */ }}>
-                 {/* Show loading indicator only if specifically fetching */}
-                 {isFetching ? (
-                     <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}><CircularProgress /></Box>
-                 ) : uncategorizedArguments.length === 0 && !fetchError ? (
-                     // Message if no arguments need categorization (and no fetch error)
-                     <Typography variant="body2" align="center" sx={{ mt: 2, color: 'text.secondary' }}>
-                         All arguments are currently categorized.
-                     </Typography>
-                 ) : !fetchError ? (
+                {/* Show loading indicator only if specifically fetching */}
+                {isFetching ? (
+                    <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}><CircularProgress /></Box>
+                ) : uncategorizedArguments.length === 0 && !fetchError ? (
+                    // Message if no arguments need categorization (and no fetch error)
+                    <Typography variant="body2" align="center" sx={{ mt: 2, color: 'text.secondary' }}>
+                        All arguments are currently categorized.
+                    </Typography>
+                ) : !fetchError ? (
                     // Display list if arguments exist and no fetch error
                     <List dense>
                         {uncategorizedArguments.map((item) => (
@@ -276,33 +276,33 @@ const Categorization = (props) => {
                             </ListItem>
                         ))}
                     </List>
-                 ) : null /* Don't show list if there was a fetch error (already shown above) */}
+                ) : null /* Don't show list if there was a fetch error (already shown above) */}
             </Paper>
 
 
             {/* --- SECTION: Loading/Error (from props, e.g., submission) --- */}
-             {props.isLoading && !isFetching && (
-                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1, my: 2 }}>
-                     <CircularProgress size={20} />
-                     <Typography variant="body2">Processing...</Typography>
-                 </Box>
-             )}
-             {props.error && (
+            {props.isLoading && !isFetching && (
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1, my: 2 }}>
+                    <CircularProgress size={20} />
+                    <Typography variant="body2">Processing...</Typography>
+                </Box>
+            )}
+            {props.error && (
                 <Alert severity="warning" sx={{ my: 2 }}>{props.error}</Alert>
-             )}
+            )}
 
             {/* --- SECTION: Proceed Button --- */}
             <Box sx={{ mt: 4, textAlign: 'center' }}>
-                 <Button
-                     variant="contained"
-                     color="success"
-                     onClick={handleProceed}
-                     disabled={isSubmitting || props.isLoading || isFetching}
-                     size="large"
-                 >
-                     {isSubmitting ? "Processing..." : "Proceed"}
-                 </Button>
-             </Box>
+                <Button
+                    variant="contained"
+                    color="success"
+                    onClick={handleProceed}
+                    disabled={isSubmitting || props.isLoading || isFetching}
+                    size="large"
+                >
+                    {isSubmitting ? "Processing..." : "Proceed"}
+                </Button>
+            </Box>
         </Box>
     );
 };
