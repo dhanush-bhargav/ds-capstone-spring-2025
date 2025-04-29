@@ -25,8 +25,8 @@ const EvaluationSummary = (props) => {
         } else {
             props.updateStep(props.step+1);
         }
-        
-      };
+
+    };
 
     return (
         // Use a Container for consistent max-width and centering
